@@ -1,19 +1,38 @@
 .Navbar {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 10px;
+  gap: 50px;
   width: 100%;
-  height: var(--navbar-height);
+  height: 20%;
 
   background-color: var(--navbar-bg-color);
 }
 
 .links {
   display: flex;
-  gap: 10px;
+  gap: 40px;
 }
 
-.mainLink {
+.Link {
+  text-decoration: none;
+}
+.Link:hover {
+    color: #00e0ff; /* Цвет ссылки при наведении на нее курсора мыши */
+}
 
+.Profile:hover {
+  color: #00e0ff; /* Цвет ссылки при наведении на нее курсора мыши */
+}
+
+.Profile {
+  position: absolute;
+  right: 70px;
+  text-decoration: none;
+}
+
+.ProfileImg {
+  position: absolute;
+  right: 10px;
+  top: 6%;
+  margin-right: 10px;
 }
