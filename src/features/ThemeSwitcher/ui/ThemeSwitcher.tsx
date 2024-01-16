@@ -1,5 +1,5 @@
 import {useTheme} from "app/providers/ThemeProvider";
-import DarkIcon from "shared/assets/logo.jpg";
+import DarkIcon from "shared/assets/logo.png";
 
 export interface IThemeSwitcherProps {
     className?: string;
