@@ -1,17 +1,12 @@
-import {classNames} from "shared/lib/classNames";
-import cls from './ThemeSwitcher.module.scss'
 import {useTheme} from "app/providers/ThemeProvider";
-import LightIcon from 'shared/assets/theme-light.svg';
-import DarkIcon from "shared/assets/logo.png";
-import {Theme} from "app/providers/ThemeProvider/lib/ThemeContext";
-import {Button} from "shared/ui/Button/Button";
+import DarkIcon from "shared/assets/logo.jpg";
 
 export interface IThemeSwitcherProps {
     className?: string;
 }
 
 export const ThemeSwitcher = ( { className }: IThemeSwitcherProps ) => {
-    const {theme, toggleTheme} = useTheme();
+    const {theme, setTheme} = useTheme();
     return (
         <img src={DarkIcon} alt="logo" className={"logo"}/>
     );
