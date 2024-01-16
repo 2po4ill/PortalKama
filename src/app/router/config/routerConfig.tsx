@@ -1,20 +1,9 @@
 import {RouteProps} from "react-router-dom";
+import {AppRoutes, RoutePath} from "shared/const/router";
+
 import MainPage from "pages/MainPage";
-import Reservation from "pages/Reservation";
 import Store from "pages/Store";
-
-
-export enum AppRoutes {
-    MAIN = 'main',
-    RESERVATION = 'reservation',
-    STORE = 'store'
-}
-
-export const RoutePath: Record<AppRoutes, string> = {
-    [AppRoutes.MAIN]: '/',
-    [AppRoutes.RESERVATION]: '/reservation',
-    [AppRoutes.STORE]: '/store',
-}
+import ReservationPage from "pages/ReservationPage/ui/ReservationPage";
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.MAIN]: {
@@ -23,10 +12,14 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     },
     [AppRoutes.RESERVATION]: {
         path: RoutePath.reservation,
-        element: <Reservation />
+        element: <ReservationPage />
     },
     [AppRoutes.STORE]: {
         path: RoutePath.reservation,
         element: <Store />
     },
+    [AppRoutes.NOT_FOUND]: {
+        path: RoutePath.not_found,
+        element: <div>PAGE NOT FOUND</div>
+    }
 }

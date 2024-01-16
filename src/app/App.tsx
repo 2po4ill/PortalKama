@@ -1,10 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
-import 'app/styles/index.scss'
-import {useTheme} from "app/providers/ThemeProvider";
+import './styles/index.scss'
+import {useTheme} from "./providers/ThemeProvider";
 import {classNames} from "shared/lib/classNames";
-import {AppRouter} from "app/providers/router";
 import {Navbar} from "widgets/Navbar";
+import {AppRouter} from "./router";
 
 
 function App() {

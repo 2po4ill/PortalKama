@@ -1,11 +1,16 @@
-import React from 'react';
+import {classNames} from "shared/lib/classNames";
+import cls from './Store.module.scss'
 
-function Store() {
+export interface IStoreProps {
+    className?: string;
+}
+
+const Store = ( { className }: IStoreProps ) => {
     return (
-        <div>
-            <h1>About Page</h1>
+        <div className={classNames(cls.Store, {}, [className])}>
+            <h1>Store</h1>
         </div>
     );
-}
+};
 
 export default Store;
