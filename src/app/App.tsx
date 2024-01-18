@@ -10,7 +10,7 @@ function App() {
     const {theme} = useTheme();
 
     return (
-        <div className={classNames('app', {"hovered": true}, [theme])}>
+        <div className={classNames('app', {}, [theme])}>
             <Navbar />
             <AppRouter />
         </div>

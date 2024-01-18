@@ -6,4 +6,9 @@
   --primary-color: #ffffff;
   // Цвет для кнопок, ссылок и т.д.
   --secondary-color: #fdfd00;
+
+  @media (min-width: 1000px) {
+    --navbar-bg-color: #adcbe3;
+
+  }
 }

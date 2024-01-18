@@ -1,0 +1,1 @@
+export {IPageNotFoundProps} from './ui/PageNotFound'

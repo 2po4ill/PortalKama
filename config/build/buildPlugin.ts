@@ -3,8 +3,9 @@ import path from "node:path";
 import webpack from "webpack";
 import {IBuildOptions} from "./types/config";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 
-export function buildPlugin({paths}: IBuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugin({paths, isDev}: IBuildOptions): webpack.WebpackPluginInstance[] {
 
     return [
         new HtmlWebpackPlugin({
@@ -15,5 +16,12 @@ export function buildPlugin({paths}: IBuildOptions): webpack.WebpackPluginInstan
             filename: "css/[name].[contenthash:8].css",
             chunkFilename: "css/[name].[contenthash:8].css"
         }),
+        new webpack.DefinePlugin({
+            __IS_DEV__: JSON.stringify(isDev)
+        }),
+        //* Так по идеи не будет происходить перерендер компонентов при изменении в коде
+        isDev && new webpack.HotModuleReplacementPlugin(),
+        isDev && new ReactRefreshWebpackPlugin()
+        //*
     ]
 }
