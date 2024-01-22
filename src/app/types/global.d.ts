@@ -15,3 +15,6 @@ declare module "*.svg" {
 declare module "*.png";
 declare module "*.jpg";
 declare module "*.jpeg";
+
+// true, если проект запущен в Dev моде
+declare const __IS_DEV__: boolean;

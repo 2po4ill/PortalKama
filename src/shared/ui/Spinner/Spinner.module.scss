@@ -1,0 +1,53 @@
+/* HTML: <div class="loader"></div> */
+.Spinner {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: solid #0000;
+  border-right-color: var(--navbar-bg-color);
+  position: relative;
+  animation: l24 1s infinite linear;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: inherit;
+    animation: inherit;
+    animation-duration: 2s;
+  }
+  &:after {
+    animation-duration: 4s;
+  }
+
+  @keyframes l24 {
+    100% {transform: rotate(1turn)}
+  }
+
+  &.m {
+    width: 32px;
+    border-width: 4px;
+    &:before,
+    &:after {
+      inset: -4px;
+    }
+  }
+
+  &.l {
+    width: 64px;
+    border-width: 8px;
+    &:before,
+    &:after {
+      inset: -8px;
+    }
+  }
+
+  &.xl {
+    width: 128px;
+    border-width: 16px;
+    &:before,
+    &:after {
+      inset: -16px;
+    }
+  }
+}
