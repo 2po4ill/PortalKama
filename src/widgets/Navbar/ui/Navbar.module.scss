@@ -12,7 +12,7 @@
   }
 
 
-  background-color: #0b3959;
+  background-color: var(--navbar-bg-color);
 }
 
 .logo {
@@ -41,15 +41,6 @@
 }
 
 .Profile {
-  //position: absolute;
-  right: 70px;
   text-decoration: none;
   color: white;
 }
-
-//.ProfileImg {
-//  position: absolute;
-//  right: 10px;
-//  top: 6%;
-//  margin-right: 10px;
-//}

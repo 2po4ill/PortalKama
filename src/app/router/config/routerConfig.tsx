@@ -4,10 +4,8 @@ import {AppRoutes, RoutePath} from "shared/const/router";
 import MainPage from "pages/MainPage";
 import Store from "pages/Store";
 import ReservationPage from "pages/ReservationPage/ui/ReservationPage";
-import ProfilePage from "pages/ProfilePage"
-import {Spinner} from "shared/ui/Spinner/Spinner";
-import {PageLoader} from "widgets/PageLoader";
 import {PageNotFound} from "widgets/PageNotFound/ui/PageNotFound";
+import ProfilePage from "pages/ProfilePage";
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.MAIN]: {
@@ -28,7 +26,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     },
 
     /**
-     *  TODO Сделать NotFoundPage как отдельную страницу или виджет
+     *
      * Этот путь всегда последний
      */
     [AppRoutes.NOT_FOUND]: {

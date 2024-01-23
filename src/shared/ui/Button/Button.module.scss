@@ -1,4 +1,7 @@
 .Button {
-  background: unset;
-  border: none;
+  padding: 5px 10px;
+  background-color: var(--navbar-bg-color);
+  color: var(--primary-color);
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
 }
