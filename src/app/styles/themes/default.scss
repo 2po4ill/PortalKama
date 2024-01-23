@@ -1,5 +1,5 @@
-.app.default {
-  --bg-color: #ffffff;
+:root {
+  --bg-color: #f3f3f3;
   --navbar-bg-color: #0b3959;
 
   // Цвет для текста и всего остального
@@ -7,8 +7,8 @@
   // Цвет для кнопок, ссылок и т.д.
   --secondary-color: #fdfd00;
 
-  @media (min-width: 1000px) {
-    --navbar-bg-color: #adcbe3;
-
-  }
+  //@media (min-width: 1000px) {
+  //  --navbar-bg-color: #adcbe3;
+  //
+  //}
 }

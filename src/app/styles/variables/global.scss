@@ -26,4 +26,17 @@
   * Размеры
   */
   --navbar-height: 100px;
+  // скругление форм
+  --form-border-radius: 10px;
+  --button-border-radius: 5px;
+
+  /**
+  * глобальные цвета
+  */
+  --overlay-bg-color: rgba(0,0,0, 0.5);
+
+  /**
+  * Z-индексы
+  */
+  --modal-z-index: 10;
 }
