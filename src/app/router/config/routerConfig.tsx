@@ -4,6 +4,7 @@ import {AppRoutes, RoutePath} from "shared/const/router";
 import MainPage from "pages/MainPage";
 import Store from "pages/Store";
 import ReservationPage from "pages/ReservationPage/ui/ReservationPage";
+import ProfilePage from "pages/ProfilePage"
 import {Spinner} from "shared/ui/Spinner/Spinner";
 import {PageLoader} from "widgets/PageLoader";
 import {PageNotFound} from "widgets/PageNotFound/ui/PageNotFound";
@@ -20,6 +21,10 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.STORE]: {
         path: RoutePath.store,
         element: <Store />
+    },
+    [AppRoutes.PROFILE]: {
+        path: RoutePath.profile,
+        element: <ProfilePage />
     },
 
     /**

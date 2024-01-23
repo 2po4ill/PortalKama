@@ -1,7 +1,6 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './Navbar.module.scss'
 import {AppLink} from "shared/ui/AppLink/AppLink";
-import {ThemeSwitcher} from "features/ThemeSwitcher";
 import ProfileImg from "shared/assets/user-32-32.png";
 import Logo from 'shared/assets/logo.png'
 
