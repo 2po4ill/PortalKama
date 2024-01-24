@@ -33,14 +33,9 @@
   text-decoration: none;
 }
 .Link:hover {
-    color: #00e0ff; /* Цвет ссылки при наведении на нее курсора мыши */
+  color: var(--link-hover-color); /* Цвет ссылки при наведении на нее курсора мыши */
 }
 
-.Profile:hover {
-  color: #00e0ff; /* Цвет ссылки при наведении на нее курсора мыши */
-}
-
-.Profile {
-  text-decoration: none;
-  color: white;
+.Modal:hover {
+  color: var(--link-hover-color);
 }

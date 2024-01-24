@@ -19,12 +19,15 @@
 }
 
 .content {
-    padding: 20px;
+    padding: 44px;
     border-radius: 12px;
     background: var(--bg-color);
     transition: 0.3s transform;
     transform: scale(0.5);
-    max-width: 50%;
+    max-width: 440px;
+    min-width: 320px;
+    min-height: 338px;
+    width: calc(100% - 40px);
 }
 
 .opened {
