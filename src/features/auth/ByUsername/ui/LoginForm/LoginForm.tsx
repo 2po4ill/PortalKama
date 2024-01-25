@@ -10,15 +10,10 @@ export interface ILoginForm extends FormHTMLAttributes<HTMLFormElement>, ClassAt
 
 export const LoginForm: FC<ILoginForm> = ( props ) => {
     const { className, children, ...other } = props;
+    const [ visibility, setVisibility ] = useState(false);
 
-    function showPassword() {
-        if ((document.getElementById("show") as HTMLImageElement).src == show) {
-            (document.getElementById("password") as HTMLInputElement).type = 'text';
-            (document.getElementById("show") as HTMLImageElement).src = hide;
-        } else {
-            (document.getElementById("password") as HTMLInputElement).type = 'password';
-            (document.getElementById("show") as HTMLImageElement).src = show;
-        }
+    const toggleVisibility = () => {
+        setVisibility(prev => !prev);
     }
 
     function loginComplete() {
@@ -26,7 +21,7 @@ export const LoginForm: FC<ILoginForm> = ( props ) => {
     }
 
     return (
-        <form>
+        <form >
             <div>
                 <label className={cls.FormLabel}> Войти в аккаунт </label>
             </div>
@@ -34,9 +29,9 @@ export const LoginForm: FC<ILoginForm> = ( props ) => {
                 <input type="text" name="login" placeholder="Введите логин" className={cls.Credentials}/>
             </div>
             <div>
-                <input type="password" name="password" placeholder="Введите пароль" id="password" className={cls.Credentials}/>
+                <input type={visibility ? "text" : "password"} name="password" placeholder="Введите пароль" id="password" className={cls.Credentials}/>
             </div>
-            <img src={show} alt='show' className={cls.ShowPassword} id="show" onClick={showPassword}/>
+            <img src={visibility ? hide : show} alt='show' className={cls.ShowPassword} id="show" onClick={toggleVisibility}/>
             <button type="submit" className={cls.FormButton} onClick={loginComplete}>Войти</button>
         </form>
     );

@@ -5,7 +5,7 @@ import {Navbar} from "widgets/Navbar";
 import {AppRouter} from "./router";
 import {Modal} from "shared/ui/Modal/Modal";
 import {Button} from "shared/ui/Button/Button";
-import {LoginForm} from "shared/ui/LoginForm/LoginForm";
+import {LoginForm} from "features/auth/ByUsername/ui/LoginForm/LoginForm";
 
 
 function App() {
