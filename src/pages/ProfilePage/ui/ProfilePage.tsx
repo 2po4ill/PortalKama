@@ -7,8 +7,12 @@ export interface IProfilePageProps {
 
 const ProfilePage = ( { className }: IProfilePageProps ) => {
     return (
-        <div className={classNames(cls.Store, {}, [className])}>
-            <h1>ProfilePage</h1>
+        <div className={classNames(cls.ProfilePage, {}, [className])}>
+            <form>
+                <div className="center-block">
+
+                </div>
+            </form>
         </div>
     );
 };
