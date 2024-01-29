@@ -1,0 +1,13 @@
+{
+  "goods": [
+    { "id": "1", "title": "ручка", "price": 100 },
+    { "id": "2", "title": "дорогая ручка", "price": 200 }
+  ],
+  "users": [
+    {
+      "uid": "1",
+      "username": "admin",
+      "password": "123"
+    }
+  ]
+}
