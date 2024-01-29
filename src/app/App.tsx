@@ -3,9 +3,7 @@ import {useTheme} from "./providers/ThemeProvider";
 import {classNames} from "shared/lib/classNames";
 import {Navbar} from "widgets/Navbar";
 import {AppRouter} from "./router";
-import {Modal} from "shared/ui/Modal/Modal";
-import {Button} from "shared/ui/Button/Button";
-import {LoginForm} from "features/auth/ByUsername/ui/LoginForm/LoginForm";
+import {LoginModal} from "features/auth/ByUsername";
 
 
 function App() {
@@ -19,9 +17,7 @@ function App() {
     return (
         <div className={classNames('app', {}, [theme])}>
             <Navbar setModalOpen={openModal}/>
-            <Modal isOpen={isOpen} onClose={ () => {setOpen(false)} }>
-            <LoginForm/>
-            </Modal>
+            <LoginModal isOpen={isOpen} onClose={ () => {setOpen(false)} } />
             <AppRouter />
         </div>
     );

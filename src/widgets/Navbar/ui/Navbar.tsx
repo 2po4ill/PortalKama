@@ -28,7 +28,7 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
 
             </div>
             <div>
-                <Button className={cls.Modal} onClick={setModalOpen}>Войти</Button>
+                <Button className={""} onClick={setModalOpen}>Войти</Button>
                 <AppLink to={"profile"} className={cls.Profile}>
                     <img src={ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
                 </AppLink>
