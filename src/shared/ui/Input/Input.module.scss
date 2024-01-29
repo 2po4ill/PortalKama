@@ -1,0 +1,42 @@
+.Input {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  position: relative;
+  min-width: var(--input-min-width);
+  min-height: var(--input-min-height);
+  border-bottom: 1px solid black;
+  padding-top: 20px;
+
+  &:hover {
+    border-bottom-color: var(--link-hover-color);
+  }
+
+  &.focused {
+    border-bottom-color: var(--link-hover-color);
+  }
+
+  input {
+    font-size: 15px;
+    font-weight: 500;
+    background-color: transparent;
+    width: 100%;
+    padding: 0 5px;
+    overflow: hidden;
+
+    &::placeholder{
+      text-align: center;
+      //padding-left: 15px;
+    }
+  }
+
+  &:has(.Adornment){
+    input::placeholder {
+      //padding-right: 35px;
+      padding-left: 30px;
+    }
+  }
+}
+.Adornment {
+  max-width: 30px;
+}

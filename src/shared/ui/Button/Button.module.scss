@@ -1,7 +1,11 @@
 .Button {
-  padding: 5px 10px;
-  background-color: var(--navbar-bg-color);
+  padding: 5px 20px;
+  background-color: var(--button-bg-color);
   color: var(--primary-color);
   border-radius: var(--button-border-radius);
   cursor: pointer;
+
+  &:hover {
+    background-color: var(--button-bg-color_hover);
+  }
 }
