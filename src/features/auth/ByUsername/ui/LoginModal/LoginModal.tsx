@@ -10,7 +10,7 @@ export const LoginModal: FC<IModalProps> = (props) => {
 
     return (
         <Modal className={classNames(cls.LoginModal, {}, [className])} {...other}>
-            <LoginForm />
+            <LoginForm/>
         </Modal>
     )
 }
