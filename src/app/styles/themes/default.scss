@@ -2,13 +2,17 @@
   --bg-color: #f3f3f3;
   --navbar-bg-color: #0b3959;
 
-  // Цвет для текста и всего остального
-  --primary-color: #ffffff;
-  // Цвет для кнопок, ссылок и т.д.
-  --secondary-color: #fdfd00;
+  // основной цвет текста
+  --primary-color: #000;
+  --primary-color-inverted: #fff;
+  // вторичный цвет текста
+  --secondary-color: #242424;
 
   --button-bg-color: #0b3959;
   --button-bg-color_hover: #0f4e7e;
+
+  --spinner-bg-color: #0b3959;
+  --spinner-bg-color-inverted: #f3f3f3;
 
   //@media (min-width: 1000px) {
   //  --navbar-bg-color: #adcbe3;

@@ -8,6 +8,11 @@
       "uid": "1",
       "username": "admin",
       "password": "123"
+    },
+    {
+      "uid": "2",
+      "username": "test",
+      "password": "test"
     }
   ]
 }

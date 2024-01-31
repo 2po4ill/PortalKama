@@ -3,7 +3,6 @@
   aspect-ratio: 1;
   border-radius: 50%;
   border: solid #0000;
-  border-right-color: var(--navbar-bg-color);
   position: relative;
   animation: l24 1s infinite linear;
 
@@ -22,6 +21,15 @@
 
   @keyframes l24 {
     100% {transform: rotate(1turn)}
+  }
+
+  &.s {
+    width: 16px;
+    border-width: 2px;
+    &:before,
+    &:after {
+      inset: -2px;
+    }
   }
 
   &.m {
@@ -49,5 +57,13 @@
     &:after {
       inset: -16px;
     }
+  }
+
+  &.inverted {
+    border-right-color: var(--spinner-bg-color)
+  }
+
+  &.inverted {
+    border-right-color: var(--spinner-bg-color-inverted)
   }
 }

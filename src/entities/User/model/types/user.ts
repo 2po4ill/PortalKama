@@ -8,5 +8,7 @@ export interface User {
 }
 
 export interface UserSchema {
-    userData?: User;
+    // не измененные данные от запроса на авторизацию
+    authData?: User;
+    isAdmin: boolean;
 }
