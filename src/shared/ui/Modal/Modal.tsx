@@ -38,6 +38,7 @@ export const Modal: FC<IModalProps> = (props) => {
     } = props;
     const [mounted, setMounted] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const [isOpening, setOpening] = useState(false);
     // Ссылка на таймаут, на случай если таймаут запустят, а компонент внезапно пропадет
     const timerRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -45,6 +46,7 @@ export const Modal: FC<IModalProps> = (props) => {
         setIsClosing(true);
         timerRef.current = setTimeout(() => {
             onClose();
+            setOpening(false);
             setIsClosing(false);
         }, ANIMATION_DELAY);
     }, [onClose]);
@@ -62,7 +64,8 @@ export const Modal: FC<IModalProps> = (props) => {
     useEffect(() => {
         if (isOpen) {
             window.addEventListener('keydown', keydownHandler);
-            setMounted(true)
+            setMounted(true);
+            timerRef.current = setTimeout(() => setOpening(true), 0);
         }
 
         return () => {
@@ -72,7 +75,7 @@ export const Modal: FC<IModalProps> = (props) => {
     }, [isOpen, keydownHandler]);
 
     const mods: Record<string, boolean> = {
-        [cls.opened]: isOpen,
+        [cls.opened]: isOpening,
         [cls.isClosing]: isClosing,
     };
 

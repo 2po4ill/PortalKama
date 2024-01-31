@@ -5,13 +5,15 @@ import {Navbar} from "widgets/Navbar";
 import {AppRouter} from "./router";
 import {LoginModal} from "features/auth/ByUsername";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
-import {userActions} from "entities/User";
+import {getAuthData, userActions} from "entities/User";
+import {useSelector} from "react-redux";
 
 
 function App() {
     const {theme} = useTheme();
     const [isOpen, setOpen] = useState<boolean>(false);
     const dispatch = useAppDispatch();
+    const userData = useSelector(getAuthData);
 
     useEffect(() => {
         dispatch(userActions.initAuthData());
@@ -24,7 +26,7 @@ function App() {
     return (
         <div className={classNames('app', {}, [theme])}>
             <Navbar setModalOpen={openModal}/>
-            <LoginModal isOpen={isOpen} onClose={ () => {setOpen(false)} } />
+            {!userData && <LoginModal isOpen={isOpen} onClose={ () => {setOpen(false)} } />}
             <AppRouter />
         </div>
     );
