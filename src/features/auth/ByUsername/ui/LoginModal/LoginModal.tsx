@@ -6,11 +6,11 @@ import {FC} from "react";
 
 
 export const LoginModal: FC<IModalProps> = (props) => {
-    const { className, ...other } = props;
+    const { className, onClose, ...other } = props;
 
     return (
-        <Modal className={classNames(cls.LoginModal, {}, [className])} {...other}>
-            <LoginForm/>
+        <Modal className={classNames(cls.LoginModal, {}, [className])} onClose={onClose} {...other}>
+            <LoginForm  close={onClose}/>
         </Modal>
     )
 }

@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTheme} from "./providers/ThemeProvider";
 import {classNames} from "shared/lib/classNames";
 import {Navbar} from "widgets/Navbar";
 import {AppRouter} from "./router";
 import {LoginModal} from "features/auth/ByUsername";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
+import {userActions} from "entities/User";
 
 
 function App() {
     const {theme} = useTheme();
     const [isOpen, setOpen] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(userActions.initAuthData());
+    }, [dispatch])
 
     const openModal = () => {
         setOpen(prevState => !prevState)
