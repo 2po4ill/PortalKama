@@ -3,42 +3,31 @@ import React, {useState} from "react";
 import {ETC} from "features/profile/ui/ETC/ETC";
 import {classNames} from "shared/lib/classNames";
 import {UserDescription} from "features/profile/ui/UserDescription/UserDescription";
+import {Header} from "shared/ui/Header/Header";
 
 export interface IProfileTabs {
     className?: string;
 }
 
 export const ProfileTabs = ( { className }: IProfileTabs ) => {
-    const [descriptionStatus, setDescriptionStatus] = useState(true);
-    const [etcStatus, setETCStatus] = useState(false);
+    const [windowStatus, setWindowStatus] = useState("Личные данные")
 
-    const DescriptionHandler = () => {
-        if (descriptionStatus) {
-            setDescriptionStatus(false)
-        }
-        else{
-            setETCStatus(false)
-            setDescriptionStatus(true)
-        }
-    };
+    const descriptionHandler = () => {
+        setWindowStatus("Личные данные");
+    }
 
-    const ETCHandler = () => {
-        if (etcStatus) {
-            setETCStatus(false)
-        }
-        else{
-            setDescriptionStatus(false)
-            setETCStatus(true)
-        }
-    };
+    const etcHandler = () => {
+        setWindowStatus("Прочее");
+    }
+
 
     return (
         <div className={classNames(cls.ProfileTabs, {}, [className])}>
-            <div onClick={DescriptionHandler}>
-                <UserDescription header={"Личные данные"} state={descriptionStatus}/>
+            <div onClick={descriptionHandler}>
+                <UserDescription title={"Личные данные"} openedWindow={windowStatus}/>
             </div>
-            <div onClick={ETCHandler}>
-                <ETC header={"Прочее"} state={etcStatus}/>
+            <div onClick={etcHandler}>
+                <ETC title={"Прочее"} openedWindow={windowStatus}/>
             </div>
         </div>
     );

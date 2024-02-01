@@ -1,32 +1,25 @@
-import React, {ButtonHTMLAttributes, FC, ReactNode, useState} from "react";
-import {classNames} from "shared/lib/classNames";
+import React, {FC, ReactNode, useState} from "react";
 import cls from "shared/ui/Collapsible/Collapsible.module.scss";
 import icon from "shared/assets/collapsible-icon.png";
 
 export interface ICollapsible {
     className?: string;
     children?: ReactNode;
-    header?: string,
-    state?: boolean,
+    isOpened?: boolean,
 }
 
 export const Collapsible: FC<ICollapsible> = (props) => {
     const {
         className,
         children,
-        header,
-        state,
+        isOpened,
     } = props;
 
 
     return (
-            <div className={cls.Collapsible}>
-                <div className={cls.header}>
-                    {header}
-                    <img src={icon} alt="icon" className={state ? cls.Opened : null}/>
-                </div>
+            <div className={cls.content}>
                 {
-                    state ?
+                    isOpened ?
                 <div className={cls.content}>
                     {children}
                 </div>

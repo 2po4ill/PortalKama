@@ -1,23 +1,19 @@
-import {ICollapsible, Collapsible} from "shared/ui/Collapsible/Collapsible";
+import {Collapsible} from "shared/ui/Collapsible/Collapsible";
 import cls from './UserDescription.module.scss';
-import { FC} from "react";
+import {FC, useState} from "react";
 import {Button} from "shared/ui/Button/Button";
+import {Header, IHeader} from "shared/ui/Header/Header";
 
-export const UserDescription: FC<ICollapsible> = (props) => {
+export const UserDescription: FC<IHeader> = (props) => {
     const { className, ...other } = props;
 
     return (
-        <Collapsible header={props.header} state={props.state}>
-            <div className={cls.Photo}>
-                <label> Здесь фото </label>
-            </div>
-            <div className={cls.Initials}>
-                <label> Здесь ФИО </label>
-            </div>
-            <div className={cls.Position}>
-                <label> Здесь должность </label>
-            </div>
-            <Button> Выйти из аккаунта </Button>
-        </Collapsible>
+        <Header title={props.title} openedWindow={props.openedWindow}>
+            <Collapsible isOpened={props.title === props.openedWindow}>
+                <label> Здесь что-то будет </label>
+                <Button> Выйти из аккаунта </Button>
+            </Collapsible>
+        </Header>
+
     )
 }
