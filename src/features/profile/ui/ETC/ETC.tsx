@@ -1,15 +1,17 @@
-import {Collapsible} from "shared/ui/Collapsible/Collapsible";
-import {FC} from "react";
-import {IHeader,Header} from "shared/ui/Header/Header";
+import {ICollapsible,Collapsible} from "shared/ui/Collapsible/Collapsible";
+import React, {FC} from "react";
+import cls from "./ETC.module.scss"
+import {Button} from "shared/ui/Button/Button";
 
-export const ETC: FC<IHeader> = (props) => {
+export const ETC: FC<ICollapsible> = (props) => {
     const { className, ...other } = props;
 
     return (
-        <Header title={props.title} openedWindow={props.openedWindow} isOpened={props.isOpened}>
-            <Collapsible isOpened={props.title === props.openedWindow}>
+        <div className={cls.ETC}>
+            <Collapsible isOpened={props.isOpened}>
                 <label> Здесь что-то будет </label>
+                <Button> Выйти из аккаунта </Button>
             </Collapsible>
-        </Header>
+        </div>
     )
 }

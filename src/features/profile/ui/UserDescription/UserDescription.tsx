@@ -1,19 +1,18 @@
-import {Collapsible} from "shared/ui/Collapsible/Collapsible";
+import {ICollapsible, Collapsible} from "shared/ui/Collapsible/Collapsible";
 import cls from './UserDescription.module.scss';
-import {FC, useState} from "react";
+import React, {FC} from "react";
 import {Button} from "shared/ui/Button/Button";
-import {Header, IHeader} from "shared/ui/Header/Header";
 
-export const UserDescription: FC<IHeader> = (props) => {
+export const UserDescription: FC<ICollapsible> = (props) => {
     const { className, ...other } = props;
 
     return (
-        <Header title={props.title} openedWindow={props.openedWindow}>
-            <Collapsible isOpened={props.title === props.openedWindow}>
+        <div className={cls.UserDescription}>
+            <Collapsible isOpened={props.isOpened}>
                 <label> Здесь что-то будет </label>
                 <Button> Выйти из аккаунта </Button>
             </Collapsible>
-        </Header>
+        </div>
 
     )
 }
