@@ -19,16 +19,8 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
             setWindowStatus("CLOSED");
         }
         else {
-            if (windowStatus == "CLOSED" && openStatus == false)
-            {
-                setOpenStatus(true)
-                setWindowStatus("description");
-            }
-            else
-            {
-                setOpenStatus(true)
-                setWindowStatus("description");
-            }
+            setOpenStatus(true)
+            setWindowStatus("description");
         }
     }
 
@@ -38,16 +30,8 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
             setWindowStatus("CLOSED");
         }
         else {
-            if (windowStatus == "CLOSED" && openStatus == false)
-            {
-                setOpenStatus(true)
-                setWindowStatus("etc");
-            }
-            else
-            {
-                setOpenStatus(true)
-                setWindowStatus("etc");
-            }
+            setOpenStatus(true)
+            setWindowStatus("etc");
         }
     }
 
