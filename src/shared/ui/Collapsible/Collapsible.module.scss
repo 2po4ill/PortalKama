@@ -1,11 +1,30 @@
 @keyframes openCollapsible {
   0%{
-    display: none;
     transform: translateY(-52px);
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
   }
   100%{
     transform: translateY(0px);
     opacity: 100%;
+    height: max-content;
+    visibility: visible;
+  }
+}
+@keyframes closeCollapsible {
+  0%{
+    transform: translateY(0px);
+    opacity: 100%;
+    height: max-content;
+    visibility: visible;
+
+  }
+  100%{
+    transform: translateY(-52px);
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
   }
 }
 
@@ -22,7 +41,10 @@
     animation: openCollapsible .2s linear;
   }
   .close{
-    display: none;
+    animation: closeCollapsible .2s linear;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
