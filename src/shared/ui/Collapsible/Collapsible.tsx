@@ -17,13 +17,11 @@ export const Collapsible: FC<ICollapsible> = (props) => {
 
 
     return (
-            <div className={cls.content}>
+            <div className={cls.Collapsible}>
                 {
-                    isOpened ?
-                <div className={cls.content}>
+                <div className={isOpened ? `${cls.content} ${cls.open}` : `${cls.content} ${cls.close}`}>
                     {children}
                 </div>
-                        : null
                 }
             </div>
     );

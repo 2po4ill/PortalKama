@@ -1,7 +1,24 @@
+@keyframes openImg {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg)
+  }
+}
+@keyframes closeImg {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg)
+  }
+}
+
 .Header{
   border: 1px solid var(--collapsible-header-color);
   padding: 5px;
-  margin: 5px;
+  margin: 5px 5px 0;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
@@ -10,6 +27,8 @@
   font-weight: normal;
   position: relative;
   cursor: pointer;
+  z-index: 1;
+  background-color: var(--profile-bg-color);
 
   label {
   }
@@ -20,7 +39,12 @@
     height: 25px;
   }
   .Opened {
+    animation: openImg .2s linear;
     transform: rotate(90deg)
+  }
+  .Closed {
+    animation: closeImg .2s linear;
+    transform: rotate(0deg)
   }
 }
 .content{

@@ -21,7 +21,7 @@ export const Header: FC<IHeader> = (props) => {
     return (
         <div className={cls.Header}>
             {children}
-            <img src={icon} alt="icon" className={openedWindow === title ? cls.Opened : null}/>
+            <img src={icon} alt="icon" className={openedWindow === title ? cls.Opened : cls.Closed}/>
         </div>
     );
 };

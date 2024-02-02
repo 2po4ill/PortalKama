@@ -1,3 +1,31 @@
-.content{
+@keyframes openCollapsible {
+  0%{
+    display: none;
+    transform: translateY(-52px);
+  }
+  100%{
+    transform: translateY(0px);
+    opacity: 100%;
+  }
+}
 
+.Collapsible{
+  min-width: 100%;
+  z-index: 0;
+
+  .content{
+    border-bottom: 1px solid var(--collapsible-header-color);
+    border-right: 1px solid var(--collapsible-header-color);
+    border-left: 1px solid var(--collapsible-header-color);
+  }
+  .open{
+    animation: openCollapsible .2s linear;
+  }
+  .close{
+    display: none;
+  }
+}
+
+.content:hover{
+  bottom: 0;
 }
