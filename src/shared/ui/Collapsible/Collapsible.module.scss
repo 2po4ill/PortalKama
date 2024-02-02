@@ -32,6 +32,7 @@
   min-width: 100%;
   z-index: 0;
 
+
   .content{
     border-bottom: 1px solid var(--collapsible-header-color);
     border-right: 1px solid var(--collapsible-header-color);
@@ -45,6 +46,12 @@
     height: 0;
     opacity: 0;
     visibility: hidden;
+  }
+  .clicked{
+    display: block;
+  }
+  .nonClicked{
+    display: none;
   }
 }
 

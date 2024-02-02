@@ -12,8 +12,14 @@ export interface IProfileTabs {
 export const ProfileTabs = ( { className }: IProfileTabs ) => {
     const [windowStatus, setWindowStatus] = useState("description")
     const [openStatus, setOpenStatus] = useState(true)
+    const [clickStatus, setClickStatus] = useState(false)
+
+    const clickHandler = () => {
+        setClickStatus(true)
+    }
 
     const descriptionHandler = () => {
+        clickHandler()
         if (windowStatus == "description" && openStatus == true) {
             setOpenStatus(false)
             setWindowStatus("CLOSED");
@@ -25,6 +31,7 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
     }
 
     const etcHandler = () => {
+        clickHandler()
         if (windowStatus == "etc" && openStatus == true) {
             setOpenStatus(false)
             setWindowStatus("CLOSED");
@@ -41,13 +48,13 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
                 <Header title={"description"} openedWindow={windowStatus}> Личные данные </Header>
             </div>
             <div>
-                <UserDescription isOpened={windowStatus == "description"}/>
+                <UserDescription isOpened={windowStatus == "description"} isClicked={clickStatus}/>
             </div>
             <div onClick={etcHandler}>
                 <Header title={"etc"} openedWindow={windowStatus}> Прочее </Header>
             </div>
             <div>
-                <ETC isOpened={windowStatus == "etc"}/>
+                <ETC isOpened={windowStatus == "etc"} isClicked={clickStatus}/>
             </div>
         </div>
     );
