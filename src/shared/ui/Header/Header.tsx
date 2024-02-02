@@ -13,13 +13,14 @@ export interface IHeader {
 export const Header: FC<IHeader> = (props) => {
     const {
         className,
+        children,
         title,
         openedWindow,
     } = props;
 
     return (
         <div className={cls.Header}>
-            <label> {title} </label>
+            {children}
             <img src={icon} alt="icon" className={openedWindow === title ? cls.Opened : null}/>
         </div>
     );

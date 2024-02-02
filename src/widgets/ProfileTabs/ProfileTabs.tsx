@@ -10,43 +10,43 @@ export interface IProfileTabs {
 }
 
 export const ProfileTabs = ( { className }: IProfileTabs ) => {
-    const [windowStatus, setWindowStatus] = useState("Личные данные")
+    const [windowStatus, setWindowStatus] = useState("description")
     const [openStatus, setOpenStatus] = useState(true)
 
     const descriptionHandler = () => {
-        if (windowStatus == "Личные данные" && openStatus == true) {
+        if (windowStatus == "description" && openStatus == true) {
             setOpenStatus(false)
-            setWindowStatus("Закрыто");
+            setWindowStatus("CLOSED");
         }
         else {
-            if (windowStatus == "Закрыто" && openStatus == false)
+            if (windowStatus == "CLOSED" && openStatus == false)
             {
                 setOpenStatus(true)
-                setWindowStatus("Личные данные");
+                setWindowStatus("description");
             }
             else
             {
                 setOpenStatus(true)
-                setWindowStatus("Личные данные");
+                setWindowStatus("description");
             }
         }
     }
 
     const etcHandler = () => {
-        if (windowStatus == "Прочее" && openStatus == true) {
+        if (windowStatus == "etc" && openStatus == true) {
             setOpenStatus(false)
-            setWindowStatus("Закрыто");
+            setWindowStatus("CLOSED");
         }
         else {
-            if (windowStatus == "Закрыто" && openStatus == false)
+            if (windowStatus == "CLOSED" && openStatus == false)
             {
                 setOpenStatus(true)
-                setWindowStatus("Прочее");
+                setWindowStatus("etc");
             }
             else
             {
                 setOpenStatus(true)
-                setWindowStatus("Прочее");
+                setWindowStatus("etc");
             }
         }
     }
@@ -54,16 +54,16 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
     return (
         <div className={classNames(cls.ProfileTabs, {}, [className])}>
             <div onClick={descriptionHandler}>
-                <Header title={"Личные данные"} openedWindow={windowStatus}/>
+                <Header title={"description"} openedWindow={windowStatus}> Личные данные </Header>
             </div>
             <div>
-                <UserDescription isOpened={windowStatus == "Личные данные"}/>
+                <UserDescription isOpened={windowStatus == "description"}/>
             </div>
             <div onClick={etcHandler}>
-                <Header title={"Прочее"} openedWindow={windowStatus}/>
+                <Header title={"etc"} openedWindow={windowStatus}> Прочее </Header>
             </div>
             <div>
-                <ETC isOpened={windowStatus == "Прочее"}/>
+                <ETC isOpened={windowStatus == "etc"}/>
             </div>
         </div>
     );
