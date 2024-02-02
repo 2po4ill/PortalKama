@@ -11,7 +11,8 @@ export interface IModalProps {
     children?: ReactNode;
     isOpen: boolean;
     onClose: () => void;
-    lazy?: boolean
+    lazy?: boolean;
+    unmount?: boolean;
 }
 
 const ANIMATION_DELAY = 300;
@@ -34,7 +35,8 @@ export const Modal: FC<IModalProps> = (props) => {
         children,
         isOpen,
         onClose,
-        lazy = true
+        lazy = true,
+        unmount = false
     } = props;
     const [mounted, setMounted] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -48,6 +50,9 @@ export const Modal: FC<IModalProps> = (props) => {
             onClose();
             setOpening(false);
             setIsClosing(false);
+            if (unmount) setMounted(false);
+            // Костыль TODO исправит
+            document.body.style.overflow = "unset";
         }, ANIMATION_DELAY);
     }, [onClose]);
 
@@ -64,6 +69,8 @@ export const Modal: FC<IModalProps> = (props) => {
     useEffect(() => {
         if (isOpen) {
             window.addEventListener('keydown', keydownHandler);
+            // Костыль TODO исправит
+            document.body.style.overflow = "hidden";
             setMounted(true);
             timerRef.current = setTimeout(() => setOpening(true), 0);
         }
@@ -85,9 +92,9 @@ export const Modal: FC<IModalProps> = (props) => {
 
     return (
         <Portal>
-            <div className={classNames(cls.Modal, mods, [className])}>
+            <div className={classNames(cls.Modal, mods, ["modal"])}>
                 <div className={cls.overlay} onClick={closeHandler}>
-                    <div className={cls.content} onClick={onContentClick}>
+                    <div className={ classNames( cls.content, {}, [className])} onClick={onContentClick}>
                         {children}
                     </div>
                 </div>

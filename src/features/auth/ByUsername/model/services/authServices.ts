@@ -21,6 +21,9 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, { rejectValue:
 
             return response.data;
         } catch (err) {
+            if (axios.isAxiosError(err)) {
+                console.log(err.status);
+            }
             console.log(err);
             return thunkAPI.rejectWithValue("Неверный логин или пароль")
         }

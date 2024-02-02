@@ -1,6 +1,6 @@
 export enum AppRoutes {
     MAIN = 'main',
-    STORE = 'store',
+    SHOP = 'shop',
     RESERVATION = 'reservation',
     PROFILE = 'profile',
     // всегда последний
@@ -10,7 +10,7 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.RESERVATION]: '/reservation',
-    [AppRoutes.STORE]: '/store',
+    [AppRoutes.SHOP]: '/shop',
     [AppRoutes.PROFILE]: '/profile',
     [AppRoutes.NOT_FOUND]: '*'
 }

@@ -50,10 +50,13 @@ export function buildLoaders({isDev}: IBuildOptions): webpack.RuleSetRule[] {
     const fileLoader: webpack.RuleSetRule = {
         rules: [
             {
-                test: /\.(png|jpe?g|gif|woff|woff2)$/i,
+                test: /\.(png|jpe?g|gif|webp|woff|woff2)$/i,
                 use: [
                     {
                         loader: 'file-loader',
+                    },
+                    {
+                        loader: 'webp-loader',
                     },
                 ],
             },

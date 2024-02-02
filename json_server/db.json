@@ -1,7 +1,23 @@
 {
-  "goods": [
-    { "id": "1", "title": "ручка", "price": 100 },
-    { "id": "2", "title": "дорогая ручка", "price": 200 }
+  "products": [
+    {
+      "id": "1",
+      "name": "ручка",
+      "description": "Самая обычная ручка",
+      "img": "/img/ruchka.jpg",
+      "price": 100,
+      "available": true,
+      "isService": false
+    },
+    {
+      "id": "2",
+      "name": "дорогая ручка",
+      "description": "Самая обычная ручка, но подороже",
+      "img": "/img/ruchka2.jpg",
+      "price": 200,
+      "available": true,
+      "isService": false
+    }
   ],
   "users": [
     {
