@@ -1,6 +1,7 @@
 import React, {FC, ReactNode, useState} from "react";
 import cls from "shared/ui/Collapsible/Collapsible.module.scss";
 import icon from "shared/assets/collapsible-icon.png";
+import {classNames} from "shared/lib/classNames";
 
 export interface ICollapsible {
     className?: string;
@@ -17,29 +18,19 @@ export const Collapsible: FC<ICollapsible> = (props) => {
         isClicked,
     } = props;
 
-    function animationQuery(windowStatus: boolean, clickStatus: boolean){
-        if (windowStatus && clickStatus) {
-            return (`${cls.content} ${cls.open} ${cls.clicked}`)
-        }
-        else {
-            if (windowStatus) {
-                return (`${cls.content} ${cls.open}`)
-            }
-            else {
-                if (clickStatus) {
-                    return(`${cls.content} ${cls.close} ${cls.clicked}`)
-                }
-                return(`${cls.content} ${cls.close} ${cls.nonClicked}`)
-            }
-        }
+    const mods: Record<string, boolean> = {
+        [cls.open]: isOpened,
+        [cls.clicked]: isClicked,
+        [cls.close]: !isOpened,
+        [cls.nonClicked]: !isOpened && !isClicked
+    };
 
-    }
 
 
     return (
             <div className={cls.Collapsible}>
                 {
-                <div className={animationQuery(isOpened, isClicked)}>
+                <div className={classNames(cls.content, mods)}>
                     {children}
                 </div>
                 }
