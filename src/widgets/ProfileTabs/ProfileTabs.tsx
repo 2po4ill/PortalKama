@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import {ETC} from "features/profile/ui/ETC/ETC";
 import {classNames} from "shared/lib/classNames";
 import {UserDescription} from "features/profile/ui/UserDescription/UserDescription";
-import {Header} from "shared/ui/Header/Header";
 
 export interface IProfileTabs {
     className?: string;
@@ -44,17 +43,11 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
 
     return (
         <div className={classNames(cls.ProfileTabs, {}, [className])}>
-            <div onClick={descriptionHandler}>
-                <Header title={"description"} openedWindow={windowStatus}> Личные данные </Header>
+            <div>
+                <UserDescription isClicked={clickStatus} openedWindow={windowStatus} onClose={descriptionHandler}/>
             </div>
             <div>
-                <UserDescription isOpened={windowStatus == "description"} isClicked={clickStatus}/>
-            </div>
-            <div onClick={etcHandler}>
-                <Header title={"etc"} openedWindow={windowStatus}> Прочее </Header>
-            </div>
-            <div>
-                <ETC isOpened={windowStatus == "etc"} isClicked={clickStatus}/>
+                <ETC isClicked={clickStatus} openedWindow={windowStatus} onClose={etcHandler}/>
             </div>
         </div>
     );

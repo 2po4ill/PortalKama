@@ -8,7 +8,7 @@ export const UserDescription: FC<ICollapsible> = (props) => {
 
     return (
         <div className={cls.UserDescription}>
-            <Collapsible isOpened={props.isOpened} isClicked={props.isClicked}>
+            <Collapsible isClicked={props.isClicked} title={"description"} openedWindow={props.openedWindow} windowName={"Личные данные"} onClose={props.onClose}>
                 <label> Здесь что-то будет </label>
                 <Button> Выйти из аккаунта </Button>
             </Collapsible>

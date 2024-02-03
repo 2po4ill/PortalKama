@@ -8,7 +8,7 @@ export const ETC: FC<ICollapsible> = (props) => {
 
     return (
         <div className={cls.ETC}>
-            <Collapsible isOpened={props.isOpened} isClicked={props.isClicked}>
+            <Collapsible isClicked={props.isClicked} title={"etc"} openedWindow={props.openedWindow} windowName={"Прочее"} onClose={props.onClose}>
                 <label> Здесь что-то будет </label>
                 <Button> Выйти из аккаунта </Button>
             </Collapsible>
