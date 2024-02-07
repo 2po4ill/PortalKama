@@ -1,11 +1,20 @@
 .ProductModal {
   display: flex;
+  padding: 20px;
+  min-width: 600px;
+  gap: 10px;
 
   .imageWrapper {
-    width: 200px;
+    width: 320px;
 
     img {
-      width: 100%;
+      width: 320px;
     }
+  }
+
+  .info {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
   }
 }

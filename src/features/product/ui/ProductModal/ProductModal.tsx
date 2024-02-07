@@ -1,49 +1,43 @@
 import {FC, memo} from "react";
-import {Modal} from "shared/ui/Modal/Modal";
+import {IModalProps, Modal} from "shared/ui/Modal/Modal";
 import {classNames} from "shared/lib/classNames";
 import cls from './ProductModal.module.scss';
 import {Product} from "entities/Product";
 import {Text} from "shared/ui/Text/Text";
 import img from "shared/assets/placeholder-image.webp";
+import {Button} from "shared/ui/Button/Button";
 
-export interface IProductModalProps {
+export interface IProductModalProps extends IModalProps {
     product?: Product;
-    onClose?: () => void;
-    isOpen?: boolean;
 }
 
 export const ProductModal: FC<IProductModalProps> = memo((props) => {
-    const { product, onClose, isOpen } = props;
-    const {
-        id,
-        price,
-        name,
-        description,
-        available,
-        isService
-    } = product;
+    const { product, ...other } = props;
 
     return (
         <Modal
-            onClose={onClose}
-            isOpen={isOpen}
             className={classNames(cls.ProductModal, {}, [])}
-            unmount={true}
+            {...other}
         >
-            <div className={cls.imageWrapper}>
-                <picture>
-                    <img src={img} alt={name}/>
-                </picture>
-            </div>
-            <div className={cls.info}>
-                <Text
-                    title={name}
-                    text={`ID: ${id}`}
-                />
-                <Text
-                    text={description}
-                />
-            </div>
+            {product &&
+                <>
+                    <div className={cls.imageWrapper}>
+                        <picture>
+                            <img src={img} alt={product.name}/>
+                        </picture>
+                    </div>
+                    <div className={cls.info}>
+                        <Text
+                            title={product.name}
+                            text={`ID: ${product.id}`}/>
+                        <Text
+                            text={product.description}/>
+                        <Button>
+                            Добавить в карзину
+                        </Button>
+                    </div>
+                </>
+            }
         </Modal>
     );
 });

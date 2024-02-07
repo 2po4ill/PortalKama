@@ -9,14 +9,15 @@ export interface IProductListProps {
     products: Product[];
     isLoading?: boolean;
     view?: string;
+    productClickHandler?: (product: Product) => void;
 }
 
 export const ProductList: FC<IProductListProps> = memo((props) => {
-    const { products } = props;
+    const { products, productClickHandler } = props;
 
     const renderProduct = (product: Product) => {
         return (
-            <ProductItem product={product} key={product.id} />
+            <ProductItem product={product} key={product.id} openProduct={productClickHandler}/>
         )
     }
 

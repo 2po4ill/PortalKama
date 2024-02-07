@@ -54,10 +54,7 @@ export function buildLoaders({isDev}: IBuildOptions): webpack.RuleSetRule[] {
                 use: [
                     {
                         loader: 'file-loader',
-                    },
-                    {
-                        loader: 'webp-loader',
-                    },
+                    }
                 ],
             },
         ],

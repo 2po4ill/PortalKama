@@ -15,15 +15,10 @@ export interface IProductItemProps {
 
 export const ProductItem: FC<IProductItemProps> = memo((props) => {
     const { product, className, openProduct } = props;
-    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const productOpenHandler = useCallback(() => {
-        setModalIsOpen(true);
-    }, [setModalIsOpen]);
-
-    const productCloseHandler = useCallback(() => {
-        setModalIsOpen(false);
-    }, [setModalIsOpen]);
+        openProduct(product)
+    }, []);
 
     const {
         id,
@@ -66,7 +61,6 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
                 <Button>Добавить</Button>
             </footer>
         </article>
-        <ProductModal product={product} onClose={productCloseHandler} isOpen={modalIsOpen}/>
         </>
     );
 });
