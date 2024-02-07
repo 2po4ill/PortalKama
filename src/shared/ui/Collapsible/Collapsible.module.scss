@@ -1,22 +1,103 @@
+@keyframes openCollapsible {
+  0%{
+    transform: translateY(-52px);
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+  }
+  100%{
+    transform: translateY(0px);
+    opacity: 100%;
+    height: max-content;
+    visibility: visible;
+  }
+}
+@keyframes closeCollapsible {
+  0%{
+    transform: translateY(0px);
+    opacity: 100%;
+    height: max-content;
+    visibility: visible;
+
+  }
+  100%{
+    transform: translateY(-52px);
+    opacity: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
+
 .Collapsible{
+  z-index: 0;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
+  padding-right: 5px;
+  padding-left: 5px;
 }
-.header{
-  border: 1px solid rgb(128, 123, 123);
+
+.content{
+  border-bottom: 1px solid var(--collapsible-header-color);
+  border-right: 1px solid var(--collapsible-header-color);
+  border-left: 1px solid var(--collapsible-header-color);
+  min-width: 100%;
+}
+.open{
+  animation: openCollapsible .2s linear;
+}
+.close{
+  animation: closeCollapsible .2s linear;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+.clicked{
+  display: block;
+}
+.nonClicked{
+  display: none;
+}
+
+.content:hover{
+  bottom: 0;
+}
+
+@keyframes openImg {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg)
+  }
+}
+@keyframes closeImg {
+  0% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg)
+  }
+}
+
+.Header{
+  border: 1px solid var(--collapsible-header-color);
   padding: 5px;
-  margin: 5px;
+  margin: 5px 5px 0;
   border-radius: 5px;
-  min-width: 620px;
   align-items: center;
   justify-content: center;
   display: flex;
+  min-width: 100%;
   font-weight: normal;
   position: relative;
   cursor: pointer;
+  z-index: 1;
+  background-color: var(--profile-bg-color);
 
+  label {
+  }
   img {
     position: absolute;
     right: 25px;
@@ -24,9 +105,11 @@
     height: 25px;
   }
   .Opened {
+    animation: openImg .2s linear;
     transform: rotate(90deg)
   }
-}
-.content{
-
+  .Closed {
+    animation: closeImg .2s linear;
+    transform: rotate(0deg)
+  }
 }

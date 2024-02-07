@@ -1,7 +1,7 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './ProfilePage.module.scss'
 import React from "react";
-import {ProfileTabs} from "features/profile/ui/ProfileTabs/ProfileTabs";
+import {ProfileTabs} from "widgets/ProfileTabs/ProfileTabs";
 
 export interface IProfilePageProps {
     className?: string;
