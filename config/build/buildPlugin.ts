@@ -3,7 +3,8 @@ import path from "node:path";
 import webpack from "webpack";
 import {IBuildOptions} from "./types/config";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 export function buildPlugin({paths, isDev}: IBuildOptions): webpack.WebpackPluginInstance[] {
 
@@ -21,7 +22,8 @@ export function buildPlugin({paths, isDev}: IBuildOptions): webpack.WebpackPlugi
         }),
         //* Так по идеи не будет происходить перерендер компонентов при изменении в коде
         isDev && new webpack.HotModuleReplacementPlugin(),
-        isDev && new ReactRefreshWebpackPlugin()
+        isDev && new ReactRefreshWebpackPlugin(),
         //*
+        !isDev && new BundleAnalyzerPlugin()
     ]
 }

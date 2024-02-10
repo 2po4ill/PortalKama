@@ -12,6 +12,7 @@ export interface ITextProps {
     title?: string;
     text?: string;
     theme?: TextTheme
+    titleMaxLength?: number;
 }
 
 // memo позволяет пропустить повторный рендеринг компонента, если его свойства не изменились
@@ -21,12 +22,13 @@ export const Text: FC<ITextProps> = memo((props) => {
         text,
         title,
         theme = TextTheme.PRIMARY,
+        titleMaxLength,
         ...other
     } = props;
 
     return (
         <div className={classNames(cls.Text, {}, [ className, cls[theme] ])} {...other} >
-            {title && <p className={cls.title}>{title}</p>}
+            {title && <p className={cls.title}>{titleMaxLength ? title.slice(0,titleMaxLength) + "..." : title}</p>}
             {text && <p className={cls.text}>{text}</p>}
         </div>
     )

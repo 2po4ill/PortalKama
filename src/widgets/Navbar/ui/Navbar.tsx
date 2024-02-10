@@ -26,7 +26,7 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
                 <nav className={cls.links}>
                     <AppLink to={RoutePath.main} className={cls.Link}>Главная</AppLink>
                     <AppLink to={RoutePath.reservation} className={cls.Link}>Бронь</AppLink>
-                    <AppLink to={RoutePath.store} className={cls.Link}>Магазин</AppLink>
+                    <AppLink to={RoutePath.shop} className={cls.Link}>Магазин</AppLink>
                 </nav>
 
             </div>

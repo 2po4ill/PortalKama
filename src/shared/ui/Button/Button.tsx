@@ -1,6 +1,6 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './Button.module.scss'
-import {ButtonHTMLAttributes, FC} from "react";
+import {ButtonHTMLAttributes, FC, memo} from "react";
 import {Spinner} from "shared/ui/Spinner/Spinner";
 
 export enum ButtonTheme {
@@ -15,7 +15,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     theme?: ButtonTheme;
 }
 
-export const Button: FC<IButtonProps> = ( props ) => {
+export const Button: FC<IButtonProps> = memo(( props ) => {
     const {
         className,
         children,
@@ -28,4 +28,4 @@ export const Button: FC<IButtonProps> = ( props ) => {
             { loading ? <Spinner size={"s"} color={"inverted"}/> : children}
         </button>
     );
-};
+});

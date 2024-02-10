@@ -2,7 +2,7 @@ import {RouteProps} from "react-router-dom";
 import {AppRoutes, RoutePath} from "shared/const/router";
 
 import MainPage from "pages/MainPage";
-import Store from "pages/Store";
+import Shop from "pages/Shop";
 import ReservationPage from "pages/ReservationPage/ui/ReservationPage";
 import {PageNotFound} from "widgets/PageNotFound/ui/PageNotFound";
 import ProfilePage from "pages/ProfilePage";
@@ -16,9 +16,9 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
         path: RoutePath.reservation,
         element: <ReservationPage />
     },
-    [AppRoutes.STORE]: {
-        path: RoutePath.store,
-        element: <Store />
+    [AppRoutes.SHOP]: {
+        path: RoutePath.shop,
+        element: <Shop />
     },
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,
