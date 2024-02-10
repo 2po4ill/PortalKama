@@ -18,7 +18,7 @@ export const userSlice = createSlice({
             if (authData) {
                 state.authData = JSON.parse(authData);
             }
-        }
+        },
     },
 })
 
