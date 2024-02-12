@@ -23,6 +23,7 @@ export const userSlice = createSlice({
             localStorage.setItem(LOCAL_STORAGE_USER_KEY, null);
             state.authData = null;
         }
+
     },
 })
 

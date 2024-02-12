@@ -1,11 +1,12 @@
-import {RouteProps} from "react-router-dom";
+import {Route, RouteProps, Routes} from "react-router-dom";
 import {AppRoutes, RoutePath} from "shared/const/router";
-
 import MainPage from "pages/MainPage";
 import Shop from "pages/Shop";
 import ReservationPage from "pages/ReservationPage/ui/ReservationPage";
 import {PageNotFound} from "widgets/PageNotFound/ui/PageNotFound";
 import ProfilePage from "pages/ProfilePage";
+import React, {Suspense} from "react";
+
 
 export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.MAIN]: {
@@ -22,7 +23,7 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     },
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,
-        element: <ProfilePage />
+        element: <ProfilePage/>
     },
 
     /**
