@@ -31,6 +31,8 @@
 .Link {
   color: #ffffff;
   text-decoration: none;
+  align-items: center;
+  align-content: center;
 }
 .Link:hover {
   color: var(--link-hover-color); /* Цвет ссылки при наведении на нее курсора мыши */
@@ -38,4 +40,21 @@
 
 .Modal:hover {
   color: var(--link-hover-color);
+}
+
+.full_name {
+  position: relative;
+  font-size: 18px;
+  color: #ffffff;
+  text-decoration: underline;
+  cursor: pointer;
+  top: -10px;
+
+}
+.full_name:hover {
+  color: var(--link-hover-color);
+}
+
+.Profile{
+  max-height: 30px;
 }

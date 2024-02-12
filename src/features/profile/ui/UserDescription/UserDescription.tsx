@@ -26,14 +26,18 @@ export const UserDescription: FC<ICollapsible> = (props) => {
 
 
     return (
-        <div className={cls.UserDescription}>
-            <Collapsible isClicked={props.isClicked} title={"description"} openedWindow={props.openedWindow} windowName={"Личные данные"} onClose={props.onClose}>
-                <img src={img} alt={"img"} className={cls.image}/>
-                <label className={cls.credentials}>{full_name}</label>
-                <label className={cls.position}>{position}</label>
-                <Button onClick={logout}> Выйти из аккаунта </Button>
-            </Collapsible>
-        </div>
+        <Collapsible isClicked={props.isClicked} title={"description"} openedWindow={props.openedWindow} windowName={"Личные данные"} onClose={props.onClose}>
+            <div className={cls.description}>
+                <div className={cls.imgWrapper}>
+                    <img src={img} alt={"img"} className={cls.image}/>
+                </div>
+                <div className={cls.info}>
+                    <label className={cls.credentials}>{full_name}</label>
+                    <label className={cls.position}>{position}</label>
+                    <Button onClick={logout} className={cls.btn}> Выйти из аккаунта </Button>
+                </div>
+            </div>
+        </Collapsible>
 
     )
 }
