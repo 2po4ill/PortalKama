@@ -19,6 +19,10 @@ export const userSlice = createSlice({
                 state.authData = JSON.parse(authData);
             }
         },
+        logout: (state) => {
+            localStorage.setItem(LOCAL_STORAGE_USER_KEY, null);
+            state.authData = null;
+        }
     },
 })
 

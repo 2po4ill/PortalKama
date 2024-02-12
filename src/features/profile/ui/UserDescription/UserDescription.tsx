@@ -20,8 +20,7 @@ export const UserDescription: FC<ICollapsible> = (props) => {
 
 
     const logout = () => {
-        localStorage.setItem(LOCAL_STORAGE_USER_KEY, null);
-        dispatch(userActions.setAuthData(null));
+        dispatch(userActions.logout());
     }
 
 
