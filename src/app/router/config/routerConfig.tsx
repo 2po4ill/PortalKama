@@ -1,14 +1,17 @@
-import {Route, RouteProps, Routes} from "react-router-dom";
+import {RouteProps} from "react-router-dom";
 import {AppRoutes, RoutePath} from "shared/const/router";
+
 import MainPage from "pages/MainPage";
 import Shop from "pages/Shop";
 import ReservationPage from "pages/ReservationPage/ui/ReservationPage";
 import {PageNotFound} from "widgets/PageNotFound/ui/PageNotFound";
 import ProfilePage from "pages/ProfilePage";
-import React, {Suspense} from "react";
 
+export type AppRouteProps = RouteProps & {
+    authRequire?: boolean;
+}
 
-export const routeConfig: Record<AppRoutes, RouteProps> = {
+export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
         element: <MainPage />
@@ -23,7 +26,8 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     },
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,
-        element: <ProfilePage/>
+        element: <ProfilePage />,
+        authRequire: true
     },
 
     /**
