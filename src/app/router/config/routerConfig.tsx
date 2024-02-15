@@ -7,7 +7,11 @@ import ReservationPage from "pages/ReservationPage/ui/ReservationPage";
 import {PageNotFound} from "widgets/PageNotFound/ui/PageNotFound";
 import ProfilePage from "pages/ProfilePage";
 
-export const routeConfig: Record<AppRoutes, RouteProps> = {
+export type AppRouteProps = RouteProps & {
+    authRequire?: boolean;
+}
+
+export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
         element: <MainPage />
@@ -22,7 +26,8 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     },
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,
-        element: <ProfilePage />
+        element: <ProfilePage />,
+        authRequire: true
     },
 
     /**

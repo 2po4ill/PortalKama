@@ -1,9 +1,38 @@
-.UserDescription{
+.description {
+  display: flex;
+  padding: 0;
+  min-width: 600px;
+  gap: 10px;
 
 }
-.Position{
+  .imgWrapper {
+  height: 200px;
+
+  img {
+    height: 100%;
+  }
 
 }
-.Initials{
+.position{
+
+}
+
+
+.info {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  width: 100%;
+  margin-left: 100px;
+
+  label{
+    font-weight: bolder;
+    font-size: 32px;
+  }
+
+  .btn{
+    margin-top: 40px;
+    max-width: 200px;
+  }
 
 }

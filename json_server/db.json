@@ -23,12 +23,18 @@
     {
       "uid": "1",
       "username": "admin",
-      "password": "123"
+      "password": "123",
+      "img": "http://s00.yaplakal.com/pics/pics_original/6/6/5/13306566.jpg",
+      "full_name": "Иванов Иван Иванович",
+      "position": "Мастер слесарь"
     },
     {
       "uid": "2",
       "username": "test",
-      "password": "test"
+      "password": "test",
+      "img": "http://s00.yaplakal.com/pics/pics_original/6/6/5/13306566.jpg",
+      "full_name": "Иванов Иван Иванович",
+      "position": "Мастер слесарь"
     }
   ]
 }

@@ -40,6 +40,28 @@ server.post('/login', (req, res) => {
     }
 });
 
+server.get('/profile', (req, res) => {
+    try {
+        const { uid } = req.body;
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const { users = [] } = db;
+        const userFromBd = users.find(
+            (user) => user.uid === uid
+        );
+
+        if (userFromBd) {
+            const {user} = userFromBd;
+            return res.json(user);
+        }
+
+        return res.status(403).json({ message: 'User not found' });
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({message: e.message})
+    }
+})
+
 // проверяем, авторизован ли пользователь
 server.use((req, res, next) => {
     if (!req.headers.authorization) {

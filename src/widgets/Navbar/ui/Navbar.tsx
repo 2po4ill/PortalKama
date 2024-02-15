@@ -35,6 +35,7 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
                     userData ?
                         (
                             <AppLink to={"profile"} className={cls.Profile}>
+                                <a className={cls.full_name}> {userData.full_name} </a>
                                 <img src={ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
                             </AppLink>
                         ) :
