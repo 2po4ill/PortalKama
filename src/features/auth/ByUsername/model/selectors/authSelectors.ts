@@ -4,20 +4,20 @@ import {StateSchema} from "app/providers/StoreProvider";
 export const getAuth = (state: StateSchema) => state.auth;
 export const getUsername = createSelector(
     getAuth,
-    (auth) => auth.username
+    (auth) => auth?.username || ""
 );
 
 export const getPassword = createSelector(
     getAuth,
-    (auth) => auth.password
+    (auth) => auth?.password || ""
 );
 
 export const getIsLoading = createSelector(
     getAuth,
-    (auth) => auth.isLoading
+    (auth) => auth?.isLoading || false
 );
 
 export const getError = createSelector(
     getAuth,
-    (auth) => auth.error
+    (auth) => auth?.error || null
 );
