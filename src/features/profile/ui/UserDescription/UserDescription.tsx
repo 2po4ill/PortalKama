@@ -2,7 +2,7 @@ import {ICollapsible, Collapsible} from "shared/ui/Collapsible/Collapsible";
 import cls from './UserDescription.module.scss';
 import React, {FC} from "react";
 import {Button} from "shared/ui/Button/Button";
-import {getAuthData, userActions} from "entities/User";
+import {userSelectors, userActions} from "entities/User";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {useSelector} from "react-redux";
 
@@ -11,7 +11,7 @@ import {useSelector} from "react-redux";
 export const UserDescription: FC<ICollapsible> = (props) => {
     const { className, ...other } = props;
     const dispatch = useAppDispatch();
-    const userData = useSelector(getAuthData);
+    const userData = useSelector(userSelectors.getAuthData);
 
 
     const logout = () => {

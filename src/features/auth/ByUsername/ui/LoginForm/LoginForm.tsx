@@ -11,7 +11,7 @@ import {getError, getIsLoading, getPassword, getUsername} from "../../model/sele
 import {loginByUsername} from "../../model/services/authServices";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {Text, TextTheme} from "shared/ui/Text/Text";
-import {getAuthData} from "entities/User";
+import {userSelectors} from "entities/User";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 
 
@@ -27,7 +27,7 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
     const password = useSelector(getPassword);
     const idLoading = useSelector(getIsLoading);
     const error = useSelector(getError);
-    const authData = useSelector(getAuthData);
+    const authData = useSelector(userSelectors.getAuthData);
     const dispatch = useAppDispatch();
 
     const loginChangeHandler = useCallback((value: string) => {

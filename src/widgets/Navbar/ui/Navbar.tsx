@@ -7,7 +7,8 @@ import {RoutePath} from "shared/const/router";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
 import React, {FC} from "react";
 import {useSelector} from "react-redux";
-import {getAuthData} from "entities/User";
+import {userSelectors} from "entities/User";
+import {Spinner} from "shared/ui/Spinner/Spinner";
 
 export interface INavbarProps {
     className?: string;
@@ -17,7 +18,8 @@ export interface INavbarProps {
 
 export const Navbar: FC<INavbarProps> = ( props ) => {
     const { className, setModalOpen} = props;
-    const userData = useSelector(getAuthData);
+    const userData = useSelector(userSelectors.getAuthData);
+    const userLoading = useSelector(userSelectors.getIsLoading);
 
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
@@ -32,10 +34,10 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
             </div>
             <div>
                 {
-                    userData ?
+                    userLoading ? <Spinner color={"inverted"} size={"s"}/> : userData ?
                         (
                             <AppLink to={"profile"} className={cls.Profile}>
-                                <a className={cls.full_name}> {userData.full_name} </a>
+                                {/*<a className={cls.full_name}> {userData.full_name} </a>*/}
                                 <img src={ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
                             </AppLink>
                         ) :

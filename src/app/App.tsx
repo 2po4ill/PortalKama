@@ -5,7 +5,7 @@ import {Navbar} from "widgets/Navbar";
 import {AppRouter} from "./router";
 import {LoginModal} from "features/auth/ByUsername";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
-import {getAuthData, userActions} from "entities/User";
+import { userAsyncActions, userSelectors } from "entities/User";
 import {useSelector} from "react-redux";
 
 
@@ -13,10 +13,10 @@ function App() {
     const {theme} = useTheme();
     const [isOpen, setOpen] = useState<boolean>(false);
     const dispatch = useAppDispatch();
-    const userData = useSelector(getAuthData);
+    const userData = useSelector(userSelectors.getAuthData);
 
     useEffect(() => {
-        dispatch(userActions.initAuthData());
+        dispatch(userAsyncActions.initAuthData());
     }, [dispatch])
 
     const openModal = () => {

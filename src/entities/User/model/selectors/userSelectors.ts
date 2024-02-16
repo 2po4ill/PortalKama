@@ -1,9 +1,25 @@
 import {StateSchema} from "app/providers/StoreProvider";
-import {createSelector} from "@reduxjs/toolkit";
+import {createSelector, Selector} from "@reduxjs/toolkit";
+import {User, UserSchema} from "../types/user";
 
-export const getAuth = (state: StateSchema) => state.user;
+const getUser = (state: StateSchema) => state.user;
 
-export const getAuthData = createSelector(
-    getAuth,
-    (user) => user.authData
-)
+interface IUserSelectors {
+    getUser: Selector<StateSchema, UserSchema>;
+    getAuthData: Selector<StateSchema, User>;
+    getIsLoading: Selector<StateSchema, boolean>;
+}
+
+export const userSelectors: IUserSelectors = {
+    getUser,
+    getAuthData: createSelector(
+        getUser,
+        (user) => user.authData
+    ),
+    getIsLoading: createSelector(
+        getUser,
+        (user) => user.isLoading
+    )
+}
+
+
