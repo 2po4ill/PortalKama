@@ -16,4 +16,6 @@ export interface UserSchema {
     // не измененные данные от запроса на авторизацию
     authData?: User;
     isAdmin: boolean;
+    isLoading?: boolean;
+    error?: string;
 }
