@@ -11,7 +11,7 @@ import {useSelector} from "react-redux";
 export const UserDescription: FC<ICollapsible> = (props) => {
     const { className, ...other } = props;
     const dispatch = useAppDispatch();
-    const userData = useSelector(userSelectors.getAuthData);
+    const userData = useSelector(userSelectors.getUser);
 
 
     const logout = () => {
@@ -27,8 +27,8 @@ export const UserDescription: FC<ICollapsible> = (props) => {
                     <img src={userData.img} alt={"img"} className={cls.image}/>
                 </div>
                 <div className={cls.info}>
-                    <label className={cls.credentials}>{userData.full_name}</label>
-                    <label className={cls.position}>{userData.position}</label>
+                    <label className={cls.credentials}>{userData.username}</label>
+                    {/*<label className={cls.position}>{userData.position}</label>*/}
                     <Button onClick={logout} className={cls.btn}> Выйти из аккаунта </Button>
                 </div>
             </div>

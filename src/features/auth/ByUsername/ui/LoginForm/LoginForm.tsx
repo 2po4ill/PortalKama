@@ -11,8 +11,8 @@ import {getError, getIsLoading, getPassword, getUsername} from "../../model/sele
 import {loginByUsername} from "../../model/services/authServices";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {Text, TextTheme} from "shared/ui/Text/Text";
-import {userSelectors} from "entities/User";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
+import {ToggleVisibilityIcon} from "features/auth/ByUsername/ui/ToggleVisibilityIcon/ToggleVisibilityIcon";
 
 
 export interface ILoginForm extends FormHTMLAttributes<HTMLFormElement>, ClassAttributes<HTMLElement>{
@@ -27,34 +27,28 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
     const password = useSelector(getPassword);
     const idLoading = useSelector(getIsLoading);
     const error = useSelector(getError);
-    const authData = useSelector(userSelectors.getAuthData);
     const dispatch = useAppDispatch();
 
     const loginChangeHandler = useCallback((value: string) => {
-        // setLoginValue(value);
         dispatch(authActions.setUsername(value));
     }, [dispatch]);
 
 
     const passwordChangeHandler = useCallback((value: string) => {
-        // setPasswordValue(value);
         dispatch(authActions.setPassword(value));
     }, [dispatch]);
 
-    const toggleVisibility = () => {
+    const toggleVisibilityHandler = useCallback( () => {
         setVisibility(prev => !prev);
-    }
+    }, [setVisibility]);
 
-    const submitHandler = useCallback((e: FormEvent) => {
+    const submitHandler = useCallback(async (e: FormEvent) => {
         e.preventDefault();
-        dispatch(loginByUsername({ username, password }));
-        // alert("Успешно вошли в аккаунт " + loginValue);
+        const result = await dispatch(loginByUsername({username, password}));
+        if (result.meta.requestStatus == "fulfilled") {
+            close();
+        }
     }, [dispatch, username, password]);
-
-    useEffect(() => {
-        if (authData) close();
-    }, [authData]);
-
 
     return (
         <AsyncReducerProvider name={'auth'} reducer={authReducer}>
@@ -82,7 +76,12 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
                         placeholder="Введите пароль"
                         id="password" className={cls.Credentials}
                         adornment={
-                            <img src={ visibility ? hide : show} alt='show' className={cls.ShowPassword} id="show" onClick={toggleVisibility}/>
+                            <ToggleVisibilityIcon
+                                visibility={visibility}
+                                className={cls.ShowPassword}
+                                toggleVisibility={toggleVisibilityHandler}
+                                id="show"
+                            />
                         }
                         value={password}
                         onChange={passwordChangeHandler}

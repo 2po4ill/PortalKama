@@ -78,6 +78,8 @@ export const Modal: FC<IModalProps> = (props) => {
         return () => {
             clearTimeout(timerRef.current);
             window.removeEventListener('keydown', keydownHandler);
+            // Костыль TODO исправит
+            document.body.style.overflow = "unset";
         };
     }, [isOpen, keydownHandler]);
 

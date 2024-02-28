@@ -31,6 +31,9 @@ server.post('/login', (req, res) => {
         if (userFromBd) {
             const {password, ...user} = userFromBd;
             return res.json(user);
+
+            // const {uid, img, ...user} = userFromBd;
+            // return res.json( { uid, img });
         }
 
         return res.status(403).json({ message: 'User not found' });

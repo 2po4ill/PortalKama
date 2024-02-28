@@ -2,13 +2,13 @@ import {classNames} from "shared/lib/classNames";
 import cls from './Navbar.module.scss'
 import {AppLink} from "shared/ui/AppLink/AppLink";
 import ProfileImg from "shared/assets/user-32-32.png";
-import Logo from 'shared/assets/logo.png'
 import {RoutePath} from "shared/const/router";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
 import React, {FC} from "react";
 import {useSelector} from "react-redux";
 import {userSelectors} from "entities/User";
 import {Spinner} from "shared/ui/Spinner/Spinner";
+import {Text, TextTheme} from "shared/ui/Text/Text";
 
 export interface INavbarProps {
     className?: string;
@@ -18,30 +18,28 @@ export interface INavbarProps {
 
 export const Navbar: FC<INavbarProps> = ( props ) => {
     const { className, setModalOpen} = props;
-    const userData = useSelector(userSelectors.getAuthData);
+    const userData = useSelector(userSelectors.getUser);
     const userLoading = useSelector(userSelectors.getIsLoading);
+    const isAuthorized = useSelector(userSelectors.getIsAuthorized);
 
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
-            <div>
-                <div className={cls.logo}><img src={Logo} alt="logo"/></div>
-                <nav className={cls.links}>
-                    <AppLink to={RoutePath.main} className={cls.Link}>Главная</AppLink>
-                    <AppLink to={RoutePath.reservation} className={cls.Link}>Бронь</AppLink>
-                    <AppLink to={RoutePath.shop} className={cls.Link}>Магазин</AppLink>
-                </nav>
-
-            </div>
-            <div>
+            <div className={cls.profileTab}>
                 {
-                    userLoading ? <Spinner color={"inverted"} size={"s"}/> : userData ?
+                    userLoading ? <Spinner color={"inverted"} size={"m"} className={cls.spinner} /> :
+                        isAuthorized ?
                         (
+                            <>
                             <AppLink to={"profile"} className={cls.Profile}>
                                 {/*<a className={cls.full_name}> {userData.full_name} </a>*/}
                                 <img src={ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
+                                <Text text={userData.username} theme={TextTheme.INVERTED} />
                             </AppLink>
+                            </>
                         ) :
-                        <Button className={""} onClick={setModalOpen} theme={ButtonTheme.INHERIT}>Войти</Button>
+                        <Button className={cls.button} onClick={setModalOpen} theme={ButtonTheme.INHERIT}>
+                            <Text text={"Войти"} theme={TextTheme.INVERTED} />
+                        </Button>
                 }
             </div>
         </div>

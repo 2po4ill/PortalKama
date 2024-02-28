@@ -1,0 +1,30 @@
+.SidebarItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 5px;
+  width: 280px;
+  transition: width .3s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--button-bg-color_hover);
+  }
+
+  .icon {
+    min-width: 50px;
+    max-width: 50px;
+    height: 50px;
+    color: #fff;
+
+    transition: unset;
+  }
+
+  .link {
+    color: var(--primary-color-inverted);
+  }
+}
+
+.collapsed {
+  width: 60px;
+}

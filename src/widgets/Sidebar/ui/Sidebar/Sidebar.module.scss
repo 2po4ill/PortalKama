@@ -1,0 +1,31 @@
+.Sidebar {
+  position: relative;
+  width: 280px;
+  background-color: var(--navbar-bg-color);
+
+  transition: width .3s ease;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.collapsed {
+  width: 60px;
+}
+
+.menuButton {
+  margin-bottom: 50px;
+}
+
+.linksList {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.logo {
+  width: 60px;
+}
