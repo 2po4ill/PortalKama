@@ -2,6 +2,7 @@
   position: relative;
   width: 280px;
   background-color: var(--navbar-bg-color);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
   transition: width .3s ease;
 }
@@ -14,10 +15,12 @@
 
 .collapsed {
   width: 60px;
+  box-shadow: none;
 }
 
 .menuButton {
   margin-bottom: 50px;
+  font-weight: bold;
 }
 
 .linksList {
