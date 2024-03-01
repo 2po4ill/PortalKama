@@ -10,9 +10,10 @@ export interface ILoginData {
 
 export const loginByUsername = createAsyncThunk<User, ILoginData, { rejectValue: string }>(
     'login/loginByUsername',
-    async (loginData, thunkAPI) => {
+    async (loginData, {rejectWithValue, extra, dispatch}) => {
         try {
-            const response = await axios.post<User>('http://localhost:8000/login', loginData);
+            // @ts-ignore
+            const response = await extra.api.post<User>('/login', loginData);
             if (!response.data) {
                 throw new Error("Response data is empty");
             }
@@ -24,7 +25,7 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, { rejectValue:
             };
 
             localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(userData));
-            thunkAPI.dispatch(userActions.setAuthData(userData));
+            dispatch(userActions.setAuthData(userData));
 
             return response.data;
         } catch (err) {
@@ -32,7 +33,7 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, { rejectValue:
                 console.log(err.status);
             }
             console.log(err);
-            return thunkAPI.rejectWithValue("Неверный логин или пароль")
+            return rejectWithValue("Неверный логин или пароль")
         }
 
     },

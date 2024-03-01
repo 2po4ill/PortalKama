@@ -1,7 +1,7 @@
 import cls from './SidebarItem.module.scss';
 import {classNames} from "shared/lib/classNames";
 import {AppLink} from "shared/ui/AppLink/AppLink";
-import {ISidebarItem} from "widgets/Sidebar/model/sidebarItems";
+import {ISidebarItem} from "../../model/sidebarItems";
 import {FC, HTMLAttributes, memo} from "react";
 
 export interface ISidebarItemProps extends HTMLAttributes<HTMLAnchorElement>{

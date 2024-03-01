@@ -19,3 +19,6 @@ declare module "*.webp";
 
 // true, если проект запущен в Dev моде
 declare const __IS_DEV__: boolean;
+
+// константа apiURL, задается при сборке
+declare const __API__: string;
