@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
-import {User, userActions} from "entities/User";
+import {TAuthorizedUserData, User, userActions, UserSchema} from "entities/User";
 import {LOCAL_STORAGE_USER_KEY} from "shared/const/localstorage";
 
 export interface ILoginData {
@@ -16,8 +16,15 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, { rejectValue:
             if (!response.data) {
                 throw new Error("Response data is empty");
             }
-            localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(response.data))
-            thunkAPI.dispatch(userActions.setAuthData(response.data));
+
+            const userData: TAuthorizedUserData = {
+                username: loginData.username,
+                img: response.data.img,
+                uid: response.data.uid
+            };
+
+            localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(userData));
+            thunkAPI.dispatch(userActions.setAuthData(userData));
 
             return response.data;
         } catch (err) {

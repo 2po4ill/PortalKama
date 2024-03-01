@@ -5,6 +5,7 @@ import {ProductList} from "features/product";
 import {Product} from "entities/Product";
 import {ProductModal} from "features/product/ui/ProductModal/ProductModal";
 import {useCallback, useState} from "react";
+import {Text} from "shared/ui/Text/Text";
 
 export interface IShopProps {
     className?: string;
@@ -37,7 +38,6 @@ const Shop = ({ className }: IShopProps ) => {
 
     return (
         <div className={classNames(cls.Shop, {}, [className])}>
-            <h1>Store</h1>
             <div>
                 <ProductList products={products} productClickHandler={productClickHandler}/>
             </div>

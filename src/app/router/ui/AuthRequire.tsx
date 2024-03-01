@@ -10,12 +10,12 @@ export interface AuthRequireProps {
 }
 
 export const AuthRequire = ({children}: AuthRequireProps) => {
-    const { getAuthData, getIsLoading } = userSelectors;
+    const { getIsAuthorized, getIsLoading } = userSelectors;
     const isLoading = useSelector(getIsLoading);
-    const auth = useSelector(getAuthData);
+    const isAuthorized = useSelector(getIsAuthorized);
 
 
-    if(!isLoading && !auth) {
+    if(!isLoading && !isAuthorized) {
         return <Navigate to={RoutePath.main} replace />
     }
 

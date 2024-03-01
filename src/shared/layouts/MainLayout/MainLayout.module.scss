@@ -1,0 +1,43 @@
+.MainLayout {
+  min-height: 100vh;
+  display: grid;
+  @media (min-width: 1200px) {
+    grid-template-areas:
+              'sidebar header header'
+              'sidebar content rightbar';
+    grid-template-columns: 60px 1fr 0;
+    grid-template-rows: 64px 1fr;
+  }
+  
+  @media (max-width: 1200px) {
+    grid-template-areas:
+              'sidebar header header'
+              'sidebar content rightbar';
+    grid-template-columns: 60px 1fr 0;
+    grid-template-rows: 64px 1fr;
+  }
+}
+
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+}
+
+.content {
+  grid-area: content;
+  max-width: 1200px;
+  justify-self: center;
+  padding: 0 32px;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+  }
+}
+
+.header {
+  grid-area: header;
+}
+
+.rightbar {
+  grid-area: rightbar;
+}

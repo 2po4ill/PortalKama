@@ -1,60 +1,44 @@
 .Navbar {
+  position: relative;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: end;
   width: 100%;
+  height: 100%;
+
+  //background-color: var(--navbar-bg-color);
+}
+
+.profileTab {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  min-width: 100px;
   height: var(--navbar-height);
   padding: 0 10px;
-
-  div {
-    display: flex;
-    align-items: center;
-  }
-
-
   background-color: var(--navbar-bg-color);
-}
+  border-radius: 0 0 0 10px;
 
-.logo {
-  margin-right: 20px;
-  img {
-    height: var(--navbar-height);
-    width: auto;
+  position: fixed;
+  top: 0;
+
+  .button {
+    height: 100%;
+    width: 50px;
+    min-width: unset;
+    min-height: unset;
+    padding: 0;
+    margin: 0 auto;
   }
-}
 
-.links {
-  display: flex;
-  gap: 40px;
-}
-
-.Link {
-  color: #ffffff;
-  text-decoration: none;
-  align-items: center;
-  align-content: center;
-}
-.Link:hover {
-  color: var(--link-hover-color); /* Цвет ссылки при наведении на нее курсора мыши */
-}
-
-.Modal:hover {
-  color: var(--link-hover-color);
-}
-
-.full_name {
-  position: relative;
-  font-size: 18px;
-  color: #ffffff;
-  text-decoration: underline;
-  cursor: pointer;
-  top: -10px;
-
-}
-.full_name:hover {
-  color: var(--link-hover-color);
 }
 
 .Profile{
-  max-height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.spinner {
+  margin: 0 auto;
 }

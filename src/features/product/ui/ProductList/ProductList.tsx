@@ -3,6 +3,7 @@ import cls from './ProductList.module.scss'
 import {classNames} from "shared/lib/classNames";
 import {ProductItem} from "../ProductItem/ProductItem";
 import {Product} from "entities/Product";
+import {Text} from "shared/ui/Text/Text";
 
 export interface IProductListProps {
     className?: string;
@@ -23,7 +24,7 @@ export const ProductList: FC<IProductListProps> = memo((props) => {
 
     return (
         <div className={classNames(cls.ProductList, {}, [])}>
-            <h3 className={cls.title}>Товары</h3>
+            <Text title={"Товары"} className={cls.title}/>
             {
                 products.length > 0
                 ? products.map(product => renderProduct(product))

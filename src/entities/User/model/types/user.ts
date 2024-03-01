@@ -6,16 +6,22 @@ import path from "node:path";
  */
 export interface User {
     uid: string;
-    username: string;
     img: string;
-    full_name: string;
-    position: string;
+}
+
+export enum UserRoles {
+    USER = "user",
+    ADMIN = "admin"
 }
 
 export interface UserSchema {
-    // не измененные данные от запроса на авторизацию
-    authData?: User;
-    isAdmin: boolean;
-    isLoading?: boolean;
+    uid: string;
+    img: string;
+    username: string;
+    isLoading: boolean;
+    isAuthorized: boolean;
     error?: string;
+    role?: UserRoles;
 }
+
+export type TAuthorizedUserData = User & Required<Pick<UserSchema, "username">>

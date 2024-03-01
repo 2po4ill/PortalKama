@@ -3,9 +3,14 @@
   flex-wrap: wrap;
   gap: 20px;
   width: 1024px;
-  margin: 30px auto;
+  margin: 0 auto;
 
   .title {
+    width: 100%;
+  }
+
+  @media (max-width: 1200px) {
+    justify-content: center;
     width: 100%;
   }
 }
