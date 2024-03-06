@@ -15,11 +15,13 @@ export default (env: IBuildEnv) => {
     const mode = env.mode || 'development';
     const isDev = mode === 'development';
     const port = env.port || 3000;
+    const apiURL: string = isDev ? 'http://localhost:8000' : 'https://api.kama-diesel';
 
     return buildWebpackConfig({
         mode,
         paths,
         isDev,
-        port
+        port,
+        apiURL
     })
 };

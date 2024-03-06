@@ -2,8 +2,8 @@ import cls from './Sidebar.module.scss';
 import {classNames} from "shared/lib/classNames";
 import MenuLogo from "shared/assets/icons/menu.svg";
 import React, {useCallback, useMemo, useRef, useState} from "react";
-import {ISidebarItem, sidebarItemsList} from "widgets/Sidebar/model/sidebarItems";
-import {SidebarItem} from "widgets/Sidebar/ui/SidebarItem/SidebarItem";
+import {ISidebarItem, sidebarItemsList} from "../../model/sidebarItems";
+import {SidebarItem} from "../SidebarItem/SidebarItem";
 
 export const Sidebar = () => {
     const [collapsed, setCollapsed] = useState<boolean>(true);

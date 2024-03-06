@@ -10,6 +10,7 @@ import {
     ThunkDispatch, Tuple
 } from "@reduxjs/toolkit";
 import {createReducerManager} from "./ReducerManager";
+import {AxiosInstance} from "axios";
 
 export interface StateSchema {
     counter: counterSchema;
@@ -36,6 +37,15 @@ export interface StoreWithManager extends
         ]>
     >{
     reducerManager: ReturnType<typeof createReducerManager>
+}
+
+export interface IThunkExtraArg {
+    api: AxiosInstance;
+}
+
+export interface IThunkConfig<T> {
+    rejectValue: T;
+    extra: IThunkExtraArg;
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -2,6 +2,7 @@ import { PayloadAction} from "@reduxjs/toolkit";
 import {TAuthorizedUserData, UserSchema} from "../types/user";
 import {LOCAL_STORAGE_USER_KEY} from "shared/const/localstorage";
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
+import {IThunkConfig} from "app/providers/StoreProvider";
 
 const initialState: UserSchema = {
     uid: "",
@@ -15,12 +16,10 @@ export const userSlice = createAppSlice({
     name: 'user',
     initialState,
     reducers: (create) => {
-        const createAThunk = create.asyncThunk.withTypes<{
-            rejectValue: { error: string }
-        }>();
+        const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
         return {
-            logout: create.reducer( (state) => {
+            logout: create.reducer( () => {
                 localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
                 return null;
             } ),
@@ -33,8 +32,9 @@ export const userSlice = createAppSlice({
             } ),
             initUser: createAThunk<null, TAuthorizedUserData>(
                 async (data, thunkAPI) => {
+                    const { rejectWithValue } = thunkAPI;
                     try {
-                        const getUserApi = () => new Promise<TAuthorizedUserData>((resolve, reject) => {
+                        const getUserApi = () => new Promise<TAuthorizedUserData>((resolve) => {
                             const data: TAuthorizedUserData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER_KEY));
                             setTimeout(() => {
                                 resolve(data);
@@ -42,10 +42,10 @@ export const userSlice = createAppSlice({
                         });
                         const authorizedUser = await getUserApi();
                         if (authorizedUser) return authorizedUser;
-                        return thunkAPI.rejectWithValue({error: "Нет данных пользователя"});
+                        return rejectWithValue("Нет данных пользователя");
                     } catch (err) {
                         console.log("Something went wrong" + err);
-                        return thunkAPI.rejectWithValue({error: "Something went wrong"});
+                        return rejectWithValue("Something went wrong");
                     }
                 },
                 {
