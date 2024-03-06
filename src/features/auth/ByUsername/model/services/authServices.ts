@@ -1,18 +1,19 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
-import {TAuthorizedUserData, User, userActions, UserSchema} from "entities/User";
+import {TAuthorizedUserData, User, userActions} from "entities/User";
 import {LOCAL_STORAGE_USER_KEY} from "shared/const/localstorage";
+import {IThunkConfig} from "app/providers/StoreProvider";
 
 export interface ILoginData {
     username: string;
     password: string;
 }
 
-export const loginByUsername = createAsyncThunk<User, ILoginData, { rejectValue: string }>(
+export const loginByUsername = createAsyncThunk<User, ILoginData, IThunkConfig<string>>(
     'login/loginByUsername',
-    async (loginData, {rejectWithValue, extra, dispatch}) => {
+    async (loginData, thunkAPI) => {
+        const {rejectWithValue, extra, dispatch} = thunkAPI;
         try {
-            // @ts-ignore
             const response = await extra.api.post<User>('/login', loginData);
             if (!response.data) {
                 throw new Error("Response data is empty");
