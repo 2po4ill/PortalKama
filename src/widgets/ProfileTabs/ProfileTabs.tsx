@@ -19,7 +19,7 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
 
     const descriptionHandler = () => {
         clickHandler()
-        if (windowStatus == "description" && openStatus == true) {
+        if (windowStatus == "description" && openStatus) {
             setOpenStatus(false)
             setWindowStatus("CLOSED");
         }
@@ -31,7 +31,7 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
 
     const etcHandler = () => {
         clickHandler()
-        if (windowStatus == "etc" && openStatus == true) {
+        if (windowStatus == "etc" && openStatus) {
             setOpenStatus(false)
             setWindowStatus("CLOSED");
         }
@@ -44,10 +44,10 @@ export const ProfileTabs = ( { className }: IProfileTabs ) => {
     return (
         <div className={classNames(cls.ProfileTabs, {}, [className])}>
             <div>
-                <UserDescription isClicked={clickStatus} openedWindow={windowStatus} onClose={descriptionHandler}/>
+                <UserDescription isClicked={clickStatus} windowName={"Личные данные"} title={"description"} openedWindow={windowStatus} onClose={descriptionHandler}/>
             </div>
             <div>
-                <ETC isClicked={clickStatus} openedWindow={windowStatus} onClose={etcHandler}/>
+                <ETC title={"etc"} windowName={"Прочее"} isClicked={clickStatus} openedWindow={windowStatus} onClose={etcHandler}/>
             </div>
         </div>
     );

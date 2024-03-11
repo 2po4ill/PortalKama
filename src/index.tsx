@@ -5,7 +5,7 @@ import {createRoot} from "react-dom/client";
 import 'app/styles/index.scss'
 import {AppStore, StoreProvider} from "app/providers/StoreProvider";
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("root") as HTMLElement;
 
 const root = createRoot(rootElement);
 

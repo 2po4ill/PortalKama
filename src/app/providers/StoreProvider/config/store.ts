@@ -1,8 +1,9 @@
-import {configureStore, ReducersMapObject, Store} from '@reduxjs/toolkit'
+import {combineReducers, configureStore, ReducersMapObject, Store} from '@reduxjs/toolkit';
+import { Reducer } from "redux";
 import {StateSchema, StoreWithManager} from "./StateSchema";
 import {counterReducer} from "entities/Counter";
 import {userReducer} from "entities/User";
-import {createReducerManager} from "app/providers/StoreProvider/config/ReducerManager";
+import {createReducerManager} from "./ReducerManager";
 import {$api} from "shared/api/api";
 
 export function createReduxStore(initialState?: StateSchema) {
@@ -12,8 +13,8 @@ export function createReduxStore(initialState?: StateSchema) {
     };
 
     const reducerManager = createReducerManager(rootReducer);
-    const store = configureStore<StateSchema>({
-        reducer: reducerManager.reduce,
+    const store = configureStore({
+        reducer: reducerManager.reduce as Reducer<StateSchema>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
         middleware: getDefaultMiddleware => getDefaultMiddleware({
@@ -23,7 +24,8 @@ export function createReduxStore(initialState?: StateSchema) {
                 }
             }
         })
-    }) as StoreWithManager;
+    });
+    // @ts-ignore
     store.reducerManager = reducerManager;
 
     return store;

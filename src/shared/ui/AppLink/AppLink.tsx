@@ -6,12 +6,19 @@ import {FC} from "react";
 export interface IAppLinkProps extends LinkProps{
     to: string;
     className?: string;
+    disabled?: boolean
 }
 
 export const AppLink: FC<IAppLinkProps> = ( props ) => {
-    const { className, children, ...other } = props;
+    const { to, className, children, disabled, ...other } = props;
+
+    if (disabled) return (
+        <a {...other} className={classNames(cls.AppLink, {}, [className])}>
+            {children}
+        </a>
+    )
     return (
-        <Link {...other} className={classNames(cls.AppLink, {}, [className])}>
+        <Link to={to} {...other} className={classNames(cls.AppLink, {}, [className])}>
             {children}
         </Link>
     );
