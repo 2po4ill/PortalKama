@@ -12,7 +12,7 @@ export interface IShopProps {
 }
 
 const Shop = ({ className }: IShopProps ) => {
-    const [selectedProduct, setSelectedProduct] = useState<Product>(null);
+    const [selectedProduct, setSelectedProduct] = useState<Product>();
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const productClickHandler = useCallback((product: Product) => {
@@ -21,7 +21,7 @@ const Shop = ({ className }: IShopProps ) => {
     }, [setSelectedProduct, setModalIsOpen]);
 
     const modalCloseHandler = useCallback(() => {
-        setSelectedProduct(null);
+        setSelectedProduct(undefined);
         setModalIsOpen(false);
     }, [setSelectedProduct, setModalIsOpen]);
 

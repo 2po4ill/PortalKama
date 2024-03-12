@@ -8,7 +8,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 export function buildPlugin({paths, isDev, apiURL}: IBuildOptions): webpack.WebpackPluginInstance[] {
 
-    return [
+    const plugins: webpack.WebpackPluginInstance[] = [
         new HtmlWebpackPlugin({
             template: paths.html
         }),
@@ -21,10 +21,16 @@ export function buildPlugin({paths, isDev, apiURL}: IBuildOptions): webpack.Webp
             __IS_DEV__: JSON.stringify(isDev),
             __API__: JSON.stringify(apiURL)
         }),
-        //* Так по идеи не будет происходить перерендер компонентов при изменении в коде
-        isDev && new webpack.HotModuleReplacementPlugin(),
-        isDev && new ReactRefreshWebpackPlugin(),
-        //*
-        !isDev && new BundleAnalyzerPlugin()
     ]
+
+    const devPlugins: webpack.WebpackPluginInstance[] = [
+        new webpack.HotModuleReplacementPlugin(),
+        new ReactRefreshWebpackPlugin(),
+        new BundleAnalyzerPlugin()
+
+    ]
+
+    if (isDev) plugins.push(...devPlugins);
+
+    return plugins;
 }

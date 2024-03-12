@@ -19,9 +19,9 @@ export const userSlice = createAppSlice({
         const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
         return {
-            logout: create.reducer( () => {
+            logout: create.reducer( (state) => {
                 localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
-                return null;
+                return;
             } ),
             setAuthData: create.reducer( (state, action: PayloadAction<TAuthorizedUserData>) => {
                 return {
@@ -30,12 +30,12 @@ export const userSlice = createAppSlice({
                     isAuthorized: true
                 }
             } ),
-            initUser: createAThunk<null, TAuthorizedUserData>(
+            initUser: createAThunk<undefined, TAuthorizedUserData>(
                 async (data, thunkAPI) => {
                     const { rejectWithValue } = thunkAPI;
                     try {
                         const getUserApi = () => new Promise<TAuthorizedUserData>((resolve) => {
-                            const data: TAuthorizedUserData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER_KEY));
+                            const data: TAuthorizedUserData = JSON.parse(String(localStorage.getItem(LOCAL_STORAGE_USER_KEY)));
                             setTimeout(() => {
                                 resolve(data);
                             }, 2500);

@@ -6,10 +6,10 @@ import {classNames} from "shared/lib/classNames";
 export interface ICollapsible {
     className?: string;
     children?: ReactNode;
-    isClicked?: boolean,
-    windowName?: string,
-    openedWindow?: string,
-    title?: string,
+    isClicked: boolean,
+    windowName: string,
+    openedWindow: string,
+    title: string,
     onClose: () => void,
 }
 

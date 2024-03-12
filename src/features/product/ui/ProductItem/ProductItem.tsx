@@ -17,7 +17,7 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
     const { product, className, openProduct } = props;
 
     const productOpenHandler = useCallback(() => {
-        openProduct(product)
+        openProduct?.(product);
     }, []);
 
     const {

@@ -6,7 +6,11 @@ type TMods = Record<string, boolean | string>
  * @param mods модификаторы класса, добавляются при условии
  * @param additional доп. классы
  */
-export function classNames(cls: string, mods: TMods = {}, additional: string[] = []): string {
+export function classNames(
+    cls: string,
+    mods: TMods = {},
+    additional: Array<string | undefined> = []
+): string {
     return [
         cls,
         ...additional,

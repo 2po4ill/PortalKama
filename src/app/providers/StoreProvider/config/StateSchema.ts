@@ -7,10 +7,11 @@ import {
     UnknownAction,
     EnhancedStore,
     StoreEnhancer,
-    ThunkDispatch, Tuple
+    ThunkDispatch, Tuple, combineReducers
 } from "@reduxjs/toolkit";
 import {createReducerManager} from "./ReducerManager";
 import {AxiosInstance} from "axios";
+import {ReducerAction} from "react";
 
 export interface StateSchema {
     counter: counterSchema;

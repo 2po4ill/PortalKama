@@ -9,7 +9,7 @@ import {useSelector} from "react-redux";
 
 
 export const UserDescription: FC<ICollapsible> = (props) => {
-    const { className, ...other } = props;
+    const { className, title, windowName, ...other } = props;
     const dispatch = useAppDispatch();
     const userData = useSelector(userSelectors.getUser);
 
@@ -21,7 +21,7 @@ export const UserDescription: FC<ICollapsible> = (props) => {
 
     return (
         userData ?
-        <Collapsible isClicked={props.isClicked} title={"description"} openedWindow={props.openedWindow} windowName={"Личные данные"} onClose={props.onClose}>
+        <Collapsible isClicked={props.isClicked} title={title} openedWindow={props.openedWindow} windowName={windowName} onClose={props.onClose}>
             <div className={cls.description}>
                 <div className={cls.imgWrapper}>
                     <img src={userData.img} alt={"img"} className={cls.image}/>
