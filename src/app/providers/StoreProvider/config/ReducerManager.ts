@@ -21,6 +21,8 @@ export function createReducerManager(initialReducers: ReducersMapObject<StateSch
                 });
                 keysToRemove = [];
             }
+            // https://github.com/2po4ill/PortalKama/issues/17
+            // @ts-ignore
             return combinedReducer(state, action);
         },
         add: (key: StateSchemaKey, reducer: Reducer) => {
