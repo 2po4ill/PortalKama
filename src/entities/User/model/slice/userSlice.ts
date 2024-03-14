@@ -21,7 +21,13 @@ export const userSlice = createAppSlice({
         return {
             logout: create.reducer( (state) => {
                 localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
-                return;
+                return {
+                    ...state,
+                    uid: "",
+                    img: "",
+                    username: "",
+                    isAuthorized: false,
+                };
             } ),
             setAuthData: create.reducer( (state, action: PayloadAction<TAuthorizedUserData>) => {
                 return {

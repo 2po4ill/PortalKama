@@ -8,6 +8,7 @@
     "start": "webpack serve --env port=3000",
     "start:dev:server": "node ./json_server/index.js",
     "start:prod": "webpack serve --env port=3000 mode=production",
+    "start:env": "webpack serve --env",
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production"
   },
