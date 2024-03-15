@@ -31,6 +31,12 @@ npm i
 npm start
 ```
 
+### Запуск json-server
+Чтобы запустить искусственный бэкэнд, выполните команду:
+```sh
+npm run start:dev:server
+```
+
 ### Создание билда
 Чтобы выполнить production сборку, выполните команду:
 ```sh
@@ -39,12 +45,6 @@ npm run build:prod
 Чтобы выполнить development сборку, выполните команду:
 ```sh
 npm run build:dev
-```
-
-### Запуск json-server
-Чтобы запустить искусственный бэкэнд, выполните команду:
-```sh
-npm run start:dev:server
 ```
 
 ### Запуск Development сервера с другими параметрами
