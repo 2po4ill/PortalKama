@@ -1,8 +1,9 @@
 export type TBuildMode = 'production' | 'development'
 
 export interface IBuildPaths {
-    entry: string;
+    favicon: string;
     build: string;
+    entry: string;
     html: string;
     src: string;
 }
@@ -10,8 +11,8 @@ export interface IBuildOptions {
     mode: TBuildMode;
     paths:IBuildPaths;
     isDev: boolean;
-    port: number
-    apiURL: string
+    port: number;
+    apiURL: string;
 }
 
 export interface IBuildEnv {

@@ -9,6 +9,7 @@ export default (env: IBuildEnv) => {
         build: path.resolve(__dirname, 'build'),
         entry: path.resolve(__dirname, 'src', 'index.tsx'),
         html: path.resolve(__dirname, 'public', 'index.html'),
+        favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
         src: path.resolve(__dirname, 'src')
     }
 
@@ -17,7 +18,7 @@ export default (env: IBuildEnv) => {
     const port = env.port || 3000;
 
     const devApiURL = "http://localhost:8000";
-    const prodApiURL = "https://api.kama-diesel";
+    const prodApiURL: string = "http://corp-portal.kama-diesel.ru/api";
     const apiURL: string = env.apiURL ? env.apiURL : isDev ? devApiURL : prodApiURL;
 
     return buildWebpackConfig({
