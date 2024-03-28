@@ -2,7 +2,6 @@ import {FC, memo} from "react";
 import {IModalProps, Modal} from "shared/ui/Modal/Modal";
 import {classNames} from "shared/lib/classNames";
 import cls from './ProductModal.module.scss';
-import {Product} from "entities/Product";
 import {Text} from "shared/ui/Text/Text";
 import img from "shared/assets/placeholder-image.webp";
 import {Button} from "shared/ui/Button/Button";

@@ -2,7 +2,6 @@ import {FC, memo} from "react";
 import cls from './ProductList.module.scss'
 import {classNames} from "shared/lib/classNames";
 import {ProductItem} from "../ProductItem/ProductItem";
-import {Product} from "entities/Product";
 import {Text} from "shared/ui/Text/Text";
 import {IShopItem} from "entities/Product/model/types/product";
 

@@ -1,11 +1,9 @@
 import {classNames} from "shared/lib/classNames";
-import cls from './Shop.module.scss'
-import {Counter} from "entities/Counter";
+import cls from './Shop.module.scss';
 import {ProductList} from "features/product";
-import {Product, productActions, productReducer, productSelectors} from "entities/Product";
+import {productActions, productReducer, productSelectors} from "entities/Product";
 import {ProductModal} from "features/product/ui/ProductModal/ProductModal";
 import {useCallback, useEffect, useState} from "react";
-import {Text} from "shared/ui/Text/Text";
 import {useSelector} from "react-redux";
 import {IShopItem} from "entities/Product/model/types/product";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
@@ -36,17 +34,6 @@ const Shop = ({ className }: IShopProps ) => {
     useEffect(() => {
         dispatch(productActions.getProductList());
     }, [dispatch]);
-
-    // const products = new Array(10).fill(0).map((e, i) => {
-    //     return {
-    //         id: `${i}`,
-    //         name: "Lorem ipsum dolor sit amet, consectetur",
-    //         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    //         price: 10000000,
-    //         isService: false,
-    //         available: true
-    //     } as Product
-    // })
 
     return (
         <AsyncReducerProvider name={'product'} reducer={productReducer} destroy={false} >

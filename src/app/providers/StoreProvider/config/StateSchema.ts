@@ -7,11 +7,10 @@ import {
     UnknownAction,
     EnhancedStore,
     StoreEnhancer,
-    ThunkDispatch, Tuple, combineReducers
+    ThunkDispatch, Tuple
 } from "@reduxjs/toolkit";
 import {createReducerManager} from "./ReducerManager";
 import {AxiosInstance} from "axios";
-import {ReducerAction} from "react";
 import {ProductSchema} from "entities/Product";
 
 export interface StateSchema {

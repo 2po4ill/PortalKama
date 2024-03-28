@@ -1,11 +1,9 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './ProductItem.module.scss';
-import {Product} from "entities/Product";
-import {FC, memo, useCallback, useEffect, useState} from "react";
+import {FC, memo, useCallback} from "react";
 import {Text} from "shared/ui/Text/Text";
 import {Button} from "shared/ui/Button/Button";
 import img from 'shared/assets/placeholder-image.webp'
-import {ProductModal} from "features/product/ui/ProductModal/ProductModal";
 import {IShopItem} from "entities/Product/model/types/product";
 import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
 
