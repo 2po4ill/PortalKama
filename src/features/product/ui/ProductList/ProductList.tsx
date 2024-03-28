@@ -2,23 +2,23 @@ import {FC, memo} from "react";
 import cls from './ProductList.module.scss'
 import {classNames} from "shared/lib/classNames";
 import {ProductItem} from "../ProductItem/ProductItem";
-import {Product} from "entities/Product";
 import {Text} from "shared/ui/Text/Text";
+import {IShopItem} from "entities/Product/model/types/product";
 
 export interface IProductListProps {
     className?: string;
-    products: Product[];
+    products: IShopItem[];
     isLoading?: boolean;
     view?: string;
-    productClickHandler?: (product: Product) => void;
+    productClickHandler?: (product: IShopItem) => void;
 }
 
 export const ProductList: FC<IProductListProps> = memo((props) => {
     const { products, productClickHandler } = props;
 
-    const renderProduct = (product: Product) => {
+    const renderProduct = (product: IShopItem) => {
         return (
-            <ProductItem product={product} key={product.id} openProduct={productClickHandler}/>
+            <ProductItem product={product} key={product.item_id} openProduct={productClickHandler}/>
         )
     }
 

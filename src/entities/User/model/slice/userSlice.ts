@@ -38,7 +38,7 @@ export const userSlice = createAppSlice({
             } ),
             initUser: createAThunk<undefined, TAuthorizedUserData>(
                 async (data, thunkAPI) => {
-                    const { rejectWithValue } = thunkAPI;
+                    const { rejectWithValue, extra } = thunkAPI;
                     try {
                         const getUserApi = () => new Promise<TAuthorizedUserData>((resolve) => {
                             const data: TAuthorizedUserData = JSON.parse(String(localStorage.getItem(LOCAL_STORAGE_USER_KEY)));
@@ -47,6 +47,7 @@ export const userSlice = createAppSlice({
                             }, 2500);
                         });
                         const authorizedUser = await getUserApi();
+                        // const authorizedUser = await extra.api.get<TAuthorizedUserData>('get_profile');
                         if (authorizedUser) return authorizedUser;
                         return rejectWithValue("Нет данных пользователя");
                     } catch (err) {
@@ -60,7 +61,7 @@ export const userSlice = createAppSlice({
                         state.error = undefined;
                     },
                     fulfilled: (state, action) => {
-                        console.log(action.payload)
+                        // console.log(action.payload)
                         return {
                             ...action.payload,
                             isLoading: false,

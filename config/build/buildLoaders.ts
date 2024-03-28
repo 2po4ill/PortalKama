@@ -1,6 +1,7 @@
 import webpack from "webpack";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import {IBuildOptions} from "./types/config";
+import path from "node:path";
 
 export function buildLoaders({isDev}: IBuildOptions): webpack.RuleSetRule[] {
     /**
@@ -51,11 +52,19 @@ export function buildLoaders({isDev}: IBuildOptions): webpack.RuleSetRule[] {
         rules: [
             {
                 test: /\.(png|jpe?g|gif|webp|woff|woff2)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
+                loader: 'file-loader',
+                options: {
+                    // @ts-ignore
+                    outputPath: (url, resourcePath, context) => {
+                        const relativePath = path.relative(context, resourcePath);
+                        if (/images/.test(resourcePath)) {
+                            return `image/${url}`;
+                        }
+
+                        return `assets/${url}`;
                     }
-                ],
+                }
+
             },
         ],
     }
