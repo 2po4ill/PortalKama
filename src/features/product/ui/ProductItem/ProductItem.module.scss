@@ -3,6 +3,8 @@
   display: flex;
   flex-flow: column;
   width: var(--product-item-width);
+  min-height: 200px;
+  justify-content: space-between;
 
   &:hover {
     cursor: pointer;

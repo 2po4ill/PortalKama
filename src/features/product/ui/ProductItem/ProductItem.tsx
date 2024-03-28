@@ -6,11 +6,13 @@ import {Text} from "shared/ui/Text/Text";
 import {Button} from "shared/ui/Button/Button";
 import img from 'shared/assets/placeholder-image.webp'
 import {ProductModal} from "features/product/ui/ProductModal/ProductModal";
+import {IShopItem} from "entities/Product/model/types/product";
+import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
 
 export interface IProductItemProps {
     className?: string;
-    openProduct?: (product: Product) => void;
-    product: Product;
+    openProduct?: (product: IShopItem) => void;
+    product: IShopItem;
 }
 
 export const ProductItem: FC<IProductItemProps> = memo((props) => {
@@ -21,16 +23,15 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
     }, []);
 
     const {
-        id,
+        photo_path,
         price,
         name,
         description,
-        available,
-        isService
+        is_available,
     } = product;
 
 
-    if (!available) {
+    if (!is_available) {
         return null;
     }
 
@@ -43,20 +44,27 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
             <main className={cls.main}>
                 <div className={cls.imageWrapper}>
                     <picture>
-                        <img src={img} alt={name}/>
+                        {
+                            photo_path == "" ?
+                                <img src={img} alt={name}/> :
+                                <img src={imageSrc(photo_path)} onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src = img;
+                                }} alt={name}/>
+                        }
                     </picture>
                 </div>
                 <div className={cls.info}>
                     <Text
                         title={name}
-                        titleMaxLength={33}
+                        // titleMaxLength={33}
                         text={description}
                     />
                 </div>
             </main>
             <footer className={cls.footer}>
                 <Text
-                    title={`${price} ₽`}
+                    title={`${price}`}
                 />
                 <Button>Добавить</Button>
             </footer>

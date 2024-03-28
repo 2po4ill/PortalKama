@@ -12,13 +12,15 @@ import {
 import {createReducerManager} from "./ReducerManager";
 import {AxiosInstance} from "axios";
 import {ReducerAction} from "react";
+import {ProductSchema} from "entities/Product";
 
 export interface StateSchema {
     counter: counterSchema;
     user: UserSchema;
 
     // Асинхронные редюсеры
-    auth?: AuthSchema
+    auth?: AuthSchema;
+    product?: ProductSchema;
 }
 
 export interface IReducerManager {

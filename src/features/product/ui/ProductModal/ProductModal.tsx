@@ -6,9 +6,10 @@ import {Product} from "entities/Product";
 import {Text} from "shared/ui/Text/Text";
 import img from "shared/assets/placeholder-image.webp";
 import {Button} from "shared/ui/Button/Button";
+import {IShopItem} from "entities/Product/model/types/product";
 
 export interface IProductModalProps extends IModalProps {
-    product?: Product;
+    product?: IShopItem;
 }
 
 export const ProductModal: FC<IProductModalProps> = memo((props) => {
@@ -29,7 +30,7 @@ export const ProductModal: FC<IProductModalProps> = memo((props) => {
                     <div className={cls.info}>
                         <Text
                             title={product.name}
-                            text={`ID: ${product.id}`}/>
+                            text={`ID: ${product.item_id}`}/>
                         <Text
                             text={product.description}/>
                         <Button>
