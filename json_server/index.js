@@ -43,7 +43,7 @@ server.post('/login', (req, res) => {
     }
 });
 
-server.get('/profile', (req, res) => {
+server.get('/profile/me', (req, res) => {
     try {
         const { uid } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));

@@ -45,5 +45,13 @@
       "full_name": "Иванов Иван Иванович",
       "position": "Мастер слесарь"
     }
-  ]
+  ],
+  "profile": {
+    "status": "OK",
+    "profile": {
+      "position": "System administrator",
+      "full_name": "Anikin Ivan Vladimirovich",
+      "photo_path": "/home/kd02/project/photo/users/Ivan.jpg"
+    }
+  }
 }
