@@ -52,6 +52,7 @@ server.post('/add_cart_item', (req, res) => {
         cartitem.push({cart_item_id: 3, cart_id: 1,item_id: item_id, quantity: quantity})
         var json = JSON.stringify(db);
         fs.writeFile(path.resolve(__dirname, 'db.json'), json, 'utf8', function (err){console.log(err)});
+        return res.status(200).json({message: "OK"})
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: e.message });

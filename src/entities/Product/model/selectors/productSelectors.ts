@@ -1,6 +1,6 @@
 import {createSelector, Selector} from "@reduxjs/toolkit";
 import {StateSchema} from "app/providers/StoreProvider";
-import {IShopItem, ProductSchema} from "../types/product";
+import {ICartItem, IShopItem, ProductSchema} from "../types/product";
 
 const defaultProductData: ProductSchema = {
     products: [],
@@ -15,6 +15,7 @@ interface IProductSelectors {
     getProductData: Selector<StateSchema, ProductSchema>;
     getProductList: Selector<StateSchema, IShopItem[]>;
     getIsLoading: Selector<StateSchema, boolean>
+    getCartData: Selector<StateSchema, ICartItem[]>;
 }
 
 export const productSelectors: IProductSelectors = {
@@ -26,5 +27,9 @@ export const productSelectors: IProductSelectors = {
     getIsLoading: createSelector(
         getProductData,
         (data) => data.isLoading
+    ),
+    getCartData: createSelector(
+        getProductData,
+        (data) => data.cartitems
     )
 }
