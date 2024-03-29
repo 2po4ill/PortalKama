@@ -1,4 +1,4 @@
-import React, {Suspense} from 'react';
+import React, {FC, Suspense} from 'react';
 import {Route, Routes} from "react-router-dom";
 import {AppRouteProps, routeConfig} from "../config/routerConfig";
 import {PageLoader} from "widgets/PageLoader";

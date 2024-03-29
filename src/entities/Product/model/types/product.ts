@@ -15,8 +15,20 @@ export interface Product {
     // isService: boolean;
 }
 
+export interface ICartItem {
+    cart_item_id: number;
+    item_id: number;
+    quantity: number;
+}
+
+export interface CartData {
+    status: string;
+    cart_data: ICartItem[];
+}
+
 export interface ProductSchema {
     products: IShopItem[];
+    cartitems: ICartItem[];
     isLoading: boolean;
     error: string | undefined;
 }

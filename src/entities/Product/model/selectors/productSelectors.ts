@@ -4,6 +4,7 @@ import {IShopItem, ProductSchema} from "../types/product";
 
 const defaultProductData: ProductSchema = {
     products: [],
+    cartitems: [],
     error: undefined,
     isLoading: false
 }
