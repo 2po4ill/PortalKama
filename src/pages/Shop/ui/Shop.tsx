@@ -39,7 +39,7 @@ const Shop = ({ className }: IShopProps ) => {
         <AsyncReducerProvider name={'product'} reducer={productReducer} destroy={false} >
             <div className={classNames(cls.Shop, {}, [className])}>
                 <div>
-                    { !isLoading ? <ProductList products={products} productClickHandler={productClickHandler}/> : <PageLoader /> }
+                    { !isLoading ? <ProductList products={products} cartData={[]} productClickHandler={productClickHandler}/> : <PageLoader /> }
                 </div>
                 <ProductModal product={selectedProduct} isOpen={modalIsOpen} onClose={modalCloseHandler}/>
             </div>

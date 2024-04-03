@@ -18,6 +18,7 @@ const Cart = ({ className }: ICartProps ) => {
     const [selectedProduct, setSelectedProduct] = useState<IShopItem>();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const products = useSelector(productSelectors.getProductList);
+    const cartData = useSelector(productSelectors.getCartData)
     const isLoading = useSelector(productSelectors.getIsLoading);
     const dispatch = useAppDispatch();
 
@@ -35,11 +36,15 @@ const Cart = ({ className }: ICartProps ) => {
         dispatch(productActions.getProductList());
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(productActions.getCartData());
+    }, [dispatch]);
+
     return (
         <AsyncReducerProvider name={'product'} reducer={productReducer} destroy={false} >
             <div className={classNames(cls.Shop, {}, [className])}>
                 <div>
-                    { !isLoading ? <ProductList products={products} productClickHandler={productClickHandler}/> : <PageLoader /> }
+                    { !isLoading ? <ProductList products={products} cartData={cartData} productClickHandler={productClickHandler}/> : <PageLoader /> }
                 </div>
                 <ProductModal product={selectedProduct} isOpen={modalIsOpen} onClose={modalCloseHandler}/>
             </div>

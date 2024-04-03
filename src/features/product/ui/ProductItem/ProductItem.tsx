@@ -6,6 +6,7 @@ import {Button} from "shared/ui/Button/Button";
 import img from 'shared/assets/placeholder-image.webp'
 import {IShopItem} from "entities/Product/model/types/product";
 import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
+import {useLocation} from "react-router-dom";
 
 export interface IProductItemProps {
     className?: string;
@@ -19,6 +20,8 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
     const productOpenHandler = useCallback(() => {
         openProduct?.(product);
     }, []);
+
+    const location = useLocation()
 
     const {
         photo_path,
@@ -42,14 +45,7 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
             <main className={cls.main}>
                 <div className={cls.imageWrapper}>
                     <picture>
-                        {
-                            photo_path == "" ?
-                                <img src={img} alt={name}/> :
-                                <img src={imageSrc(photo_path)} onError={({ currentTarget }) => {
-                                    currentTarget.onerror = null; // prevents looping
-                                    currentTarget.src = img;
-                                }} alt={name}/>
-                        }
+                        <img src={photo_path} alt={name}/>
                     </picture>
                 </div>
                 <div className={cls.info}>
@@ -64,7 +60,10 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
                 <Text
                     title={`${price}`}
                 />
+                {location.pathname != '/cart' ?
                 <Button>Добавить</Button>
+                    : null
+                }
             </footer>
         </article>
         </>

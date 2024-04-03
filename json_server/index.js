@@ -48,8 +48,7 @@ server.post('/add_cart_item', (req, res) => {
     try {
         const { item_id, quantity } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
-        const { cartitem } = db
-        cartitem.push({cart_item_id: 3, cart_id: 1,item_id: item_id, quantity: quantity})
+        db["cart_data"]["cart_data"].push({cart_item_id: 3, cart_id: 1,item_id: item_id, quantity: quantity})
         var json = JSON.stringify(db);
         fs.writeFile(path.resolve(__dirname, 'db.json'), json, 'utf8', function (err){console.log(err)});
         return res.status(200).json({message: "OK"})

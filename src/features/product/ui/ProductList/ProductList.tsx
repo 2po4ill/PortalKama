@@ -3,31 +3,47 @@ import cls from './ProductList.module.scss'
 import {classNames} from "shared/lib/classNames";
 import {ProductItem} from "../ProductItem/ProductItem";
 import {Text} from "shared/ui/Text/Text";
-import {IShopItem} from "entities/Product/model/types/product";
+import {ICartItem, IShopItem} from "entities/Product/model/types/product";
+import {useLocation} from "react-router-dom";
 
 export interface IProductListProps {
     className?: string;
     products: IShopItem[];
+    cartData: ICartItem[];
     isLoading?: boolean;
     view?: string;
     productClickHandler?: (product: IShopItem) => void;
+    cartClickHandler?: (cartItem: ICartItem) => void;
 }
 
 export const ProductList: FC<IProductListProps> = memo((props) => {
     const { products, productClickHandler } = props;
+    const { cartData, cartClickHandler } = props;
+    const location = useLocation()
 
-    const renderProduct = (product: IShopItem) => {
-        return (
-            <ProductItem product={product} key={product.item_id} openProduct={productClickHandler}/>
-        )
+
+    const renderProduct = (product: IShopItem, cartData: ICartItem[]) => {
+        if (location.pathname == '/cart') {
+            for (let i = 0; i < cartData.length; i++) {
+                if (cartData[i].item_id == product.item_id) {
+                    return (
+                        <ProductItem product={product} key={product.item_id} openProduct={productClickHandler}/>
+                    )
+                }
+            }
+        } else {
+            return (
+                <ProductItem product={product} key={product.item_id} openProduct={productClickHandler}/>
+            )
+        }
     }
 
     return (
         <div className={classNames(cls.ProductList, {}, [])}>
-            <Text title={"Товары"} className={cls.title}/>
+            <Text title={location.pathname != '/cart' ? "Товары" : "Корзина"} className={cls.title}/>
             {
                 products.length > 0
-                ? products.map(product => renderProduct(product))
+                ? products.map(product => renderProduct(product, cartData))
                 : <div>Список пуст</div>
             }
         </div>
