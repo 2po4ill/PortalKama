@@ -62,26 +62,13 @@ const productSlice = createAppSlice({
                 }
             },{
                 pending: state => {
-                    return {
-                        ...state,
-                        isLoading: true,
-                        error: undefined
-                    }
+                    state.error = undefined;
                 },
                 fulfilled: (state, action) => {
-                    return {
-                        products: state.products,
-                        cartitems: state.cartitems,
-                        error: undefined,
-                        isLoading: false
-                    }
+                    state.error = undefined;
                 },
                 rejected: (state, action) => {
-                    return {
-                        ...state,
-                        error: String(action.payload),
-                        isLoading: false
-                    }
+                    state.error = String(action.payload);
                 }
             }),
             getCartData: createAThunk<undefined, CartData>(async (data, thunkAPI) => {
