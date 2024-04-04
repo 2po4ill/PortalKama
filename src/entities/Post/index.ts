@@ -1,0 +1,1 @@
+export { Post, PostSchema } from "./model/types/post";

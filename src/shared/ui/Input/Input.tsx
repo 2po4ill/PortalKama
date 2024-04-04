@@ -1,15 +1,22 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './Input.module.scss';
 import {InputHTMLAttributes, ChangeEvent, FC, memo, ReactNode, useState, useEffect, useRef} from "react";
+import {ButtonTheme} from "shared/ui/Button/Button";
 
 type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>;
+
+export enum InputTheme {
+    DEFAULT = "default",
+    BORDERED = "bordered"
+}
 
 export interface IInputProps extends HTMLInputProps {
     className?: string;
     onChange?: (value: string) => void;
     value?: string;
     adornment?: ReactNode;
-    autofocus?: boolean
+    autofocus?: boolean;
+    theme?: InputTheme;
 }
 
 // memo позволяет пропустить повторный рендеринг компонента, если его свойства не изменились
@@ -21,6 +28,7 @@ export const Input: FC<IInputProps> = memo((props) => {
         type = "text",
         adornment,
         autofocus,
+        theme = ButtonTheme.DEFAULT,
         ...other
     } = props;
     const [focused, setFocused] = useState(false);
@@ -38,7 +46,7 @@ export const Input: FC<IInputProps> = memo((props) => {
     }, [autofocus]);
 
     return (
-        <div className={classNames(cls.Input, {[cls.focused]: focused}, [className])}>
+        <div className={classNames(cls.Input, {[cls.focused]: focused}, [className, cls[theme]])}>
             <input
                 ref={ref}
                 value={value}

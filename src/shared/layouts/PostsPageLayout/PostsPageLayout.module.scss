@@ -1,0 +1,24 @@
+.PostsPageLayout {
+  display: grid;
+  row-gap: 40px;
+
+  @media (min-width: 1440px) {
+    grid-template-areas:
+              'header header header header'
+              '. content aside .';
+    grid-template-columns: 1fr 1120px 320px 1fr;
+    grid-template-rows: 120px 1fr;
+  }
+}
+
+.header {
+  grid-area: header;
+}
+
+.content {
+  grid-area: content;
+}
+
+.aside {
+  grid-area: aside;
+}
