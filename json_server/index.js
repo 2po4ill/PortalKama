@@ -43,7 +43,6 @@ server.post('/login', (req, res) => {
         return res.status(500).json({ message: e.message });
     }
 });
-
 server.post('/add_cart_item', (req, res) => {
     try {
         const { item_id, quantity } = req.body;

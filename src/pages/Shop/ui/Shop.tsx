@@ -3,7 +3,7 @@ import cls from './Shop.module.scss';
 import {ProductList} from "features/product";
 import {productActions, productReducer, productSelectors} from "entities/Product";
 import {ProductModal} from "features/product/ui/ProductModal/ProductModal";
-import {useCallback, useEffect, useState} from "react";
+import {memo, useCallback, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {IShopItem} from "entities/Product/model/types/product";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
@@ -14,7 +14,7 @@ export interface IShopProps {
     className?: string;
 }
 
-const Shop = ({ className }: IShopProps ) => {
+const Shop = memo(({ className }: IShopProps ) => {
     const [selectedProduct, setSelectedProduct] = useState<IShopItem>();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const products = useSelector(productSelectors.getProductList);
@@ -45,6 +45,7 @@ const Shop = ({ className }: IShopProps ) => {
             </div>
         </AsyncReducerProvider>
     );
-};
+});
+Shop.displayName = "ShopPage";
 
 export default Shop;

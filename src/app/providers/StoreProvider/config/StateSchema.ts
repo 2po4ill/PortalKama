@@ -12,6 +12,7 @@ import {
 import {createReducerManager} from "./ReducerManager";
 import {AxiosInstance} from "axios";
 import {ProductSchema} from "entities/Product";
+import {ProfileSchema} from "features/profile/model/types/profile";
 
 export interface StateSchema {
     counter: counterSchema;
@@ -20,6 +21,7 @@ export interface StateSchema {
     // Асинхронные редюсеры
     auth?: AuthSchema;
     product?: ProductSchema;
+    profile?: ProfileSchema;
 }
 
 export interface IReducerManager {
