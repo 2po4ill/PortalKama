@@ -1,6 +1,7 @@
 const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
+const {call} = require("ts-loader");
 
 const server = jsonServer.create();
 
@@ -42,8 +43,21 @@ server.post('/login', (req, res) => {
         return res.status(500).json({ message: e.message });
     }
 });
+server.post('/add_cart_item', (req, res) => {
+    try {
+        const { item_id, quantity } = req.body;
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        db["cart_data"]["cart_data"].push({cart_item_id: 3, cart_id: 1,item_id: item_id, quantity: quantity})
+        var json = JSON.stringify(db);
+        fs.writeFile(path.resolve(__dirname, 'db.json'), json, 'utf8', function (err){console.log(err)});
+        return res.status(200).json({message: "OK"})
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+})
 
-server.get('/profile/me', (req, res) => {
+server.get('/profile', (req, res) => {
     try {
         const { uid } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));

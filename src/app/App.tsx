@@ -25,13 +25,14 @@ function App() {
         setOpen(prevState => !prevState)
     }
 
+
     return (
         <div className={classNames('app', {}, [theme])}>
 
             {!isAuthorized && <LoginModal isOpen={isOpen} onClose={ () => {setOpen(false)} } />}
             <MainLayout
                 header={<Navbar setModalOpen={openModal}/>}
-                content={<AppRouter />}
+                content={<AppRouter/>}
                 sidebar={<Sidebar />}
             />
         </div>
