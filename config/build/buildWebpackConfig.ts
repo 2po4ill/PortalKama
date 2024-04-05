@@ -19,6 +19,7 @@ export function buildWebpackConfig(options: IBuildOptions): webpack.Configuratio
             filename: "[name].[contenthash].js",
             path: paths.build,
             clean: true,
+            publicPath: "/"
         },
         // dev опции
         devtool: isDev ? 'inline-source-map' : false,

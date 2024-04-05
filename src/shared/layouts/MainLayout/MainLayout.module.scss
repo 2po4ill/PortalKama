@@ -1,15 +1,19 @@
 .MainLayout {
   min-height: 100vh;
+  // test
+  //max-height: 100vh;
+  //overflow: hidden;
+
   display: grid;
-  @media (min-width: 1200px) {
+  @media (min-width: 1440px) {
     grid-template-areas:
               'sidebar header header'
               'sidebar content rightbar';
     grid-template-columns: 60px 1fr 0;
-    grid-template-rows: 64px 1fr;
+    grid-template-rows: 0 1fr;
   }
   
-  @media (max-width: 1200px) {
+  @media (max-width: 1440px) {
     grid-template-areas:
               'sidebar header header'
               'sidebar content rightbar';
@@ -25,9 +29,10 @@
 
 .content {
   grid-area: content;
-  max-width: 1200px;
+  //max-width: 1440px;
+  width: 100%;
   justify-self: center;
-  padding: 0 32px;
+  //padding: 0 32px;
 
   @media (max-width: 1200px) {
     width: 100%;

@@ -1,0 +1,1 @@
+export { PostsHeader } from "./ui/PostsHeader";

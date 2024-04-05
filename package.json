@@ -30,6 +30,7 @@
     "html-webpack-plugin": "^5.6.0",
     "json-server": "^0.17.0",
     "mini-css-extract-plugin": "^2.7.7",
+    "open-props": "^1.7.0",
     "react-refresh": "^0.14.0",
     "sass": "^1.69.7",
     "sass-loader": "^14.0.0",

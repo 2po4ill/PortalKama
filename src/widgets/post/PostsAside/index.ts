@@ -1,0 +1,1 @@
+export { PostsAside } from "./ui/PostsAside";

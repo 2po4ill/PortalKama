@@ -6,6 +6,7 @@ import Shop from "pages/Shop";
 import ReservationPage from "pages/ReservationPage/ui/ReservationPage";
 import {PageNotFound} from "widgets/PageNotFound/ui/PageNotFound";
 import ProfilePage from "pages/ProfilePage";
+import PostsPage from "pages/PostsPage";
 import CartPage from "pages/CartPage";
 
 export type AppRouteProps = RouteProps & {
@@ -15,7 +16,7 @@ export type AppRouteProps = RouteProps & {
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
-        element: <MainPage />,
+        element: <PostsPage />,
     },
     [AppRoutes.RESERVATION]: {
         path: RoutePath.reservation,

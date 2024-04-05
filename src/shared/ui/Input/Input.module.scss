@@ -5,15 +5,24 @@
   position: relative;
   min-width: var(--input-min-width);
   min-height: var(--input-min-height);
-  border-bottom: 1px solid black;
-  padding-top: 20px;
+  //padding-top: 20px;
+  //padding: auto;
+
+  &.default {
+    border-bottom: 2px solid #1B0F33;
+  }
+
+  &.bordered {
+    border: 2px solid #1B0F33;
+    border-radius: 4px;
+  }
 
   &:hover {
-    border-bottom-color: var(--link-hover-color);
+    border-color: var(--link-hover-color);
   }
 
   &.focused {
-    border-bottom-color: var(--link-hover-color);
+    border-color: var(--link-hover-color);
   }
 
   input {
@@ -21,22 +30,28 @@
     font-weight: 500;
     background-color: transparent;
     width: 100%;
-    padding: 0 5px;
+    margin: auto;
+    padding-left: 5px;
     overflow: hidden;
 
     &::placeholder{
-      text-align: center;
-      //padding-left: 15px;
+      //text-align: center;
+      padding-left: 15px;
     }
   }
 
   &:has(.Adornment){
     input::placeholder {
       //padding-right: 35px;
-      padding-left: 30px;
+      padding-left: 15px;
     }
   }
 }
 .Adornment {
-  max-width: 30px;
+  max-width: 35px;
+  padding: 0 5px;
+  svg {
+    width: 100%;
+    height: auto;
+  }
 }
