@@ -5,6 +5,9 @@ import {ProductItem} from "../ProductItem/ProductItem";
 import {Text} from "shared/ui/Text/Text";
 import {ICartItem, IShopItem} from "entities/Product/model/types/product";
 import {useLocation} from "react-router-dom";
+import {Button} from "shared/ui/Button/Button";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
+import {productActions} from "entities/Product";
 
 export interface IProductListProps {
     className?: string;
@@ -19,6 +22,7 @@ export interface IProductListProps {
 export const ProductList: FC<IProductListProps> = memo((props) => {
     const { products, productClickHandler } = props;
     const { cartData, cartClickHandler } = props;
+    const dispatch = useAppDispatch();
     const location = useLocation()
 
 
@@ -39,12 +43,19 @@ export const ProductList: FC<IProductListProps> = memo((props) => {
     }
 
     return (
-        <div className={classNames(cls.ProductList, {}, [])}>
-            <Text title={location.pathname != '/cart' ? "Товары" : "Корзина"} className={cls.title}/>
+        <div>
+            <div className={classNames(cls.ProductList, {}, [])}>
+                <Text title={location.pathname != '/cart' ? "Товары" : "Корзина"} className={cls.title}/>
+                {
+                    products.length > 0
+                    ? products.map(product => renderProduct(product, cartData))
+                    : <div>Список пуст</div>
+                }
+
+            </div>
             {
-                products.length > 0
-                ? products.map(product => renderProduct(product, cartData))
-                : <div>Список пуст</div>
+                location.pathname === '/cart' ?
+                    <Button onClick={() => dispatch(productActions.dropCart())} className={cls.btn}> Очистить корзину </Button> : null
             }
         </div>
     );

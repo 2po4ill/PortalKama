@@ -1,5 +1,6 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './ReservationPage.module.scss'
+import {InDevelopmentLoader} from "widgets/InDevelopmentLoader";
 
 export interface IReservationPageProps {
     className?: string;
@@ -8,7 +9,7 @@ export interface IReservationPageProps {
 const ReservationPage = ( { className }: IReservationPageProps ) => {
     return (
         <div className={classNames(cls.ReservationPage, {}, [className])}>
-            {"ReservationPage"}
+            <InDevelopmentLoader/>
         </div>
     );
 };

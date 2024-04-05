@@ -57,6 +57,19 @@ server.post('/add_cart_item', (req, res) => {
     }
 })
 
+server.post('/drop_cart', (req, res) => {
+    try {
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        db["cart_data"]["cart_data"] = []
+        var json = JSON.stringify(db);
+        fs.writeFile(path.resolve(__dirname, 'db.json'), json, 'utf8', function (err){console.log(err)});
+        return res.status(200).json({message: "OK"})
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: e.message });
+    }
+})
+
 server.get('/profile', (req, res) => {
     try {
         const { uid } = req.body;
