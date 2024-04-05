@@ -4,6 +4,7 @@ import cls from "./PostListItem.module.scss";
 import {Text} from "shared/ui/Text/Text";
 import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
 import {Post} from "entities/Post";
+import placeHolder from "shared/assets/placeholder-image.webp"
 
 interface IPostListItemProps {
     className?: string;
@@ -18,7 +19,10 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         <article className={classNames(cls.PostListItem, {}, [className])}>
 
             <div className={cls.collage}>
-                <img src={imageSrc(img[0])} alt="Коллаж"/>
+                <img src={imageSrc(img[0])} onError={({currentTarget}) => {
+                            currentTarget.onerror = null; // prevents looping
+                            currentTarget.src = placeHolder;
+                        }}/>
             </div>
 
             <div className={cls.contentBlock}>

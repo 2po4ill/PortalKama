@@ -25,7 +25,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
             id: "3",
             title: `Инновация в сфере двигателей началась с Набережных Челнов`,
             text: "На АО Кама Дизель изобрели вечный двигатель. Как сказал один из конструкторов: 'Для его создания требуется простая советская вещь, которая есть у каждого дома, а именно...'",
-            img: ["https://milnews.ru/nwsimg/aHR0cHM6Ly9tb3Rvci5ydS9pbWdzLzIwMjMvMDIvMTQvMTQvNTc5NTM4Ni80OTdkNjUwMmIyZGIwNDYwMzZjOWM3NTA4M2RkMDdlOTI2N2M4NjM3LmpwZw=="]} as Post,
+            img: ["https://storage.myseldon.com/news-pict-c2/C217B9E6A58EC3C092FB77003D15EB99"]} as Post,
         {
             id: "4",
             title: `Новая расцветка двигателей`,
@@ -61,7 +61,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
             id: "10",
             title: `Актер утвержден`,
             text: "В сериале про успех Камы Дизель роль Генерального Директора сыграет Киллиан Мёрфи. 'Это будет моя самая значимая роль. Томас Шелби был лишь подготовкой для этого сериала. Надеюсь не разочарую сотрудников компании' - сказал обладатель премии 'Оскар'",
-            img: ["https://whiskeyraiders.com/wp-content/uploads/2023/11/cillian-murphy-scaled.jpg"]} as Post,
+            img: ["https://st.dg-home.ru/upload/resize_cache/blog_editor/2ca/bu7gsqrbcydvvjx7nguuo9pyllaw2oss/900_900_0/1.jpg"]} as Post,
     ]
 
     return (
