@@ -27,7 +27,7 @@ export const ProductList: FC<IProductListProps> = memo((props) => {
 
 
     const renderProduct = (product: IShopItem, cartData: ICartItem[]) => {
-        if (location.pathname == '/cart') {
+        if (location.pathname == '/cart' && cartData != null) {
             for (let i = 0; i < cartData.length; i++) {
                 if (cartData[i].item_id == product.item_id) {
                     return (
@@ -35,7 +35,11 @@ export const ProductList: FC<IProductListProps> = memo((props) => {
                     )
                 }
             }
-        } else {
+        }
+        else if (location.pathname == '/cart' && cartData == null){
+            return null
+        }
+        else {
             return (
                 <ProductItem product={product} key={product.item_id} openProduct={productClickHandler}/>
             )
