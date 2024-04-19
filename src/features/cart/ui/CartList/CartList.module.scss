@@ -1,0 +1,20 @@
+.ProductList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 1300px;
+  margin: 0 37px 0 187px;
+
+  .title {
+    width: 100%;
+  }
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+    width: 100%;
+  }
+}
+.btn {
+  position: absolute;
+  left: 50%;
+}

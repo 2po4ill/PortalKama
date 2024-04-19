@@ -21,9 +21,11 @@ export interface IProductListProps {
 
 export const ProductList: FC<IProductListProps> = memo((props) => {
     const { products, productClickHandler } = props;
-    const { cartData, cartClickHandler } = props;
+    const { cartData} = props;
     const dispatch = useAppDispatch();
     const location = useLocation()
+
+
 
 
     const renderProduct = (product: IShopItem, cartData: ICartItem[]) => {

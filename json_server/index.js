@@ -47,7 +47,7 @@ server.post('/add_cart_item', (req, res) => {
     try {
         const { item_id, quantity } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
-        db["cart_data"]["cart_data"].push({cart_item_id: 3, cart_id: 1,item_id: item_id, quantity: quantity})
+        db["cart_data"]["cart_data"].push({in_cart_item_id: item_id, cart_id: 1,item_id: item_id, quantity: quantity})
         var json = JSON.stringify(db);
         fs.writeFile(path.resolve(__dirname, 'db.json'), json, 'utf8', function (err){console.log(err)});
         return res.status(200).json({message: "OK"})
@@ -67,6 +67,28 @@ server.post('/drop_cart', (req, res) => {
     } catch (e) {
         console.log(e);
         return res.status(500).json({ message: e.message });
+    }
+})
+
+server.post('/drop_cart_item', (req, res) => {
+    try {
+        const {in_cart_item_id} = req.body;
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        for (const cart_item in db["cart_data"]["cart_data"]) {
+            console.log(Number(cart_item))
+            if (db["cart_data"]["cart_data"][Number(cart_item)]["in_cart_item_id"] === in_cart_item_id) {
+                db["cart_data"]["cart_data"].splice(Number(cart_item))
+            }
+        }
+
+        var json = JSON.stringify(db);
+        fs.writeFile(path.resolve(__dirname, 'db.json'), json, 'utf8', function (err) {
+            console.log(err)
+        });
+        return res.status(200).json({message: "OK"})
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({message: e.message});
     }
 })
 
