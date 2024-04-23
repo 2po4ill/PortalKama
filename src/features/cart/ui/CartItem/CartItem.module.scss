@@ -28,6 +28,9 @@
     min-width: 400px;
     .description {
       padding-bottom: 30px;
+      Text{
+
+      }
     }
     .footer {
       height: 100%;
@@ -47,7 +50,11 @@
     }
     .btn{
       max-width: 20px;
-      margin: 2px
+      margin: 2px;
+      min-height: 20px;
+    }
+    .btn_increment{
+      font-size: 18px;
     }
     .Input{
       max-width: 20px;

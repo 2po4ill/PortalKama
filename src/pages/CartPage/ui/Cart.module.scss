@@ -6,36 +6,51 @@
     margin-top: 72px;
     width: 180px;
     height: 100%;
-    gap: 20px;
+    gap: 10px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    article{
+        margin-bottom: 20px;
+        font-size: 24px;
+        font-family: Georgia, serif;
+
+    }
+    .blue{
+        color: #0F4E7E;
+        font-size: 35px;
+    }
+    .btn_underline{
+        text-decoration: underline;
+    }
 }
 .Buttons{
-    padding: 20px 10px 10px 10px;
-    min-width: 275px;
-    max-width: 275px;
+    padding: 25px;
+    min-width: 305px;
+    max-width: 305px;
 
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    article{
-        margin-bottom: 10px;
-        font-size: 34px;
-        font-family: Georgia, serif;
-    }
 }
 
 .Order{
-    min-width: 275px;
-    max-width: 275px;
+    min-width: 305px;
+    max-width: 305px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
-    font-family: Georgia, serif;
+    padding: 30px;
+    font-family: Geologica, serif, serif;
 
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+    .btn{
+        margin-top: 30px;
+        min-width: 200px;
+        min-height: 60px;
+        font-size: 20px;
+    }
 }

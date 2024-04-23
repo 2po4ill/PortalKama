@@ -43,18 +43,21 @@ const Cart = ({ className }: ICartProps ) => {
                             <CartList products={products} cartData={cartData}/>
                             <div className={cls.CartFunctions}>
                                 <div className={cls.Buttons}>
-                                    <Text title={"Выбрать все"}/>
-                                    <Text title={"Удалить выбранное"}/>
-                                    <Text onClick={() => dispatch(productActions.dropCart())}
-                                          className={cls.btn} title={"Удалить все"}/>
+                                    <article> Выбрать все </article>
+                                    <article className={cls.btn_underline}> Убрать выбранное </article>
+                                    <article onClick={() => dispatch(productActions.dropCart())}
+                                          className={cls.btn_underline}> Убрать все </article>
                                 </div>
                                 <div className={cls.Order}>
-                                    <Text title={"Выбрано товаров: " + quantity.toString()}/>
-                                    <Text title={"На сумму: " + price.toString()}/>
+                                    <article> Выбрано товаров:
+                                        <span className={cls.blue}> {quantity.toString()} </span>
+                                    </article>
+                                    <article> На сумму:</article>
+                                    <article className={cls.blue}> {price.toString()} </article>
                                     <Button onClick={() => {
                                         dispatch(productActions.dropCart())
                                         alert("Заказ оформлен. Ожидайте")
-                                    }}> Оформить </Button>
+                                    }} className={cls.btn}> Оформить </Button>
                                 </div>
                             </div>
                         </div>

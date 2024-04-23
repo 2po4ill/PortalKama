@@ -1,20 +1,18 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './Navbar.module.scss'
 import {AppLink} from "shared/ui/AppLink/AppLink";
-import ProfileImg from "shared/assets/user-32-32.png";
+import ProfileImg from "shared/assets/icons/profile-icon.png";
 import CartImg from 'shared/assets/icons/Корзина.png'
+import CartQuantImg from 'shared/assets/icons/CartQuantity.png'
 import {RoutePath} from "shared/const/router";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
-import React, {FC, useEffect} from "react";
+import React, {FC} from "react";
 import {useSelector} from "react-redux";
 import {userSelectors} from "entities/User";
 import {Spinner} from "shared/ui/Spinner/Spinner";
 import {Text, TextTheme} from "shared/ui/Text/Text";
 import {useLocation} from "react-router-dom";
-import {productActions, productSelectors} from "entities/Product";
-import {ICartItem} from "entities/Product/model/types/product";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
-import {CartItem} from "features/cart/ui/CartItem/CartItem";
+import {productSelectors} from "entities/Product";
 
 export interface INavbarProps {
     className?: string;
@@ -31,6 +29,11 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
     const quantity = useSelector(productSelectors.getCartQuantity)
     const location = useLocation()
 
+    const mods: Record<string, boolean> = {
+        [cls.smallQuantity]: quantity < 10,
+        [cls.largeQuantity]: quantity > 9
+    };
+
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
             <div className={cls.profileTab}>
@@ -42,15 +45,18 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
                             <AppLink to={"profile"} className={cls.Profile}>
                                 {/*<a className={cls.full_name}> {userData.full_name} </a>*/}
                                 <img src={ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
-                                <Text text={userData.username} theme={TextTheme.INVERTED} />
                             </AppLink>
                                 {location.pathname === '/shop' || location.pathname === '/cart' ?
                                     isLoading ? <Spinner color={"inverted"} size={"m"} className={cls.spinner} /> :
-                                    <AppLink to={"cart"} className={cls.Profile}>
-                                        <img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>
-                                        <Text text="1999" theme={TextTheme.INVERTED} />
-                                        <Text text={quantity.toString()} theme={TextTheme.INVERTED} />
-                                    </AppLink>
+                                        <AppLink to={"cart"} className={cls.Profile}>
+                                            <li>
+                                                <img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>
+                                                <img src={CartQuantImg} alt={RoutePath.cart}
+                                                     className={cls.CartQuantityImg}/>
+                                                <text className={classNames(cls.Quantity, mods, [className])}> {quantity} </text>
+                                            </li>
+                                            <Text text="1999" theme={TextTheme.INVERTED}/>
+                                        </AppLink>
                                     : null
                                 }
                             </>

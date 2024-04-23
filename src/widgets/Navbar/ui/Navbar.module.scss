@@ -39,9 +39,38 @@
   margin-right: 10px;
 }
 
+li{
+  display: inline-block;
+  position: relative;
+}
+
 .CartImg{
-  height: 25px;
+  height: 40px;
   margin-left: 5px;
+}
+
+.CartQuantityImg{
+  height: 20px;
+  position: absolute;
+  top: 28px;
+  left: 27px
+}
+.Quantity{
+  position: absolute;
+
+  font-size: 13px;
+  color: white;
+  text-align: justify;
+}
+
+.largeQuantity{
+  top: 31px;
+  right: 1px;
+}
+
+.smallQuantity{
+  top: 31px;
+  right: 4px;
 }
 
 
