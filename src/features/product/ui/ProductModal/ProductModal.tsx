@@ -49,6 +49,7 @@ export const ProductModal: FC<IProductModalProps> = memo((props) => {
                                 <Button onClick={
                                     () => {
                                         dispatch(productActions.addCartItem({item_id: Number(product.item_id), quantity: counterValue} as ICartItem))
+                                        dispatch(productActions.getCartData)
                                     }}>
                                     Добавить в корзину
                                 </Button>

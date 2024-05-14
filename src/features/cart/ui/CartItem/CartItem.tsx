@@ -66,7 +66,10 @@ export const CartItem: FC<ICartItemProps> = memo((props) => {
                 <Text text={"в наличии"}/>
 
                 <div className={cls.buttons}>
-                    <Button className={cls.btn} children={<img alt={"bin_image"} src={bin}/>} onClick={() => dispatch(productActions.dropCartItem(cartItem.in_cart_item_id))}></Button>
+                    <Button className={cls.btn} children={<img alt={"bin_image"} src={bin}/>} onClick={() => {
+                        dispatch(productActions.dropCartItem(cartItem.in_cart_item_id))
+                        dispatch(productActions.getCartData)
+                    }}></Button>
                     <Button className={classNames(cls.btn, {}, [cls.btn_increment])}> - </Button>
                     <Input value={cartItem.quantity.toString()} className={cls.Input}></Input>
                     <Button className={classNames(cls.btn, {}, [cls.btn_increment])}> + </Button>

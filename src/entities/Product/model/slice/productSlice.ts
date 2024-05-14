@@ -75,7 +75,6 @@ const productSlice = createAppSlice({
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
                     await extra.api.post("/drop_cart_item", {"in_cart_item_id": data});
-                    console.log(initialState.cartitems);
                     return
                 } catch (err) {
                     console.log("Something went wrong" + err);
