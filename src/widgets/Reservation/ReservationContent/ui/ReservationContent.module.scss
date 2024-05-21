@@ -1,0 +1,11 @@
+.PostsList {
+
+  .listContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    //margin-right: var(--size-8);
+
+  }
+}
