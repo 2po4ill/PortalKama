@@ -19,6 +19,7 @@ const ReservationHeader: FC<IReservationHeaderProps> = memo(props => {
         <div className={classNames(cls.PostsHeader, {}, [className])}>
             <div className={cls.content}>
                 <ReservationCalendarInput/>
+                <ReservationCalendarInput/>
             </div>
         </div>
     );

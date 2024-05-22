@@ -1,3 +1,26 @@
 .button{
   width: 100%;
 }
+.Field{
+  margin: 1px;
+  padding: 4px;
+}
+.Field:hover{
+  border: 1px solid #000000;
+  padding: 3px;
+  cursor: pointer;
+}
+.day_cur_month{
+  background-color: white;
+}
+.today{
+  background-color: #efbb76;
+}
+.day_other_month{
+  background-color: #b5afaf;
+}
+.selected_date{
+  border: 1px solid #000000;
+  background-color: #a3fff2;
+  padding: 3px;
+}

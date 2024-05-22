@@ -1,17 +1,19 @@
-import React, {FC, Fragment, ReactNode, useState} from "react";
+import React, {FC, useState} from "react";
 import cls from "shared/ui/Calendar/Calendar.module.scss";
 import {Button} from "primereact/button";
-import {ICartItem, IShopItem} from "entities/Product/model/types/product";
-import {ProductItem} from "features/product/ui/ProductItem/ProductItem";
 import {CalendarField} from "shared/ui/CalendarField/CalendarField";
 
 export interface ICalendar {
     className?: string;
+    setSelectedDate: (selectedDate: Date) => void;
+    selectedDate: Date;
 }
 
 export const Calendar: FC<ICalendar> = (props) => {
     const {
         className,
+        setSelectedDate,
+        selectedDate,
     } = props;
     const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -77,22 +79,19 @@ export const Calendar: FC<ICalendar> = (props) => {
 
     function getCalendarMonth(fromDate: Date) {
         const firstDay = new Date(fromDate.getFullYear(), fromDate.getMonth(), 1)
-            ,result = [getWeek(firstDay)]
-            ,lastDay = new Date(fromDate.getFullYear(), fromDate.getMonth() + 1, 0);
-        while (getLastWrittenDate(result).getDate() + 7 < lastDay.getDate()) {
+            ,result = [getWeek(firstDay)];
+
+        for (let i = 0; i < 5; i++) {
             result.push(getWeek(new Date(getLastWrittenDate(result).getTime() + (24 * 60 * 60 * 1000))));
         }
-        if (getLastWrittenDate(result) !== lastDay)
-        {
-            result.push(getWeek(new Date(getLastWrittenDate(result).getTime() + (24 * 60 * 60 * 1000))));
-        }
+
 
         return result
     }
 
     const renderField = (date: Date) => {
             return (
-                <CalendarField date={date} />
+                <CalendarField date={date} month={currentDate.getMonth()} setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
             )
         }
 
@@ -104,7 +103,16 @@ export const Calendar: FC<ICalendar> = (props) => {
             <Button onClick={nextMonth} className={cls.button}> Следующий </Button>
             <Button onClick={previousMonth}  className={cls.button} > Предыдущий </Button>
             {currentMonth(currentDate)}
-            {getCalendarMonth(currentDate).map(dateList => dateList.map(date => renderField(date)))}
+            <div className={cls.CalendarField}>
+                <a> ПН </a>
+                <a> ВТ </a>
+                <a> СР </a>
+                <a> ЧТ </a>
+                <a> ПТ </a>
+                <a> СБ </a>
+                <a> ВС </a>
+                {getCalendarMonth(currentDate).map(dateList => dateList.map(date => renderField(date)))}
+            </div>
         </div>
     );
 };
