@@ -1,10 +1,10 @@
-import {FC, memo} from "react";
+import {FC, memo, useState} from "react";
+
 import {classNames} from "shared/lib/classNames";
 import cls from "./ReservationContent.module.scss";
-import {PostListItem} from "features/post/PostListItem";
-import {Post} from "entities/Post";
+
+
 import {Map} from "shared/ui/Map/Map";
-import {Point} from "shared/ui/Point/Point";
 
 interface IReservationContentProps {
     className?: string;
@@ -13,11 +13,28 @@ interface IReservationContentProps {
 const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     const { className } = props;
 
+    const [selectedFloor, setSelectedFloor] = useState("1_1");
+
+
+    const ChangeTo11 = () => {
+        setSelectedFloor("1_1")
+    }
+    const ChangeTo21 = () => {
+        setSelectedFloor("2_1")
+    }
+    const ChangeTo22 = () => {
+        setSelectedFloor("2_2")
+    }
+
 
     return (
         <div className={classNames(cls.ReservationContent, {}, [className])}>
-        <Map image={}/>
-            <Point status={} x={} y={} params={}/>
+            <div className={cls.buttons}>
+                <div onClick={ChangeTo11} className={cls.button}> 1-1 </div>
+                <div onClick={ChangeTo21} className={cls.button}> 2-1 </div>
+                <div onClick={ChangeTo22} className={cls.button}> 2-2 </div>
+            </div>
+            <Map title={selectedFloor}/>
         </div>
     );
 })

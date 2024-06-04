@@ -1,0 +1,135 @@
+.Map {
+  position: relative;
+}
+.Point {
+  position: absolute;
+  cursor: pointer;
+  :hover{
+    border: 1px solid #000000;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+  }
+}
+
+
+
+// 2 этаж 1 крыло
+.a0 {top: 42px; left:  124px;}
+.a1 {top: 130px; left:  121px;}
+.a2 {top: 59px; left:  195px;}
+.a3 {top: 39px; left:  263px;}
+.a4 {top: 130px; left:  260px;}
+.a5 {top: 278px; left:  123px;}
+.a6 {top: 366px; left:  121px;}
+.a7 {top: 276px; left:  158px;}
+.a8 {top: 368px; left:  225px;}
+.a9 {top: 278px; left:  369px;}
+.a10 {top: 364px; left:  369px;}
+.a11 {top: 278px; left:  417px;}
+.a12 {top: 364px; left:  417px;}
+.a13 {top: 40px; left:  378px;}
+.a14 {top: 130px; left:  378px;}
+.a15 {top: 40px; left:  505px;}
+.a16 {top: 130px; left:  520px;}
+.a17 {top: 276px; left:  531px;}
+.a18 {top: 365px; left:  531px;}
+.a19 {top: 350px; left:  609px;}
+.a20 {top: 276px; left:  699px;}
+.a21 {top: 365px; left:  685px;}
+.a22 {top: 276px; left:  759px;}
+.a23 {top: 365px; left:  799px;}
+.a24 {top: 40px; left:  637px;}
+.a25 {top: 130px; left:  637px;}
+.a26 {top: 40px; left:  725px;}
+.a27 {top: 40px; left:  790px;}
+.a28 {top: 130px; left:  789px;}
+.a29 {top: 292px; left:  854px;}
+.a30 {top: 368px; left:  874px;}
+.a31 {top: 292px; left:  929px;}
+.a32 {top: 367px; left:  934px;}
+.a33 {top: 367px; left:  1045px;}
+.a34 {top: 290px; left:  1113px;}
+.a35 {top: 348px; left:  1113px;}
+.a36 {top: 36px; left:  904px;}
+.a37 {top: 132px; left:  906px;}
+.a38 {top: 40px; left:  1006px;}
+.a39 {top: 130px; left:  1007px;}
+.a40 {top: 57px; left:  1099px;}
+
+// 2 этаж 2 крыло
+
+.a41 {top: 264px; left:  160px;}
+.a42 {top: 340px; left:  157px;}
+.a43 {top: 264px; left:  210px;}
+.a44 {top: 343px; left:  220px;}
+.a45 {top: 343px; left:  325px;}
+.a46 {top: 264px; left:  380px;}
+.a47 {top: 264px; left:  427px;}
+.a48 {top: 343px; left:  427px;}
+.a49 {top: 50px; left:  424px;}
+.a50 {top: 134px; left:  422px;}
+.a51 {top: 50px; left:  483px;}
+.a52 {top: 134px; left:  483px;}
+.a53 {top: 50px; left:  651px;}
+.a54 {top: 137px; left:  651px;}
+.a55 {top: 50px; left:  758px;}
+.a56 {top: 137px; left:  758px;}
+.a57 {top: 50px; left:  813px;}
+.a58 {top: 137px; left:  813px;}
+.a59 {top: 262px; left:  533px;}
+.a60 {top: 343px; left:  533px;}
+.a61 {top: 262px; left:  588px;}
+.a62 {top: 330px; left:  673px;}
+.a63 {top: 262px; left:  758px;}
+.a64 {top: 343px; left:  758px;}
+.a65 {top: 262px; left:  819px;}
+.a66 {top: 342px; left:  825px;}
+.a67 {top: 65px; left:  903px;}
+.a68 {top: 139px; left:  923px;}
+.a69 {top: 50px; left:  1090px;}
+.a70 {top: 139px; left:  1090px;}
+.a71 {top: 50px; left:  1148px;}
+.a72 {top: 139px; left:  1148px;}
+.a73 {top: 263px; left:  928px;}
+.a74 {top: 342px; left:  928px;}
+.a75 {top: 263px; left:  1091px;}
+.a76 {top: 342px; left:  1091px;}
+.a77 {top: 263px; left:  1148px;}
+.a78 {top: 342px; left:  1148px;}
+
+// 1 этаж
+
+.a79 {top: 46px; left:  127px;}
+.a80 {top: 142px; left:  127px;}
+.a81 {top: 46px; left:  193px;}
+.a82 {top: 142px; left:  280px;}
+.a83 {top: 46px; left:  343px;}
+.a84 {top: 142px; left:  352px;}
+.a85 {top: 43px; left:  412px;}
+.a86 {top: 142px; left:  468px;}
+.a87 {top: 43px; left:  530px;}
+.a88 {top: 142px; left:  564px;}
+.a89 {top: 46px; left:  635px;}
+.a90 {top: 142px; left:  725px;}
+.a91 {top: 39px; left:  736px;}
+.a92 {top: 387px; left:  70px;}
+.a93 {top: 284px; left:  128px;}
+.a94 {top: 387px; left:  125px;}
+.a95 {top: 290px; left:  192px;}
+.a96 {top: 381px; left:  235px;}
+.a97 {top: 388px; left:  352px;}
+.a98 {top: 284px; left:  378px;}
+.a99 {top: 292px; left:  423px;}
+.a100 {top: 387px; left:  410px;}
+.a101 {top: 284px; left:  531px;}
+.a102 {top: 385px; left:  531px;}
+.a103 {top: 284px; left:  640px;}
+.a104 {top: 385px; left:  640px;}
+.a105 {top: 136px; left:  817px;}
+.a106 {top: 40px; left:  841px;}
+.a107 {top: 37px; left:  928px;}
+.a108 {top: 48px; left:  1034px;}
+.a109 {top: 143px; left:  1034px;}
+.a110 {top: 48px; left:  1102px;}
+.a111 {top: 143px; left:  1102px;}
