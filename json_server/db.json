@@ -1,1 +1,617 @@
-{"shop_list":{"shop_list":[{"item_id":1,"name":"ручка","description":"Самая обычная ручка","photo_path":"http://pvkmarket.ru/image/cache/data/pismennye-i-chertezhnye-prinadlezhnosti/ruchki-shar-neavtom/093970-500x500.jpg","price":100,"is_available":true,"isService":false},{"item_id":"2","name":"дорогая ручка","description":"Самая обычная ручка, но подороже","photo_path":"https://illan-gifts.ru/api/images/27-sharykovaia-ruchka-nash-393461.jpeg","price":200,"is_available":true,"isService":false},{"item_id":3,"name":"one hour late","description":"","price":100,"photo_path":"https://frokenbock.ru/image/cache/catalog/frokenbok/011031-500x500.jpg","is_available":true}]},"users":[{"uid":"1","username":"admin","password":"123","img":"http://s00.yaplakal.com/pics/pics_original/6/6/5/13306566.jpg","full_name":"Иванов Иван Иванович","position":"Мастер слесарь"},{"uid":"2","username":"test","password":"test","img":"http://s00.yaplakal.com/pics/pics_original/6/6/5/13306566.jpg","full_name":"Иванов Иван Иванович","position":"Мастер слесарь"}],"cart_data":{"cart_data":[]}}
+{
+  "shop_list": {
+    "shop_list": [
+      {
+        "item_id": 1,
+        "name": "ручка",
+        "description": "Самая обычная ручка",
+        "photo_path": "http://pvkmarket.ru/image/cache/data/pismennye-i-chertezhnye-prinadlezhnosti/ruchki-shar-neavtom/093970-500x500.jpg",
+        "price": 100,
+        "is_available": true,
+        "isService": false
+      },
+      {
+        "item_id": "2",
+        "name": "дорогая ручка",
+        "description": "Самая обычная ручка, но подороже",
+        "photo_path": "https://illan-gifts.ru/api/images/27-sharykovaia-ruchka-nash-393461.jpeg",
+        "price": 200,
+        "is_available": true,
+        "isService": false
+      },
+      {
+        "item_id": 3,
+        "name": "one hour late",
+        "description": "",
+        "price": 100,
+        "photo_path": "https://frokenbock.ru/image/cache/catalog/frokenbok/011031-500x500.jpg",
+        "is_available": true
+      }
+    ]
+  },
+  "users": [
+    {
+      "uid": "1",
+      "username": "admin",
+      "password": "123",
+      "img": "http://s00.yaplakal.com/pics/pics_original/6/6/5/13306566.jpg",
+      "full_name": "Иванов Иван Иванович",
+      "position": "Мастер слесарь"
+    },
+    {
+      "uid": "2",
+      "username": "test",
+      "password": "test",
+      "img": "http://s00.yaplakal.com/pics/pics_original/6/6/5/13306566.jpg",
+      "full_name": "Иванов Иван Иванович",
+      "position": "Мастер слесарь"
+    }
+  ],
+  "cart_data": {
+    "cart_data": []
+  },
+  "reservation_list": {
+    "reservation_list": [
+      {
+        "id": 0,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 1,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 2,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 3,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 4,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 5,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 6,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 7,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 8,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 9,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 10,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 11,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 12,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 13,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 14,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 15,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 16,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 17,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 18,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 19,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 20,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 21,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 22,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 23,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 24,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 25,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 26,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 27,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 28,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 29,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 30,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 31,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 32,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 33,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 34,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 35,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 36,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 37,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 38,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 39,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 40,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 41,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 42,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 43,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 44,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 45,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 46,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 47,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 48,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 49,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 50,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 51,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 52,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 53,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 54,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 55,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 56,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 57,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 58,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 59,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 60,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 61,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 62,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 63,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 64,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 65,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 66,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 67,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 68,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 69,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 70,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 71,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 72,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 73,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 74,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 75,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 76,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 77,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 78,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 79,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 80,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 81,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 82,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 83,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 84,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 85,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 86,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 87,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 88,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 89,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 90,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 91,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 92,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 93,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 94,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 95,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 96,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 97,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 98,
+        "status": "available",
+        "properties": "phone"
+      },
+      {
+        "id": 99,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 100,
+        "status": "denied",
+        "properties": "phone"
+      },
+      {
+        "id": 101,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 102,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 103,
+        "status": "denied",
+        "properties": "pc"
+      },
+      {
+        "id": 104,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 105,
+        "status": "available",
+        "properties": "pc"
+      },
+      {
+        "id": 106,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 107,
+        "status": "unavailable",
+        "properties": "pc"
+      },
+      {
+        "id": 108,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 109,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 110,
+        "status": "unavailable",
+        "properties": "phone"
+      },
+      {
+        "id": 111,
+        "status": "denied",
+        "properties": "pc"
+      }
+    ]
+  }
+}

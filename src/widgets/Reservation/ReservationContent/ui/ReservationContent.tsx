@@ -5,13 +5,16 @@ import cls from "./ReservationContent.module.scss";
 
 
 import {Map} from "shared/ui/Map/Map";
+import {IReservationItem} from "entities/Reservation/model/types/reservation";
 
 interface IReservationContentProps {
     className?: string;
+    places: IReservationItem[];
 }
 
 const ReservationContent: FC<IReservationContentProps> = memo((props) => {
-    const { className } = props;
+    const { className,
+    places} = props;
 
     const [selectedFloor, setSelectedFloor] = useState("1_1");
 
@@ -34,7 +37,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                 <div onClick={ChangeTo21} className={cls.button}> 2-1 </div>
                 <div onClick={ChangeTo22} className={cls.button}> 2-2 </div>
             </div>
-            <Map title={selectedFloor}/>
+            <Map title={selectedFloor} places={places}/>
         </div>
     );
 })

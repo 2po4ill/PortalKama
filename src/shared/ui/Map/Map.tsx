@@ -5,15 +5,18 @@ import mapImage11 from "shared/assets/images/1-1.jpg";
 import mapImage22 from "shared/assets/images/2-2.jpg";
 import {Point} from "shared/ui/Point/Point";
 import {classNames} from "shared/lib/classNames"
+import {IReservationItem} from "entities/Reservation/model/types/reservation";
 export interface IMap {
     className?: string;
     title: string;
+    places: IReservationItem[];
 }
 
 export const Map: FC<IMap> = (props) => {
     const {
         className,
-        title
+        title,
+        places
     } = props;
 
     const [selectedPoint, setSelectedPoint] = useState(Number(null));
@@ -72,17 +75,17 @@ export const Map: FC<IMap> = (props) => {
     const renderPoint = (id: number, status: string, position: string[], floor: string) => {
         if (floor === "2_1" && id < 41) {
             return (
-                <Point status={"unavailable"} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
+                <Point status={status} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
             )
         }
         if (floor === "2_2" && id > 40 && id < 79) {
             return (
-                <Point status={"available"} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
+                <Point status={status} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
             )
         }
         if (floor === "1_1" && id > 78) {
             return (
-                <Point status={"available"} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
+                <Point status={status} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
             )
         }
     }
@@ -90,7 +93,7 @@ export const Map: FC<IMap> = (props) => {
     return (
         <div className={cls.Map}>
             <img src={mapImage()} alt={title}></img>
-            {pointsArray.map(point => renderPoint(point.id, "available", point.position, title))}
+            {places.map(place => renderPoint(Number(place.id), place.status, pointsArray[Number(place.id)].position, title))}
         </div>
     );
 };
