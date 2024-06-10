@@ -19,3 +19,9 @@ export interface IReservationData {
     status: string;
     reservation_list: IReservationItem[];
 }
+
+export interface IReservationMade{
+    place_id: number;
+    start: Date;
+    finish: Date;
+}

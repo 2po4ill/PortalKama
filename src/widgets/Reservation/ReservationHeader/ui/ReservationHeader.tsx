@@ -9,17 +9,25 @@ import {ReservationCalendarInput} from "features/reservation";
 
 interface IReservationHeaderProps {
     className?: string;
+    selectedDateStart: Date;
+    setSelectedDateStart: (selectedDate: Date) => void;
+    selectedDateEnd: Date;
+    setSelectedDateEnd: (selectedDate: Date) => void;
 }
 
 const ReservationHeader: FC<IReservationHeaderProps> = memo(props => {
-    const { className } = props;
+    const { className,
+    setSelectedDateStart,
+    selectedDateStart,
+    selectedDateEnd,
+    setSelectedDateEnd} = props;
 
 
     return (
         <div className={classNames(cls.PostsHeader, {}, [className])}>
             <div className={cls.content}>
-                <ReservationCalendarInput/>
-                <ReservationCalendarInput/>
+                <ReservationCalendarInput setSelectedDate={setSelectedDateStart} selectedDate={selectedDateStart}/>
+                <ReservationCalendarInput setSelectedDate={setSelectedDateEnd} selectedDate={selectedDateEnd}/>
             </div>
         </div>
     );

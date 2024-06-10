@@ -4,28 +4,28 @@ import {classNames} from "shared/lib/classNames"
 import mapPointGreen from "shared/assets/images/icon_Зеленый.png";
 import mapPointRed from "shared/assets/images/icon_Красный.png";
 import mapPointGray from "shared/assets/images/icon_Серый.png";
+import {IReservationItem} from "entities/Reservation/model/types/reservation";
 export interface IPoint {
     className: string;
-    status?: string;
-    id: number;
+    place: IReservationItem;
     selectedPoint: number;
     setSelectedPoint: (number: number) => void;
-    params?: string;
+    setSelectedPlace: (place: IReservationItem) => void;
 }
 
 export const Point: FC<IPoint> = (props) => {
     const {
         className,
-        status,
-        params,
-        id,
+        place,
         selectedPoint,
-        setSelectedPoint
+        setSelectedPoint,
+        setSelectedPlace
     } = props;
 
     const SelectPoint = () => {
-        if (status === "available") {
-            setSelectedPoint(id)
+        if (place.status === "available") {
+            setSelectedPoint(Number(place.id))
+            setSelectedPlace(place)
         }
         else{
             alert("Данное место по тем или иным причинам недоступно к бронированию, попробуйте изменить дату")
@@ -33,14 +33,14 @@ export const Point: FC<IPoint> = (props) => {
     }
 
     const mods: Record<string, boolean> = {
-        [cls.selected_point]: id === selectedPoint,
+        [cls.selected_point]: Number(place.id) === selectedPoint,
     };
 
     const mapPoint = () => {
-        if (status === "available")
+        if (place.status === "available")
             return mapPointGreen
 
-        if (status === "unavailable")
+        if (place.status === "unavailable")
             return mapPointRed
 
         return mapPointGray

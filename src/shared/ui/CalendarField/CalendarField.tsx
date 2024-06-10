@@ -30,6 +30,7 @@ export const CalendarField: FC<ICalendarField> = (props) => {
     };
 
     const selectDate = () => {
+        date.setHours(selectedDate.getHours())
         setSelectedDate(date)
     }
 

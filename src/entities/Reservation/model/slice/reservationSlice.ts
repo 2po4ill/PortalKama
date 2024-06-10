@@ -1,6 +1,7 @@
-import {IReservationData, ReservationSchema} from "../types/reservation";
+import {IReservationData, IReservationItem, IReservationMade, ReservationSchema} from "../types/reservation";
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IThunkConfig} from "app/providers/StoreProvider";
+import {ICartItem} from "entities/Product/model/types/product";
 
 const initialState: ReservationSchema = {
     reservations: [],
@@ -47,6 +48,26 @@ const reservationSlice = createAppSlice({
                         error: String(action.payload),
                         isLoading: false
                     }
+                }
+            }),
+            reservation: createAThunk<IReservationMade, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                const {place_id, finish, start} = data;
+                try {
+                    return await extra.api.post("/reservation", {"place_id": place_id, "start": start, "finish": finish});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
                 }
             })
         }

@@ -10,16 +10,20 @@ export interface IMap {
     className?: string;
     title: string;
     places: IReservationItem[];
+    selectedPoint: number;
+    setSelectedPoint: (number: number) => void;
+    setSelectedPlace: (place: IReservationItem) => void;
 }
 
 export const Map: FC<IMap> = (props) => {
     const {
         className,
         title,
-        places
+        places,
+        selectedPoint,
+        setSelectedPoint,
+        setSelectedPlace
     } = props;
-
-    const [selectedPoint, setSelectedPoint] = useState(Number(null));
 
 
 
@@ -72,20 +76,20 @@ export const Map: FC<IMap> = (props) => {
         {id: 111, position: [cls.a111]}
     ]
 
-    const renderPoint = (id: number, status: string, position: string[], floor: string) => {
-        if (floor === "2_1" && id < 41) {
+    const renderPoint = (place: IReservationItem, position: string[], floor: string) => {
+        if (floor === "2_1" && Number(place.id) < 41) {
             return (
-                <Point status={status} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
+                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
             )
         }
-        if (floor === "2_2" && id > 40 && id < 79) {
+        if (floor === "2_2" && Number(place.id) > 40 && Number(place.id) < 79) {
             return (
-                <Point status={status} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
+                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
             )
         }
-        if (floor === "1_1" && id > 78) {
+        if (floor === "1_1" && Number(place.id) > 78) {
             return (
-                <Point status={status} className={classNames(cls.Point, {}, position)} id={id} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint}/>
+                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
             )
         }
     }
@@ -93,7 +97,7 @@ export const Map: FC<IMap> = (props) => {
     return (
         <div className={cls.Map}>
             <img src={mapImage()} alt={title}></img>
-            {places.map(place => renderPoint(Number(place.id), place.status, pointsArray[Number(place.id)].position, title))}
+            {places.map(place => renderPoint(place, pointsArray[Number(place.id)].position, title))}
         </div>
     );
 };

@@ -1,29 +1,50 @@
-import {FC, memo} from "react";
+import React, {FC, memo} from "react";
 import cls from "./ReservationAside.module.scss";
 import {classNames} from "shared/lib/classNames";
-import {Text} from "shared/ui/Text/Text";
-import {Input, InputTheme} from "shared/ui/Input/Input";
-import Calendar from "shared/assets/icons/calendar.svg";
-import ArrowDown from "shared/assets/icons/arrow-down-bold.svg"
-import {Button, ButtonTheme} from "shared/ui/Button/Button";
+import {IReservationItem} from "entities/Reservation/model/types/reservation";
 
 interface IReservationAsideProps {
     className?: string;
+    place?: IReservationItem;
 }
 
 const ReservationAside: FC<IReservationAsideProps> = memo(props => {
-    const { className } = props;
+    const { className ,
+    place} = props;
+
+    const renderItem = (place: IReservationItem) => {
+        return (
+            <div>
+                {place.id}
+                {place.status}
+                {place.properties}
+                </div>
+            )
+    }
+
+    const renderBlank = () => {
+        return (
+            <div>
+                Здесь пока пусто
+            </div>
+        )
+    }
 
     return (
         <div className={classNames(cls.ReservationAside, {}, [className])}>
             <div className={cls.content}>
-
-
+                Выбранное место:
+                <div className={cls.placeHolder}>
+                    Выберите свободное место на карте
+                    {place !== undefined ?
+                        renderItem(place)
+                        : renderBlank()}
                 </div>
-
+                Мои бронирования
             </div>
+        </div>
     );
 });
-ReservationAside.displayName = "PostsAside";
+ReservationAside.displayName = "ReservationAside";
 
 export {ReservationAside}
