@@ -1,6 +1,65 @@
+.ReservationContent{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .buttons {
   display: flex;
+  justify-content: center;
+  .floors {
+    display: flex;
+    margin-right: 30px;
+  }
+  .wings {
+    display: flex;
+  }
   .button {
+    margin-bottom: 5px;
+    border-radius: 4px;
+    padding: 10px;
+    font-weight: 600;
+  }
+}
+
+.selected{
+  border-bottom: solid 4px;
+}
+
+.unselected{
+  font-weight: 50;
+  color: #B0AABD;
+  background-color: #F4F2F7;
+  border-bottom: #B0AABD solid 4px;
+}
+
+.pointer{
+  cursor: pointer;
+}
+.non_pointer{
+  cursor: default;
+}
+
+.history{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  img{
     margin: 5px;
   }
+  a{
+    position: relative;
+    top:5px;
+    font-weight: 600;
+    font-size: 25px;
+    margin-right: 40px;
+  }
+}
+
+.reservation {
+  width: 150px;
+  height: 40px;
+  font-size: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }

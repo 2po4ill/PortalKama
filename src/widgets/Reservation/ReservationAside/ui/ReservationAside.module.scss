@@ -1,4 +1,60 @@
 .placeHolder{
+  height: 250px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  border: #1B0F33 solid 5px;
+  border-radius: 5px;
+  align-content: center;
+  margin-left: 40px;
+  cursor: default;
 
+  .title{
+    font-weight: 600;
+    font-size: 30px;
+  }
+  .description{
+    color: #4C4B4B;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .label{
+    color: #1B0F33;
+    font-size: 35px;
+    font-weight: 600;
+  }
+
+  .place{
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    .statusImg{
+      margin-left: 10px;
+      margin-right: 20px;
+      height: 30px;
+      width: 30px;
+    }
+
+    .properties{
+      position: relative;
+      top: -20px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.btn {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 

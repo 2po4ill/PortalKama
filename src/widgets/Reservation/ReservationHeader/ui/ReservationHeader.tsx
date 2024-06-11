@@ -24,10 +24,15 @@ const ReservationHeader: FC<IReservationHeaderProps> = memo(props => {
 
 
     return (
-        <div className={classNames(cls.PostsHeader, {}, [className])}>
+        <div className={classNames(cls.ReservationHeader, {}, [className])}>
+            <div className={cls.title}>
+               <p> Бронирование места </p>
+            </div>
             <div className={cls.content}>
-                <ReservationCalendarInput setSelectedDate={setSelectedDateStart} selectedDate={selectedDateStart}/>
-                <ReservationCalendarInput setSelectedDate={setSelectedDateEnd} selectedDate={selectedDateEnd}/>
+                <a> С </a>
+                <ReservationCalendarInput className={cls.input} setSelectedDate={setSelectedDateStart} selectedDate={selectedDateStart}/>
+                <a> ПО </a>
+                <ReservationCalendarInput className={cls.input} setSelectedDate={setSelectedDateEnd} selectedDate={selectedDateEnd}/>
             </div>
         </div>
     );

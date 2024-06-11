@@ -13,10 +13,10 @@ const ReservationPageLayout: FC<ReservationPageLayoutProps> = memo(props => {
     const { className, content, header, aside } = props;
 
     return (
-        <div className={classNames(cls.PostsPageLayout, {}, [className])}>
+        <div className={classNames(cls.ReservationPageLayout, {}, [className])}>
             <div className={cls.header}>{header}</div>
             <div className={cls.body}>
-                <div className={cls.map}>{content}</div>
+                <div className={cls.content}>{content}</div>
                 <div className={cls.aside}>{aside}</div>
             </div>
         </div>

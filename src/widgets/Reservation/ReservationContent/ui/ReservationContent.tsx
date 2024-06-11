@@ -7,8 +7,10 @@ import cls from "./ReservationContent.module.scss";
 import {Map} from "shared/ui/Map/Map";
 import {IReservationItem} from "entities/Reservation/model/types/reservation";
 import {Button} from "shared/ui/Button/Button";
-import {productActions} from "entities/Product";
-import {ICartItem} from "entities/Product/model/types/product";
+
+import green from "shared/assets/images/icon_Зеленый.png"
+import red from "shared/assets/images/icon_Красный.png"
+import gray from "shared/assets/images/icon_Серый.png"
 
 interface IReservationContentProps {
     className?: string;
@@ -34,22 +36,73 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
         setSelectedFloor("1_1")
     }
     const ChangeTo21 = () => {
-        setSelectedFloor("2_1")
+        if (selectedFloor === "1_1") {
+            setSelectedFloor("2_1")
+        }
+    }
+    const ChangeToLeftWing = () => {
+        if (selectedFloor === "2_2") {
+            setSelectedFloor("2_1")
+        }
     }
     const ChangeTo22 = () => {
-        setSelectedFloor("2_2")
+        if (selectedFloor === "2_1") {
+            setSelectedFloor("2_2")
+        }
     }
+
+    const mods1_1: Record<string, boolean> = {
+        [cls.selected]: selectedFloor === "1_1",
+        [cls.non_pointer]: selectedFloor === "1_1",
+        [cls.unselected]: selectedFloor === "2_1" || selectedFloor === "2_2",
+        [cls.pointer]: selectedFloor === "2_1" || selectedFloor === "2_2"
+    };
+
+    const mods2_1: Record<string, boolean> = {
+        [cls.unselected]: selectedFloor === "1_1",
+        [cls.pointer]: selectedFloor === "1_1",
+        [cls.selected]: selectedFloor === "2_1" || selectedFloor === "2_2",
+        [cls.non_pointer]: selectedFloor === "2_1" || selectedFloor === "2_2",
+    };
+
+    const modsLeftWing: Record<string, boolean> = {
+        [cls.selected]: selectedFloor === "1_1" || selectedFloor === "2_1",
+        [cls.non_pointer]: selectedFloor === "1_1" || selectedFloor === "2_1",
+        [cls.unselected]: selectedFloor === "2_2",
+        [cls.pointer]: selectedFloor === "2_2",
+    };
+
+    const mods2_2: Record<string, boolean> = {
+        [cls.unselected]: selectedFloor === "1_1" || selectedFloor === "2_1",
+        [cls.non_pointer]: selectedFloor === "1_1" || selectedFloor === "2_2",
+        [cls.pointer]: selectedFloor === "2_1",
+        [cls.selected]: selectedFloor === "2_2",
+    };
 
 
     return (
         <div className={classNames(cls.ReservationContent, {}, [className])}>
             <div className={cls.buttons}>
-                <div onClick={ChangeTo11} className={cls.button}> 1-1 </div>
-                <div onClick={ChangeTo21} className={cls.button}> 2-1 </div>
-                <div onClick={ChangeTo22} className={cls.button}> 2-2 </div>
+                <div className={cls.floors}>
+                    <div onClick={ChangeTo11} className={classNames(cls.button, mods1_1, [])}> 1 этаж</div>
+                    <div onClick={ChangeTo21} className={classNames(cls.button, mods2_1, [])}> 2 этаж</div>
+                </div>
+
+                <div className={cls.wings}>
+                    <div onClick={ChangeToLeftWing} className={classNames(cls.button, modsLeftWing, [])}> Левое крыло</div>
+                    <div onClick={ChangeTo22} className={classNames(cls.button, mods2_2, [])}> Правое крыло</div>
+                </div>
             </div>
             <Map title={selectedFloor} places={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedPlace={setSelectedPlace}/>
-            <Button onClick={apiCall}>
+            <div className={cls.history}>
+                <img src={green} alt={"green"}/>
+                <a> Свободно </a>
+                <img src={red} alt={"red"}/>
+                <a> Занято </a>
+                <img src={gray} alt={"gray"}/>
+                <a> Недоступно </a>
+            </div>
+            <Button onClick={apiCall} className={cls.reservation}>
                 Забронировать
             </Button>
         </div>

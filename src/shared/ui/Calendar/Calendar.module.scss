@@ -1,10 +1,35 @@
 .button{
-  width: 100%;
+
+  #hover{
+    color: #00d9f5;
+  }
 }
 
 
+a {
+  text-align: center;
+}
+.month {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.Calendar {
+  display: flex;
+  flex-direction: column;
+}
 
 .CalendarField {
   display: grid;
   grid-template-columns: 50px 50px 50px 50px 50px 50px 50px;
+  margin-bottom: 20px;
+}
+
+.buttonPlaceHolder{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  .next{
+    text-align: end;
+    justify-content: end;
+  }
 }

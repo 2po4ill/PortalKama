@@ -2,6 +2,7 @@ import React, {FC, useState} from "react";
 import cls from "shared/ui/Calendar/Calendar.module.scss";
 import {Button} from "primereact/button";
 import {CalendarField} from "shared/ui/CalendarField/CalendarField";
+import {classNames} from "shared/lib/classNames";
 
 export interface ICalendar {
     className?: string;
@@ -99,10 +100,12 @@ export const Calendar: FC<ICalendar> = (props) => {
 
 
     return (
-        <div>
-            <Button onClick={nextMonth} className={cls.button}> Следующий </Button>
-            <Button onClick={previousMonth}  className={cls.button} > Предыдущий </Button>
-            {currentMonth(currentDate)}
+        <div className={cls.Calendar}>
+            <div className={cls.buttonPlaceHolder}>
+                <Button onClick={previousMonth}  className={classNames(cls.button, {}, [cls.previous])} > Предыдущий </Button>
+                <Button onClick={nextMonth} className={classNames(cls.button, {}, [cls.next])}> Следующий </Button>
+            </div>
+            <a className={cls.month}> {currentMonth(currentDate)} </a>
             <div className={cls.CalendarField}>
                 <a> ПН </a>
                 <a> ВТ </a>

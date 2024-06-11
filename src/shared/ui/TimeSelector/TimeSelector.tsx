@@ -37,10 +37,10 @@ export const TimeSelector: FC<ITimeSelector> = (props) => {
         <div>
             <div className={cls.TimeSelector}>
                 <div className={cls.btn_container}>
-                    <Button onClick={decrementHour}>{"<<"}</Button>
-                    <Button onClick={incrementHour}>{">>"}</Button>
+                    <Button className={cls.btn} onClick={decrementHour}>{"<<"}</Button>
+                    <Button className={cls.btn} onClick={incrementHour}>{">>"}</Button>
                 </div>
-                {selectedHours} : 00
+                <a> {selectedHours} : 00 </a>
             </div>
         </div>
     );
