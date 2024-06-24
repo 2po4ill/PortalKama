@@ -16,7 +16,7 @@ export interface Product {
 }
 
 export interface ICartItem {
-    cart_item_id: number;
+    in_cart_item_id: number;
     item_id: number;
     quantity: number;
 }

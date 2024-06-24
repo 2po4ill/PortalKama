@@ -1,0 +1,1 @@
+export { CartList } from 'features/cart/ui/CartList/CartList';

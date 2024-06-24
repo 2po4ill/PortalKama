@@ -14,6 +14,7 @@ export interface ITextProps {
     text?: string;
     theme?: TextTheme
     titleMaxLength?: number;
+    onClick?: () => void;
 }
 
 // memo позволяет пропустить повторный рендеринг компонента, если его свойства не изменились
@@ -24,11 +25,12 @@ export const Text: FC<ITextProps> = memo((props) => {
         title,
         theme = TextTheme.PRIMARY,
         titleMaxLength,
+        onClick,
         ...other
     } = props;
 
     return (
-        <div className={classNames(cls.Text, {}, [ className, cls[theme] ])} {...other} >
+        <div className={classNames(cls.Text, {}, [ className, cls[theme] ])} {...other} onClick={onClick}>
             {title && <p className={cls.title}>{titleMaxLength ? title.slice(0,titleMaxLength) + "..." : title}</p>}
             {text && <p className={cls.text}>{text}</p>}
         </div>
