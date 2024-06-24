@@ -1,0 +1,43 @@
+.button{
+  margin-right: 15px;
+  background-color: white;
+  #hover{
+    color: #00d9f5;
+  }
+}
+.year{
+  font-size: 20px;
+  color: #003055;
+  margin-bottom: 15px;
+}
+
+a {
+  text-align: center;
+}
+.month {
+  font-size: 20px;
+  color: #003055;
+  width: 100px;
+}
+.Calendar {
+  display: flex;
+  flex-direction: column;
+}
+
+.CalendarField {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px;
+  margin-bottom: 20px;
+}
+
+.buttonPlaceHolder{
+  margin-right: 50px;
+  margin-left: 50px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  img{
+    width: 10px;
+  }
+}
+

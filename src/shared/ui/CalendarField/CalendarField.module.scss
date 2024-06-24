@@ -1,0 +1,44 @@
+.button{
+  width: 100%;
+}
+.Field{
+  margin: 1px;
+  padding: 4px;
+  text-align: center;
+  border-radius: 4px;
+}
+.Field:hover{
+  border: 1px solid #003055;
+  padding: 3px;
+
+}
+.day_cur_month{
+  background-color: white;
+}
+.today{
+  background-color: #efbb76;
+}
+
+.weekend{
+  cursor: not-allowed;
+  color: #FF0000;
+}
+
+.day_other_month{
+  color: #B0AABD;
+}
+.selected_date{
+  background-color: #003055;
+  padding: 4px;
+  color: white;
+}
+
+.working_day{
+  cursor: pointer;
+}
+
+
+.weekend:hover{
+  border: none;
+  padding: 4px;
+}

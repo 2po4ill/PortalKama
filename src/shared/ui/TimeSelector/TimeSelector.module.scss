@@ -1,0 +1,17 @@
+.TimeSelector{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  a {
+    font-size: 25px;
+  }
+}
+
+.btn_container{
+  display: flex;
+  justify-content: center;
+  .btn{
+    margin: 10px;
+    font-size: 15px;
+  }
+}
