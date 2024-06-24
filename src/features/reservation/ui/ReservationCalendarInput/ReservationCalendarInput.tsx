@@ -36,8 +36,8 @@ export const ReservationCalendarInput: FC<IReservationCalendarInputProps> = (pro
     return (
         <div className={className}>
             <div>
-                <Input className={cls.input} onClick={openModal} value={date} adornment={<img className={cls.img} src={CalendarImage} alt={"Календарь"}/>}/>
-                <Modal isOpen={open} onClose={() => {setOpen(false)}}>
+                <Input className={cls.input} onClick={openModal} value={date} adornment={<img className={cls.img} src={CalendarImage} alt={"Календарь"} role={"button"}/>}/>
+                <Modal isOpen={open} onClose={() => {setOpen(false)}} className={cls.Modal}>
                     <Calendar setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
                     <TimeSelector setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
                 </Modal>

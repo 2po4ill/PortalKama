@@ -3,6 +3,8 @@ import cls from "shared/ui/Calendar/Calendar.module.scss";
 import {Button} from "primereact/button";
 import {CalendarField} from "shared/ui/CalendarField/CalendarField";
 import {classNames} from "shared/lib/classNames";
+import previous from "shared/assets/icons/Слайдер влево.png"
+import next from "shared/assets/icons/Слайдер вправо.png"
 
 export interface ICalendar {
     className?: string;
@@ -49,13 +51,23 @@ export const Calendar: FC<ICalendar> = (props) => {
     }
     const nextMonth = () => {
         const newDate = new Date();
-        newDate.setMonth(currentDate.getMonth() + 1);
+        if (currentDate.getMonth() == 11) {
+            newDate.setFullYear(newDate.getFullYear() + 1, 0);
+        }
+        else {
+            newDate.setMonth(currentDate.getMonth() + 1);
+        }
         setCurrentDate(newDate)
     }
 
     const previousMonth = () => {
         const newDate = new Date();
-        newDate.setMonth(currentDate.getMonth() - 1);
+        if (currentDate.getMonth() == 0) {
+            newDate.setFullYear(newDate.getFullYear() - 1, 11);
+        }
+        else {
+            newDate.setMonth(currentDate.getMonth() - 1);
+        }
         setCurrentDate(newDate)
     }
 
@@ -92,7 +104,7 @@ export const Calendar: FC<ICalendar> = (props) => {
 
     const renderField = (date: Date) => {
             return (
-                <CalendarField date={date} month={currentDate.getMonth()} setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
+                <CalendarField date={date} month={currentDate.getMonth()} setSelectedDate={setSelectedDate} selectedDate={selectedDate} setCurrentDate={setCurrentDate}/>
             )
         }
 
@@ -101,11 +113,18 @@ export const Calendar: FC<ICalendar> = (props) => {
 
     return (
         <div className={cls.Calendar}>
+            <a className={cls.year}> {currentDate.getFullYear()} </a>
             <div className={cls.buttonPlaceHolder}>
-                <Button onClick={previousMonth}  className={classNames(cls.button, {}, [cls.previous])} > Предыдущий </Button>
-                <Button onClick={nextMonth} className={classNames(cls.button, {}, [cls.next])}> Следующий </Button>
+                <Button onClick={previousMonth}
+                        className={classNames(cls.button, {}, [cls.previous])}>
+                    <img src={previous} alt={"previous"}/>
+                </Button>
+                <a className={cls.month}> {currentMonth(currentDate)} </a>
+                <Button onClick={nextMonth}
+                        className={classNames(cls.button, {}, [])}>
+                    <img src={next} alt={"next"}/>
+                </Button>
             </div>
-            <a className={cls.month}> {currentMonth(currentDate)} </a>
             <div className={cls.CalendarField}>
                 <a> ПН </a>
                 <a> ВТ </a>
