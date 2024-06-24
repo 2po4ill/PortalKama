@@ -13,6 +13,7 @@ export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     disabled?: boolean;
     loading?: boolean;
     theme?: ButtonTheme;
+    image?: string;
 }
 
 export const Button: FC<IButtonProps> = memo(( props ) => {
@@ -22,6 +23,7 @@ export const Button: FC<IButtonProps> = memo(( props ) => {
         disabled = false,
         loading = false,
         theme = ButtonTheme.DEFAULT,
+        image,
         ...other } = props;
     return (
         <button className={classNames(cls.Button, {[cls.disabled]: disabled}, [ className, cls[theme] ])} {...other} disabled={disabled}>

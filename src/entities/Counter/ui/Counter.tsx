@@ -1,4 +1,3 @@
-import {FC} from "react";
 import {Button} from "shared/ui/Button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {counterActions} from "../model/slice/counterSlice";

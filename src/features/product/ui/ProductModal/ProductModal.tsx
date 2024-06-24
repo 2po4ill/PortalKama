@@ -10,6 +10,9 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {productActions} from "entities/Product";
 import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
 import {useLocation} from "react-router-dom";
+import {Counter} from "entities/Counter";
+import {useSelector} from "react-redux";
+import {getCounterValue} from "entities/Counter/model/selectors/getCounterValue";
 
 export interface IProductModalProps extends IModalProps {
     product?: IShopItem;
@@ -19,6 +22,8 @@ export const ProductModal: FC<IProductModalProps> = memo((props) => {
     const { product, ...other } = props;
     const dispatch = useAppDispatch();
     const location = useLocation()
+    const counterValue = useSelector(getCounterValue)
+
     return (
         <Modal
             className={classNames(cls.ProductModal, {}, [])}
@@ -37,10 +42,18 @@ export const ProductModal: FC<IProductModalProps> = memo((props) => {
                             text={`Артикул: ${product.item_id}`}/>
                         <Text
                             text={product.description}/>
+
                         {location.pathname != '/cart' ?
-                        <Button onClick={() => dispatch(productActions.addCartItem({cart_item_id: 3, item_id: Number(product.item_id), quantity: 4} as ICartItem))}>
-                            Добавить в корзину
-                        </Button> : null
+                            <div>
+                                <Counter></Counter>
+                                <Button onClick={
+                                    () => {
+                                        dispatch(productActions.addCartItem({item_id: Number(product.item_id), quantity: counterValue} as ICartItem))
+                                        dispatch(productActions.getCartData)
+                                    }}>
+                                    Добавить в корзину
+                                </Button>
+                            </div>: null
                         }
                     </div>
                 </>

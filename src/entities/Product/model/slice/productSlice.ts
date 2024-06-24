@@ -71,6 +71,39 @@ const productSlice = createAppSlice({
                     state.error = String(action.payload);
                 }
             }),
+            dropCartItem: createAThunk<number, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    await extra.api.post("/drop_cart_item", {"in_cart_item_id": data});
+                    return
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    return {
+                        products: state.products,
+                        cartitems: state.cartitems,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
             dropCart: createAThunk<void, void>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
