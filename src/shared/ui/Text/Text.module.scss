@@ -13,31 +13,19 @@
 }
 
 .primary {
-  .title {
+  .title, .text {
     color: var(--primary-color);
-  }
-
-  .text {
-    color: var(--secondary-color);
   }
 }
 
 .inverted {
-  .title {
-    color: var(--primary-color-inverted);
-  }
-
-  .text {
+  .title, .text {
     color: var(--primary-color-inverted);
   }
 }
 
 .error {
-  .title {
-    color: var(--red);
-  }
-
-  .text {
+  .title, .text {
     color: var(--red);
   }
 }
