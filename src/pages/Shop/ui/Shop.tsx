@@ -18,7 +18,7 @@ const Shop = memo(({ className }: IShopProps ) => {
     const [selectedProduct, setSelectedProduct] = useState<IShopItem>();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const products = useSelector(productSelectors.getProductList);
-    const cartData = useSelector(productSelectors.getCartData)
+    const cartData = useSelector(productSelectors.getCartData);
     const isLoading = useSelector(productSelectors.getIsLoading);
     const dispatch = useAppDispatch();
 

@@ -1,7 +1,6 @@
-import {IReservationData, IReservationItem, IReservationMade, ReservationSchema} from "../types/reservation";
+import {IReservationData, IReservationMade, ReservationSchema} from "../types/reservation";
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IThunkConfig} from "app/providers/StoreProvider";
-import {ICartItem} from "entities/Product/model/types/product";
 
 const initialState: ReservationSchema = {
     reservations: [],
