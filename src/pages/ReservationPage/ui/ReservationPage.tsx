@@ -11,9 +11,7 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {useEffect, useState} from "react";
 import {reservationActions, reservationReducer} from "entities/Reservation/model/slice/reservationSlice";
 import { AsyncReducerProvider } from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
-import {IReservationItem, IReservationMade} from "entities/Reservation/model/types/reservation";
-import {productActions} from "entities/Product";
-import {ICartItem} from "entities/Product/model/types/product";
+import {IReservationMade} from "entities/Reservation/model/types/reservation";
 
 export interface IReservationPageProps {
     className?: string;

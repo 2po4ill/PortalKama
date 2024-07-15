@@ -1,6 +1,8 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {Post, PostSchema} from "../types/post";
+import {IPostData, Post, PostSchema} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
+import {IReservationData} from "entities/Reservation/model/types/reservation";
+import {act} from "react-dom/test-utils";
 
 const initialState: PostSchema = {
     posts: [],
@@ -15,37 +17,30 @@ const postSlice = createAppSlice({
         const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
         return {
-            getPostsList: createAThunk<undefined, Post[]>(
-                async (data, thunkAPI) => {
+            getPostsList: createAThunk<undefined, IPostData>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
-                        const getUserApi = () => new Promise<Post[]>(async (resolve) => {
-                            const data: Post[] = await extra.api.get('/posts')
-                            setTimeout(() => {
-                                resolve(data);
-                            }, 2500);
-                        });
-                        const postsList = await getUserApi();
-                        if (postsList) return postsList;
-                        return rejectWithValue("Постов нет");
+                        const postList = await extra.api.get<IPostData>("/posts");
+                        return postList.data;
                     } catch (err) {
                         console.log("Something went wrong" + err);
-                        return rejectWithValue("Something went wrong");
-                    }
-                },
+                        return rejectWithValue(String(err));
+                    } },
                 {
                     pending: state => {
                         return {
                             ...state,
-                            isLoading: true
+                            isLoading: true,
+                            error: undefined
                         }
                     },
                     fulfilled: (state, action) => {
+                        const posts = action.payload.posts
                         return {
                             ...state,
                             isLoading: false,
                             error: undefined,
-                            posts: action.payload
+                            posts: posts
                         }
                     },
                     rejected: (state, action) => {
@@ -62,4 +57,4 @@ const postSlice = createAppSlice({
     }
 });
 
-export const { actions } = postSlice
+export const { actions: postActions, reducer: postReducer } = postSlice
