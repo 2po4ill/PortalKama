@@ -3,6 +3,7 @@ import {classNames} from "shared/lib/classNames";
 import cls from "./PostsList.module.scss";
 import {PostListItem} from "features/post/PostListItem";
 import {Post} from "entities/Post";
+import {Slider} from "shared/ui/Slider/Slider";
 
 interface IPostsListProps {
     className?: string;
@@ -67,6 +68,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
     return (
         <div className={classNames(cls.PostsList, {}, [className])}>
             <div className={cls.listContainer}>
+                <Slider />
                 {
                     posts.map(e => (
                         <PostListItem post={e} key={e.id} />

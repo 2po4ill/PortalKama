@@ -2,6 +2,8 @@ const fs = require('fs');
 const jsonServer = require('json-server');
 const path = require('path');
 const {call} = require("ts-loader");
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const server = jsonServer.create();
 
@@ -18,6 +20,15 @@ server.use(async (req, res, next) => {
     next();
 });
 
+// cookie parser
+server.use(cookieParser("secret"));
+
+// cors
+server.use(cors({
+    credentials: true,
+    origin: "http://localhost:3000"
+}))
+
 // Эндпоинт логина
 server.post('/login', (req, res) => {
     try {
@@ -30,7 +41,23 @@ server.post('/login', (req, res) => {
         );
 
         if (userFromBd) {
-            const {password, ...user} = userFromBd;
+            const {password, uid, ...user} = userFromBd;
+
+            // 1500m
+            const accessTokenTime = 90000000;
+            res.cookie("access_token", uid, {
+                httpOnly: true,
+                expires: new Date(Date.now() + accessTokenTime),
+                // signed: true
+            });
+
+
+            const refreshTokenTime = 60000000;
+            res.cookie("refresh_token", crypto.randomUUID(), {
+                httpOnly: true,
+                expires: new Date(Date.now() + refreshTokenTime),
+            });
+
             return res.json(user);
 
             // const {uid, img, ...user} = userFromBd;
@@ -94,7 +121,8 @@ server.post('/drop_cart_item', (req, res) => {
 
 server.get('/profile', (req, res) => {
     try {
-        const { uid } = req.body;
+        // console.log(req.cookies)
+        const uid = req.cookies["access_token"];
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
         const { users = [] } = db;
         const userFromBd = users.find(
@@ -102,8 +130,8 @@ server.get('/profile', (req, res) => {
         );
 
         if (userFromBd) {
-            const {user} = userFromBd;
-            return res.json(user);
+            // const {user} = userFromBd;
+            return res.json(userFromBd);
         }
 
         return res.status(403).json({ message: 'User not found' });
