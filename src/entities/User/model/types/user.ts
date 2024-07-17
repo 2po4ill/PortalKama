@@ -1,12 +1,22 @@
-import path from "node:path";
-
 /**
  * Тип объекта пользователь
  * т.е. какие данные о пользователе получаем с бекэнда
  */
+export interface IUserDataResponse {
+    status: string;
+    user: IUserData;
+}
+
+export interface IUserData {
+    user_id: number;
+    username: string;
+    img_url?: string;
+}
+
 export interface User {
-    uid: string;
-    img: string;
+    uid: number;
+    username: string;
+    img?: string;
 }
 
 export enum UserRoles {
@@ -14,14 +24,9 @@ export enum UserRoles {
     ADMIN = "admin"
 }
 
-export interface UserSchema {
-    uid: string;
-    img: string;
-    username: string;
+export interface UserSchema extends User {
     isLoading: boolean;
     isAuthorized: boolean;
     error?: string;
     role?: UserRoles;
 }
-
-export type TAuthorizedUserData = User & Required<Pick<UserSchema, "username">>

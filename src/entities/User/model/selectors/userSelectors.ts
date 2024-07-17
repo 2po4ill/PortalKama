@@ -1,16 +1,9 @@
 import {StateSchema} from "app/providers/StoreProvider";
 import {createSelector, Selector} from "@reduxjs/toolkit";
-import {User, UserSchema} from "../types/user";
+import {UserSchema} from "../types/user";
+import {initialUser} from "../const/initialUser";
 
-
-const defaultUser: UserSchema = {
-    username: "",
-    img: "",
-    uid: "",
-    isLoading: false,
-    isAuthorized: false
-};
-const getUser = (state: StateSchema) => state.user || defaultUser;
+const getUser = (state: StateSchema) => state.user || initialUser;
 
 interface IUserSelectors {
     getUser: Selector<StateSchema, UserSchema>;
