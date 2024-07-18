@@ -163,13 +163,13 @@ server.get('/me', (req, res) => {
 })
 
 // проверяем, авторизован ли пользователь
-server.use((req, res, next) => {
-    if (!req.headers.authorization) {
-        return res.status(403).json({ message: 'AUTH ERROR' });
-    }
-
-    next();
-});
+// server.use((req, res, next) => {
+//     if (!req.headers.authorization) {
+//         return res.status(403).json({ message: 'AUTH ERROR' });
+//     }
+//
+//     next();
+// });
 
 server.use(router);
 

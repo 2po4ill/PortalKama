@@ -26,7 +26,7 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
     }, [dispatch]);
 
 
-    const place = places.find(x => Number(x.id) === selectedPoint)
+    const place = places.find(x => x.place_id === selectedPoint)
     const [selectedDateStart, setSelectedDateStart] = useState(new Date());
     const [selectedDateEnd, setSelectedDateEnd] = useState(new Date());
     const [selectedPlace, setSelectedPlace] = useState(place);

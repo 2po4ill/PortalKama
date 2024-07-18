@@ -3,29 +3,83 @@
   "shop_list": {
     "shop_list": [
       {
-        "item_id": 1,
-        "name": "ручка",
-        "description": "Самая обычная ручка",
-        "photo_path": "http://pvkmarket.ru/image/cache/data/pismennye-i-chertezhnye-prinadlezhnosti/ruchki-shar-neavtom/093970-500x500.jpg",
-        "price": 100,
-        "is_available": true,
-        "isService": false
-      },
-      {
-        "item_id": "2",
-        "name": "дорогая ручка",
-        "description": "Самая обычная ручка, но подороже",
-        "photo_path": "https://illan-gifts.ru/api/images/27-sharykovaia-ruchka-nash-393461.jpeg",
-        "price": 200,
-        "is_available": true,
-        "isService": false
-      },
-      {
         "item_id": 3,
-        "name": "one hour late",
-        "description": "",
+        "name": "bag00",
+        "description": "nice bag",
+        "price": 250,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/1582279/pub_611a6b26d2a8555fc1d59fa9_611a6b8ac591c35d4d14db52/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 5,
+        "name": "badge02",
+        "description": "amazing badge",
+        "price": 50,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a893b6451115ba66e98b2/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 6,
+        "name": "badge03",
+        "description": "available badge",
+        "price": 5,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a894a2619a736fbcd36f0/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 4,
+        "name": "badge01",
+        "description": "cool badge",
+        "price": 20,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a895fa4f78730c5baf82b/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 1,
+        "name": "badge00",
+        "description": "nice badge",
+        "price": 15,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a89778529120e745eb8b8/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 2,
+        "name": "t-shirt00",
+        "description": "nice t-shirt",
         "price": 100,
-        "photo_path": "https://frokenbock.ru/image/cache/catalog/frokenbok/011031-500x500.jpg",
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a8d2a64775b35bf1e505f/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 7,
+        "name": "t-shirt01",
+        "description": "cool t-shirt",
+        "price": 125,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a8d659d47c9315470f029/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 8,
+        "name": "t-shirt02",
+        "description": "amazing t-shirt",
+        "price": 200,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a8db88529120e7466f89e/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 9,
+        "name": "t-shirt03",
+        "description": "available t-shirt",
+        "price": 10,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a8d8832892732cf6501da/scale_1200",
+        "is_available": true
+      },
+      {
+        "item_id": 10,
+        "name": "cap00",
+        "description": "cool cap",
+        "price": 150,
+        "photo_path": "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_660a5cb19d47c9315417225a_660a8f2664775b35bf22086b/scale_1200",
         "is_available": true
       }
     ]
@@ -49,7 +103,7 @@
     }
   ],
   "cart_data": {
-    "cart_data": []
+    "cart_data": null
   },
   "articles": {
     "articles": [
@@ -132,119 +186,567 @@
     ]
   }
   ,
-  "reservation_list" : {"reservation_list" : [
-    {"id": 1, "is_available":true, "properties": "phone"} ,
-    {"id": 2, "is_available":true, "properties": "pc"} ,
-    {"id": 3, "is_available":false, "properties": "phone"} ,
-    {"id": 4, "is_available":false, "properties": "phone"} ,
-    {"id": 5, "is_available":false, "properties": "phone"} ,
-    {"id": 6, "is_available":false, "properties": "pc"} ,
-    {"id": 7, "is_available":false, "properties": "phone"} ,
-    {"id": 8, "is_available":true, "properties": "pc"} ,
-    {"id": 9, "is_available":true, "properties": "phone"} ,
-    {"id": 10, "is_available":false, "properties": "pc"} ,
-    {"id": 11, "is_available":true, "properties": "phone"} ,
-    {"id": 12, "is_available":true, "properties": "phone"} ,
-    {"id": 13, "is_available":false, "properties": "pc"} ,
-    {"id": 14, "is_available":true, "properties": "pc"} ,
-    {"id": 15, "is_available":false, "properties": "pc"} ,
-    {"id": 16, "is_available":false, "properties": "pc"} ,
-    {"id": 17, "is_available":false, "properties": "phone"} ,
-    {"id": 18, "is_available":true, "properties": "phone"} ,
-    {"id": 19, "is_available":true, "properties": "phone"} ,
-    {"id": 20, "is_available":false, "properties": "pc"} ,
-    {"id": 21, "is_available":true, "properties": "pc"} ,
-    {"id": 22, "is_available":true, "properties": "phone"} ,
-    {"id": 23, "is_available":false, "properties": "pc"} ,
-    {"id": 24, "is_available":true, "properties": "phone"} ,
-    {"id": 25, "is_available":true, "properties": "pc"} ,
-    {"id": 26, "is_available":false, "properties": "pc"} ,
-    {"id": 27, "is_available":true, "properties": "phone"} ,
-    {"id": 28, "is_available":false, "properties": "pc"} ,
-    {"id": 29, "is_available":false, "properties": "pc"} ,
-    {"id": 30, "is_available":false, "properties": "phone"} ,
-    {"id": 31, "is_available":true, "properties": "phone"} ,
-    {"id": 32, "is_available":true, "properties": "pc"} ,
-    {"id": 33, "is_available":false, "properties": "phone"} ,
-    {"id": 34, "is_available":true, "properties": "pc"} ,
-    {"id": 35, "is_available":true, "properties": "pc"} ,
-    {"id": 36, "is_available":true, "properties": "phone"} ,
-    {"id": 37, "is_available":true, "properties": "pc"} ,
-    {"id": 38, "is_available":false, "properties": "pc"} ,
-    {"id": 39, "is_available":true, "properties": "pc"} ,
-    {"id": 40, "is_available":true, "properties": "pc"} ,
-    {"id": 41, "is_available":true, "properties": "phone"} ,
-    {"id": 42, "is_available":false, "properties": "pc"} ,
-    {"id": 43, "is_available":true, "properties": "pc"} ,
-    {"id": 44, "is_available":true, "properties": "phone"} ,
-    {"id": 45, "is_available":false, "properties": "pc"} ,
-    {"id": 46, "is_available":true, "properties": "pc"} ,
-    {"id": 47, "is_available":false, "properties": "pc"} ,
-    {"id": 48, "is_available":false, "properties": "phone"} ,
-    {"id": 49, "is_available":true, "properties": "phone"} ,
-    {"id": 50, "is_available":false, "properties": "pc"} ,
-    {"id": 51, "is_available":false, "properties": "phone"} ,
-    {"id": 52, "is_available":false, "properties": "phone"} ,
-    {"id": 53, "is_available":true, "properties": "pc"} ,
-    {"id": 54, "is_available":true, "properties": "pc"} ,
-    {"id": 55, "is_available":false, "properties": "pc"} ,
-    {"id": 56, "is_available":true, "properties": "pc"} ,
-    {"id": 57, "is_available":true, "properties": "phone"} ,
-    {"id": 58, "is_available":true, "properties": "pc"} ,
-    {"id": 59, "is_available":true, "properties": "phone"} ,
-    {"id": 60, "is_available":false, "properties": "phone"} ,
-    {"id": 61, "is_available":true, "properties": "phone"} ,
-    {"id": 62, "is_available":true, "properties": "pc"} ,
-    {"id": 63, "is_available":false, "properties": "pc"} ,
-    {"id": 64, "is_available":false, "properties": "phone"} ,
-    {"id": 65, "is_available":false, "properties": "pc"} ,
-    {"id": 66, "is_available":false, "properties": "phone"} ,
-    {"id": 67, "is_available":true, "properties": "pc"} ,
-    {"id": 68, "is_available":true, "properties": "pc"} ,
-    {"id": 69, "is_available":true, "properties": "pc"} ,
-    {"id": 70, "is_available":false, "properties": "pc"} ,
-    {"id": 71, "is_available":true, "properties": "pc"} ,
-    {"id": 72, "is_available":false, "properties": "pc"} ,
-    {"id": 73, "is_available":false, "properties": "pc"} ,
-    {"id": 74, "is_available":false, "properties": "phone"} ,
-    {"id": 75, "is_available":false, "properties": "phone"} ,
-    {"id": 76, "is_available":false, "properties": "phone"} ,
-    {"id": 77, "is_available":true, "properties": "phone"} ,
-    {"id": 78, "is_available":false, "properties": "phone"} ,
-    {"id": 79, "is_available":false, "properties": "phone"} ,
-    {"id": 80, "is_available":true, "properties": "phone"} ,
-    {"id": 81, "is_available":false, "properties": "pc"} ,
-    {"id": 82, "is_available":true, "properties": "phone"} ,
-    {"id": 83, "is_available":true, "properties": "pc"} ,
-    {"id": 84, "is_available":false, "properties": "phone"} ,
-    {"id": 85, "is_available":false, "properties": "pc"} ,
-    {"id": 86, "is_available":false, "properties": "phone"} ,
-    {"id": 87, "is_available":true, "properties": "phone"} ,
-    {"id": 88, "is_available":false, "properties": "pc"} ,
-    {"id": 89, "is_available":false, "properties": "phone"} ,
-    {"id": 90, "is_available":false, "properties": "pc"} ,
-    {"id": 91, "is_available":false, "properties": "pc"} ,
-    {"id": 92, "is_available":false, "properties": "pc"} ,
-    {"id": 93, "is_available":false, "properties": "phone"} ,
-    {"id": 94, "is_available":true, "properties": "pc"} ,
-    {"id": 95, "is_available":true, "properties": "phone"} ,
-    {"id": 96, "is_available":true, "properties": "pc"} ,
-    {"id": 97, "is_available":true, "properties": "phone"} ,
-    {"id": 98, "is_available":false, "properties": "pc"} ,
-    {"id": 99, "is_available":true, "properties": "pc"} ,
-    {"id": 100, "is_available":false, "properties": "phone"} ,
-    {"id": 101, "is_available":false, "properties": "pc"} ,
-    {"id": 102, "is_available":true, "properties": "phone"} ,
-    {"id": 103, "is_available":false, "properties": "pc"} ,
-    {"id": 104, "is_available":false, "properties": "phone"} ,
-    {"id": 105, "is_available":true, "properties": "phone"} ,
-    {"id": 106, "is_available":false, "properties": "phone"} ,
-    {"id": 107, "is_available":true, "properties": "phone"} ,
-    {"id": 108, "is_available":false, "properties": "pc"} ,
-    {"id": 109, "is_available":true, "properties": "pc"} ,
-    {"id": 110, "is_available":true, "properties": "pc"} ,
-    {"id": 111, "is_available":true, "properties": "pc"} ,
-    {"id": 112, "is_available":true, "properties": "phone"}
+  "reservation_list" : {"reservation_list": [
+    {
+      "place_id": 1,
+      "name": "name_1",
+      "is_available": true
+    },
+    {
+      "place_id": 2,
+      "name": "name_2",
+      "is_available": true
+    },
+    {
+      "place_id": 3,
+      "name": "name_3",
+      "is_available": true
+    },
+    {
+      "place_id": 4,
+      "name": "name_4",
+      "is_available": true
+    },
+    {
+      "place_id": 5,
+      "name": "name_5",
+      "is_available": true
+    },
+    {
+      "place_id": 6,
+      "name": "name_6",
+      "is_available": true
+    },
+    {
+      "place_id": 7,
+      "name": "name_7",
+      "is_available": true
+    },
+    {
+      "place_id": 8,
+      "name": "name_8",
+      "is_available": true
+    },
+    {
+      "place_id": 9,
+      "name": "name_9",
+      "is_available": true
+    },
+    {
+      "place_id": 10,
+      "name": "name_10",
+      "is_available": true
+    },
+    {
+      "place_id": 11,
+      "name": "name_11",
+      "is_available": true
+    },
+    {
+      "place_id": 12,
+      "name": "name_12",
+      "is_available": true
+    },
+    {
+      "place_id": 13,
+      "name": "name_13",
+      "is_available": true
+    },
+    {
+      "place_id": 14,
+      "name": "name_14",
+      "is_available": true
+    },
+    {
+      "place_id": 15,
+      "name": "name_15",
+      "is_available": true
+    },
+    {
+      "place_id": 16,
+      "name": "name_16",
+      "is_available": true
+    },
+    {
+      "place_id": 17,
+      "name": "name_17",
+      "is_available": true
+    },
+    {
+      "place_id": 18,
+      "name": "name_18",
+      "is_available": true
+    },
+    {
+      "place_id": 19,
+      "name": "name_19",
+      "is_available": true
+    },
+    {
+      "place_id": 20,
+      "name": "name_20",
+      "is_available": true
+    },
+    {
+      "place_id": 21,
+      "name": "name_21",
+      "is_available": true
+    },
+    {
+      "place_id": 22,
+      "name": "name_22",
+      "is_available": true
+    },
+    {
+      "place_id": 23,
+      "name": "name_23",
+      "is_available": true
+    },
+    {
+      "place_id": 24,
+      "name": "name_24",
+      "is_available": true
+    },
+    {
+      "place_id": 25,
+      "name": "name_25",
+      "is_available": true
+    },
+    {
+      "place_id": 26,
+      "name": "name_26",
+      "is_available": true
+    },
+    {
+      "place_id": 27,
+      "name": "name_27",
+      "is_available": true
+    },
+    {
+      "place_id": 28,
+      "name": "name_28",
+      "is_available": true
+    },
+    {
+      "place_id": 29,
+      "name": "name_29",
+      "is_available": true
+    },
+    {
+      "place_id": 30,
+      "name": "name_30",
+      "is_available": true
+    },
+    {
+      "place_id": 31,
+      "name": "name_31",
+      "is_available": true
+    },
+    {
+      "place_id": 32,
+      "name": "name_32",
+      "is_available": true
+    },
+    {
+      "place_id": 33,
+      "name": "name_33",
+      "is_available": true
+    },
+    {
+      "place_id": 34,
+      "name": "name_34",
+      "is_available": true
+    },
+    {
+      "place_id": 35,
+      "name": "name_35",
+      "is_available": true
+    },
+    {
+      "place_id": 36,
+      "name": "name_36",
+      "is_available": true
+    },
+    {
+      "place_id": 37,
+      "name": "name_37",
+      "is_available": true
+    },
+    {
+      "place_id": 38,
+      "name": "name_38",
+      "is_available": true
+    },
+    {
+      "place_id": 39,
+      "name": "name_39",
+      "is_available": true
+    },
+    {
+      "place_id": 40,
+      "name": "name_40",
+      "is_available": true
+    },
+    {
+      "place_id": 41,
+      "name": "name_41",
+      "is_available": true
+    },
+    {
+      "place_id": 42,
+      "name": "name_42",
+      "is_available": true
+    },
+    {
+      "place_id": 43,
+      "name": "name_43",
+      "is_available": true
+    },
+    {
+      "place_id": 44,
+      "name": "name_44",
+      "is_available": true
+    },
+    {
+      "place_id": 45,
+      "name": "name_45",
+      "is_available": true
+    },
+    {
+      "place_id": 46,
+      "name": "name_46",
+      "is_available": true
+    },
+    {
+      "place_id": 47,
+      "name": "name_47",
+      "is_available": true
+    },
+    {
+      "place_id": 48,
+      "name": "name_48",
+      "is_available": true
+    },
+    {
+      "place_id": 49,
+      "name": "name_49",
+      "is_available": true
+    },
+    {
+      "place_id": 50,
+      "name": "name_50",
+      "is_available": true
+    },
+    {
+      "place_id": 51,
+      "name": "name_51",
+      "is_available": true
+    },
+    {
+      "place_id": 52,
+      "name": "name_52",
+      "is_available": true
+    },
+    {
+      "place_id": 53,
+      "name": "name_53",
+      "is_available": true
+    },
+    {
+      "place_id": 54,
+      "name": "name_54",
+      "is_available": true
+    },
+    {
+      "place_id": 55,
+      "name": "name_55",
+      "is_available": true
+    },
+    {
+      "place_id": 56,
+      "name": "name_56",
+      "is_available": true
+    },
+    {
+      "place_id": 57,
+      "name": "name_57",
+      "is_available": true
+    },
+    {
+      "place_id": 58,
+      "name": "name_58",
+      "is_available": true
+    },
+    {
+      "place_id": 59,
+      "name": "name_59",
+      "is_available": true
+    },
+    {
+      "place_id": 60,
+      "name": "name_60",
+      "is_available": true
+    },
+    {
+      "place_id": 61,
+      "name": "name_61",
+      "is_available": true
+    },
+    {
+      "place_id": 62,
+      "name": "name_62",
+      "is_available": true
+    },
+    {
+      "place_id": 63,
+      "name": "name_63",
+      "is_available": true
+    },
+    {
+      "place_id": 64,
+      "name": "name_64",
+      "is_available": true
+    },
+    {
+      "place_id": 65,
+      "name": "name_65",
+      "is_available": true
+    },
+    {
+      "place_id": 66,
+      "name": "name_66",
+      "is_available": true
+    },
+    {
+      "place_id": 67,
+      "name": "name_67",
+      "is_available": true
+    },
+    {
+      "place_id": 68,
+      "name": "name_68",
+      "is_available": true
+    },
+    {
+      "place_id": 69,
+      "name": "name_69",
+      "is_available": true
+    },
+    {
+      "place_id": 70,
+      "name": "name_70",
+      "is_available": true
+    },
+    {
+      "place_id": 71,
+      "name": "name_71",
+      "is_available": true
+    },
+    {
+      "place_id": 72,
+      "name": "name_72",
+      "is_available": true
+    },
+    {
+      "place_id": 73,
+      "name": "name_73",
+      "is_available": true
+    },
+    {
+      "place_id": 74,
+      "name": "name_74",
+      "is_available": true
+    },
+    {
+      "place_id": 75,
+      "name": "name_75",
+      "is_available": true
+    },
+    {
+      "place_id": 76,
+      "name": "name_76",
+      "is_available": true
+    },
+    {
+      "place_id": 77,
+      "name": "name_77",
+      "is_available": true
+    },
+    {
+      "place_id": 78,
+      "name": "name_78",
+      "is_available": true
+    },
+    {
+      "place_id": 79,
+      "name": "name_79",
+      "is_available": true
+    },
+    {
+      "place_id": 80,
+      "name": "name_80",
+      "is_available": true
+    },
+    {
+      "place_id": 81,
+      "name": "name_81",
+      "is_available": true
+    },
+    {
+      "place_id": 82,
+      "name": "name_82",
+      "is_available": true
+    },
+    {
+      "place_id": 83,
+      "name": "name_83",
+      "is_available": true
+    },
+    {
+      "place_id": 84,
+      "name": "name_84",
+      "is_available": true
+    },
+    {
+      "place_id": 85,
+      "name": "name_85",
+      "is_available": true
+    },
+    {
+      "place_id": 86,
+      "name": "name_86",
+      "is_available": true
+    },
+    {
+      "place_id": 87,
+      "name": "name_87",
+      "is_available": true
+    },
+    {
+      "place_id": 88,
+      "name": "name_88",
+      "is_available": true
+    },
+    {
+      "place_id": 89,
+      "name": "name_89",
+      "is_available": true
+    },
+    {
+      "place_id": 90,
+      "name": "name_90",
+      "is_available": true
+    },
+    {
+      "place_id": 91,
+      "name": "name_91",
+      "is_available": true
+    },
+    {
+      "place_id": 92,
+      "name": "name_92",
+      "is_available": true
+    },
+    {
+      "place_id": 93,
+      "name": "name_93",
+      "is_available": true
+    },
+    {
+      "place_id": 94,
+      "name": "name_94",
+      "is_available": true
+    },
+    {
+      "place_id": 95,
+      "name": "name_95",
+      "is_available": true
+    },
+    {
+      "place_id": 96,
+      "name": "name_96",
+      "is_available": true
+    },
+    {
+      "place_id": 97,
+      "name": "name_97",
+      "is_available": true
+    },
+    {
+      "place_id": 98,
+      "name": "name_98",
+      "is_available": true
+    },
+    {
+      "place_id": 99,
+      "name": "name_99",
+      "is_available": true
+    },
+    {
+      "place_id": 100,
+      "name": "name_100",
+      "is_available": true
+    },
+    {
+      "place_id": 101,
+      "name": "name_101",
+      "is_available": true
+    },
+    {
+      "place_id": 102,
+      "name": "name_102",
+      "is_available": true
+    },
+    {
+      "place_id": 103,
+      "name": "name_103",
+      "is_available": true
+    },
+    {
+      "place_id": 104,
+      "name": "name_104",
+      "is_available": true
+    },
+    {
+      "place_id": 105,
+      "name": "name_105",
+      "is_available": true
+    },
+    {
+      "place_id": 106,
+      "name": "name_106",
+      "is_available": true
+    },
+    {
+      "place_id": 107,
+      "name": "name_107",
+      "is_available": true
+    },
+    {
+      "place_id": 108,
+      "name": "name_108",
+      "is_available": true
+    },
+    {
+      "place_id": 109,
+      "name": "name_109",
+      "is_available": true
+    },
+    {
+      "place_id": 110,
+      "name": "name_110",
+      "is_available": true
+    },
+    {
+      "place_id": 111,
+      "name": "name_111",
+      "is_available": true
+    },
+    {
+      "place_id": 112,
+      "name": "name_112",
+      "is_available": true
+    }
   ]
   }
 }

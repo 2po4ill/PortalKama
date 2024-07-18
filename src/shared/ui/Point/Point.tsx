@@ -24,7 +24,7 @@ export const Point: FC<IPoint> = (props) => {
 
     const SelectPoint = () => {
         if (place.is_available) {
-            setSelectedPoint(Number(place.id))
+            setSelectedPoint(place.place_id)
             setSelectedPlace(place)
         }
         else{
@@ -33,7 +33,7 @@ export const Point: FC<IPoint> = (props) => {
     }
 
     const mods: Record<string, boolean> = {
-        [cls.selected_point]: Number(place.id) === selectedPoint,
+        [cls.selected_point]: place.place_id === selectedPoint,
     };
 
     const mapPoint = () => {

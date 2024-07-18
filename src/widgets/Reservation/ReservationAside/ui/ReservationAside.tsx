@@ -20,7 +20,7 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
                 <div className={cls.place}>
                     <img className={cls.statusImg} src={green} alt={"green"}/>
                     <div className={cls.properties}>
-                        <a className={cls.title}> Место #{place.id} </a>
+                        <a className={cls.title}> Место #{place.place_id} </a>
                         <a className={cls.description}> Телефон, компьютер </a>
                     </div>
                 </div>
