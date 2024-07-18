@@ -14,6 +14,7 @@ import {AxiosInstance} from "axios";
 import {ProductSchema} from "entities/Product";
 import {ProfileSchema} from "features/profile/model/types/profile";
 import {ReservationSchema} from "entities/Reservation/model/types/reservation";
+import {PostSchema} from "entities/Post";
 
 export interface StateSchema {
     counter: counterSchema;
@@ -24,6 +25,7 @@ export interface StateSchema {
     product?: ProductSchema;
     reservation?: ReservationSchema;
     profile?: ProfileSchema;
+    post?: PostSchema;
 }
 
 export interface IReducerManager {

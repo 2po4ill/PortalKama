@@ -10,7 +10,7 @@ export interface IReservationItem {
     // id места
     id: string;
     // статус места
-    status: string;
+    is_available: boolean;
     // дополнительные параметры
     properties: string;
 }

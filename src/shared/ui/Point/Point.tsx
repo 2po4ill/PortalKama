@@ -23,7 +23,7 @@ export const Point: FC<IPoint> = (props) => {
     } = props;
 
     const SelectPoint = () => {
-        if (place.status === "available") {
+        if (place.is_available) {
             setSelectedPoint(Number(place.id))
             setSelectedPlace(place)
         }
@@ -37,10 +37,10 @@ export const Point: FC<IPoint> = (props) => {
     };
 
     const mapPoint = () => {
-        if (place.status === "available")
+        if (place.is_available)
             return mapPointGreen
 
-        if (place.status === "unavailable")
+        if (!place.is_available)
             return mapPointRed
 
         return mapPointGray

@@ -1,6 +1,7 @@
 import {memo, ReactElement} from "react";
 import cls from './MainLayout.module.scss';
 import {classNames} from "shared/lib/classNames";
+import {useLocation} from "react-router-dom";
 
 
 interface MainLayoutProps {
@@ -13,9 +14,14 @@ interface MainLayoutProps {
 
 export const MainLayout = memo((props: MainLayoutProps) => {
     const { className, content, toolbar, header, sidebar } = props;
+    const location = useLocation()
+
+    const mods: Record<string, boolean> = {
+        [cls.white_background]: location.pathname == "/reservation",
+    };
 
     return (
-        <div className={classNames(cls.MainLayout, {}, [className])}>
+        <div className={classNames(cls.MainLayout, mods, [className])}>
             <div className={cls.content}>{content}</div>
             <div className={cls.sidebar}>{sidebar}</div>
             <div className={cls.header}>{header}</div>
