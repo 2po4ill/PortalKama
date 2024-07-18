@@ -41,13 +41,13 @@ server.post('/login', (req, res) => {
         );
 
         if (userFromBd) {
-            const {password, uid, ...user} = userFromBd;
+            const {password, ...user} = userFromBd;
 
             // 1500m
             const accessTokenTime = 90000000;
-            res.cookie("access_token", uid, {
+            res.cookie("access_token", user.user_id, {
                 httpOnly: true,
-                expires: new Date(Date.now() + accessTokenTime),
+                // expires: new Date(Date.now() + accessTokenTime),
                 // signed: true
             });
 
@@ -58,7 +58,7 @@ server.post('/login', (req, res) => {
                 expires: new Date(Date.now() + refreshTokenTime),
             });
 
-            return res.json(user);
+            return res.json({user});
 
             // const {uid, img, ...user} = userFromBd;
             // return res.json( { uid, img });
@@ -75,7 +75,7 @@ server.post('/add_cart_item', (req, res) => {
         const { item_id, quantity } = req.body;
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
         db["cart_data"]["cart_data"].push({in_cart_item_id: item_id, cart_id: 1,item_id: item_id, quantity: quantity})
-        var json = JSON.stringify(db);
+        const json = JSON.stringify(db);
         fs.writeFile(path.resolve(__dirname, 'db.json'), json, 'utf8', function (err){console.log(err)});
         return res.status(200).json({message: "OK"})
     } catch (e) {
@@ -88,7 +88,7 @@ server.post('/drop_cart', (req, res) => {
     try {
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
         db["cart_data"]["cart_data"] = []
-        var json = JSON.stringify(db);
+        const json = JSON.stringify(db);
         fs.writeFile(path.resolve(__dirname, 'db.json'), json, 'utf8', function (err){console.log(err)});
         return res.status(200).json({message: "OK"})
     } catch (e) {
@@ -121,7 +121,6 @@ server.post('/drop_cart_item', (req, res) => {
 
 server.get('/profile', (req, res) => {
     try {
-        // console.log(req.cookies)
         const uid = req.cookies["access_token"];
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
         const { users = [] } = db;
@@ -136,6 +135,27 @@ server.get('/profile', (req, res) => {
 
         return res.status(403).json({ message: 'User not found' });
 
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({message: e.message})
+    }
+})
+
+server.get('/me', (req, res) => {
+    try {
+        const uid = req.cookies["access_token"];
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const { users = [] } = db;
+        const currentUser = users.find( user => user.user_id === uid);
+
+        if (currentUser) {
+            const user = {
+                user_id: currentUser.user_id,
+                username: currentUser.username
+            };
+            return res.json({user});
+        }
+        return res.status(403).json({ message: 'User not found' });
     } catch (e) {
         console.log(e);
         return res.status(500).json({message: e.message})

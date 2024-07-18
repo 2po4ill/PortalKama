@@ -1,6 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
-import {TAuthorizedUserData, User, userActions} from "entities/User";
+import {User, userActions} from "entities/User";
 import {LOCAL_STORAGE_LAST_AUTHORIZATION, LOCAL_STORAGE_USER_KEY} from "shared/const/localstorage";
 import {IThunkConfig} from "app/providers/StoreProvider";
 
@@ -19,7 +19,7 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, IThunkConfig<s
                 throw new Error("Response data is empty");
             }
 
-            const userData: TAuthorizedUserData = {
+            const userData: User = {
                 username: loginData.username,
                 img: response.data.img,
                 uid: response.data.uid
@@ -33,9 +33,9 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, IThunkConfig<s
             return response.data;
         } catch (err) {
             if (axios.isAxiosError(err)) {
-                console.log(err.status);
+                __IS_DEV__ && console.log(err.status);
             }
-            console.log(err);
+            __IS_DEV__ && console.log(err);
             return rejectWithValue("Неверный логин или пароль")
         }
 

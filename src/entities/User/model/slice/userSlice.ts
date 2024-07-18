@@ -1,20 +1,14 @@
-import {PayloadAction, UnknownAction} from "@reduxjs/toolkit";
-import {TAuthorizedUserData, UserSchema} from "../types/user";
+import {PayloadAction} from "@reduxjs/toolkit";
+import {IUserDataResponse, User} from "../types/user";
 import {LOCAL_STORAGE_LAST_AUTHORIZATION, LOCAL_STORAGE_USER_KEY} from "shared/const/localstorage";
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IThunkConfig} from "app/providers/StoreProvider";
-
-const initialState: UserSchema = {
-    uid: "",
-    username: "",
-    img: "",
-    isLoading: true,
-    isAuthorized: false
-}
+import {initialUser} from "../const/initialUser";
+import axios from "axios";
 
 export const userSlice = createAppSlice({
     name: 'user',
-    initialState,
+    initialState: initialUser,
     reducers: (create) => {
         const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
@@ -23,13 +17,13 @@ export const userSlice = createAppSlice({
                 localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
                 return {
                     ...state,
-                    uid: "",
+                    uid: -1,
                     img: "",
                     username: "",
                     isAuthorized: false,
                 };
             } ),
-            setAuthData: create.reducer( (state, action: PayloadAction<TAuthorizedUserData>) => {
+            setAuthData: create.reducer( (state, action: PayloadAction<User>) => {
                 return {
                     ...state,
                     ...action.payload,
@@ -39,30 +33,32 @@ export const userSlice = createAppSlice({
             /**
              * Асинхронное действие по инициализации пользователя
              */
-            initUser: createAThunk<undefined, TAuthorizedUserData>(
+            initUser: createAThunk<undefined, User>(
                 async (data, thunkAPI) => {
-                    const { rejectWithValue, extra, dispatch } = thunkAPI;
+                    const { rejectWithValue, extra } = thunkAPI;
                     try {
 
                         const lastAuth: number = await JSON.parse(String(localStorage.getItem(LOCAL_STORAGE_LAST_AUTHORIZATION)));
-                        // 6 month  - 15552000000
+                        // 3 month  - 15552000000
                         // 60 sec   - 60000
                         const maxAge = __IS_DEV__ ? 600000 : 15552000000;
                         if (!lastAuth || lastAuth && Date.now() - lastAuth >= maxAge) {
                             __IS_DEV__ && console.log("нет нужной строки в localstorage");
-                            localStorage.clear();
                             return rejectWithValue("Требуется авторизация");
                         }
 
-                        const getUserApi = () => new Promise<TAuthorizedUserData>(async (resolve, reject) => {
-                            // const data: TAuthorizedUserData = JSON.parse(String(localStorage.getItem(LOCAL_STORAGE_USER_KEY)));
+                        const getUserApi = () => new Promise<User>(async (resolve, reject) => {
                             try {
-                                const {data} = await extra.api.get<TAuthorizedUserData>('/profile');
+                                const {data} = await extra.api.get<IUserDataResponse>('/me');
                                 __IS_DEV__ && console.log(data);
+                                const user: User = {
+                                    uid: data.user.user_id,
+                                    username: data.user.username,
+                                }
                                 if (__IS_DEV__) setTimeout(() => {
-                                    resolve(data);
+                                    resolve(user);
                                 }, 2500);
-                                else resolve(data);
+                                else resolve(user);
                             } catch (e) {
                                 reject(e);
                             }
@@ -70,18 +66,29 @@ export const userSlice = createAppSlice({
 
                         const authorizedUser = await getUserApi();
                         if (authorizedUser) {
+                            /**
+                             * данные в localstorage,
+                             * {
+                             *     uid: number
+                             *     username: string
+                             * }
+                             */
+                            localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(authorizedUser));
                             return authorizedUser;
                         }
                         return rejectWithValue("Нет данных пользователя");
                     } catch (err) {
-                        console.log("Something went wrong" + err);
+                        if (axios.isAxiosError(err)) {
+                            console.log(err.status);
+                        }
+                        __IS_DEV__ && console.log("Something went wrong:" + err);
                         return rejectWithValue("Something went wrong");
                     }
                 },
                 {
                     pending: (state, action) => {
                         // getting data from localstorage
-                        const localStorageData: TAuthorizedUserData = JSON.parse(String(localStorage.getItem(LOCAL_STORAGE_USER_KEY)));
+                        const localStorageData: User = JSON.parse(String(localStorage.getItem(LOCAL_STORAGE_USER_KEY)));
                         if (localStorageData) return {
                             ...state,
                             ...localStorageData,
@@ -98,14 +105,17 @@ export const userSlice = createAppSlice({
                         // console.log(action.payload)
                         return {
                             ...action.payload,
+                            img: action.payload.img || "",
                             isLoading: false,
                             isAuthorized: true,
                             error: undefined
                         }
                     },
                     rejected: (state, action) => {
+                        localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+                        localStorage.removeItem(LOCAL_STORAGE_LAST_AUTHORIZATION);
                         return {
-                            ...initialState,
+                            ...initialUser,
                             error: String(action.payload),
                             isLoading: false
                         }
