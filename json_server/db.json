@@ -61,568 +61,119 @@
     ]
   }
   ,
-  "reservation_list": {
-    "reservation_list": [
-      {
-        "id": 0,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 1,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 2,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 3,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 4,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 5,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 6,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 7,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 8,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 9,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 10,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 11,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 12,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 13,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 14,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 15,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 16,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 17,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 18,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 19,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 20,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 21,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 22,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 23,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 24,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 25,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 26,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 27,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 28,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 29,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 30,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 31,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 32,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 33,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 34,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 35,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 36,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 37,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 38,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 39,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 40,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 41,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 42,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 43,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 44,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 45,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 46,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 47,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 48,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 49,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 50,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 51,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 52,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 53,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 54,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 55,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 56,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 57,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 58,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 59,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 60,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 61,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 62,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 63,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 64,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 65,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 66,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 67,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 68,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 69,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 70,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 71,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 72,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 73,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 74,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 75,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 76,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 77,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 78,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 79,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 80,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 81,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 82,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 83,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 84,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 85,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 86,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 87,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 88,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 89,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 90,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 91,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 92,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 93,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 94,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 95,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 96,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 97,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 98,
-        "status": "available",
-        "properties": "phone"
-      },
-      {
-        "id": 99,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 100,
-        "status": "denied",
-        "properties": "phone"
-      },
-      {
-        "id": 101,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 102,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 103,
-        "status": "denied",
-        "properties": "pc"
-      },
-      {
-        "id": 104,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 105,
-        "status": "available",
-        "properties": "pc"
-      },
-      {
-        "id": 106,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 107,
-        "status": "unavailable",
-        "properties": "pc"
-      },
-      {
-        "id": 108,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 109,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 110,
-        "status": "unavailable",
-        "properties": "phone"
-      },
-      {
-        "id": 111,
-        "status": "denied",
-        "properties": "pc"
-      }
-    ]
+  "reservation_list" : {"reservation_list" : [
+    {"id": 1, "is_available":true, "properties": "phone"} ,
+    {"id": 2, "is_available":true, "properties": "pc"} ,
+    {"id": 3, "is_available":false, "properties": "phone"} ,
+    {"id": 4, "is_available":false, "properties": "phone"} ,
+    {"id": 5, "is_available":false, "properties": "phone"} ,
+    {"id": 6, "is_available":false, "properties": "pc"} ,
+    {"id": 7, "is_available":false, "properties": "phone"} ,
+    {"id": 8, "is_available":true, "properties": "pc"} ,
+    {"id": 9, "is_available":true, "properties": "phone"} ,
+    {"id": 10, "is_available":false, "properties": "pc"} ,
+    {"id": 11, "is_available":true, "properties": "phone"} ,
+    {"id": 12, "is_available":true, "properties": "phone"} ,
+    {"id": 13, "is_available":false, "properties": "pc"} ,
+    {"id": 14, "is_available":true, "properties": "pc"} ,
+    {"id": 15, "is_available":false, "properties": "pc"} ,
+    {"id": 16, "is_available":false, "properties": "pc"} ,
+    {"id": 17, "is_available":false, "properties": "phone"} ,
+    {"id": 18, "is_available":true, "properties": "phone"} ,
+    {"id": 19, "is_available":true, "properties": "phone"} ,
+    {"id": 20, "is_available":false, "properties": "pc"} ,
+    {"id": 21, "is_available":true, "properties": "pc"} ,
+    {"id": 22, "is_available":true, "properties": "phone"} ,
+    {"id": 23, "is_available":false, "properties": "pc"} ,
+    {"id": 24, "is_available":true, "properties": "phone"} ,
+    {"id": 25, "is_available":true, "properties": "pc"} ,
+    {"id": 26, "is_available":false, "properties": "pc"} ,
+    {"id": 27, "is_available":true, "properties": "phone"} ,
+    {"id": 28, "is_available":false, "properties": "pc"} ,
+    {"id": 29, "is_available":false, "properties": "pc"} ,
+    {"id": 30, "is_available":false, "properties": "phone"} ,
+    {"id": 31, "is_available":true, "properties": "phone"} ,
+    {"id": 32, "is_available":true, "properties": "pc"} ,
+    {"id": 33, "is_available":false, "properties": "phone"} ,
+    {"id": 34, "is_available":true, "properties": "pc"} ,
+    {"id": 35, "is_available":true, "properties": "pc"} ,
+    {"id": 36, "is_available":true, "properties": "phone"} ,
+    {"id": 37, "is_available":true, "properties": "pc"} ,
+    {"id": 38, "is_available":false, "properties": "pc"} ,
+    {"id": 39, "is_available":true, "properties": "pc"} ,
+    {"id": 40, "is_available":true, "properties": "pc"} ,
+    {"id": 41, "is_available":true, "properties": "phone"} ,
+    {"id": 42, "is_available":false, "properties": "pc"} ,
+    {"id": 43, "is_available":true, "properties": "pc"} ,
+    {"id": 44, "is_available":true, "properties": "phone"} ,
+    {"id": 45, "is_available":false, "properties": "pc"} ,
+    {"id": 46, "is_available":true, "properties": "pc"} ,
+    {"id": 47, "is_available":false, "properties": "pc"} ,
+    {"id": 48, "is_available":false, "properties": "phone"} ,
+    {"id": 49, "is_available":true, "properties": "phone"} ,
+    {"id": 50, "is_available":false, "properties": "pc"} ,
+    {"id": 51, "is_available":false, "properties": "phone"} ,
+    {"id": 52, "is_available":false, "properties": "phone"} ,
+    {"id": 53, "is_available":true, "properties": "pc"} ,
+    {"id": 54, "is_available":true, "properties": "pc"} ,
+    {"id": 55, "is_available":false, "properties": "pc"} ,
+    {"id": 56, "is_available":true, "properties": "pc"} ,
+    {"id": 57, "is_available":true, "properties": "phone"} ,
+    {"id": 58, "is_available":true, "properties": "pc"} ,
+    {"id": 59, "is_available":true, "properties": "phone"} ,
+    {"id": 60, "is_available":false, "properties": "phone"} ,
+    {"id": 61, "is_available":true, "properties": "phone"} ,
+    {"id": 62, "is_available":true, "properties": "pc"} ,
+    {"id": 63, "is_available":false, "properties": "pc"} ,
+    {"id": 64, "is_available":false, "properties": "phone"} ,
+    {"id": 65, "is_available":false, "properties": "pc"} ,
+    {"id": 66, "is_available":false, "properties": "phone"} ,
+    {"id": 67, "is_available":true, "properties": "pc"} ,
+    {"id": 68, "is_available":true, "properties": "pc"} ,
+    {"id": 69, "is_available":true, "properties": "pc"} ,
+    {"id": 70, "is_available":false, "properties": "pc"} ,
+    {"id": 71, "is_available":true, "properties": "pc"} ,
+    {"id": 72, "is_available":false, "properties": "pc"} ,
+    {"id": 73, "is_available":false, "properties": "pc"} ,
+    {"id": 74, "is_available":false, "properties": "phone"} ,
+    {"id": 75, "is_available":false, "properties": "phone"} ,
+    {"id": 76, "is_available":false, "properties": "phone"} ,
+    {"id": 77, "is_available":true, "properties": "phone"} ,
+    {"id": 78, "is_available":false, "properties": "phone"} ,
+    {"id": 79, "is_available":false, "properties": "phone"} ,
+    {"id": 80, "is_available":true, "properties": "phone"} ,
+    {"id": 81, "is_available":false, "properties": "pc"} ,
+    {"id": 82, "is_available":true, "properties": "phone"} ,
+    {"id": 83, "is_available":true, "properties": "pc"} ,
+    {"id": 84, "is_available":false, "properties": "phone"} ,
+    {"id": 85, "is_available":false, "properties": "pc"} ,
+    {"id": 86, "is_available":false, "properties": "phone"} ,
+    {"id": 87, "is_available":true, "properties": "phone"} ,
+    {"id": 88, "is_available":false, "properties": "pc"} ,
+    {"id": 89, "is_available":false, "properties": "phone"} ,
+    {"id": 90, "is_available":false, "properties": "pc"} ,
+    {"id": 91, "is_available":false, "properties": "pc"} ,
+    {"id": 92, "is_available":false, "properties": "pc"} ,
+    {"id": 93, "is_available":false, "properties": "phone"} ,
+    {"id": 94, "is_available":true, "properties": "pc"} ,
+    {"id": 95, "is_available":true, "properties": "phone"} ,
+    {"id": 96, "is_available":true, "properties": "pc"} ,
+    {"id": 97, "is_available":true, "properties": "phone"} ,
+    {"id": 98, "is_available":false, "properties": "pc"} ,
+    {"id": 99, "is_available":true, "properties": "pc"} ,
+    {"id": 100, "is_available":false, "properties": "phone"} ,
+    {"id": 101, "is_available":false, "properties": "pc"} ,
+    {"id": 102, "is_available":true, "properties": "phone"} ,
+    {"id": 103, "is_available":false, "properties": "pc"} ,
+    {"id": 104, "is_available":false, "properties": "phone"} ,
+    {"id": 105, "is_available":true, "properties": "phone"} ,
+    {"id": 106, "is_available":false, "properties": "phone"} ,
+    {"id": 107, "is_available":true, "properties": "phone"} ,
+    {"id": 108, "is_available":false, "properties": "pc"} ,
+    {"id": 109, "is_available":true, "properties": "pc"} ,
+    {"id": 110, "is_available":true, "properties": "pc"} ,
+    {"id": 111, "is_available":true, "properties": "pc"} ,
+    {"id": 112, "is_available":true, "properties": "phone"}
+  ]
   }
 }

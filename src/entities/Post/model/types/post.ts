@@ -19,6 +19,6 @@ export interface PostSchema {
 
 export interface IPostData {
     status: boolean;
-    posts: Post[];
+    articles: Post[];
 }
 

@@ -35,7 +35,7 @@ const postSlice = createAppSlice({
                         }
                     },
                     fulfilled: (state, action) => {
-                        const posts = action.payload.posts
+                        const posts = action.payload.articles
                         return {
                             ...state,
                             isLoading: false,
