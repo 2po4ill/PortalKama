@@ -1,11 +1,11 @@
 import {IReservationItem} from "entities/Reservation/model/types/reservation";
 
 export interface Post {
-    id: string;
+    post_id: number;
     title: string;
-    img: string[];
+    images: string[];
     text: string; // текст новости
-    views?: number; // кол-во просмотров
+    likes_amount?: number; // кол-во просмотров
     tags?: string[];
     createdAt?: string;
     updatedAt?: string;

@@ -18,7 +18,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
             <div className={cls.listContainer}>
                 {
                     posts.map(e => (
-                        <PostListItem post={e} key={e.id} />
+                        <PostListItem post={e} key={e.post_id} />
                     ))
                 }
             </div>

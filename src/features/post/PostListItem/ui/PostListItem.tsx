@@ -13,13 +13,13 @@ interface IPostListItemProps {
 
 const PostListItem: FC<IPostListItemProps> = memo((props) => {
     const { className, post } = props;
-    const { title, text, img } = post;
+    const { title, text, images } = post;
 
     return (
         <article className={classNames(cls.PostListItem, {}, [className])}>
 
             <div className={cls.collage}>
-                <img src={imageSrc(img[0])} onError={({currentTarget}) => {
+                <img src={imageSrc(images[0])} onError={({currentTarget}) => {
                             currentTarget.onerror = null; // prevents looping
                             currentTarget.src = placeHolder;
                         }}/>
