@@ -3,8 +3,8 @@ import {IProfileData, Profile, ProfileSchema} from "../types/profile";
 import {IThunkConfig} from "app/providers/StoreProvider";
 
 const initialProfile: Profile = {
-    full_name: "",
-    photo_path: "",
+    fullname: "",
+    department: "",
     position: ""
 }
 export const initialState: ProfileSchema = {
@@ -38,6 +38,7 @@ const profileSlice = createAppSlice({
                     };
                 },
                 fulfilled: (state, action) => {
+
                     return {
                         ...state,
                         profile: action.payload,

@@ -54,7 +54,7 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
         <AsyncReducerProvider name={'auth'} reducer={authReducer}>
             <form className={classNames(cls.LoginForm)} onSubmit={submitHandler}>
                 <div>
-                    <label className={cls.FormLabel}> Войти в аккаунт </label>
+                    <label className={cls.FormLabel}> Вход в личный кабинет </label>
                     {/*<Text title={"Войти в аккаунт"} />*/}
                 </div>
                 {error && <Text text={String(error)} theme={TextTheme.ERROR} />}

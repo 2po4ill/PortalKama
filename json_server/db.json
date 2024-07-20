@@ -90,20 +90,31 @@
       "username": "admin",
       "password": "123",
       "img": "http://s00.yaplakal.com/pics/pics_original/6/6/5/13306566.jpg",
-      "full_name": "Иванов Иван Иванович",
-      "position": "Мастер слесарь"
+      "fullname": "Иванов Иван Иванович",
+      "position": "Мастер слесарь",
+      "department": "Отдел по борьбе с коррупцией"
     },
     {
       "uid": "2",
       "username": "test",
       "password": "test",
       "img": "http://s00.yaplakal.com/pics/pics_original/6/6/5/13306566.jpg",
-      "full_name": "Иванов Иван Иванович",
-      "position": "Мастер слесарь"
+      "fullname": "Иванов Иван Иванович",
+      "position": "Мастер слесарь",
+      "department": "Отдел по борьбе с коррупцией"
     }
   ],
+  "profile": {
+    "profile":
+    {
+      "username": "test",
+      "fullname": "Иванов Иван Иванович",
+      "position": "Мастер слесарь",
+      "department": "Отдел по борьбе с коррупцией"
+    }}
+  ,
   "cart_data": {
-    "cart_data": null
+    "cart_data": []
   },
   "articles": {
     "articles": [
