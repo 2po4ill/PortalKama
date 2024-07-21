@@ -5,7 +5,7 @@ export interface Post {
     title: string;
     images: string[];
     text: string; // текст новости
-    likes_amount?: number; // кол-во просмотров
+    likes_amount?: number; // кол-во лайков
     tags?: string[];
     createdAt?: string;
     updatedAt?: string;

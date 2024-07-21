@@ -31,6 +31,10 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
                     text={text}
                 />
             </div>
+
+            <div className={cls.footer}>
+
+            </div>
         </article>
     );
 });
