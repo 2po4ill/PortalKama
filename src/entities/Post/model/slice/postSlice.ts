@@ -1,12 +1,13 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {IPostData, Post, PostSchema} from "../types/post";
+import {IPostData, IPostInfo, Post, PostSchema} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
-import {IReservationData} from "entities/Reservation/model/types/reservation";
-import {act} from "react-dom/test-utils";
+import {User} from "entities/User";
 
 const initialState: PostSchema = {
     posts: [],
+    post: undefined,
     isLoading: false,
+    isPostLoading: false,
     error: undefined
 }
 
@@ -51,10 +52,45 @@ const postSlice = createAppSlice({
                         }
                     }
                 }
+            ),
+            getPost: createAThunk<number, Post>(async (data, thunkAPI) => {
+                    const { rejectWithValue, extra } = thunkAPI;
+                    try {
+                        const postInfo = await extra.api.get<IPostInfo>("/article?post_id=" + data);
+                        return postInfo.data.article;
+                    } catch (err) {
+                        console.log("Something went wrong" + err);
+                        return rejectWithValue(String(err));
+                    } },
+                {
+                    pending: state => {
+                        return {
+                            ...state,
+                            isPostLoading: true,
+                            error: undefined
+                        }
+                    },
+                    fulfilled: (state, action) => {
+                        const post = action.payload
+                        return {
+                            ...state,
+                            isPostLoading: false,
+                            error: undefined,
+                            post: post
+                        }
+                    },
+                    rejected: (state, action) => {
+                        return {
+                            ...state,
+                            isPostLoading: false,
+                            error: String(action.error)
+                        }
+                    }
+                }
             )
-
         }
     }
 });
+
 
 export const { actions: postActions, reducer: postReducer } = postSlice

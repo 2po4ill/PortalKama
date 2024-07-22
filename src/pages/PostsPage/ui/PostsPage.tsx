@@ -13,6 +13,7 @@ import {postSelectors} from "entities/Post/model/selectors/postSelectors";
 import {postActions, postReducer} from "entities/Post/model/slice/postSlice";
 import {PageLoader} from "widgets/PageLoader";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
+import {Post} from "entities/Post";
 
 export interface IPostsPageProps {
     className?: string;
@@ -27,7 +28,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     }, [dispatch]);
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [selectedPost, setSelectedPost] = useState(undefined);
+    const [selectedPost, setSelectedPost] = useState<Post|undefined>(undefined);
 
     const postClickHandler = () => {
         setModalIsOpen(true);
@@ -39,9 +40,9 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
             <div className={classNames(cls.IPostsPageProps, {}, [className])}>
                 <PostsPageLayout
                     header={<PostsHeader />}
-                    content={<PostsList posts={posts}/>}
+                    content={<PostsList posts={posts} postClickHandler={postClickHandler} setSelectedPost={setSelectedPost}/>}
                     aside={<PostsAside />} />
-                <PostModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} />
+                {modalIsOpen ? <PostModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} selectedPost={selectedPost} /> : null}
             </div>
                 : <PageLoader/>}
         </AsyncReducerProvider>
