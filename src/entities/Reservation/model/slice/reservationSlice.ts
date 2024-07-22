@@ -16,10 +16,10 @@ const reservationSlice = createAppSlice({
         const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
         return {
-            getReservationList: createAThunk<undefined, IReservationData>(async (data, thunkAPI) => {
+            getReservationList: createAThunk<{start: number, finish: number} | undefined, IReservationData>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    const placeData = await extra.api.get<IReservationData>("/reservation_list");
+                    const placeData = await extra.api.get<IReservationData>("/reservation_list?start=" + data?.start + "&finish=" + data?.finish);
                     return placeData.data;
                 } catch (err) {
                     console.log("Something went wrong" + err);

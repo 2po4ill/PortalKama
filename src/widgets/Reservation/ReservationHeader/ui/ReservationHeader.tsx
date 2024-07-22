@@ -5,6 +5,7 @@ import {Text} from "shared/ui/Text/Text";
 
 import { Calendar } from "primereact/calendar";
 import {ReservationCalendarInput} from "features/reservation";
+import {Button} from "shared/ui/Button/Button";
 
 
 interface IReservationHeaderProps {
@@ -13,6 +14,7 @@ interface IReservationHeaderProps {
     setSelectedDateStart: (selectedDate: Date) => void;
     selectedDateEnd: Date;
     setSelectedDateEnd: (selectedDate: Date) => void;
+    apiCall: () => void;
 }
 
 const ReservationHeader: FC<IReservationHeaderProps> = memo(props => {
@@ -20,7 +22,8 @@ const ReservationHeader: FC<IReservationHeaderProps> = memo(props => {
     setSelectedDateStart,
     selectedDateStart,
     selectedDateEnd,
-    setSelectedDateEnd} = props;
+    setSelectedDateEnd,
+    apiCall} = props;
 
 
     return (
@@ -33,6 +36,7 @@ const ReservationHeader: FC<IReservationHeaderProps> = memo(props => {
                 <ReservationCalendarInput className={cls.input} setSelectedDate={setSelectedDateStart} selectedDate={selectedDateStart}/>
                 <a> ПО </a>
                 <ReservationCalendarInput className={cls.input} setSelectedDate={setSelectedDateEnd} selectedDate={selectedDateEnd}/>
+                <Button className={cls.btn} onClick={apiCall}> Найти </Button>
             </div>
         </div>
     );
