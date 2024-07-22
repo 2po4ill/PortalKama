@@ -5,6 +5,10 @@ import {IReservationItem} from "entities/Reservation/model/types/reservation";
 
 import green from "shared/assets/images/icon_Зеленый.png"
 import {Button} from "shared/ui/Button/Button";
+import ProfileImg from "shared/assets/icons/profile-icon.png";
+import {RoutePath} from "shared/const/router";
+import {Text, TextTheme} from "shared/ui/Text/Text";
+import {AppLink} from "shared/ui/AppLink/AppLink";
 
 interface IReservationAsideProps {
     className?: string;
@@ -48,7 +52,9 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
                         renderItem(place)
                         : renderBlank()}
                 </div>
-                <Button className={cls.btn}> Мои бронирования </Button>
+                <AppLink to={"my"} className={cls.Profile} disabled={false}>
+                    <Button className={cls.btn}> Мои бронирования </Button>
+                </AppLink>
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import {IThunkConfig} from "app/providers/StoreProvider";
 
 const initialState: ReservationSchema = {
     reservations: [],
+    userReservationList: [],
     isLoading: false,
     error: undefined
 }
@@ -36,7 +37,42 @@ const reservationSlice = createAppSlice({
                 fulfilled: (state, action) => {
                     const reservationList = action.payload.reservation_list;
                     return {
+                        ...state,
                         reservations: reservationList,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            getUserReservations: createAThunk<undefined, IReservationData>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const userData = await extra.api.get<IReservationData>("/user_reservation");
+                    return userData.data;
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    const userReservationList = action.payload.userReservationList;
+                    return {
+                        ...state,
+                        userReservationList: userReservationList,
                         error: undefined,
                         isLoading: false
                     }
