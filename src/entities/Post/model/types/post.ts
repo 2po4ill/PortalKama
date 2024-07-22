@@ -14,6 +14,7 @@ export interface Post {
 export interface PostSchema {
     posts: Post[] | [];
     post: Post | undefined;
+    tags: Tag[] | [];
     isLoading: boolean;
     isPostLoading: boolean;
     error: string | undefined;
@@ -27,5 +28,11 @@ export interface IPostData {
 export interface IPostInfo {
     status: boolean;
     article: Post;
+}
+
+export interface Tag {
+    tag_id: number;
+    name: string;
+    color: string;
 }
 

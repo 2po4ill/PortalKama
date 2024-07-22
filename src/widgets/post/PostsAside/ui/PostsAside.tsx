@@ -21,12 +21,13 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                 <div className={cls.selectorsBlock}>
                     <div className={cls.searchByTag}>
                         <Text title={"Поиск по тегам"}/>
-                        <Input disabled placeholder={"Выберете из списка"} theme={InputTheme.BORDERED}
-                               adornment={<ArrowDown/>}/>
-                        {/*<select >*/}
-                        {/*    <option value="#" hidden>Выберете из списка</option>*/}
-                        {/*    <option value={1}>Тег #1</option>*/}
-                        {/*</select>*/}
+                    {/*
+                    checkbox
+                        tag1 color
+                        tag2 color
+                        tag3 color
+                        .....
+                    */}
                     </div>
                     <div className={cls.searchByDate}>
                         <Text className={cls.title} title={"По дате"}/>
@@ -40,18 +41,12 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                             <Input className={cls.calendar} placeholder={"ДД.ММ.ГГГГ"} theme={InputTheme.BORDERED}
                                    adornment={<Calendar/>}/>
                         </div>
-                        <div className={cls.buttonWrapper}>
-                            <Button theme={ButtonTheme.INHERIT} >
-                                <Text text={"сброс"} />
-                            </Button>
-                        </div>
-                    </div>
-                    <div className={cls.searchByContent}>
-                        <Text title={"По содержанию"}/>
-                        <Input  theme={InputTheme.BORDERED} placeholder={"Текст для поиска"} />
                     </div>
                     <div className={cls.buttonWrapper}>
-                        <Button >
+                        <Button className={cls.btn}>
+                            Сброс
+                        </Button>
+                        <Button className={cls.btn}>
                             Поиск
                         </Button>
                     </div>

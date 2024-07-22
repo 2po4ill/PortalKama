@@ -1,11 +1,12 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {IPostData, IPostInfo, Post, PostSchema} from "../types/post";
+import {IPostData, IPostInfo, Post, PostSchema, Tag} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
 import {User} from "entities/User";
 
 const initialState: PostSchema = {
     posts: [],
     post: undefined,
+    tags: [],
     isLoading: false,
     isPostLoading: false,
     error: undefined
@@ -83,6 +84,41 @@ const postSlice = createAppSlice({
                         return {
                             ...state,
                             isPostLoading: false,
+                            error: String(action.error)
+                        }
+                    }
+                }
+            ),
+            getTags: createAThunk<undefined, Tag[] | []>(async (data, thunkAPI) => {
+                    const { rejectWithValue, extra } = thunkAPI;
+                    try {
+                        const tag_list = await extra.api.get<Tag[] | []>("/tags");
+                        return tag_list.data;
+                    } catch (err) {
+                        console.log("Something went wrong" + err);
+                        return rejectWithValue(String(err));
+                    } },
+                {
+                    pending: state => {
+                        return {
+                            ...state,
+                            isLoading: true,
+                            error: undefined
+                        }
+                    },
+                    fulfilled: (state, action) => {
+                        const tags = action.payload
+                        return {
+                            ...state,
+                            isLoading: false,
+                            error: undefined,
+                            tags: tags
+                        }
+                    },
+                    rejected: (state, action) => {
+                        return {
+                            ...state,
+                            isLoading: false,
                             error: String(action.error)
                         }
                     }

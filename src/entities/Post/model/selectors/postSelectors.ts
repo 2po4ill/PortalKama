@@ -1,11 +1,12 @@
 import {createSelector, Selector} from "@reduxjs/toolkit";
 import {StateSchema} from "app/providers/StoreProvider";
-import {Post, PostSchema} from "entities/Post";
+import {Post, PostSchema, Tag} from "entities/Post/model/types/post";
 
 
 const defaultPostData: PostSchema = {
     posts: [],
     post: undefined,
+    tags: [],
     error: undefined,
     isLoading: false,
     isPostLoading: false,
@@ -17,6 +18,7 @@ interface IPostSelectors {
     getPostsData: Selector<StateSchema, PostSchema>;
     getPostsList: Selector<StateSchema, Post[]>;
     getPost: Selector<StateSchema, Post | undefined>;
+    getTags: Selector<StateSchema, Tag[] | []>;
     getIsPostLoading: Selector<StateSchema, boolean>;
     getIsLoading: Selector<StateSchema, boolean>;
 }
@@ -30,6 +32,10 @@ export const postSelectors: IPostSelectors = {
     getPost: createSelector(
         getPostsData,
         (data) => data.post
+    ),
+    getTags: createSelector(
+        getPostsData,
+        (data) => data.tags
     ),
     getIsLoading: createSelector(
         getPostsData,
