@@ -24,19 +24,34 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
         onClose,
     selectedPost} = props;
     const isPostLoading = useSelector(postSelectors.getIsPostLoading);
+    const selectedDesc = useSelector(postSelectors.getPost);
 
+    let post: Post | undefined;
+    if (selectedPost) {
+        post = {
+            post_id: selectedPost.post_id,
+            images: selectedPost.images,
+            title: selectedPost.title,
+            text: selectedPost.text,
+            likes_amount: selectedPost.likes_amount,
+            tags: selectedPost.tags,
+            creation_date: selectedPost.creation_date,
+            update_date: selectedPost.update_date,
+            postDesc: selectedDesc
+        }
+    } else {
+        post = undefined
+    }
 
     return (
-        <AsyncReducerProvider name={'post'} reducer={postReducer} destroy={false} >
             <Modal isOpen={isOpen} onClose={onClose}>
                 {!isPostLoading ?
                     <div className={classNames(cls.PostModal, {}, [className])}>
-                        {selectedPost?.text}
+                        {post?.postDesc?.text}
                     </div>
                     : <Spinner/>
                 }
             </Modal>
-        </AsyncReducerProvider>
     );
 });
 PostModal.displayName = "PostModal";

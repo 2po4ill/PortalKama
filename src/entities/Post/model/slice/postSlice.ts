@@ -1,5 +1,5 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {IPostData, IPostInfo, Post, PostSchema, Tag} from "../types/post";
+import {IPostData, IPostInfo, Post, PostDesc, PostSchema, Tag} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
 
 
@@ -54,7 +54,7 @@ const postSlice = createAppSlice({
                     }
                 }
             ),
-            getPost: createAThunk<number, Post>(async (data, thunkAPI) => {
+            getPost: createAThunk<number, PostDesc>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
                         const postInfo = await extra.api.get<IPostInfo>("/article?post_id=" + data);

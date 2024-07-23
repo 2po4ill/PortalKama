@@ -9,11 +9,17 @@ export interface Post {
     tags?: string[];
     creation_date?: string;
     update_date?: string;
+    postDesc?: PostDesc;
+}
+
+export interface PostDesc{
+    text: string;
+    comments?: string[];
 }
 
 export interface PostSchema {
     posts: Post[] | [];
-    post: Post | undefined;
+    post: PostDesc | undefined;
     tags: Tag[] | [];
     isLoading: boolean;
     isPostLoading: boolean;
@@ -27,7 +33,7 @@ export interface IPostData {
 
 export interface IPostInfo {
     status: boolean;
-    article: Post;
+    article: PostDesc;
 }
 
 export interface Tag {

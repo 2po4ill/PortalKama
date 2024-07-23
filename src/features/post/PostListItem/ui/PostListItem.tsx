@@ -24,6 +24,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         postClickHandler,
         setSelectedPost
     } = props;
+    const dispatch = useAppDispatch();
 
     const {
         post_id,
@@ -34,14 +35,11 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         update_date,
         tags,
         likes_amount } = post;
-
-    const dispatch = useAppDispatch();
-    const selectedPost = useSelector(postSelectors.getPost);
     return (
         <article className={classNames(cls.PostListItem, {}, [className])}
                  onClick={() => {
                      dispatch(postActions.getPost(post_id))
-                     setSelectedPost(selectedPost)
+                     setSelectedPost(post)
                      postClickHandler()
         }}>
 
