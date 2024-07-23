@@ -42,7 +42,7 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
 
     const reservationApiCall = () => {
         alert("Вы забронировали место")
-        dispatch(reservationActions.reservation({place_id: selectedPoint, start: selectedDateStart, finish: selectedDateEnd} as IReservationMade));
+        dispatch(reservationActions.reservation({place_id: selectedPoint, start: selectedDateStart.toString(), finish: selectedDateEnd.toString()} as IReservationMade));
     }
     return (
         <AsyncReducerProvider name={'reservation'} reducer={reservationReducer} destroy={false} >

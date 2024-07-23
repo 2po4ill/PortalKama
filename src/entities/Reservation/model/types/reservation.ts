@@ -19,12 +19,12 @@ export interface IReservationItem {
 export interface IReservationData {
     status: string;
     reservation_list: IReservationItem[];
-    userReservationList: IReservationMade[];
+    user_reservations: IReservationMade[];
 }
 
 export interface IReservationMade{
     place_id: number;
-    start: Date;
-    finish: Date;
+    start: string;
+    finish: string;
 }
 

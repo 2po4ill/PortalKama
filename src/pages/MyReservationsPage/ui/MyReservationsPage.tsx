@@ -7,6 +7,7 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {useEffect} from "react";
 import {reservationActions, reservationReducer} from "entities/Reservation/model/slice/reservationSlice";
 import { AsyncReducerProvider } from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
+import {ReservationList} from "features/reservation/ui/ReservationList/ReservationList";
 
 
 export interface IReservationPageProps {
@@ -18,14 +19,14 @@ const MyReservationsPage = ({ className }: IReservationPageProps ) => {
     const isLoading = useSelector(reservationSelectors.getIsLoading);
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(reservationActions.getUserReservations);
+        dispatch(reservationActions.getUserReservations());
     }, [dispatch]);
 
     return (
         <AsyncReducerProvider name={'reservation'} reducer={reservationReducer} destroy={false} >
             {!isLoading ?
                 <div className={classNames(cls.myReservationPage, {}, [className])}>
-
+                    <ReservationList reservations={reservations}/>
                 </div>
                 : <PageLoader/>}
         </AsyncReducerProvider>
