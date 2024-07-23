@@ -25,27 +25,52 @@ export const ReservationListItem: FC<ICartItemProps> = memo((props) => {
     const start = new Date(reservation.start)
     const finish = new Date(reservation.finish)
 
+
+    const dayOfTheWeek = (date: Date) => {
+        switch(date.getDay())
+        {
+            case 0:
+                return "Воскресенье"
+            case 1:
+                return "Понедельник"
+            case 2:
+                return "Вторник"
+            case 3:
+                return "Среда"
+            case 4:
+                return "Четверг"
+            case 5:
+                return "Пятница"
+            case 6:
+                return "Суббота"
+        }
+    }
+
+    const fullDate = (date: Date) => {
+        return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear()
+    }
+
+    const dateTime = (date:Date) => {
+        return date.getHours() + ":00"
+    }
+
+
+    const dateFormat = (date:Date) => {
+        return (
+            <div>
+                <a> {dayOfTheWeek(date)}, {fullDate(date)} {dateTime(date)}</a>
+            </div>
+        )
+    }
     return (
         <div>
             <div>
-                <div>
-                    <Text
-                        title={reservation.place_id.toString()}
-
-                    />
-                    <a> {start.getFullYear()} </a>
-                    <a> {finish.getFullYear()} </a>
-                </div>
+                <label> Место #{reservation.place_id}</label>
+                <a> {dateFormat(start)} - {dateFormat(finish)} </a>
             </div>
             <div>
-                <Text text={"в наличии"}/>
-
-                <div>
-                    <Button children={<img alt={"bin_image"} src={bin}/>} onClick={() => {
-                    }}></Button>
-                    <Button> - </Button>
-                    <Button> + </Button>
-                </div>
+                    <Button> Изменить </Button>
+                    <Button> Отменить </Button>
             </div>
         </div>
     );

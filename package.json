@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build:test": "webpack --env mode=production apiURL=http://test.corp-portal.kama-diesel.ru/api",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack serve --env port=3000",
     "start:dev:server": "node ./json_server/index.js",

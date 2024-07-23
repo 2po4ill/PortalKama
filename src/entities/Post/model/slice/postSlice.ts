@@ -1,7 +1,7 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IPostData, IPostInfo, Post, PostSchema, Tag} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
-import {User} from "entities/User";
+
 
 const initialState: PostSchema = {
     posts: [],
