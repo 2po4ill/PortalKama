@@ -175,19 +175,13 @@ server.get('/article', (req, res) => {
     try {
         const post_id = req.query.post_id
         const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
-        const { articles = {articles : []} } = db;
-        const chosenArticle = articles.articles.find( article => article.post_id === Number(post_id));
+        const { articleInfo = {articleInfo : []} } = db;
+        const chosenArticle = articleInfo.articleInfo.find( article => article.post_id === Number(post_id));
 
         if (chosenArticle) {
             const article = {
                 post_id: chosenArticle.post_id,
-                title: chosenArticle.title,
-                text: chosenArticle.text,
-                creation_date: chosenArticle.creation_date,
-                update_date: chosenArticle.update_date,
-                likes_amount: chosenArticle.likes_amount,
-                images: chosenArticle.images,
-                tags: chosenArticle.tags,
+                text: chosenArticle.text
             };
             return res.status(200).json({article});
         }

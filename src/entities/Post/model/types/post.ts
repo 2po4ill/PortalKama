@@ -13,6 +13,7 @@ export interface Post {
 }
 
 export interface PostDesc{
+    post_id: number;
     text: string;
     comments?: string[];
 }
