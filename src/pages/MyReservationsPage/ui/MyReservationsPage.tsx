@@ -26,7 +26,7 @@ const MyReservationsPage = ({ className }: IReservationPageProps ) => {
         <AsyncReducerProvider name={'reservation'} reducer={reservationReducer} destroy={false} >
             {!isLoading ?
                 <div className={classNames(cls.myReservationPage, {}, [className])}>
-                    <ReservationList reservations={reservations}/>
+                    <ReservationList reservations={reservations ? reservations : []}/>
                 </div>
                 : <PageLoader/>}
         </AsyncReducerProvider>
