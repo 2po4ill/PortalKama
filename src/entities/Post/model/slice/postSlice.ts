@@ -1,12 +1,14 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {IPostData, Post, PostSchema} from "../types/post";
+import {IPostData, IPostInfo, Post, PostDesc, PostSchema, Tag} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
-import {IReservationData} from "entities/Reservation/model/types/reservation";
-import {act} from "react-dom/test-utils";
+
 
 const initialState: PostSchema = {
     posts: [],
+    post: undefined,
+    tags: [],
     isLoading: false,
+    isPostLoading: false,
     error: undefined
 }
 
@@ -17,10 +19,10 @@ const postSlice = createAppSlice({
         const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
         return {
-            getPostsList: createAThunk<undefined, IPostData>(async (data, thunkAPI) => {
+            getPostsList: createAThunk<{tags: Tag[], start: number, finish: number} | undefined, IPostData>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
-                        const postList = await extra.api.get<IPostData>("/articles");
+                        const postList = await extra.api.get<IPostData>("/articles?tags=" + data?.tags + "&start=" + data?.start + "&finish=" + data?.finish);
                         return postList.data;
                     } catch (err) {
                         console.log("Something went wrong" + err);
@@ -51,10 +53,80 @@ const postSlice = createAppSlice({
                         }
                     }
                 }
+            ),
+            getPost: createAThunk<number, PostDesc>(async (data, thunkAPI) => {
+                    const { rejectWithValue, extra } = thunkAPI;
+                    try {
+                        const postInfo = await extra.api.get<IPostInfo>("/article?post_id=" + data);
+                        return postInfo.data.article;
+                    } catch (err) {
+                        console.log("Something went wrong" + err);
+                        return rejectWithValue(String(err));
+                    } },
+                {
+                    pending: state => {
+                        return {
+                            ...state,
+                            isPostLoading: true,
+                            error: undefined
+                        }
+                    },
+                    fulfilled: (state, action) => {
+                        const post = action.payload
+                        return {
+                            ...state,
+                            isPostLoading: false,
+                            error: undefined,
+                            post: post
+                        }
+                    },
+                    rejected: (state, action) => {
+                        return {
+                            ...state,
+                            isPostLoading: false,
+                            error: String(action.error)
+                        }
+                    }
+                }
+            ),
+            getTags: createAThunk<undefined, Tag[] | []>(async (data, thunkAPI) => {
+                    const { rejectWithValue, extra } = thunkAPI;
+                    try {
+                        const tag_list = await extra.api.get<Tag[] | []>("/tags");
+                        return tag_list.data;
+                    } catch (err) {
+                        console.log("Something went wrong" + err);
+                        return rejectWithValue(String(err));
+                    } },
+                {
+                    pending: state => {
+                        return {
+                            ...state,
+                            isLoading: true,
+                            error: undefined
+                        }
+                    },
+                    fulfilled: (state, action) => {
+                        const tags = action.payload
+                        return {
+                            ...state,
+                            isLoading: false,
+                            error: undefined,
+                            tags: tags
+                        }
+                    },
+                    rejected: (state, action) => {
+                        return {
+                            ...state,
+                            isLoading: false,
+                            error: String(action.error)
+                        }
+                    }
+                }
             )
-
         }
     }
 });
+
 
 export const { actions: postActions, reducer: postReducer } = postSlice

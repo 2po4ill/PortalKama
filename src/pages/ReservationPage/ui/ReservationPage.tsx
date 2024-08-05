@@ -28,12 +28,33 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
 
     const place = places.find(x => x.place_id === selectedPoint)
     const [selectedDateStart, setSelectedDateStart] = useState(new Date());
-    const [selectedDateEnd, setSelectedDateEnd] = useState(new Date());
+
+    const dateEnd = new Date()
+    dateEnd.setHours(new Date().getHours() + 1)
+
+    const [selectedDateEnd, setSelectedDateEnd] = useState(dateEnd);
     const [selectedPlace, setSelectedPlace] = useState(place);
     const [selectedPoint, setSelectedPoint] = useState(Number(null));
+
+    const filterApiCall = () => {
+        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+    }
+
+    const apiDate = (date: Date) => {
+        return new Intl.DateTimeFormat("en", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            timeZone: undefined
+        }).format(date);
+    }
+
     const reservationApiCall = () => {
         alert("Вы забронировали место")
-        dispatch(reservationActions.reservation({place_id: selectedPoint, start: selectedDateStart, finish: selectedDateEnd} as IReservationMade));
+        dispatch(reservationActions.reservation({place_id: selectedPoint, start: apiDate(selectedDateStart), finish: apiDate(selectedDateEnd)} as IReservationMade));
+        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
     }
     return (
         <AsyncReducerProvider name={'reservation'} reducer={reservationReducer} destroy={false} >
@@ -43,7 +64,8 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
                     header={<ReservationHeader setSelectedDateStart={setSelectedDateStart}
                                                selectedDateEnd={selectedDateEnd}
                                                setSelectedDateEnd={setSelectedDateEnd}
-                                               selectedDateStart={selectedDateStart}/>}
+                                               selectedDateStart={selectedDateStart}
+                                                apiCall={filterApiCall}/>}
                     content={<ReservationContent places={places}
                                                  setSelectedPoint={setSelectedPoint}
                                                  setSelectedPlace={setSelectedPlace}

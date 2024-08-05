@@ -171,6 +171,27 @@ server.get('/me', (req, res) => {
 //     next();
 // });
 
+server.get('/article', (req, res) => {
+    try {
+        const post_id = req.query.post_id
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const { articleInfo = {articleInfo : []} } = db;
+        const chosenArticle = articleInfo.articleInfo.find( article => article.post_id === Number(post_id));
+
+        if (chosenArticle) {
+            const article = {
+                post_id: chosenArticle.post_id,
+                text: chosenArticle.text
+            };
+            return res.status(200).json({article});
+        }
+        return res.status(403).json({ message: 'article not found' });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({message: e.message})
+    }
+})
+
 server.use(router);
 
 // запуск сервера

@@ -1,16 +1,22 @@
-import {FC, memo} from "react";
+import {Dispatch, FC, memo, SetStateAction} from "react";
 import {classNames} from "shared/lib/classNames";
 import cls from "./PostsList.module.scss";
 import {PostListItem} from "features/post/PostListItem";
 import {Post} from "entities/Post";
+import {IShopItem} from "entities/Product/model/types/product";
 
 interface IPostsListProps {
     className?: string;
     posts: Post[];
+    postClickHandler: () => void;
+    setSelectedPost: (post: Post | undefined) => void;
 }
 
 const PostsList: FC<IPostsListProps> = memo((props) => {
-    const { className , posts} = props;
+    const { className ,
+        posts,
+        postClickHandler,
+        setSelectedPost} = props;
 
 
     return (
@@ -18,7 +24,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
             <div className={cls.listContainer}>
                 {
                     posts.map(e => (
-                        <PostListItem post={e} key={e.post_id} />
+                        <PostListItem post={e} key={e.post_id} postClickHandler={postClickHandler} setSelectedPost={setSelectedPost}/>
                     ))
                 }
             </div>

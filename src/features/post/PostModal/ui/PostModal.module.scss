@@ -1,3 +1,21 @@
 .PostModal {
-
+    max-height: 800px;
+    overflow-y: scroll;
+    overflow-x: initial;
+}
+.ModalProperties {
+    max-width: 900px;
+}
+.footer {
+    margin-top: 10px;
+    .inputComment {
+        width: 80%;
+        .btn {
+            position: relative;
+            left: 35px;
+        }
+    }
+    .CommentSection{
+        margin-top: 20px;
+    }
 }

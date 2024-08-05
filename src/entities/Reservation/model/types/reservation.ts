@@ -1,6 +1,7 @@
 
 export interface ReservationSchema {
     reservations: IReservationItem[];
+    userReservationList: IReservationMade[];
     isLoading: boolean;
     error: string | undefined;
 }
@@ -18,10 +19,12 @@ export interface IReservationItem {
 export interface IReservationData {
     status: string;
     reservation_list: IReservationItem[];
+    user_reservations: IReservationMade[];
 }
 
 export interface IReservationMade{
     place_id: number;
-    start: Date;
-    finish: Date;
+    start: string;
+    finish: string;
 }
+

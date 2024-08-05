@@ -2,24 +2,80 @@ import {FC, memo} from "react";
 import {Modal} from "shared/ui/Modal/Modal";
 import {classNames} from "shared/lib/classNames";
 import cls from "./PostModal.module.scss";
+import {useSelector} from "react-redux";
+import {postSelectors} from "entities/Post/model/selectors/postSelectors";
+import {Spinner} from "shared/ui/Spinner/Spinner";
+import {Post} from "entities/Post";
+import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
+import placeHolder from "shared/assets/placeholder-image.webp";
+import {Text} from "shared/ui/Text/Text";
+import {Input} from "shared/ui/Input/Input";
+import {Button} from "shared/ui/Button/Button";
+
 
 interface IPostModalProps {
     className?: string;
     isOpen: boolean;
     onClose: () => void;
+    selectedPost: Post | undefined;
 }
 
 const PostModal: FC<IPostModalProps> = memo((props) => {
-    const { className, isOpen, onClose } = props;
+    const { className,
+        isOpen,
+        onClose,
+    selectedPost} = props;
+    const isPostLoading = useSelector(postSelectors.getIsPostLoading);
+    const selectedDesc = useSelector(postSelectors.getPost);
+
+    let post: Post | undefined;
+    if (selectedPost) {
+        post = {
+            post_id: selectedPost.post_id,
+            images: selectedPost.images,
+            title: selectedPost.title,
+            text: selectedPost.text,
+            likes_amount: selectedPost.likes_amount,
+            tags: selectedPost.tags,
+            creation_date: selectedPost.creation_date,
+            update_date: selectedPost.update_date,
+            postDesc: selectedDesc
+        }
+    } else {
+        post = undefined
+    }
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose}>
-            <div className={classNames(cls.PostModal, {}, [className])}>
-                PostModal
-            </div>
-        </Modal>
+            <Modal isOpen={isOpen} onClose={onClose} className={cls.ModalProperties}>
+                {!isPostLoading ?
+                    <div className={classNames(cls.PostModal, {}, [className])}>
+
+                        <div className={cls.collage}>
+                            <img src={imageSrc(post ? post.images[0] : placeHolder)} onError={({currentTarget}) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = placeHolder;
+                            }}/>
+                        </div>
+
+                        <div className={cls.contentBlock}>
+                            <Text
+                                title={post?.title}
+                                text={post?.postDesc ? post?.postDesc?.text : post?.text}
+                            />
+                        </div>
+
+                        <div className={cls.footer}>
+                            <Input placeholder={"Оставьте комментарий"} className={cls.inputComment} adornment={<Button className={cls.btn}> Отправить </Button>}/>
+                            <div className={cls.CommentSection}>
+                                {post?.postDesc?.comments ? "Комментарий" : "Здесь пока нет комментариев, оставьте его первым!"}
+                            </div>
+                        </div>
+                    </div>
+                    : <Spinner/>
+                }
+            </Modal>
     );
 });
 PostModal.displayName = "PostModal";
 
-export { PostModal };
+export {PostModal};
