@@ -243,566 +243,151 @@
   }
   ,
   "reservation_list" : {"reservation_list": [
-    {
-      "place_id": 1,
-      "name": "name_1",
-      "is_available": true
-    },
-    {
-      "place_id": 2,
-      "name": "name_2",
-      "is_available": true
-    },
-    {
-      "place_id": 3,
-      "name": "name_3",
-      "is_available": true
-    },
-    {
-      "place_id": 4,
-      "name": "name_4",
-      "is_available": true
-    },
-    {
-      "place_id": 5,
-      "name": "name_5",
-      "is_available": true
-    },
-    {
-      "place_id": 6,
-      "name": "name_6",
-      "is_available": true
-    },
-    {
-      "place_id": 7,
-      "name": "name_7",
-      "is_available": true
-    },
-    {
-      "place_id": 8,
-      "name": "name_8",
-      "is_available": true
-    },
-    {
-      "place_id": 9,
-      "name": "name_9",
-      "is_available": true
-    },
-    {
-      "place_id": 10,
-      "name": "name_10",
-      "is_available": true
-    },
-    {
-      "place_id": 11,
-      "name": "name_11",
-      "is_available": true
-    },
-    {
-      "place_id": 12,
-      "name": "name_12",
-      "is_available": true
-    },
-    {
-      "place_id": 13,
-      "name": "name_13",
-      "is_available": true
-    },
-    {
-      "place_id": 14,
-      "name": "name_14",
-      "is_available": true
-    },
-    {
-      "place_id": 15,
-      "name": "name_15",
-      "is_available": true
-    },
-    {
-      "place_id": 16,
-      "name": "name_16",
-      "is_available": true
-    },
-    {
-      "place_id": 17,
-      "name": "name_17",
-      "is_available": true
-    },
-    {
-      "place_id": 18,
-      "name": "name_18",
-      "is_available": true
-    },
-    {
-      "place_id": 19,
-      "name": "name_19",
-      "is_available": true
-    },
-    {
-      "place_id": 20,
-      "name": "name_20",
-      "is_available": true
-    },
-    {
-      "place_id": 21,
-      "name": "name_21",
-      "is_available": true
-    },
-    {
-      "place_id": 22,
-      "name": "name_22",
-      "is_available": true
-    },
-    {
-      "place_id": 23,
-      "name": "name_23",
-      "is_available": true
-    },
-    {
-      "place_id": 24,
-      "name": "name_24",
-      "is_available": true
-    },
-    {
-      "place_id": 25,
-      "name": "name_25",
-      "is_available": true
-    },
-    {
-      "place_id": 26,
-      "name": "name_26",
-      "is_available": true
-    },
-    {
-      "place_id": 27,
-      "name": "name_27",
-      "is_available": true
-    },
-    {
-      "place_id": 28,
-      "name": "name_28",
-      "is_available": true
-    },
-    {
-      "place_id": 29,
-      "name": "name_29",
-      "is_available": true
-    },
-    {
-      "place_id": 30,
-      "name": "name_30",
-      "is_available": true
-    },
-    {
-      "place_id": 31,
-      "name": "name_31",
-      "is_available": true
-    },
-    {
-      "place_id": 32,
-      "name": "name_32",
-      "is_available": true
-    },
-    {
-      "place_id": 33,
-      "name": "name_33",
-      "is_available": true
-    },
-    {
-      "place_id": 34,
-      "name": "name_34",
-      "is_available": true
-    },
-    {
-      "place_id": 35,
-      "name": "name_35",
-      "is_available": true
-    },
-    {
-      "place_id": 36,
-      "name": "name_36",
-      "is_available": true
-    },
-    {
-      "place_id": 37,
-      "name": "name_37",
-      "is_available": true
-    },
-    {
-      "place_id": 38,
-      "name": "name_38",
-      "is_available": true
-    },
-    {
-      "place_id": 39,
-      "name": "name_39",
-      "is_available": true
-    },
-    {
-      "place_id": 40,
-      "name": "name_40",
-      "is_available": true
-    },
-    {
-      "place_id": 41,
-      "name": "name_41",
-      "is_available": true
-    },
-    {
-      "place_id": 42,
-      "name": "name_42",
-      "is_available": true
-    },
-    {
-      "place_id": 43,
-      "name": "name_43",
-      "is_available": true
-    },
-    {
-      "place_id": 44,
-      "name": "name_44",
-      "is_available": true
-    },
-    {
-      "place_id": 45,
-      "name": "name_45",
-      "is_available": true
-    },
-    {
-      "place_id": 46,
-      "name": "name_46",
-      "is_available": true
-    },
-    {
-      "place_id": 47,
-      "name": "name_47",
-      "is_available": true
-    },
-    {
-      "place_id": 48,
-      "name": "name_48",
-      "is_available": true
-    },
-    {
-      "place_id": 49,
-      "name": "name_49",
-      "is_available": true
-    },
-    {
-      "place_id": 50,
-      "name": "name_50",
-      "is_available": true
-    },
-    {
-      "place_id": 51,
-      "name": "name_51",
-      "is_available": true
-    },
-    {
-      "place_id": 52,
-      "name": "name_52",
-      "is_available": true
-    },
-    {
-      "place_id": 53,
-      "name": "name_53",
-      "is_available": true
-    },
-    {
-      "place_id": 54,
-      "name": "name_54",
-      "is_available": true
-    },
-    {
-      "place_id": 55,
-      "name": "name_55",
-      "is_available": true
-    },
-    {
-      "place_id": 56,
-      "name": "name_56",
-      "is_available": true
-    },
-    {
-      "place_id": 57,
-      "name": "name_57",
-      "is_available": true
-    },
-    {
-      "place_id": 58,
-      "name": "name_58",
-      "is_available": true
-    },
-    {
-      "place_id": 59,
-      "name": "name_59",
-      "is_available": true
-    },
-    {
-      "place_id": 60,
-      "name": "name_60",
-      "is_available": true
-    },
-    {
-      "place_id": 61,
-      "name": "name_61",
-      "is_available": true
-    },
-    {
-      "place_id": 62,
-      "name": "name_62",
-      "is_available": true
-    },
-    {
-      "place_id": 63,
-      "name": "name_63",
-      "is_available": true
-    },
-    {
-      "place_id": 64,
-      "name": "name_64",
-      "is_available": true
-    },
-    {
-      "place_id": 65,
-      "name": "name_65",
-      "is_available": true
-    },
-    {
-      "place_id": 66,
-      "name": "name_66",
-      "is_available": true
-    },
-    {
-      "place_id": 67,
-      "name": "name_67",
-      "is_available": true
-    },
-    {
-      "place_id": 68,
-      "name": "name_68",
-      "is_available": true
-    },
-    {
-      "place_id": 69,
-      "name": "name_69",
-      "is_available": true
-    },
-    {
-      "place_id": 70,
-      "name": "name_70",
-      "is_available": true
-    },
-    {
-      "place_id": 71,
-      "name": "name_71",
-      "is_available": true
-    },
-    {
-      "place_id": 72,
-      "name": "name_72",
-      "is_available": true
-    },
-    {
-      "place_id": 73,
-      "name": "name_73",
-      "is_available": true
-    },
-    {
-      "place_id": 74,
-      "name": "name_74",
-      "is_available": true
-    },
-    {
-      "place_id": 75,
-      "name": "name_75",
-      "is_available": true
-    },
-    {
-      "place_id": 76,
-      "name": "name_76",
-      "is_available": true
-    },
-    {
-      "place_id": 77,
-      "name": "name_77",
-      "is_available": true
-    },
-    {
-      "place_id": 78,
-      "name": "name_78",
-      "is_available": true
-    },
-    {
-      "place_id": 79,
-      "name": "name_79",
-      "is_available": true
-    },
-    {
-      "place_id": 80,
-      "name": "name_80",
-      "is_available": true
-    },
-    {
-      "place_id": 81,
-      "name": "name_81",
-      "is_available": true
-    },
-    {
-      "place_id": 82,
-      "name": "name_82",
-      "is_available": true
-    },
-    {
-      "place_id": 83,
-      "name": "name_83",
-      "is_available": true
-    },
-    {
-      "place_id": 84,
-      "name": "name_84",
-      "is_available": true
-    },
-    {
-      "place_id": 85,
-      "name": "name_85",
-      "is_available": true
-    },
-    {
-      "place_id": 86,
-      "name": "name_86",
-      "is_available": true
-    },
-    {
-      "place_id": 87,
-      "name": "name_87",
-      "is_available": true
-    },
-    {
-      "place_id": 88,
-      "name": "name_88",
-      "is_available": true
-    },
-    {
-      "place_id": 89,
-      "name": "name_89",
-      "is_available": true
-    },
-    {
-      "place_id": 90,
-      "name": "name_90",
-      "is_available": true
-    },
-    {
-      "place_id": 91,
-      "name": "name_91",
-      "is_available": true
-    },
-    {
-      "place_id": 92,
-      "name": "name_92",
-      "is_available": true
-    },
-    {
-      "place_id": 93,
-      "name": "name_93",
-      "is_available": true
-    },
-    {
-      "place_id": 94,
-      "name": "name_94",
-      "is_available": true
-    },
-    {
-      "place_id": 95,
-      "name": "name_95",
-      "is_available": true
-    },
-    {
-      "place_id": 96,
-      "name": "name_96",
-      "is_available": true
-    },
-    {
-      "place_id": 97,
-      "name": "name_97",
-      "is_available": true
-    },
-    {
-      "place_id": 98,
-      "name": "name_98",
-      "is_available": true
-    },
-    {
-      "place_id": 99,
-      "name": "name_99",
-      "is_available": true
-    },
-    {
-      "place_id": 100,
-      "name": "name_100",
-      "is_available": true
-    },
-    {
-      "place_id": 101,
-      "name": "name_101",
-      "is_available": true
-    },
-    {
-      "place_id": 102,
-      "name": "name_102",
-      "is_available": true
-    },
-    {
-      "place_id": 103,
-      "name": "name_103",
-      "is_available": true
-    },
-    {
-      "place_id": 104,
-      "name": "name_104",
-      "is_available": true
-    },
-    {
-      "place_id": 105,
-      "name": "name_105",
-      "is_available": true
-    },
-    {
-      "place_id": 106,
-      "name": "name_106",
-      "is_available": true
-    },
-    {
-      "place_id": 107,
-      "name": "name_107",
-      "is_available": true
-    },
-    {
-      "place_id": 108,
-      "name": "name_108",
-      "is_available": true
-    },
-    {
-      "place_id": 109,
-      "name": "name_109",
-      "is_available": true
-    },
-    {
-      "place_id": 110,
-      "name": "name_110",
-      "is_available": true
-    },
-    {
-      "place_id": 111,
-      "name": "name_111",
-      "is_available": true
-    },
-    {
-      "place_id": 112,
-      "name": "name_112",
-      "is_available": true
-    }
+    {"place_id": 1, "name": "Л-201", "is_available": true},
+    {"place_id": 2, "name": "Л-202", "is_available": true},
+    {"place_id": 3, "name": "Л-203", "is_available": true},
+    {"place_id": 4, "name": "Л-204", "is_available": true},
+    {"place_id": 5, "name": "Л-205", "is_available": true},
+    {"place_id": 6, "name": "Л-206", "is_available": true},
+    {"place_id": 7, "name": "Л-207", "is_available": true},
+    {"place_id": 8, "name": "Л-208", "is_available": true},
+    {"place_id": 9, "name": "Л-209", "is_available": true},
+    {"place_id": 10, "name": "Л-210", "is_available": true},
+    {"place_id": 11, "name": "Л-211", "is_available": true},
+    {"place_id": 12, "name": "Л-212", "is_available": true},
+    {"place_id": 13, "name": "Л-213", "is_available": true},
+    {"place_id": 14, "name": "Л-214", "is_available": true},
+    {"place_id": 15, "name": "Л-215", "is_available": true},
+    {"place_id": 16, "name": "Л-216", "is_available": true},
+    {"place_id": 17, "name": "Л-217", "is_available": true},
+    {"place_id": 18, "name": "Л-218", "is_available": true},
+    {"place_id": 19, "name": "Л-219", "is_available": true},
+    {"place_id": 20, "name": "Л-220", "is_available": true},
+    {"place_id": 21, "name": "Л-221", "is_available": true},
+    {"place_id": 22, "name": "Л-222", "is_available": true},
+    {"place_id": 23, "name": "Л-223", "is_available": true},
+    {"place_id": 24, "name": "Л-224", "is_available": true},
+    {"place_id": 25, "name": "Л-225", "is_available": true},
+    {"place_id": 26, "name": "Л-226", "is_available": true},
+    {"place_id": 27, "name": "Л-227", "is_available": true},
+    {"place_id": 28, "name": "Л-228", "is_available": true},
+    {"place_id": 29, "name": "Л-229", "is_available": true},
+    {"place_id": 30, "name": "Л-230", "is_available": true},
+    {"place_id": 31, "name": "Л-231", "is_available": true},
+    {"place_id": 32, "name": "Л-232", "is_available": true},
+    {"place_id": 33, "name": "Л-233", "is_available": true},
+    {"place_id": 34, "name": "Л-234", "is_available": true},
+    {"place_id": 35, "name": "Л-235", "is_available": true},
+    {"place_id": 36, "name": "Л-236", "is_available": true},
+    {"place_id": 37, "name": "Л-237", "is_available": true},
+    {"place_id": 38, "name": "Л-238", "is_available": true},
+    {"place_id": 39, "name": "Л-239", "is_available": true},
+    {"place_id": 40, "name": "Л-240", "is_available": true},
+    {"place_id": 41, "name": "Л-241", "is_available": true},
+    {"place_id": 42, "name": "Л-242", "is_available": true},
+    {"place_id": 43, "name": "Л-243", "is_available": true},
+    {"place_id": 44, "name": "Л-244", "is_available": true},
+    {"place_id": 45, "name": "Л-245", "is_available": true},
+    {"place_id": 46, "name": "Л-246", "is_available": true},
+    {"place_id": 47, "name": "Л-247", "is_available": true},
+    {"place_id": 48, "name": "Л-248", "is_available": true},
+    {"place_id": 49, "name": "Л-249", "is_available": true},
+    {"place_id": 50, "name": "Л-250", "is_available": true},
+    {"place_id": 51, "name": "Л-251", "is_available": true},
+    {"place_id": 52, "name": "Л-252", "is_available": true},
+
+
+    {"place_id": 53, "name": "П-201", "is_available": true},
+    {"place_id": 54, "name": "П-202", "is_available": true},
+    {"place_id": 55, "name": "П-203", "is_available": true},
+    {"place_id": 56, "name": "П-204", "is_available": true},
+    {"place_id": 57, "name": "П-205", "is_available": true},
+    {"place_id": 58, "name": "П-206", "is_available": true},
+    {"place_id": 59, "name": "П-207", "is_available": true},
+    {"place_id": 60, "name": "П-208", "is_available": true},
+    {"place_id": 61, "name": "П-209", "is_available": true},
+    {"place_id": 62, "name": "П-210", "is_available": true},
+    {"place_id": 63, "name": "П-211", "is_available": true},
+    {"place_id": 64, "name": "П-212", "is_available": true},
+    {"place_id": 65, "name": "П-213", "is_available": true},
+    {"place_id": 66, "name": "П-214", "is_available": true},
+    {"place_id": 67, "name": "П-215", "is_available": true},
+    {"place_id": 68, "name": "П-216", "is_available": true},
+    {"place_id": 69, "name": "П-217", "is_available": true},
+    {"place_id": 70, "name": "П-218", "is_available": true},
+    {"place_id": 71, "name": "П-219", "is_available": true},
+    {"place_id": 72, "name": "П-220", "is_available": true},
+    {"place_id": 73, "name": "П-221", "is_available": true},
+    {"place_id": 74, "name": "П-222", "is_available": true},
+    {"place_id": 75, "name": "П-223", "is_available": true},
+    {"place_id": 76, "name": "П-224", "is_available": true},
+    {"place_id": 77, "name": "П-225", "is_available": true},
+    {"place_id": 78, "name": "П-226", "is_available": true},
+    {"place_id": 79, "name": "П-227", "is_available": true},
+    {"place_id": 80, "name": "П-228", "is_available": true},
+    {"place_id": 81, "name": "П-229", "is_available": true},
+    {"place_id": 82, "name": "П-230", "is_available": true},
+    {"place_id": 83, "name": "П-231", "is_available": true},
+    {"place_id": 84, "name": "П-232", "is_available": true},
+    {"place_id": 85, "name": "П-233", "is_available": true},
+    {"place_id": 86, "name": "П-234", "is_available": true},
+    {"place_id": 87, "name": "П-235", "is_available": true},
+    {"place_id": 88, "name": "П-236", "is_available": true},
+    {"place_id": 89, "name": "П-237", "is_available": true},
+    {"place_id": 90, "name": "П-238", "is_available": true},
+    {"place_id": 91, "name": "П-239", "is_available": true},
+    {"place_id": 92, "name": "П-240", "is_available": true},
+    {"place_id": 93, "name": "П-241", "is_available": true},
+    {"place_id": 94, "name": "П-242", "is_available": true},
+    {"place_id": 95, "name": "П-243", "is_available": true},
+    {"place_id": 96, "name": "П-244", "is_available": true},
+    {"place_id": 97, "name": "П-245", "is_available": true},
+    {"place_id": 98, "name": "П-246", "is_available": true},
+    {"place_id": 99, "name": "П-247", "is_available": true},
+    {"place_id": 100, "name": "П-248", "is_available": true},
+    {"place_id": 101, "name": "П-249", "is_available": true},
+    {"place_id": 102, "name": "П-250", "is_available": true},
+    {"place_id": 103, "name": "П-251", "is_available": true},
+    {"place_id": 104, "name": "П-252", "is_available": true},
+    {"place_id": 105, "name": "П-253", "is_available": true},
+    {"place_id": 106, "name": "П-254", "is_available": true},
+
+    {"place_id": 107, "name": "Л-101", "is_available": true},
+    {"place_id": 108, "name": "Л-102", "is_available": true},
+    {"place_id": 109, "name": "Л-103", "is_available": true},
+    {"place_id": 110, "name": "Л-104", "is_available": true},
+    {"place_id": 111, "name": "Л-105", "is_available": true},
+    {"place_id": 112, "name": "Л-106", "is_available": true},
+    {"place_id": 113, "name": "Л-107", "is_available": true},
+    {"place_id": 114, "name": "Л-108", "is_available": true},
+    {"place_id": 115, "name": "Л-109", "is_available": true},
+    {"place_id": 116, "name": "Л-110", "is_available": true},
+    {"place_id": 117, "name": "Л-111", "is_available": true},
+    {"place_id": 118, "name": "Л-112", "is_available": true},
+    {"place_id": 119, "name": "Л-113", "is_available": true},
+    {"place_id": 120, "name": "Л-114", "is_available": true},
+    {"place_id": 121, "name": "Л-115", "is_available": true},
+    {"place_id": 122, "name": "Л-116", "is_available": true},
+    {"place_id": 123, "name": "Л-117", "is_available": true},
+    {"place_id": 124, "name": "Л-118", "is_available": true},
+    {"place_id": 125, "name": "Л-119", "is_available": true},
+    {"place_id": 126, "name": "Л-120", "is_available": true},
+    {"place_id": 127, "name": "Л-121", "is_available": true},
+    {"place_id": 128, "name": "Л-122", "is_available": true},
+    {"place_id": 129, "name": "Л-123", "is_available": true},
+    {"place_id": 130, "name": "Л-124", "is_available": true},
+    {"place_id": 131, "name": "Л-125", "is_available": true},
+    {"place_id": 132, "name": "Л-126", "is_available": true},
+    {"place_id": 133, "name": "Л-127", "is_available": true},
+    {"place_id": 134, "name": "Л-128", "is_available": true},
+    {"place_id": 135, "name": "Л-129", "is_available": true},
+    {"place_id": 136, "name": "Л-130", "is_available": true},
+    {"place_id": 137, "name": "Л-131", "is_available": true},
+    {"place_id": 138, "name": "Л-132", "is_available": true},
+    {"place_id": 139, "name": "Л-133", "is_available": true},
+    {"place_id": 140, "name": "Л-134", "is_available": true},
+    {"place_id": 141, "name": "Л-135", "is_available": true},
+    {"place_id": 142, "name": "Л-136", "is_available": true}
   ]
   }
 }
