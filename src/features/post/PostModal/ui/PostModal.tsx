@@ -4,11 +4,12 @@ import {classNames} from "shared/lib/classNames";
 import cls from "./PostModal.module.scss";
 import {useSelector} from "react-redux";
 import {postSelectors} from "entities/Post/model/selectors/postSelectors";
-import {postActions, postReducer} from "entities/Post/model/slice/postSlice";
 import {Spinner} from "shared/ui/Spinner/Spinner";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
-import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {Post} from "entities/Post";
+import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
+import placeHolder from "shared/assets/placeholder-image.webp";
+import {Text} from "shared/ui/Text/Text";
+import {Input} from "shared/ui/Input/Input";
 
 
 interface IPostModalProps {
@@ -44,10 +45,30 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
     }
 
     return (
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} className={cls.ModalProperties}>
                 {!isPostLoading ?
                     <div className={classNames(cls.PostModal, {}, [className])}>
-                        {post?.postDesc?.text}
+
+                        <div className={cls.collage}>
+                            <img src={imageSrc(post ? post.images[0] : placeHolder)} onError={({currentTarget}) => {
+                                currentTarget.onerror = null; // prevents looping
+                                currentTarget.src = placeHolder;
+                            }}/>
+                        </div>
+
+                        <div className={cls.contentBlock}>
+                            <Text
+                                title={post?.title}
+                                text={post?.postDesc ? post?.postDesc?.text : post?.text}
+                            />
+                        </div>
+
+                        <div className={cls.footer}>
+                            <Input placeholder={"Оставьте комментарий"}/>
+                            <div className={cls.CommentSection}>
+                                Здесь пока пусто, оставьте комментарий первым!
+                            </div>
+                        </div>
                     </div>
                     : <Spinner/>
                 }

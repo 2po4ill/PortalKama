@@ -5,6 +5,7 @@ import React, {
 import { Portal } from 'shared/ui/Portal/Portal';
 import cls from './Modal.module.scss';
 import {classNames} from "shared/lib/classNames";
+import {Button} from "shared/ui/Button/Button";
 
 export interface IModalProps {
     className?: string;
@@ -96,7 +97,10 @@ export const Modal: FC<IModalProps> = (props) => {
         <Portal>
             <div className={classNames(cls.Modal, mods, ["modal"])}>
                 <div className={cls.overlay} onClick={closeHandler}>
-                    <div className={ classNames( cls.content, {}, [className])} onClick={onContentClick}>
+                    <div className={classNames(cls.content, {}, [className])} onClick={onContentClick}>
+                        <div className={cls.x}>
+                            <Button onClick={closeHandler}> X </Button>
+                        </div>
                         {children}
                     </div>
                 </div>

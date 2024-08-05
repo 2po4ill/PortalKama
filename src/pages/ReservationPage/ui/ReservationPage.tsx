@@ -40,9 +40,20 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
         dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
     }
 
+    const apiDate = (date: Date) => {
+        return new Intl.DateTimeFormat("en", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+            timeZone: undefined
+        }).format(date);
+    }
+
     const reservationApiCall = () => {
         alert("Вы забронировали место")
-        dispatch(reservationActions.reservation({place_id: selectedPoint, start: selectedDateStart.toString(), finish: selectedDateEnd.toString()} as IReservationMade));
+        dispatch(reservationActions.reservation({place_id: selectedPoint, start: apiDate(selectedDateStart), finish: apiDate(selectedDateEnd)} as IReservationMade));
         dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
     }
     return (

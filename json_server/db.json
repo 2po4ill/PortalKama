@@ -117,7 +117,20 @@
     "cart_data": []
   },
   "user_reservations": {
-    "user_reservations": null
+    "user_reservations": [
+      {
+        "reservation_id": 1,
+        "place_id": 1,
+        "start": "2024-07-18T06:00:00Z",
+        "finish": "2024-07-22T06:00:00Z"
+      },
+      {
+        "reservation_id": 2,
+        "place_id": 1,
+        "start": "2024-07-22T06:00:00Z",
+        "finish": "2024-07-24T06:00:00Z"
+      }
+    ]
   },
   "articleInfo": {
     "articleInfo": [
