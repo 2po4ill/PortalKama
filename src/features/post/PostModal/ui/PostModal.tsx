@@ -10,6 +10,7 @@ import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
 import placeHolder from "shared/assets/placeholder-image.webp";
 import {Text} from "shared/ui/Text/Text";
 import {Input} from "shared/ui/Input/Input";
+import {Button} from "shared/ui/Button/Button";
 
 
 interface IPostModalProps {
@@ -64,9 +65,9 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                         </div>
 
                         <div className={cls.footer}>
-                            <Input placeholder={"Оставьте комментарий"}/>
+                            <Input placeholder={"Оставьте комментарий"} className={cls.inputComment} adornment={<Button className={cls.btn}> Отправить </Button>}/>
                             <div className={cls.CommentSection}>
-                                Здесь пока пусто, оставьте комментарий первым!
+                                {post?.postDesc?.comments ? "Комментарий" : "Здесь пока нет комментариев, оставьте его первым!"}
                             </div>
                         </div>
                     </div>
