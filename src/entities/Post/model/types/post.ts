@@ -15,7 +15,7 @@ export interface Post {
 export interface PostDesc{
     post_id: number;
     text: string;
-    comments?: string[];
+    comments?: Comment[];
 }
 
 export interface PostSchema {
@@ -41,5 +41,15 @@ export interface Tag {
     tag_id: number;
     name: string;
     color: string;
+}
+
+export interface Comment {
+    user_id: number;
+    username?: string;
+    comment_id: number;
+    post_id: number;
+    body: string;
+    created_at?: string;
+    updated_at?: string;
 }
 

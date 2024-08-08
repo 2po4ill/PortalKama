@@ -1,4 +1,4 @@
-import {FC, memo} from "react";
+import {FC, memo, useState} from "react";
 import {Modal} from "shared/ui/Modal/Modal";
 import {classNames} from "shared/lib/classNames";
 import cls from "./PostModal.module.scss";
@@ -11,6 +11,10 @@ import placeHolder from "shared/assets/placeholder-image.webp";
 import {Text} from "shared/ui/Text/Text";
 import {Input} from "shared/ui/Input/Input";
 import {Button} from "shared/ui/Button/Button";
+import {CommentNode} from "shared/ui/Comment/Comment";
+import {Comment} from "entities/Post/model/types/post";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
+import {postActions} from "entities/Post/model/slice/postSlice";
 
 
 interface IPostModalProps {
@@ -27,6 +31,9 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
     selectedPost} = props;
     const isPostLoading = useSelector(postSelectors.getIsPostLoading);
     const selectedDesc = useSelector(postSelectors.getPost);
+    const dispatch = useAppDispatch();
+
+    const [submittedText, setSubmittedText] = useState("");
 
     let post: Post | undefined;
     if (selectedPost) {
@@ -43,6 +50,10 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
         }
     } else {
         post = undefined
+    }
+
+    function renderComment(comment: Comment) {
+        return <CommentNode comment={comment}/>
     }
 
     return (
@@ -65,9 +76,9 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                         </div>
 
                         <div className={cls.footer}>
-                            <Input placeholder={"Оставьте комментарий"} className={cls.inputComment} adornment={<Button className={cls.btn}> Отправить </Button>}/>
+                            <Input placeholder={"Оставьте комментарий"} onChange={setSubmittedText} className={cls.inputComment} adornment={<Button className={cls.btn} onClick={() => { dispatch(postActions.addComment({post_id: post?.post_id, body: submittedText})) }}> Отправить </Button>}/>
                             <div className={cls.CommentSection}>
-                                {post?.postDesc?.comments ? "Комментарий" : "Здесь пока нет комментариев, оставьте его первым!"}
+                                {post?.postDesc?.comments ? post?.postDesc?.comments.map(comment => renderComment(comment)): "Здесь пока нет комментариев, оставьте его первым!"}
                             </div>
                         </div>
                     </div>

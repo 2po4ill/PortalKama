@@ -1,6 +1,7 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IPostData, IPostInfo, Post, PostDesc, PostSchema, Tag} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
+import {Comment} from "entities/Post/model/types/post";
 
 
 const initialState: PostSchema = {
@@ -123,7 +124,26 @@ const postSlice = createAppSlice({
                         }
                     }
                 }
-            )
+            ),
+            addComment: createAThunk<{ post_id: number | undefined, body: string }, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/comment", {"post_id": data.post_id, "body": data.body});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
         }
     }
 });
