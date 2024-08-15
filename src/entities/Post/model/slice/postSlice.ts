@@ -1,5 +1,5 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {IPostData, IPostInfo, Post, PostDesc, PostSchema, Tag} from "../types/post";
+import {IPostData, IPostInfo, IPostTags, Post, PostDesc, PostSchema, Tag} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
 import {Comment} from "entities/Post/model/types/post";
 
@@ -90,10 +90,11 @@ const postSlice = createAppSlice({
                     }
                 }
             ),
-            getTags: createAThunk<undefined, Tag[] | []>(async (data, thunkAPI) => {
+            getTags: createAThunk<undefined, IPostTags>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
-                        const tag_list = await extra.api.get<Tag[] | []>("/tags");
+                        const tag_list = await extra.api.get<IPostTags>("/tags");
+                        console.log(tag_list.data);
                         return tag_list.data;
                     } catch (err) {
                         console.log("Something went wrong" + err);
@@ -108,12 +109,11 @@ const postSlice = createAppSlice({
                         }
                     },
                     fulfilled: (state, action) => {
-                        const tags = action.payload
                         return {
                             ...state,
                             isLoading: false,
                             error: undefined,
-                            tags: tags
+                            tags: action.payload.tags
                         }
                     },
                     rejected: (state, action) => {

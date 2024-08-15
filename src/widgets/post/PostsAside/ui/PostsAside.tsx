@@ -31,7 +31,7 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                     <div className={cls.searchByTag}>
                         <Text title={"Поиск по тегам"}/>
                     {/*    сделать checkbox'ы*/}
-                    {tags.map(tag => <a>{tag.name + tag.color}</a>)}
+                        {tags.map(tag => <a> {tag.name} {tag.color} </a>)}
                     </div>
                     <div className={cls.searchByDate}>
                         <Text className={cls.title} title={"По дате"}/>

@@ -6,7 +6,7 @@ export interface Post {
     images: string[];
     text: string; // текст новости
     likes_amount?: number; // кол-во лайков
-    tags?: string[];
+    tags?: Tag[];
     creation_date?: string;
     update_date?: string;
     postDesc?: PostDesc;
@@ -30,6 +30,11 @@ export interface PostSchema {
 export interface IPostData {
     status: boolean;
     articles: Post[];
+}
+
+export interface IPostTags {
+    status: boolean;
+    tags: Tag[];
 }
 
 export interface IPostInfo {
