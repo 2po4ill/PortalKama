@@ -10,8 +10,10 @@ export interface ReservationSchema {
 export interface IReservationItem {
     // id места
     place_id: number;
-    // статус места
+    full_name: string;
     is_available: boolean;
+    position: string;
+    department: string;
     // дополнительные параметры
     name: string;
 }

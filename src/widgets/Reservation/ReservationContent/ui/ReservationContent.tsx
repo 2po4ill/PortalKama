@@ -11,6 +11,8 @@ import {Button} from "shared/ui/Button/Button";
 import green from "shared/assets/images/icon_Зеленый.png"
 import red from "shared/assets/images/icon_Красный.png"
 import gray from "shared/assets/images/icon_Серый.png"
+import {PostModal} from "features/post/PostModal";
+import {PhoneModal} from "features/reservation/ui/PhoneModal";
 
 interface IReservationContentProps {
     className?: string;
@@ -30,7 +32,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     apiCall} = props;
 
     const [selectedFloor, setSelectedFloor] = useState("1_1");
-
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const ChangeTo11 = () => {
         setSelectedFloor("1_1")
@@ -79,6 +81,14 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
         [cls.selected]: selectedFloor === "2_2",
     };
 
+    const phoneClickHandler = () => {
+        setModalIsOpen(true);
+    }
+
+    function renderModal() {
+        phoneClickHandler()
+        return
+    }
 
     return (
         <div className={classNames(cls.ReservationContent, {}, [className])}>
@@ -102,9 +112,15 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                 <img src={gray} alt={"gray"}/>
                 <a> Недоступно </a>
             </div>
-            <Button onClick={apiCall} className={cls.reservation}>
-                Забронировать
-            </Button>
+            <div className={cls.buttonSection}>
+                <Button onClick={apiCall} className={cls.reservation}>
+                    Забронировать
+                </Button>
+                <Button onClick={phoneClickHandler} className={cls.reservation}>
+                    Телефонный справочник
+                </Button>
+            </div>
+            <PhoneModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} places={places} />
         </div>
     );
 })

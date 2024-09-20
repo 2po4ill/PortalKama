@@ -9,6 +9,7 @@ export interface IPoint {
     className: string;
     place: IReservationItem;
     selectedPoint: number;
+    phone?: string;
     setSelectedPoint: (number: number) => void;
     setSelectedPlace: (place: IReservationItem) => void;
 }
@@ -18,6 +19,7 @@ export const Point: FC<IPoint> = (props) => {
         className,
         place,
         selectedPoint,
+        phone,
         setSelectedPoint,
         setSelectedPlace
     } = props;
@@ -50,7 +52,16 @@ export const Point: FC<IPoint> = (props) => {
 
     return (
         <div className={classNames(className, mods, [])}>
-            <img src={mapPoint()} alt={"point"} onClick={SelectPoint}/>
+            <div className={cls.tooltip}>
+                <img src={mapPoint()} alt={"point"} onClick={SelectPoint}/>
+                { place.is_available ? null :
+                <div className={cls.tooltiptext}>
+                    <a> {place.full_name} </a>
+                    <a> {place.position} </a>
+                    <a> {phone ? "+" + phone : null} </a>
+                </div>
+                }
+            </div>
         </div>
     );
 };

@@ -19,13 +19,14 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
         setSelectedPost} = props;
 
 
+
     return (
         <div className={classNames(cls.PostsList, {}, [className])}>
             <div className={cls.listContainer}>
                 {
-                    posts.map(e => (
+                    posts ? posts.map(e => (
                         <PostListItem post={e} key={e.post_id} postClickHandler={postClickHandler} setSelectedPost={setSelectedPost}/>
-                    ))
+                    )) : "Новостей не найдено"
                 }
             </div>
         </div>

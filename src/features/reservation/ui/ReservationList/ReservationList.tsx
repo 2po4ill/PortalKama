@@ -16,7 +16,7 @@ export const ReservationList: FC<ICartListProps> = memo((props) => {
 
     const renderReservationItem = (reservation: IReservationMade) => {
                     return (
-                        <ReservationListItem reservation={reservation}/>
+                        <ReservationListItem reservation={reservation} className={cls.ReservationItem}/>
                     )
     }
 
@@ -24,14 +24,13 @@ export const ReservationList: FC<ICartListProps> = memo((props) => {
 
     return (
         <div>
-            <div className={classNames(cls.ProductList, {}, [])}>
+            <div className={classNames(cls.ReservationList, {}, [])}>
                 <Text title={"Мои бронирования"} className={cls.title}/>
                 {
                     reservations.length > 0
                     ? reservations.map(reservation => renderReservationItem(reservation))
-                    : <div>Список пуст</div>
+                    : <div>У вас пока нет забронированных мест</div>
                 }
-
             </div>
         </div>
     );

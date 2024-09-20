@@ -1,9 +1,10 @@
-.ProductList {
+.ReservationList {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 20px;
   width: 1300px;
-  margin: 0 37px 0 130px;
+  margin: 40px 37px 40px 130px;
+
 
   .title {
     width: 100%;

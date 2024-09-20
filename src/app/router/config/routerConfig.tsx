@@ -7,6 +7,7 @@ import ProfilePage from "pages/ProfilePage";
 import PostsPage from "pages/PostsPage";
 import CartPage from "pages/CartPage";
 import MyReservationsPage from "pages/MyReservationsPage/ui/MyReservationsPage";
+import ReservationLockerPage from "pages/ReservationLockerPage/ui/ReservationLockerPage";
 
 export type AppRouteProps = RouteProps & {
     authRequire?: boolean;
@@ -20,6 +21,11 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     [AppRoutes.RESERVATION]: {
         path: RoutePath.reservation,
         element: <ReservationPage />,
+        authRequire: true
+    },
+    [AppRoutes.RESERVATIONLOCKER]: {
+        path: RoutePath.reservationlocker,
+        element: <ReservationLockerPage />,
         authRequire: true
     },
     [AppRoutes.SHOP]: {

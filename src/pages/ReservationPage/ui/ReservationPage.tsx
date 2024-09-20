@@ -20,19 +20,20 @@ export interface IReservationPageProps {
 const ReservationPage = ( { className }: IReservationPageProps ) => {
     const places = useSelector(reservationSelectors.getReservationList);
     const isLoading = useSelector(reservationSelectors.getIsLoading);
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-        dispatch(reservationActions.getReservationList());
-    }, [dispatch]);
-
-
-    const place = places.find(x => x.place_id === selectedPoint)
     const [selectedDateStart, setSelectedDateStart] = useState(new Date());
 
     const dateEnd = new Date()
     dateEnd.setHours(new Date().getHours() + 1)
 
     const [selectedDateEnd, setSelectedDateEnd] = useState(dateEnd);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+    }, [dispatch]);
+
+
+    const place = places.find(x => x.place_id === selectedPoint)
+
     const [selectedPlace, setSelectedPlace] = useState(place);
     const [selectedPoint, setSelectedPoint] = useState(Number(null));
 

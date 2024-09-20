@@ -1,25 +1,16 @@
 import {classNames} from "shared/lib/classNames";
-import cls from './ReservationListItem.scss';
-import {FC, memo, useCallback} from "react";
-import {Text} from "shared/ui/Text/Text";
+import cls from './ReservationListItem.module.scss';
+import {FC, memo} from "react";
 import {Button} from "shared/ui/Button/Button";
-import img from 'shared/assets/placeholder-image.webp'
-import bin from 'shared/assets/icons/Vector.png'
-import {ICartItem, IShopItem} from "entities/Product/model/types/product";
-import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
-import {useLocation} from "react-router-dom";
-import {Input} from "shared/ui/Input/Input";
-import {Navbar} from "widgets/Navbar";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
-import {productActions} from "entities/Product";
 import {IReservationMade} from "entities/Reservation/model/types/reservation";
+import {Text} from "shared/ui/Text/Text";
 
-export interface ICartItemProps {
+export interface IReservationItemProps {
     className?: string;
     reservation: IReservationMade;
 }
 
-export const ReservationListItem: FC<ICartItemProps> = memo((props) => {
+export const ReservationListItem: FC<IReservationItemProps> = memo((props) => {
     const { reservation, className } = props;
 
     const start = new Date(reservation.start)
@@ -57,20 +48,25 @@ export const ReservationListItem: FC<ICartItemProps> = memo((props) => {
 
     const dateFormat = (date:Date) => {
         return (
-            <div>
-                <a> {dayOfTheWeek(date)}, {fullDate(date)} {dateTime(date)}</a>
-            </div>
+                dayOfTheWeek(date) + ", " + fullDate(date) + " " + dateTime(date)
         )
     }
     return (
-        <div>
-            <div>
-                <label> Место #{reservation.place_id}</label>
-                <a> {dateFormat(start)} - {dateFormat(finish)} </a>
+        <div className={classNames(cls.ReservationItemList, {}, [])}>
+            <div className={cls.ItemAbout}>
+                <div className={classNames(cls.ItemTitle, {}, [])}>
+                    <Text title={`С - ${dateFormat(start)}`}/>
+                    <Text title={`По - ${dateFormat(finish)}`}/>
+                </div>
+
+                <div className={classNames(cls.ItemDescription, {}, [])}>
+                    <Text text={`Место #${reservation.place_id}`}/>
+                    <Text text={`ПК, Интернет, Телефон, Принтер`}/>
+                </div>
             </div>
-            <div>
-                    <Button> Изменить </Button>
-                    <Button> Отменить </Button>
+            <div className={classNames(cls.btnPanel, {}, [])}>
+                    <Button className={cls.btn}> Изменить </Button>
+                    <Button className={cls.btn}> Отменить </Button>
             </div>
         </div>
     );

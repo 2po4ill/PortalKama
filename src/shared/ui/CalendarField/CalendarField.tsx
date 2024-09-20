@@ -41,18 +41,21 @@ export const CalendarField: FC<ICalendarField> = (props) => {
         tenDaysForward.setHours(23, 59, 59, 99)
         tenDaysForward.setDate(tenDaysForward.getDate() + 7);
 
-        if (tenDaysForward > date && currentDate <= date) {
-            if (date.getDay() !== 6 && date.getDay() !== 0) {
-                if (date.getMonth() !== month) {
-                    setCurrentDate(date)
-                }
-                date.setHours(selectedDate.getHours())
-                setSelectedDate(date)
-            }
-        }
-        else {
-            alert("Дату можно выбрать только в промежутке 7-ми дней от сегодня. Выберите другую, подходящую дату")
-        }
+        date.setHours(selectedDate.getHours())
+        setSelectedDate(date)
+
+        ///if (tenDaysForward > date && currentDate <= date) {
+        ///    if (date.getDay() !== 6 && date.getDay() !== 0) {
+        ///        if (date.getMonth() !== month) {
+        ///           setCurrentDate(date)
+        ///       }
+        ///        date.setHours(selectedDate.getHours())
+        ///        setSelectedDate(date)
+        ///    }
+        /// }
+        ///else {
+        ///    alert("Дату можно выбрать только в промежутке 7-ми дней от сегодня. Выберите другую, подходящую дату")
+        ///}
     }
 
     return (

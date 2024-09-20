@@ -29,10 +29,15 @@ export const Text: FC<ITextProps> = memo((props) => {
         ...other
     } = props;
 
+    function newLineEditor(text: string) {
+        return text.replace(/\\n/g, "  ")
+    }
+
+
     return (
         <div className={classNames(cls.Text, {}, [ className, cls[theme] ])} {...other} onClick={onClick}>
             {title && <p className={cls.title}>{titleMaxLength ? title.slice(0,titleMaxLength) + "..." : title}</p>}
-            {text && <p className={cls.text}>{text}</p>}
+            {text && <p className={cls.text}>{newLineEditor(text)}</p>}
         </div>
     )
 });

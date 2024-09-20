@@ -7,7 +7,7 @@ export interface Post {
     text: string; // текст новости
     likes_amount?: number; // кол-во лайков
     tags?: Tag[];
-    creation_date?: string;
+    creation_date: string;
     update_date?: string;
     postDesc?: PostDesc;
 }
@@ -50,11 +50,13 @@ export interface Tag {
 
 export interface Comment {
     user_id: number;
-    username?: string;
+    full_name: string;
+    department: string;
+    position: string;
     comment_id: number;
     post_id: number;
-    body: string;
-    created_at?: string;
+    text: string;
+    creation_date: string;
     updated_at?: string;
 }
 

@@ -1,11 +1,14 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import cls from "shared/ui/Map/Map.module.scss";
 import mapImage21 from "shared/assets/images/2-1.png";
 import mapImage11 from "shared/assets/images/1-1.png";
 import mapImage22 from "shared/assets/images/2-2.png";
+import mapImage306 from "shared/assets/images/306-2.png";
+import mapImage307 from "shared/assets/images/307.png";
 import {Point} from "shared/ui/Point/Point";
 import {classNames} from "shared/lib/classNames"
 import {IReservationItem} from "entities/Reservation/model/types/reservation";
+import {Text} from "shared/ui/Text/Text";
 export interface IMap {
     className?: string;
     title: string;
@@ -25,20 +28,42 @@ export const Map: FC<IMap> = (props) => {
         setSelectedPlace
     } = props;
 
+    const phoneList = ['3-87-20', '7-17-07', '7-17-83', '-', '3-87-30', '3-98-57', '7-17-51', '7-17-44', '3-98-92', '3-87-39', '7-17-46', ' 3-87-34', '7-17-45', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-38', '7-17-76', '7-17-70', '7-17-03', '7-17-84', '7-17-49', '3-87-35', '3-87-32', '6-83-37', '7-17-84', '7-17-49', '3-87-35', '3-87-32', '6-83-37', '3-87-33', '7-17-92', '7-17-20', '7-17-89', '7-17-66', '7-17-95', '3-98-58', '7-17-54', '7-17-54', '7-17-54', '6-83-36', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-32', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '7-17-22', '6-83-35', '-', '6-83-32', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53']
 
 
 
     const mapImage = () => {
-        if (title === "1_1")
-            return mapImage11
-
-        if (title === "2_1")
-            return mapImage21
-
-        return mapImage22
+        switch (title) {
+            case "1_1":
+                return mapImage11
+            case "2_1":
+                return mapImage21
+            case "2_2":
+                return mapImage22
+            case "306-2":
+                return mapImage306
+            case "307":
+                return mapImage307
+        }
     }
 
-    const pointsArray = [
+    const titleHandler = () =>
+    {
+        switch (title) {
+            case "1_1":
+                return "Зона Л-1"
+            case "2_1":
+                return "Зона Л-2"
+            case "2_2":
+                return "Зона П-2"
+            case "306-2":
+                return "АБК 306-2"
+            case "307":
+                return "АБК 307"
+        }
+    }
+
+    const pointsArrayPlace = [
         // 2 этаж 1 крыло
         {id: 1, name: "Л-201", position: [cls.L201]},
         {id: 2, name: "Л-202", position: [cls.L202]},
@@ -188,28 +213,33 @@ export const Map: FC<IMap> = (props) => {
         {id: 142, name: "Л-136", position: [cls.L136]},
     ]
 
-    const renderPoint = (place: IReservationItem, position: string[], floor: string) => {
+    const renderPoint = (place: IReservationItem, position: string[], floor: string, phone?: string) => {
         if (floor === "2_1" && place.place_id < 53) {
             return (
-                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
+                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace} phone={phone}/>
             )
         }
         if (floor === "2_2" && place.place_id > 52 && place.place_id < 107) {
             return (
-                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
+                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace} phone={phone}/>
             )
         }
         if (floor === "1_1" && place.place_id > 106) {
             return (
-                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
+                <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace} phone={phone}/>
             )
         }
     }
 
     return (
-        <div className={cls.Map}>
-            <img src={mapImage()} alt={title}></img>
-            {places.map(place => renderPoint(place, pointsArray[place.place_id - 1].position, title))}
+        <div>
+            <div className={cls.title}>
+                <Text title={titleHandler()}/>
+            </div>
+            <div className={cls.Map}>
+                <img src={mapImage()} alt={title} className={cls.img}/>
+                {places.map(place => renderPoint(place, pointsArrayPlace[place.place_id - 1].position, title, phoneList[place.place_id - 1]))}
+            </div>
         </div>
     );
 };

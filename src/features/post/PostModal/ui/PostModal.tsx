@@ -73,16 +73,22 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                                 title={post?.title}
                                 text={post?.postDesc ? post?.postDesc?.text : post?.text}
                             />
+                            <a> Темы: {post?.tags?.map(tag => tag.name + " ")}</a>
                         </div>
 
                         <div className={cls.footer}>
-                            <Input placeholder={"Оставьте комментарий"} onChange={setSubmittedText} className={cls.inputComment} adornment={<Button className={cls.btn} onClick={() => { dispatch(postActions.addComment({post_id: post?.post_id, body: submittedText})) }}> Отправить </Button>}/>
+                            <Text title={"Комментарии"}/>
+                            <Input placeholder={"Оставьте комментарий"} onChange={setSubmittedText} className={cls.inputComment} adornment={<Button className={cls.btn} onClick={() => {
+                                dispatch(postActions.addComment({post_id: post?.post_id, text: submittedText}))
+                                setSubmittedText("")
+                                dispatch(postActions.getPost(post?.post_id))
+                                }}> Отправить </Button>}/>
                             <div className={cls.CommentSection}>
                                 {post?.postDesc?.comments ? post?.postDesc?.comments.map(comment => renderComment(comment)): "Здесь пока нет комментариев, оставьте его первым!"}
                             </div>
                         </div>
                     </div>
-                    : <Spinner/>
+                    : <Spinner className={cls.Spinner}/>
                 }
             </Modal>
     );

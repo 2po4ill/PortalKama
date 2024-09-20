@@ -17,7 +17,7 @@ export const MainLayout = memo((props: MainLayoutProps) => {
     const location = useLocation()
 
     const mods: Record<string, boolean> = {
-        [cls.white_background]: location.pathname == "/reservation",
+        [cls.white_background]: location.pathname == "/reservation" || location.pathname == "/reservation/locker",
     };
 
     return (
