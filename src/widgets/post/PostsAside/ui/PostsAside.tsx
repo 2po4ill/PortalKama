@@ -13,6 +13,10 @@ interface IPostsAsideProps {
     selectedDateStart?: Date;
     selectedDateEnd?: Date;
     tags: Tag[];
+    tagList: string[] | [];
+    setSelectedTags: (tags: string[] | []) => void;
+    apiCall: () => void;
+    apiCancel: () => void;
 }
 
 const PostsAside: FC<IPostsAsideProps> = memo(props => {
@@ -21,7 +25,22 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
     setSelectedDateEnd,
     selectedDateStart,
     selectedDateEnd,
-    tags} = props;
+    tags,
+    apiCall,
+    setSelectedTags,
+    tagList,
+        apiCancel
+    } = props;
+
+    const addTag = (tag: Tag) => {
+        const newList: string[] = []
+        let tracker = false
+        tagList.map(tagsObject => tag.name == tagsObject ? tracker = true : newList.push(tagsObject))
+        if (!tracker) {
+            newList.push(tag.name)
+        }
+        setSelectedTags(newList)
+    }
 
     return (
         <div className={classNames(cls.PostsAside, {}, [className])}>
@@ -29,9 +48,13 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
 
                 <div className={cls.selectorsBlock}>
                     <div className={cls.searchByTag}>
-                        <Text title={"Поиск по тегам"}/>
-                    {/*    сделать checkbox'ы*/}
-                    {tags.map(tag => <a>{tag.name + tag.color}</a>)}
+                        <Text title={"Поиск по темам"}/>
+                        {tags.map(tag =>
+                            <div style={{background: tag.color}} className={cls.tag}>
+                                <input type={"checkbox"} className={cls.Input} name={tag.name} onChange={() => addTag(tag)}/>
+                                <label> {tag.name} </label>
+                            </div>)
+                        }
                     </div>
                     <div className={cls.searchByDate}>
                         <Text className={cls.title} title={"По дате"}/>
@@ -40,15 +63,15 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                             <Text text={"По"} className={cls.text}/>
                         </div>
                         <div className={cls.inputBlock}>
-                            <PostCalendarInput selectedDate={selectedDateStart} setSelectedDate={setSelectedDateStart}/>
-                            <PostCalendarInput selectedDate={selectedDateEnd} setSelectedDate={setSelectedDateEnd}/>
+                            <PostCalendarInput selectedDate={selectedDateStart} setSelectedDate={setSelectedDateStart} className={cls.CalendarInput}/>
+                            <PostCalendarInput selectedDate={selectedDateEnd} setSelectedDate={setSelectedDateEnd} className={cls.CalendarInput}/>
                         </div>
                     </div>
                     <div className={cls.buttonWrapper}>
-                        <Button className={cls.btn}>
+                        <Button className={cls.btn} onClick={apiCancel}>
                             Сброс
                         </Button>
-                        <Button className={cls.btn}>
+                        <Button className={cls.btn} onClick={apiCall}>
                             Поиск
                         </Button>
                     </div>

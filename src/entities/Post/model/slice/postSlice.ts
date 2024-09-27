@@ -1,6 +1,7 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {IPostData, IPostInfo, Post, PostDesc, PostSchema, Tag} from "../types/post";
+import {IPostData, IPostInfo, IPostTags, Post, PostDesc, PostSchema, Tag} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
+import {Comment} from "entities/Post/model/types/post";
 
 
 const initialState: PostSchema = {
@@ -19,10 +20,11 @@ const postSlice = createAppSlice({
         const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
         return {
-            getPostsList: createAThunk<{tags: Tag[], start: number, finish: number} | undefined, IPostData>(async (data, thunkAPI) => {
+            getPostsList: createAThunk<{tags: string[], start: number, finish: number} | undefined, IPostData>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
-                        const postList = await extra.api.get<IPostData>("/articles?tags=" + data?.tags + "&start=" + data?.start + "&finish=" + data?.finish);
+                        const postList = await extra.api.get<IPostData>("/articles?" + (data?.tags  ? data?.tags.map(tag => "tag=" + tag + "&") : "") +
+                            (data?.start || data?.finish ? "start=" + data?.start + "&finish=" + data?.finish : ""));
                         return postList.data;
                     } catch (err) {
                         console.log("Something went wrong" + err);
@@ -54,7 +56,7 @@ const postSlice = createAppSlice({
                     }
                 }
             ),
-            getPost: createAThunk<number, PostDesc>(async (data, thunkAPI) => {
+            getPost: createAThunk<number | undefined, PostDesc>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
                         const postInfo = await extra.api.get<IPostInfo>("/article?post_id=" + data);
@@ -89,10 +91,11 @@ const postSlice = createAppSlice({
                     }
                 }
             ),
-            getTags: createAThunk<undefined, Tag[] | []>(async (data, thunkAPI) => {
+            getTags: createAThunk<undefined, IPostTags>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
-                        const tag_list = await extra.api.get<Tag[] | []>("/tags");
+                        const tag_list = await extra.api.get<IPostTags>("/tags");
+                        console.log(tag_list.data);
                         return tag_list.data;
                     } catch (err) {
                         console.log("Something went wrong" + err);
@@ -107,12 +110,11 @@ const postSlice = createAppSlice({
                         }
                     },
                     fulfilled: (state, action) => {
-                        const tags = action.payload
                         return {
                             ...state,
                             isLoading: false,
                             error: undefined,
-                            tags: tags
+                            tags: action.payload.tags
                         }
                     },
                     rejected: (state, action) => {
@@ -123,7 +125,26 @@ const postSlice = createAppSlice({
                         }
                     }
                 }
-            )
+            ),
+            addComment: createAThunk<{ post_id: number | undefined, text: string }, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/comment", {"post_id": data.post_id, "text": data.text});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
         }
     }
 });

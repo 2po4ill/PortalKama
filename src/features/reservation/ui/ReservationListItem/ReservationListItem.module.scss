@@ -1,0 +1,30 @@
+.ReservationItemList {
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    justify-content: space-between;
+    .ItemAbout{
+        margin-left: 30px;
+
+        .ItemTitle {
+
+        }
+
+        .ItemDescription {
+
+        }
+    }
+    .btnPanel {
+        margin-right: 30px;
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+
+        .btn {
+            margin: 5px;
+        }
+    }
+}

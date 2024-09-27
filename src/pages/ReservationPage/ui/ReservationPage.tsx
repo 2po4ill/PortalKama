@@ -11,7 +11,7 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {useEffect, useState} from "react";
 import {reservationActions, reservationReducer} from "entities/Reservation/model/slice/reservationSlice";
 import { AsyncReducerProvider } from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
-import {IReservationMade} from "entities/Reservation/model/types/reservation";
+import {IReservationItem, IReservationMade} from "entities/Reservation/model/types/reservation";
 
 export interface IReservationPageProps {
     className?: string;
@@ -19,21 +19,28 @@ export interface IReservationPageProps {
 
 const ReservationPage = ( { className }: IReservationPageProps ) => {
     const places = useSelector(reservationSelectors.getReservationList);
+    const lockers = useSelector(reservationSelectors.getReservationLockerList);
     const isLoading = useSelector(reservationSelectors.getIsLoading);
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-        dispatch(reservationActions.getReservationList());
-    }, [dispatch]);
-
-
-    const place = places.find(x => x.place_id === selectedPoint)
     const [selectedDateStart, setSelectedDateStart] = useState(new Date());
 
     const dateEnd = new Date()
     dateEnd.setHours(new Date().getHours() + 1)
 
     const [selectedDateEnd, setSelectedDateEnd] = useState(dateEnd);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+    }, [dispatch]);
+    useEffect(() => {
+        dispatch(reservationActions.getReservationLockerList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+    }, [dispatch]);
+
+
+    const place = places.find(x => x.place_id === selectedPoint)
+    const locker = lockers.find(x => x.locker_id === selectedPoint)
+
     const [selectedPlace, setSelectedPlace] = useState(place);
+    const [selectedLocker, setSelectedLocker] = useState(locker);
     const [selectedPoint, setSelectedPoint] = useState(Number(null));
 
     const filterApiCall = () => {
@@ -69,6 +76,7 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
                     content={<ReservationContent places={places}
                                                  setSelectedPoint={setSelectedPoint}
                                                  setSelectedPlace={setSelectedPlace}
+                                                 setSelectedLocker={setSelectedLocker}
                                                  selectedPoint={selectedPoint}
                                                  apiCall={reservationApiCall}/>}
                     aside={<ReservationAside place={selectedPlace}/>}/>

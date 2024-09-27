@@ -5,12 +5,14 @@ import cls from "./ReservationContent.module.scss";
 
 
 import {Map} from "shared/ui/Map/Map";
-import {IReservationItem} from "entities/Reservation/model/types/reservation";
+import {IReservationItem, IReservationLockerItem} from "entities/Reservation/model/types/reservation";
 import {Button} from "shared/ui/Button/Button";
 
 import green from "shared/assets/images/icon_Зеленый.png"
 import red from "shared/assets/images/icon_Красный.png"
 import gray from "shared/assets/images/icon_Серый.png"
+import {PostModal} from "features/post/PostModal";
+import {PhoneModal} from "features/reservation/ui/PhoneModal";
 
 interface IReservationContentProps {
     className?: string;
@@ -18,6 +20,7 @@ interface IReservationContentProps {
     selectedPoint: number;
     setSelectedPoint: (number: number) => void;
     setSelectedPlace: (place: IReservationItem) => void;
+    setSelectedLocker: (locker: IReservationLockerItem) => void;
     apiCall: () => void;
 }
 
@@ -27,10 +30,11 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     setSelectedPoint,
     selectedPoint,
     setSelectedPlace,
+        setSelectedLocker,
     apiCall} = props;
 
     const [selectedFloor, setSelectedFloor] = useState("1_1");
-
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const ChangeTo11 = () => {
         setSelectedFloor("1_1")
@@ -79,6 +83,10 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
         [cls.selected]: selectedFloor === "2_2",
     };
 
+    const phoneClickHandler = () => {
+        setModalIsOpen(true);
+    }
+
 
     return (
         <div className={classNames(cls.ReservationContent, {}, [className])}>
@@ -93,7 +101,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                     <div onClick={ChangeTo22} className={classNames(cls.button, mods2_2, [])}> Правое крыло</div>
                 </div>
             </div>
-            <Map title={selectedFloor} places={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedPlace={setSelectedPlace}/>
+            <Map title={selectedFloor} places={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedPlace={setSelectedPlace} setSelectedLocker={setSelectedLocker}/>
             <div className={cls.history}>
                 <img src={green} alt={"green"}/>
                 <a> Свободно </a>
@@ -102,9 +110,15 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                 <img src={gray} alt={"gray"}/>
                 <a> Недоступно </a>
             </div>
-            <Button onClick={apiCall} className={cls.reservation}>
-                Забронировать
-            </Button>
+            <div className={cls.buttonSection}>
+                <Button onClick={apiCall} className={cls.reservation}>
+                    Забронировать
+                </Button>
+                <Button onClick={phoneClickHandler} className={cls.reservation}>
+                    Телефонный справочник
+                </Button>
+            </div>
+            <PhoneModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} places={places} />
         </div>
     );
 })

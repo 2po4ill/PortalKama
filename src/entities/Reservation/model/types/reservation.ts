@@ -1,6 +1,7 @@
 
 export interface ReservationSchema {
     reservations: IReservationItem[];
+    lockerReservations: IReservationLockerItem[];
     userReservationList: IReservationMade[];
     isLoading: boolean;
     error: string | undefined;
@@ -10,8 +11,21 @@ export interface ReservationSchema {
 export interface IReservationItem {
     // id места
     place_id: number;
-    // статус места
+    full_name: string;
     is_available: boolean;
+    position: string;
+    department: string;
+    // дополнительные параметры
+    name: string;
+}
+
+export interface IReservationLockerItem {
+    // id места
+    locker_id: number;
+    full_name: string;
+    is_available: boolean;
+    position: string;
+    department: string;
     // дополнительные параметры
     name: string;
 }
@@ -19,6 +33,7 @@ export interface IReservationItem {
 export interface IReservationData {
     status: string;
     reservation_list: IReservationItem[];
+    locker_reservation_list: IReservationLockerItem[];
     user_reservations: IReservationMade[];
 }
 

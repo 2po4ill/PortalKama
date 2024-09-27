@@ -25,6 +25,12 @@ export const sidebarItemsList: ISidebarItem[] = [
         text: "Бронь"
     },
     {
+        name: AppRoutes.RESERVATIONLOCKER,
+        path: RoutePath.reservationlocker,
+        Icon: ReservationIcon,
+        text: "Бронь шкафчиков"
+    },
+    {
         name: AppRoutes.SHOP,
         path: RoutePath.shop,
         Icon: ShopIcon,

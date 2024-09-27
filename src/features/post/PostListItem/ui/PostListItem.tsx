@@ -35,6 +35,10 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         update_date,
         tags,
         likes_amount } = post;
+
+
+        const date = new Date(creation_date)
+
     return (
         <article className={classNames(cls.PostListItem, {}, [className])}
                  onClick={() => {
@@ -58,7 +62,10 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
             </div>
 
             <div className={cls.footer}>
-
+                {tags?.map(tag => <div style={{background: tag.color}} className={cls.tag}>
+                    <label> {tag.name} </label>
+                </div>)}
+                <Text text={date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()}/>
             </div>
         </article>
     );

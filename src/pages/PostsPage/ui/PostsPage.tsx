@@ -14,6 +14,7 @@ import {postActions, postReducer} from "entities/Post/model/slice/postSlice";
 import {PageLoader} from "widgets/PageLoader";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {Post} from "entities/Post";
+import {Tag} from "entities/Post/model/types/post";
 
 export interface IPostsPageProps {
     className?: string;
@@ -25,19 +26,31 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     const isLoading = useSelector(postSelectors.getIsLoading);
     const dispatch = useAppDispatch();
     useEffect(() => {
-        dispatch(postActions.getPostsList());
-    }, [dispatch]);
-    useEffect(() => {
         dispatch(postActions.getTags());
     }, [dispatch]);
+    useEffect(() => {
+        dispatch(postActions.getPostsList());
+    }, [dispatch]);
+
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedPost, setSelectedPost] = useState<Post|undefined>(undefined);
     const [selectedDateStart, setSelectedDateStart] = useState<Date | undefined>(undefined);
     const [selectedDateEnd, setSelectedDateEnd] = useState<Date | undefined>(undefined);
+    const [tagList, setSelectedTags] = useState<string[] | []>([]);
 
     const postClickHandler = () => {
         setModalIsOpen(true);
+    }
+
+    const apiSearchCall = () => {
+        dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+        setSelectedTags([])
+    }
+
+    const cancelApi = () => {
+        setSelectedTags([])
+        dispatch(postActions.getPostsList())
     }
 
     return (
@@ -46,8 +59,18 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
             <div className={classNames(cls.IPostsPageProps, {}, [className])}>
                 <PostsPageLayout
                     header={<PostsHeader />}
-                    content={<PostsList posts={posts} postClickHandler={postClickHandler} setSelectedPost={setSelectedPost}/>}
-                    aside={<PostsAside setSelectedDateEnd={setSelectedDateEnd} setSelectedDateStart={setSelectedDateStart} selectedDateEnd={selectedDateEnd} selectedDateStart={selectedDateStart} tags={tags}/>} />
+                    content={<PostsList posts={posts}
+                                        postClickHandler={postClickHandler}
+                                        setSelectedPost={setSelectedPost}/>}
+                    aside={<PostsAside setSelectedDateEnd={setSelectedDateEnd}
+                                       setSelectedDateStart={setSelectedDateStart}
+                                       selectedDateEnd={selectedDateEnd}
+                                       selectedDateStart={selectedDateStart}
+                                       tags={tags}
+                                       tagList={tagList}
+                                       apiCall={apiSearchCall}
+                                       apiCancel={cancelApi}
+                                       setSelectedTags={setSelectedTags}/>} />
                 {modalIsOpen ? <PostModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} selectedPost={selectedPost} /> : null}
             </div>
                 : <PageLoader/>}
