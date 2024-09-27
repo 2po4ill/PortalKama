@@ -5,7 +5,7 @@ import cls from "./ReservationContent.module.scss";
 
 
 import {Map} from "shared/ui/Map/Map";
-import {IReservationItem} from "entities/Reservation/model/types/reservation";
+import {IReservationItem, IReservationLockerItem} from "entities/Reservation/model/types/reservation";
 import {Button} from "shared/ui/Button/Button";
 
 import green from "shared/assets/images/icon_Зеленый.png"
@@ -16,10 +16,11 @@ import {PhoneModal} from "features/reservation/ui/PhoneModal";
 
 interface IReservationContentProps {
     className?: string;
-    places: IReservationItem[];
+    places: IReservationLockerItem[];
     selectedPoint: number;
     setSelectedPoint: (number: number) => void;
     setSelectedPlace: (place: IReservationItem) => void;
+    setSelectedLocker: (place: IReservationLockerItem) => void;
     apiCall: () => void;
 }
 
@@ -29,6 +30,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     setSelectedPoint,
     selectedPoint,
     setSelectedPlace,
+        setSelectedLocker,
     apiCall} = props;
 
     const [selectedFloor, setSelectedFloor] = useState("306-2");
@@ -63,7 +65,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                     <div onClick={ChangeTo307} className={classNames(cls.button, mods307, [])}> АБК 307</div>
                 </div>
             </div>
-            <Map title={selectedFloor} places={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedPlace={setSelectedPlace}/>
+            <Map title={selectedFloor} lockers={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedLocker={setSelectedLocker} setSelectedPlace={setSelectedPlace}/>
             <div className={cls.history}>
                 <img src={green} alt={"green"}/>
                 <a> Свободно </a>

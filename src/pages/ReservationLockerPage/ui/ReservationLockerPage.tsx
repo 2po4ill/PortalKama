@@ -18,6 +18,7 @@ export interface IReservationLockerPageProps {
 }
 
 const ReservationLockerPage = ({ className }: IReservationLockerPageProps ) => {
+    const lockers = useSelector(reservationSelectors.getReservationLockerList);
     const places = useSelector(reservationSelectors.getReservationList);
     const isLoading = useSelector(reservationSelectors.getIsLoading);
     const [selectedDateStart, setSelectedDateStart] = useState(new Date());
@@ -28,17 +29,22 @@ const ReservationLockerPage = ({ className }: IReservationLockerPageProps ) => {
     const [selectedDateEnd, setSelectedDateEnd] = useState(dateEnd);
     const dispatch = useAppDispatch();
     useEffect(() => {
+        dispatch(reservationActions.getReservationLockerList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+    }, [dispatch]);
+    useEffect(() => {
         dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
     }, [dispatch]);
 
 
-    const place = places.find(x => x.place_id === selectedPoint)
+    const locker = lockers.find(x => x.locker_id === selectedPoint)
+    const place = places.find(x => x.place_id === 1)
 
     const [selectedPlace, setSelectedPlace] = useState(place);
+    const [selectedLocker, setSelectedLocker] = useState(locker);
     const [selectedPoint, setSelectedPoint] = useState(Number(null));
 
     const filterApiCall = () => {
-        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+        dispatch(reservationActions.getReservationLockerList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
     }
 
     const apiDate = (date: Date) => {
@@ -54,8 +60,8 @@ const ReservationLockerPage = ({ className }: IReservationLockerPageProps ) => {
 
     const reservationApiCall = () => {
         alert("Вы забронировали место")
-        dispatch(reservationActions.reservation({place_id: selectedPoint, start: apiDate(selectedDateStart), finish: apiDate(selectedDateEnd)} as IReservationMade));
-        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+        dispatch(reservationActions.locker_reservation({place_id: selectedPoint, start: apiDate(selectedDateStart), finish: apiDate(selectedDateEnd)} as IReservationMade));
+        dispatch(reservationActions.getReservationLockerList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
     }
     return (
         <AsyncReducerProvider name={'reservation'} reducer={reservationReducer} destroy={false} >
@@ -67,9 +73,10 @@ const ReservationLockerPage = ({ className }: IReservationLockerPageProps ) => {
                                                setSelectedDateEnd={setSelectedDateEnd}
                                                selectedDateStart={selectedDateStart}
                                                 apiCall={filterApiCall}/>}
-                    content={<ReservationContent places={places}
+                    content={<ReservationContent places={lockers}
                                                  setSelectedPoint={setSelectedPoint}
                                                  setSelectedPlace={setSelectedPlace}
+                                                 setSelectedLocker={setSelectedLocker}
                                                  selectedPoint={selectedPoint}
                                                  apiCall={reservationApiCall}/>}
                     aside={<ReservationAside place={selectedPlace}/>}/>

@@ -5,6 +5,7 @@ import {IThunkConfig} from "app/providers/StoreProvider";
 const initialState: ReservationSchema = {
     reservations: [],
     userReservationList: [],
+    lockerReservations: [],
     isLoading: false,
     error: undefined
 }
@@ -39,6 +40,40 @@ const reservationSlice = createAppSlice({
                     return {
                         ...state,
                         reservations: reservationList,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            getReservationLockerList: createAThunk<{start: number, finish: number} | undefined, IReservationData>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const lockerData = await extra.api.get<IReservationData>("/locker_reservation_list?start=" + data?.start + "&finish=" + data?.finish);
+                    return lockerData.data;
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    const reservationList = action.payload.locker_reservation_list;
+                    return {
+                        ...state,
+                        lockerReservations: reservationList,
                         error: undefined,
                         isLoading: false
                     }
@@ -90,6 +125,26 @@ const reservationSlice = createAppSlice({
                 const {place_id, finish, start} = data;
                 try {
                     return await extra.api.post("/reservation", {"place_id": place_id, "start": start, "finish": finish});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
+            locker_reservation: createAThunk<IReservationMade, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                const {place_id, finish, start} = data;
+                try {
+                    return await extra.api.post("/locker_reservation", {"locker_id": place_id, "start": start, "finish": finish});
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));
