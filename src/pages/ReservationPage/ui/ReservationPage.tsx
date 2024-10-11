@@ -11,7 +11,6 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {useEffect, useState} from "react";
 import {reservationActions, reservationReducer} from "entities/Reservation/model/slice/reservationSlice";
 import { AsyncReducerProvider } from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
-import {IReservationItem, IReservationMade} from "entities/Reservation/model/types/reservation";
 
 export interface IReservationPageProps {
     className?: string;
@@ -44,7 +43,7 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
     const [selectedPoint, setSelectedPoint] = useState(Number(null));
 
     const filterApiCall = () => {
-        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: selectedDateStart > selectedDateEnd ? Number(selectedDateStart) : Number(selectedDateEnd)}));
     }
 
     const apiDate = (date: Date) => {
@@ -57,11 +56,10 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
             timeZone: undefined
         }).format(date);
     }
-
     const reservationApiCall = () => {
         alert("Вы забронировали место")
-        dispatch(reservationActions.reservation({place_id: selectedPoint, start: apiDate(selectedDateStart), finish: apiDate(selectedDateEnd)} as IReservationMade));
-        dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+        dispatch(reservationActions.reservation({place_id: selectedPoint, start: Number(selectedDateStart), finish: selectedDateStart > selectedDateEnd ? Number(selectedDateStart) : Number(selectedDateEnd)}));
+        setTimeout(() => dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: selectedDateStart > selectedDateEnd ? Number(selectedDateStart) : Number(selectedDateEnd)})), 50);
     }
     return (
         <AsyncReducerProvider name={'reservation'} reducer={reservationReducer} destroy={false} >

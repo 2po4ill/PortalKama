@@ -120,7 +120,7 @@ const reservationSlice = createAppSlice({
                     }
                 }
             }),
-            reservation: createAThunk<IReservationMade, void>(async (data, thunkAPI) => {
+            reservation: createAThunk<{ place_id: number, start: number, finish: number }, void>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 const {place_id, finish, start} = data;
                 try {
@@ -145,6 +145,25 @@ const reservationSlice = createAppSlice({
                 const {place_id, finish, start} = data;
                 try {
                     return await extra.api.post("/locker_reservation", {"locker_id": place_id, "start": start, "finish": finish});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
+            drop_reservation: createAThunk<number, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/reservation_drop", {"reservation_id": data});
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));

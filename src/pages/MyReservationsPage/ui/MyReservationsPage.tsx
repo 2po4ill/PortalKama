@@ -22,11 +22,17 @@ const MyReservationsPage = ({ className }: IReservationPageProps ) => {
         dispatch(reservationActions.getUserReservations());
     }, [dispatch]);
 
+    const apiCall = (id: number) => {
+        dispatch(reservationActions.drop_reservation(id))
+        setTimeout(() => dispatch(reservationActions.getUserReservations()), 50);
+    }
+
+
     return (
         <AsyncReducerProvider name={'reservation'} reducer={reservationReducer} destroy={false} >
             {!isLoading ?
                 <div className={classNames(cls.myReservationPage, {}, [className])}>
-                    <ReservationList reservations={reservations ? reservations : []}/>
+                    <ReservationList reservations={reservations ? reservations : []} apiCall={apiCall}/>
                 </div>
                 : <PageLoader/>}
         </AsyncReducerProvider>

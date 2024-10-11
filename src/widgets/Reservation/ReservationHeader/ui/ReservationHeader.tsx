@@ -35,7 +35,7 @@ const ReservationHeader: FC<IReservationHeaderProps> = memo(props => {
                 <a> С </a>
                 <ReservationCalendarInput className={cls.input} setSelectedDate={setSelectedDateStart} selectedDate={selectedDateStart}/>
                 <a> ПО </a>
-                <ReservationCalendarInput className={cls.input} setSelectedDate={setSelectedDateEnd} selectedDate={selectedDateEnd}/>
+                <ReservationCalendarInput className={cls.input} setSelectedDate={setSelectedDateEnd} selectedDate={selectedDateEnd < selectedDateStart ? selectedDateStart : selectedDateEnd}/>
                 <Button className={cls.btn} onClick={apiCall}> Найти </Button>
             </div>
         </div>

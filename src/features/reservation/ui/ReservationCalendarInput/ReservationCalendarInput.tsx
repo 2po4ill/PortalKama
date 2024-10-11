@@ -5,6 +5,7 @@ import {Modal} from "shared/ui/Modal/Modal";
 import {TimeSelector} from "shared/ui/TimeSelector/TimeSelector";
 import CalendarImage from "shared/assets/icons/Календарь.png"
 import cls from './ReservationCalendarInput.module.scss';
+import {Button} from "shared/ui/Button/Button";
 
 export interface IReservationCalendarInputProps {
     className?: string;
@@ -29,17 +30,14 @@ export const ReservationCalendarInput: FC<IReservationCalendarInputProps> = (pro
         year: "numeric",
         month: "long",
         day: "numeric",
-        hour: "numeric",
-        minute: "numeric"
     }).format(selectedDate);
 
     return (
         <div className={className}>
             <div>
-                <Input className={cls.input} onClick={openModal} value={date} adornment={<img className={cls.img} src={CalendarImage} alt={"Календарь"} role={"button"}/>}/>
-                <Modal isOpen={open} onClose={() => {setOpen(false)}} className={cls.Modal}>
+                <Input className={cls.input} onClick={openModal} value={date} adornment={<img className={cls.img} src={CalendarImage} alt={"Календарь"} role={"button"} onClick={openModal}/>}/>
+                <Modal isOpen={open} onClose={() => {setOpen(false)}} className={cls.Modal} closeButton={"Выбрать"}>
                     <Calendar setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
-                    <TimeSelector setSelectedDate={setSelectedDate} selectedDate={selectedDate}/>
                 </Modal>
             </div>
         </div>

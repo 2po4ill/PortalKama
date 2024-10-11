@@ -56,11 +56,11 @@ export const Map: FC<IMap> = (props) => {
     {
         switch (title) {
             case "1_1":
-                return "Зона Л-1"
+                return "Вы находитесь на 1-ом этаже (Л-1)"
             case "2_1":
-                return "Зона Л-2"
+                return "Вы находитесь на 2-ом этаже (Л-2)"
             case "2_2":
-                return "Зона П-2"
+                return "Вы находитесь на 2-ом этаже (П-2)"
             case "306-2":
                 return "АБК 306-2"
             case "307":

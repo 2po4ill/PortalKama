@@ -8,10 +8,11 @@ import {Text} from "shared/ui/Text/Text";
 export interface IReservationItemProps {
     className?: string;
     reservation: IReservationMade;
+    apiCall: (id: number) => void;
 }
 
 export const ReservationListItem: FC<IReservationItemProps> = memo((props) => {
-    const { reservation, className } = props;
+    const { reservation, className , apiCall} = props;
 
     const start = new Date(reservation.start)
     const finish = new Date(reservation.finish)
@@ -41,14 +42,9 @@ export const ReservationListItem: FC<IReservationItemProps> = memo((props) => {
         return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear()
     }
 
-    const dateTime = (date:Date) => {
-        return date.getHours() + ":00"
-    }
-
-
     const dateFormat = (date:Date) => {
         return (
-                dayOfTheWeek(date) + ", " + fullDate(date) + " " + dateTime(date)
+                dayOfTheWeek(date) + ", " + fullDate(date)
         )
     }
     return (
@@ -65,8 +61,7 @@ export const ReservationListItem: FC<IReservationItemProps> = memo((props) => {
                 </div>
             </div>
             <div className={classNames(cls.btnPanel, {}, [])}>
-                    <Button className={cls.btn}> Изменить </Button>
-                    <Button className={cls.btn}> Отменить </Button>
+                    <Button className={cls.btn} onClick={() => apiCall(reservation.reservation_id)}> Отменить </Button>
             </div>
         </div>
     );

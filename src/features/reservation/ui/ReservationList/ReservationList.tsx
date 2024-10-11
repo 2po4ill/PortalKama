@@ -8,15 +8,16 @@ import {ReservationListItem} from "features/reservation/ui/ReservationListItem/R
 export interface ICartListProps {
     className?: string;
     reservations: IReservationMade[];
+    apiCall: (id: number) => void;
 }
 
 export const ReservationList: FC<ICartListProps> = memo((props) => {
-    const {reservations} = props;
+    const {reservations, apiCall} = props;
 
 
     const renderReservationItem = (reservation: IReservationMade) => {
                     return (
-                        <ReservationListItem reservation={reservation} className={cls.ReservationItem}/>
+                        <ReservationListItem reservation={reservation} className={cls.ReservationItem} apiCall={apiCall}/>
                     )
     }
 

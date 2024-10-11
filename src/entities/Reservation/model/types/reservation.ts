@@ -12,6 +12,7 @@ export interface IReservationItem {
     // id места
     place_id: number;
     full_name: string;
+    user_id: number;
     is_available: boolean;
     position: string;
     department: string;
@@ -38,6 +39,7 @@ export interface IReservationData {
 }
 
 export interface IReservationMade{
+    reservation_id: number;
     place_id: number;
     start: string;
     finish: string;

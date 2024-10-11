@@ -14,6 +14,7 @@ export interface IModalProps {
     onClose: () => void;
     lazy?: boolean;
     unmount?: boolean;
+    closeButton?: string;
 }
 
 const ANIMATION_DELAY = 300;
@@ -37,7 +38,8 @@ export const Modal: FC<IModalProps> = (props) => {
         isOpen,
         onClose,
         lazy = true,
-        unmount = false
+        unmount = false,
+        closeButton,
     } = props;
     const [mounted, setMounted] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -96,12 +98,13 @@ export const Modal: FC<IModalProps> = (props) => {
     return (
         <Portal>
             <div className={classNames(cls.Modal, mods, ["modal"])}>
-                <div className={cls.overlay} onClick={closeHandler}>
+                <div className={cls.overlay}>
                     <div className={classNames(cls.content, {}, [className])} onClick={onContentClick}>
                         <div className={cls.x}>
                             <Button onClick={closeHandler}> X </Button>
                         </div>
                         {children}
+                        {closeButton ? <Button onClick={closeHandler}> {closeButton} </Button> : null}
                     </div>
                 </div>
             </div>
