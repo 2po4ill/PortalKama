@@ -10,10 +10,12 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {postActions} from "entities/Post/model/slice/postSlice";
 import {useSelector} from "react-redux";
 import {postSelectors} from "entities/Post/model/selectors/postSelectors";
+import {Button} from "shared/ui/Button/Button";
 
 interface IPostListItemProps {
     className?: string;
-    post: Post
+    post: Post,
+    role?: number,
     postClickHandler: () => void;
     setSelectedPost: (post: Post | undefined) => void;
 }
@@ -21,6 +23,7 @@ interface IPostListItemProps {
 const PostListItem: FC<IPostListItemProps> = memo((props) => {
     const { className,
         post ,
+        role,
         postClickHandler,
         setSelectedPost
     } = props;
@@ -48,7 +51,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         }}>
 
             <div className={cls.collage}>
-                <img src={imageSrc(images[0])} onError={({currentTarget}) => {
+                <img src={images ? imageSrc(images[0]) : placeHolder} onError={({currentTarget}) => {
                             currentTarget.onerror = null; // prevents looping
                             currentTarget.src = placeHolder;
                         }}/>
@@ -67,6 +70,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
                 </div>)}
                 <Text text={date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()}/>
             </div>
+
         </article>
     );
 });

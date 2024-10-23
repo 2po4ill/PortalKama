@@ -22,6 +22,7 @@ interface IProductSelectors {
     getReservationList: Selector<StateSchema, IReservationItem[]>;
     getReservationLockerList: Selector<StateSchema, IReservationLockerItem[]>
     getUserReservations: Selector<StateSchema, IReservationMade[]>;
+    getError: Selector<StateSchema, string | undefined>
     getIsLoading: Selector<StateSchema, boolean>
 }
 
@@ -42,5 +43,9 @@ export const reservationSelectors: IProductSelectors = {
     getIsLoading: createSelector(
         getReservationData,
         (data) => data.isLoading
+    ),
+    getError: createSelector(
+        getReservationData,
+        (data) => data.error
     )
 }

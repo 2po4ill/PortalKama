@@ -54,6 +54,7 @@ export const userSlice = createAppSlice({
                                 const user: User = {
                                     uid: data.user.user_id,
                                     username: data.user.username,
+                                    role: data.user.role
                                 }
                                 if (__IS_DEV__) setTimeout(() => {
                                     resolve(user);

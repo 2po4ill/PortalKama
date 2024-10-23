@@ -20,6 +20,7 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
     const places = useSelector(reservationSelectors.getReservationList);
     const lockers = useSelector(reservationSelectors.getReservationLockerList);
     const isLoading = useSelector(reservationSelectors.getIsLoading);
+    const error = useSelector(reservationSelectors.getError)
     const [selectedDateStart, setSelectedDateStart] = useState(new Date());
 
     const dateEnd = new Date()
@@ -57,8 +58,8 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
         }).format(date);
     }
     const reservationApiCall = () => {
-        alert("Вы забронировали место")
         dispatch(reservationActions.reservation({place_id: selectedPoint, start: Number(selectedDateStart), finish: selectedDateStart > selectedDateEnd ? Number(selectedDateStart) : Number(selectedDateEnd)}));
+        error ? alert("Место не удалось забронировать, попробуйте позже") : alert("Вы забронировали место")
         setTimeout(() => dispatch(reservationActions.getReservationList({start: Number(selectedDateStart), finish: selectedDateStart > selectedDateEnd ? Number(selectedDateStart) : Number(selectedDateEnd)})), 50);
     }
     return (

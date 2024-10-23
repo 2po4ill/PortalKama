@@ -22,13 +22,13 @@ export const sidebarItemsList: ISidebarItem[] = [
         name: AppRoutes.RESERVATION,
         path: RoutePath.reservation,
         Icon: ReservationIcon,
-        text: "Бронь"
+        text: "Бронь рабочего места"
     },
     {
         name: AppRoutes.RESERVATIONLOCKER,
         path: RoutePath.reservationlocker,
         Icon: ReservationIcon,
-        text: "Бронь шкафчиков"
+        text: "Бронь шкафчика"
     },
     {
         name: AppRoutes.SHOP,
