@@ -83,7 +83,7 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                             Поиск
                         </Button>
                     </div>
-                    {role == 3 ? <Button onClick={() => setModalIsOpen(true)}> Добавить тему </Button> : null}
+                    {role == 1 ? <Button onClick={() => setModalIsOpen(true)}> Добавить тему </Button> : null}
                 </div>
                 <CreateTagModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} apiCall={createTagApiCall}/>
             </div>

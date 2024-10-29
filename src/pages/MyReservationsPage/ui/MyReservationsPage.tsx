@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {reservationSelectors} from "entities/Reservation/model/selectors/reservationSelectors";
 import {PageLoader} from "widgets/PageLoader";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {reservationActions, reservationReducer} from "entities/Reservation/model/slice/reservationSlice";
 import { AsyncReducerProvider } from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {ReservationList} from "features/reservation/ui/ReservationList/ReservationList";

@@ -832,12 +832,12 @@ export const Map: FC<IMap> = (props) => {
 
     const renderPoint = (position: string[], floor: string, phone?: string, place?: IReservationItem, locker?: IReservationLockerItem) => {
         if (place) {
-            if (floor === "2_1" && place.place_id < 53 && place.place_id != 44) {
+            if (floor === "2_1" && place.place_id < 51) {
                 return (
                     <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace} phone={phone}/>
                 )
             }
-            if (floor === "2_2" && place.place_id > 52 && place.place_id < 107) {
+            if (floor === "2_2" && place.place_id > 52 && place.place_id < 105) {
                 return (
                     <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace} phone={phone}/>
                 )

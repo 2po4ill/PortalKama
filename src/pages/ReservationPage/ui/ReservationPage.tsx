@@ -76,6 +76,7 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
                                                  setSelectedPoint={setSelectedPoint}
                                                  setSelectedPlace={setSelectedPlace}
                                                  setSelectedLocker={setSelectedLocker}
+                                                 selectedDate={selectedDateStart}
                                                  selectedPoint={selectedPoint}
                                                  apiCall={reservationApiCall}/>}
                     aside={<ReservationAside place={selectedPlace}/>}/>

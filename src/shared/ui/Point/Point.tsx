@@ -25,13 +25,8 @@ export const Point: FC<IPoint> = (props) => {
     } = props;
 
     const SelectPoint = () => {
-        if (place.is_available) {
-            setSelectedPoint(place.place_id)
-            setSelectedPlace(place)
-        }
-        else{
-            alert("Данное место по тем или иным причинам недоступно к бронированию, попробуйте изменить дату")
-        }
+        setSelectedPoint(place.place_id)
+        setSelectedPlace(place)
     }
 
     const mods: Record<string, boolean> = {
