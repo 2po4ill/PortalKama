@@ -14,7 +14,7 @@ import {postActions, postReducer} from "entities/Post/model/slice/postSlice";
 import {PageLoader} from "widgets/PageLoader";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {Post} from "entities/Post";
-import {Tag} from "entities/Post/model/types/post";
+import {userSelectors} from "entities/User";
 
 export interface IPostsPageProps {
     className?: string;
@@ -24,6 +24,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     const posts = useSelector(postSelectors.getPostsList);
     const tags = useSelector(postSelectors.getTags);
     const isLoading = useSelector(postSelectors.getIsLoading);
+    const userRole = useSelector(userSelectors.getUser).role;
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(postActions.getTags());
@@ -53,6 +54,30 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         dispatch(postActions.getPostsList())
     }
 
+    const createTagApiCall = (name: string, color: string) => {
+        dispatch(postActions.createTag({name: name, color: color}));
+        alert("Тема добавлена")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+    }
+
+    const editArticleApiCall = (post_id: number, title: string, text: string, images: string[], tags: number[]) => {
+        dispatch(postActions.editArticle({post_id: post_id, title: title, text: text, images: images, tags: tags}));
+        alert("Новость изменена")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+    }
+
+    const deleteArticleApiCall = (post_id: number) => {
+        dispatch(postActions.deleteArticle({post_id: post_id}));
+        alert("Новость удалена")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+    }
+
+    const createArticleApiCall = (title: string, text: string, images: string[], tags: number[]) => {
+        dispatch(postActions.createArticle({title: title, text: text, images: images, tags: tags}));
+        alert("Новость создана и записана")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+    }
+
     return (
         <AsyncReducerProvider name={'post'} reducer={postReducer} destroy={false} >
             {!isLoading ?
@@ -61,7 +86,10 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                     header={<PostsHeader />}
                     content={<PostsList posts={posts}
                                         postClickHandler={postClickHandler}
-                                        setSelectedPost={setSelectedPost}/>}
+                                        setSelectedPost={setSelectedPost}
+                                        apiCall = {createArticleApiCall}
+                                        role={userRole}
+                                        tags={tags}/>}
                     aside={<PostsAside setSelectedDateEnd={setSelectedDateEnd}
                                        setSelectedDateStart={setSelectedDateStart}
                                        selectedDateEnd={selectedDateEnd}
@@ -70,8 +98,18 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                                        tagList={tagList}
                                        apiCall={apiSearchCall}
                                        apiCancel={cancelApi}
-                                       setSelectedTags={setSelectedTags}/>} />
-                {modalIsOpen ? <PostModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} selectedPost={selectedPost} /> : null}
+                                       setSelectedTags={setSelectedTags}
+                                       createTagApiCall={createTagApiCall}
+                                        role={userRole}/>} />
+                {modalIsOpen ?
+                    <PostModal isOpen={modalIsOpen}
+                               onClose={() => {setModalIsOpen(false);}}
+                               selectedPost={selectedPost}
+                               deleteApiCall={deleteArticleApiCall}
+                               role={userRole}
+                               editApiCall={editArticleApiCall}
+                                tags={tags}/>
+                    : null}
             </div>
                 : <PageLoader/>}
         </AsyncReducerProvider>

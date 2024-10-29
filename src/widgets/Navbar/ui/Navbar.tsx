@@ -76,9 +76,9 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
         if (location.pathname === '/shop' || location.pathname === '/cart') return (
             <AppLink to={"cart"} className={cls.Profile}>
                 <li>
-                    <img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>
-                    <img src={CartQuantImg} alt={RoutePath.cart}
-                         className={cls.CartQuantityImg}/>
+                    {/*<img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>*/}
+                    {/*<img src={CartQuantImg} alt={RoutePath.cart}*/}
+                    {/*     className={cls.CartQuantityImg}/>*/}
                     <text className={classNames(cls.Quantity, mods, [className])}> {quantity} </text>
                 </li>
                 <Text text="1999" theme={TextTheme.INVERTED}/>

@@ -1,10 +1,12 @@
-import {FC, memo} from "react";
+import {FC, memo, useState} from "react";
 import cls from "./PostsAside.module.scss";
 import {classNames} from "shared/lib/classNames";
 import {Text} from "shared/ui/Text/Text";
 import {Button} from "shared/ui/Button/Button";
 import {PostCalendarInput} from "features/post/PostCalendarInput/PostCalendarInput";
 import {Tag} from "/entities/Post/model/types/post";
+import {CreatePostModal} from "features/post/CreatePostModal";
+import {CreateTagModal} from "features/post/CreateTagModal";
 
 interface IPostsAsideProps {
     className?: string;
@@ -17,6 +19,8 @@ interface IPostsAsideProps {
     setSelectedTags: (tags: string[] | []) => void;
     apiCall: () => void;
     apiCancel: () => void;
+    createTagApiCall: (name: string, color: string) => void;
+    role?: number;
 }
 
 const PostsAside: FC<IPostsAsideProps> = memo(props => {
@@ -25,10 +29,12 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
     setSelectedDateEnd,
     selectedDateStart,
     selectedDateEnd,
+        createTagApiCall,
     tags,
     apiCall,
     setSelectedTags,
     tagList,
+        role,
         apiCancel
     } = props;
 
@@ -41,6 +47,8 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
         }
         setSelectedTags(newList)
     }
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     return (
         <div className={classNames(cls.PostsAside, {}, [className])}>
@@ -75,8 +83,9 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                             Поиск
                         </Button>
                     </div>
+                    {role == 1 ? <Button onClick={() => setModalIsOpen(true)}> Добавить тему </Button> : null}
                 </div>
-
+                <CreateTagModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} apiCall={createTagApiCall}/>
             </div>
         </div>
     );

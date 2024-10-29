@@ -16,6 +16,7 @@ export interface IReservationItem {
     is_available: boolean;
     position: string;
     department: string;
+    finish: number;
     // дополнительные параметры
     name: string;
 }
@@ -41,6 +42,7 @@ export interface IReservationData {
 export interface IReservationMade{
     reservation_id: number;
     place_id: number;
+    place_name: string;
     start: string;
     finish: string;
 }

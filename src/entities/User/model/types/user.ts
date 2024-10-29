@@ -10,12 +10,14 @@ export interface IUserDataResponse {
 export interface IUserData {
     user_id: number;
     username: string;
+    role: number;
     img_url?: string;
 }
 
 export interface User {
     uid: number;
     username: string;
+    role?: number;
     img?: string;
 }
 
@@ -28,5 +30,4 @@ export interface UserSchema extends User {
     isLoading: boolean;
     isAuthorized: boolean;
     error?: string;
-    role?: UserRoles;
 }

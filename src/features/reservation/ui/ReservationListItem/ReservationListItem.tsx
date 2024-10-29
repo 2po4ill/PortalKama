@@ -56,7 +56,7 @@ export const ReservationListItem: FC<IReservationItemProps> = memo((props) => {
                 </div>
 
                 <div className={classNames(cls.ItemDescription, {}, [])}>
-                    <Text text={`Место #${reservation.place_id}`}/>
+                    <Text text={`Место #${reservation.place_name}`}/>
                     <Text text={`ПК, Интернет, Телефон, Принтер`}/>
                 </div>
             </div>

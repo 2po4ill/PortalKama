@@ -20,6 +20,7 @@ interface IReservationContentProps {
     className?: string;
     places: IReservationItem[];
     selectedPoint: number;
+    selectedDate: Date;
     setSelectedPoint: (number: number) => void;
     setSelectedPlace: (place: IReservationItem) => void;
     setSelectedLocker: (locker: IReservationLockerItem) => void;
@@ -33,6 +34,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     selectedPoint,
     setSelectedPlace,
         setSelectedLocker,
+        selectedDate,
     apiCall} = props;
 
     const userData = useSelector(userSelectors.getUser);
@@ -147,7 +149,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                     Телефонный справочник
                 </Button>
             </div>
-            <PhoneModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} places={places} />
+            <PhoneModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} places={places} selectedDate={selectedDate}/>
         </div>
     );
 })
