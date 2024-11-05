@@ -10,6 +10,8 @@ export enum InputTheme {
     BORDERED = "bordered"
 }
 
+export type PlaceHolderPosition = "start" | "center" | "end";
+
 export interface IInputProps extends HTMLInputProps {
     className?: string;
     onChange?: (value: string) => void;
@@ -17,6 +19,7 @@ export interface IInputProps extends HTMLInputProps {
     adornment?: ReactNode;
     autofocus?: boolean;
     theme?: InputTheme;
+    placeholderPosition?: PlaceHolderPosition
 }
 
 // memo позволяет пропустить повторный рендеринг компонента, если его свойства не изменились
@@ -29,6 +32,7 @@ export const Input: FC<IInputProps> = memo((props) => {
         adornment,
         autofocus,
         theme = ButtonTheme.DEFAULT,
+        placeholderPosition = "center",
         ...other
     } = props;
     const [focused, setFocused] = useState(false);
@@ -54,6 +58,7 @@ export const Input: FC<IInputProps> = memo((props) => {
                 type={type}
                 onFocus={() => {setFocused(true)}}
                 onBlur={() => {setFocused(false)}}
+                className={classNames(cls[placeholderPosition])}
                 {...other}
             />
             {adornment && (

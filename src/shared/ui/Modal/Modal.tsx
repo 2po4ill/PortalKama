@@ -6,6 +6,7 @@ import { Portal } from 'shared/ui/Portal/Portal';
 import cls from './Modal.module.scss';
 import {classNames} from "shared/lib/classNames";
 import {Button} from "shared/ui/Button/Button";
+import CloseSVG from "shared/assets/icons/close-bold.svg";
 
 export interface IModalProps {
     className?: string;
@@ -14,7 +15,8 @@ export interface IModalProps {
     onClose: () => void;
     lazy?: boolean;
     unmount?: boolean;
-    closeButton?: string;
+    closeButton?: boolean;
+    closeButtonContent?: ReactNode | string;
 }
 
 const ANIMATION_DELAY = 300;
@@ -39,7 +41,8 @@ export const Modal: FC<IModalProps> = (props) => {
         onClose,
         lazy = true,
         unmount = false,
-        closeButton,
+        closeButton = true,
+        closeButtonContent = <CloseSVG />,
     } = props;
     const [mounted, setMounted] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
@@ -86,6 +89,16 @@ export const Modal: FC<IModalProps> = (props) => {
         };
     }, [isOpen, keydownHandler]);
 
+    const renderCloseButton = () => {
+        if (props.closeButtonContent == undefined) {
+            props.closeButtonContent = <CloseSVG />
+        }
+
+        return (
+            <Button onClick={closeHandler}> {props.closeButtonContent} </Button>
+        )
+    }
+
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpening,
         [cls.isClosing]: isClosing,
@@ -100,11 +113,14 @@ export const Modal: FC<IModalProps> = (props) => {
             <div className={classNames(cls.Modal, mods, ["modal"])}>
                 <div className={cls.overlay}>
                     <div className={classNames(cls.content, {}, [className])} onClick={onContentClick}>
-                        <div className={cls.x}>
-                            <Button onClick={closeHandler}> X </Button>
-                        </div>
-                        {children}
-                        {closeButton ? <Button onClick={closeHandler}> {closeButton} </Button> : null}
+                        <header>
+                            <div className={cls.x}>
+                                <Button onClick={closeHandler}> {closeButtonContent} </Button>
+                            </div>
+                        </header>
+                        <main>
+                            {children}
+                        </main>
                     </div>
                 </div>
             </div>

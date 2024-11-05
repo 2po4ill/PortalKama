@@ -34,10 +34,24 @@
     padding-left: 5px;
     overflow: hidden;
 
-    &::placeholder{
-      //text-align: center;
-      padding-left: 15px;
+    &.start {
+      &::placeholder{
+        text-align: start;
+      }
     }
+
+    &.center {
+      &::placeholder{
+        text-align: center;
+      }
+    }
+
+    &.end {
+      &::placeholder{
+        text-align: end;
+      }
+    }
+
   }
 
   &:has(.Adornment){
