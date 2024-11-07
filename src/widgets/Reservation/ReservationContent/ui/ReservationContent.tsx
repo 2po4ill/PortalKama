@@ -139,10 +139,10 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                 <a> Недоступно </a>
             </div>
             <div className={cls.buttonSection}>
-                <Button onClick={() => {
+                <Button onClick={selectedPoint ? () => {
                     apiCall()
                     userFloor()
-                }} className={cls.reservation}>
+                } : () => {}} className={ classNames(cls.reservation, {}, [selectedPoint ? cls.selectedPoint : cls.non_selectedPoint])}>
                     Забронировать
                 </Button>
                 <Button onClick={phoneClickHandler} className={cls.reservation}>
