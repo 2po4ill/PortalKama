@@ -66,26 +66,31 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                     </div>
                     <div className={cls.searchByDate}>
                         <Text className={cls.title} title={"По дате"}/>
-                        <div className={cls.textBlock}>
-                            <Text text={"C"} className={cls.text}/>
-                            <Text text={"По"} className={cls.text}/>
-                        </div>
-                        <div className={cls.inputBlock}>
-                            <PostCalendarInput selectedDate={selectedDateStart} setSelectedDate={setSelectedDateStart} className={cls.CalendarInput}/>
-                            <PostCalendarInput selectedDate={selectedDateEnd} setSelectedDate={setSelectedDateEnd} className={cls.CalendarInput}/>
+                        <div className={cls.searchByDateBlock}>
+                            <div className={cls.textBlock}>
+                                <Text text={"C"} className={cls.text}/>
+                                <Text text={"По"} className={cls.text}/>
+                            </div>
+                            <div className={cls.inputBlock}>
+                                <PostCalendarInput selectedDate={selectedDateStart}
+                                                   setSelectedDate={setSelectedDateStart}
+                                                   className={cls.CalendarInput}/>
+                                <PostCalendarInput selectedDate={selectedDateEnd} setSelectedDate={setSelectedDateEnd}
+                                                   className={cls.CalendarInput}/>
+                            </div>
                         </div>
                     </div>
-                    <div className={cls.buttonWrapper}>
-                        <Button className={cls.btn} onClick={apiCancel}>
-                            Сброс
-                        </Button>
-                        <Button className={cls.btn} onClick={apiCall}>
-                            Поиск
-                        </Button>
+                        <div className={cls.buttonWrapper}>
+                            <Button className={cls.btn} onClick={apiCancel}>
+                                Сброс
+                            </Button>
+                            <Button className={cls.btn} onClick={apiCall}>
+                                Поиск
+                            </Button>
+                        </div>
+                        {role == 1 ? <Button onClick={() => setModalIsOpen(true)}> Добавить тему </Button> : null}
                     </div>
-                    {role == 1 ? <Button onClick={() => setModalIsOpen(true)}> Добавить тему </Button> : null}
-                </div>
-                <CreateTagModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} apiCall={createTagApiCall}/>
+                    <CreateTagModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} apiCall={createTagApiCall}/>
             </div>
         </div>
     );

@@ -120,11 +120,22 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
 
                         <div className={cls.footer}>
                             <Text title={"Комментарии"}/>
-                            <Input placeholder={"Оставьте комментарий"} onChange={setSubmittedText} className={cls.inputComment} adornment={<Button className={cls.btn} onClick={() => {
-                                dispatch(postActions.addComment({post_id: post?.post_id, text: submittedText}))
-                                setSubmittedText("")
-                                dispatch(postActions.getPost(post?.post_id))
-                                }}> Отправить </Button>}/>
+                            <div className={cls.inputWrapper}>
+                                <Input
+                                    placeholder={"Оставьте комментарий"}
+                                    onChange={setSubmittedText}
+                                    className={cls.inputComment}
+                                    placeholderPosition={"start"}
+                                />
+                                <Button
+                                    className={cls.btn} onClick={() => {
+                                        // Обработчик лучше вынести в отдельную переменную
+                                        dispatch(postActions.addComment({post_id: post?.post_id, text: submittedText}))
+                                        setSubmittedText("")
+                                        dispatch(postActions.getPost(post?.post_id))
+                                    }}
+                                > Отправить </Button>
+                            </div>
                             <div className={cls.CommentSection}>
                                 {post?.postDesc?.comments ? post?.postDesc?.comments.map(comment => renderComment(comment)): "Здесь пока нет комментариев, оставьте его первым!"}
                             </div>

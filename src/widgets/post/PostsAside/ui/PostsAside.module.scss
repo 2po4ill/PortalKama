@@ -1,5 +1,4 @@
 .PostsAside {
-
   .content {
     display: flex;
     flex-direction: column;
@@ -13,6 +12,7 @@
     background-color: #fff;
     padding: 30px 20px;
     border-radius: var(--border-size-4);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
 
   .searchByDate {
@@ -21,8 +21,15 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+    .searchByDateBlock {
+      display: flex;
+      align-items: center;
+    }
+
     .CalendarInput{
       margin: 5px;
+      max-width: 200px;
     }
 
     .title {
@@ -31,6 +38,10 @@
 
     .textBlock {
       text-align: end;
+      .text {
+        margin: 6px 0;
+        p {font-weight: bold;}
+      }
     }
 
     .calendar, .text {
@@ -51,7 +62,7 @@
   .buttonWrapper {
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
   }
   .tag{
     margin: 5px;

@@ -1,13 +1,32 @@
 .PostModal {
-    max-height: 800px;
+    //max-height: 800px;
+    height: 100%;
     overflow-y: scroll;
     overflow-x: initial;
+    padding: 0 20px;
 }
+
+.collage {
+    width: 100%;
+    margin-bottom: 20px;
+    img {
+        width: 100%;
+    }
+}
+
+.contentBlock {
+    margin-bottom: 50px;
+}
+
 .ModalProperties {
     max-width: 900px;
 }
 .footer {
-    margin-top: 50px;
+    margin-bottom: 30px;
+    .inputWrapper {
+        display: flex;
+        gap: 45px;
+    }
     .inputComment {
         width: 80%;
         .btn {
@@ -20,6 +39,7 @@
     }
 }
 .Spinner {
-    top: 50%;
-    left: 50%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
 }

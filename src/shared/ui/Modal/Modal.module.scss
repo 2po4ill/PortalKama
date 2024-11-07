@@ -10,9 +10,21 @@
     overflow: hidden;
 }
 .x {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-end;
+    //width: 32px;
+    //height: 32px;
+    //display: flex;
+    //align-items: flex-end;
+    //justify-content: flex-end;
+
+    button {
+        padding: 5px 10px;
+        border-radius: 12px;
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+    }
 }
 .overlay {
     width: 100%;
@@ -21,18 +33,44 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar {display: none;}
 }
 
 .content {
-    padding: 44px;
+    display: grid;
+    grid-template-rows: 10% auto;
+    //justify-content: center;
+
     border-radius: 12px;
     background: var(--bg-color);
     transition: 0.3s transform;
     transform: scale(0.5);
-    max-width: 440px;
+    max-width: 50%;
+    max-height: 98%;
     min-width: 320px;
     min-height: 338px;
-    width: calc(100% - 40px);
+    //width: calc(100% - 40px);
+
+    header {
+        display: flex;
+        justify-content: flex-end;
+
+        width: 100%;
+        padding: 10px;
+    }
+
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 5px;
+        //padding: 44px;
+    }
 }
 
 .opened {

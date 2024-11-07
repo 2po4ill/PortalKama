@@ -48,4 +48,11 @@
   * Z-индексы
   */
   --modal-z-index: 10;
+
 }
+/**
+*
+* Разрешения рабочей области (xxl, xl)
+*/
+$screen-resolution-xxl: global 1920px;
+$screen-resolution-xl: global 1440px;

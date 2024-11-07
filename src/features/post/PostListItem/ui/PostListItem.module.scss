@@ -1,9 +1,19 @@
 .PostListItem {
-//  1440 window size
-  --postlist-card-width: 720px;
-  --postlist-card-min-height: 360px;
+  @media (min-width: 1024px) {
+  //  1024 window size
+  //  --postlist-card-width: 100px;
+  //  min-width: 500px;
+    max-width: 720px;
+    margin: 40px;
+  }
+  @media (min-width: 1440px) {
+  //  1440 window size
+  //  --postlist-card-width: 720px;
+    width: 720px;
+  }
 
-  width: var(--postlist-card-width);
+  --postlist-card-min-height: 360px;
+  //width: var(--postlist-card-width);
   min-height: var(--postlist-card-min-height);
   display: flex;
   flex-direction: column;

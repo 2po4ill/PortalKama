@@ -18,7 +18,7 @@ export default (env: IBuildEnv) => {
     const port = env.port || 3000;
 
     const devApiURL = "http://localhost:8000";
-    const prodApiURL: string = "http://corp-portal.kama-diesel.ru/api";
+    const prodApiURL: string = "https://corp-portal.kama-diesel.ru/api";
     const apiURL: string = env.apiURL ? env.apiURL : isDev ? devApiURL : prodApiURL;
 
     return buildWebpackConfig({
