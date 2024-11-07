@@ -56,7 +56,7 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
                         <a className={cls.title}> Место #{place.name} </a>
                         <a className={cls.description}> Телефон, компьютер </a>
                         {!place.is_available ?
-                            <div className={cls.properties}>
+                            <div>
                                 <a className={cls.description}> {place.full_name} </a>
                                 <a className={cls.description}> {place.position} </a>
                                 <a className={cls.description}> {place.department} </a>
@@ -72,8 +72,9 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
         return (
             <div className={cls.place}>
                 <div className={cls.properties}>
-                    <a className={cls.description}> Здесь пока пусто </a>
-                    <a className={cls.description}> Добавьте нужное место через карту офиса! </a>
+                    <a className={cls.description}> 1. Выберите нужный промежуток времени сверху </a>
+                    <a className={cls.description}> 2. Выберите <span className={cls.green}> место </span> на карте бронирования </a>
+                    <a className={cls.description}> 3. Нажмите кнопку забронировать внизу страницы </a>
                 </div>
             </div>
         )
@@ -84,7 +85,7 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
             <div className={cls.content}>
 
                 <div className={cls.placeHolder}>
-                    <a className={cls.label}> Выбранное место: </a>
+                    <a className={cls.label}> {place !== undefined ? "Выбранное место:" : "Выберите место:" }</a>
                     {place !== undefined ?
                         renderItem(place)
                         : renderBlank()}

@@ -62,7 +62,16 @@
   font-size: 15px;
   margin-right: auto;
   margin-left: auto;
+  .selectedPoint{
+
+  }
+
 }
+.non_selectedPoint{
+  background-color: #FE0606;
+  cursor: not-allowed;
+}
+
 .buttonSection {
   display: flex;
 }

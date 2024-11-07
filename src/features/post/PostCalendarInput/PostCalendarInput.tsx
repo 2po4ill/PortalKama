@@ -4,6 +4,7 @@ import {Input} from "shared/ui/Input/Input";
 import {Modal} from "shared/ui/Modal/Modal";
 import CalendarImage from "shared/assets/icons/Календарь.png"
 import cls from './PostCalendarInput.module.scss';
+import {Button} from "shared/ui/Button/Button";
 
 export interface IReservationCalendarInputProps {
     className?: string;
@@ -35,7 +36,6 @@ export const PostCalendarInput: FC<IReservationCalendarInputProps> = (props) => 
             <div>
                 <Input className={cls.input} onClick={openModal} placeholder={"ДД.ММ.ГГГГ"} value={dateFormat(selectedDate)} adornment={<img className={cls.img} src={CalendarImage} alt={"Календарь"} role={"button"}/>}/>
                 <Modal isOpen={open} onClose={() => {setOpen(false)}} className={cls.Modal}>
-
                     <Calendar setSelectedDate={setSelectedDate} selectedDate={selectedDate ? selectedDate : new Date()}/>
                 </Modal>
             </div>
