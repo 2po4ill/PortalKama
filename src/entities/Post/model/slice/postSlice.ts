@@ -183,10 +183,10 @@ const postSlice = createAppSlice({
                     state.error = String(action.payload);
                 }
             }),
-            createTag: createAThunk<{ name: string, color: string}, void>(async (data, thunkAPI) => {
+            createTag: createAThunk<{ name: string, background_color: string, text_color: string}, void>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    return await extra.api.post("/tag", {"name": data.name, "color": data.color});
+                    return await extra.api.post("/tag", {"name": data.name, "background_color": data.background_color, "text_color": data.text_color});
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));

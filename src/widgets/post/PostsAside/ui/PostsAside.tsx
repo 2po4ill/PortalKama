@@ -19,7 +19,7 @@ interface IPostsAsideProps {
     setSelectedTags: (tags: string[] | []) => void;
     apiCall: () => void;
     apiCancel: () => void;
-    createTagApiCall: (name: string, color: string) => void;
+    createTagApiCall: (name: string, background_color: string, text_color: string) => void;
     role?: number;
 }
 

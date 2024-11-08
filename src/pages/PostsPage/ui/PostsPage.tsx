@@ -55,8 +55,8 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         dispatch(postActions.getPostsList())
     }
 
-    const createTagApiCall = (name: string, color: string) => {
-        dispatch(postActions.createTag({name: name, color: color}));
+    const createTagApiCall = (name: string, background_color: string, text_color: string) => {
+        dispatch(postActions.createTag({name: name, background_color: background_color, text_color: text_color}));
         alert("Тема добавлена")
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
