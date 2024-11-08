@@ -24,7 +24,8 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     const posts = useSelector(postSelectors.getPostsList);
     const tags = useSelector(postSelectors.getTags);
     const isLoading = useSelector(postSelectors.getIsLoading);
-    const userRole = useSelector(userSelectors.getUser).role;
+    // const userRole = useSelector(userSelectors.getUser).role;
+    const userRole = 1;
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(postActions.getTags());
@@ -77,6 +78,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         alert("Новость создана и записана")
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
+
 
     return (
         <AsyncReducerProvider name={'post'} reducer={postReducer} destroy={false} >

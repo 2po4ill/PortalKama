@@ -58,7 +58,7 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                     <div className={cls.searchByTag}>
                         <Text title={"Поиск по темам"}/>
                         {tags.map(tag =>
-                            <div style={{background: tag.color}} className={cls.tag}>
+                            <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
                                 <input type={"checkbox"} className={cls.Input} name={tag.name} onChange={() => addTag(tag)}/>
                                 <label> {tag.name} </label>
                             </div>)

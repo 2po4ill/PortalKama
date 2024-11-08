@@ -30,10 +30,10 @@ const CreatePostModal: FC<IPostModalProps> = memo((props) => {
     const [inputStatus, setInputStatus] = useState(false)
 
     const renderInput = () => {
-        return <div>
-            <Input placeholder={"Введите url адрес изображения"} onChange={setSubmittedImg}/>
-            <Button onClick={() => setInputStatus(false)}> Убрать изображение </Button>
-            </div>
+        return <div className={cls.renderedInput}>
+                <Input placeholder={"Введите url адрес изображения"} onChange={setSubmittedImg} className={cls.Input} value={submittedImg}/>
+                <Button onClick={() => setInputStatus(false)}> Убрать изображение </Button>
+               </div>
     }
 
     const addTag = (tag: Tag) => {
@@ -49,21 +49,30 @@ const CreatePostModal: FC<IPostModalProps> = memo((props) => {
 
     return (
             <Modal isOpen={isOpen} onClose={onClose} className={cls.ModalProperties}>
-                <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle}/>
-                <Input placeholder={"Введите текст новости"} onChange={setSubmittedText}/>
-                <div className={cls.ImageSet}>
-                    {inputStatus ? null : <Button onClick={() => setInputStatus(true)}> Добавить изображение </Button>}
-                    {inputStatus ? renderInput() : null}
+                <div className={cls.CreatePostModal}>
+                    <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle} className={cls.Input} value={submittedTitle}/>
+                    <Input placeholder={"Введите текст новости"} onChange={setSubmittedText} className={cls.Input} value={submittedText}/>
+                    <div className={cls.ImageSet}>
+                        {inputStatus ? null : <Button onClick={() => setInputStatus(true)}> Добавить изображение </Button>}
+                        {inputStatus ? renderInput() : null}
+                    </div>
+                    <Text title={"Добавить темы к новости"}/>
+                    <div className={cls.tags}>
+                    {tags.map(tag =>
+                        <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
+                            <input type={"checkbox"} name={tag.name} onChange={() => addTag(tag)}/>
+                            <label className={cls.tagName}> {tag.name} </label>
+                        </div>)
+                    }
+                    </div>
+                    <Button className={cls.btn} onClick={() => apiCall(submittedTitle, submittedText, [submittedImg], submittedTags)}> Отправить </Button>
+                    <Button className={cls.btn} onClick={() => {
+                        setSubmittedTags([])
+                        setSubmittedImg("")
+                        setSubmittedText("")
+                        setSubmittedTitle("")
+                    }}> Очистить </Button>
                 </div>
-                <Text title={"Добавить темы к новости"}/>
-                {tags.map(tag =>
-                    <div style={{background: tag.color}} className={cls.tag}>
-                        <input type={"checkbox"} className={cls.Input} name={tag.name} onChange={() => addTag(tag)}/>
-                        <label> {tag.name} </label>
-                    </div>)
-                }
-                <Button onClick={() => apiCall(submittedTitle, submittedText, [submittedImg], submittedTags)}> Отправить </Button>
-                <Button> Очистить </Button>
             </Modal>
     );
 });

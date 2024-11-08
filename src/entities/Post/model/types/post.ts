@@ -45,7 +45,8 @@ export interface IPostInfo {
 export interface Tag {
     tag_id: number;
     name: string;
-    color: string;
+    background_color: string;
+    text_color: string;
 }
 
 export interface Comment {

@@ -108,11 +108,11 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                             {role == 1 ?
                                 <div>
                                     <Button onClick={() =>
-                                    {deleteApiCall(post ? post?.post_id : 0)
-                                     onClose()}}>
-                                        Удалить новость </Button>
+                                    {setModalIsOpen(true)}} className={cls.btnAPI}> Редактировать новость </Button>
                                     <Button onClick={() =>
-                                    {setModalIsOpen(true)}}> Редактировать новость </Button>
+                                    {deleteApiCall(post ? post?.post_id : 0)
+                                        onClose()}} className={cls.btnAPI}>
+                                        Удалить новость </Button>
                                 </div>
                             : null}
                         </div>
