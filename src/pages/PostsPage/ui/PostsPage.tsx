@@ -55,9 +55,21 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         dispatch(postActions.getPostsList())
     }
 
+    const editTagApiCall = (tag_id: number, name: string, background_color: string, text_color: string) => {
+        dispatch(postActions.editTag({tag_id: tag_id, name: name, background_color: background_color, text_color: text_color}));
+        alert("Тема изменена")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+    }
+
     const createTagApiCall = (name: string, background_color: string, text_color: string) => {
         dispatch(postActions.createTag({name: name, background_color: background_color, text_color: text_color}));
         alert("Тема добавлена")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+    }
+
+    const deleteTagApiCall = (tag_id: number) => {
+        dispatch(postActions.deleteTag({tag_id: tag_id}));
+        alert("Новость удалена")
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
 
@@ -102,6 +114,8 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                                        apiCancel={cancelApi}
                                        setSelectedTags={setSelectedTags}
                                        createTagApiCall={createTagApiCall}
+                                       editTagApiCall={editTagApiCall}
+                                       deleteTagApiCall={deleteTagApiCall}
                                         role={userRole}/>} />
                 {modalIsOpen ?
                     <PostModal isOpen={modalIsOpen}

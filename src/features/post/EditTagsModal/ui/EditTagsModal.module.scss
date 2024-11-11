@@ -1,0 +1,16 @@
+.ModalProperties {
+    max-width: 900px;
+    min-width: 700px;
+}
+
+.CreateTagModal {
+    display: flex;
+    flex-direction: column;
+    .Input{
+        margin-bottom: 10px;
+        width: 400px;
+    }
+    .btn{
+        margin-bottom: 10px;
+    }
+}

@@ -7,6 +7,7 @@ import {PostCalendarInput} from "features/post/PostCalendarInput/PostCalendarInp
 import {Tag} from "/entities/Post/model/types/post";
 import {CreatePostModal} from "features/post/CreatePostModal";
 import {CreateTagModal} from "features/post/CreateTagModal";
+import {EditTagsModal} from "features/post/EditTagsModal";
 
 interface IPostsAsideProps {
     className?: string;
@@ -20,6 +21,8 @@ interface IPostsAsideProps {
     apiCall: () => void;
     apiCancel: () => void;
     createTagApiCall: (name: string, background_color: string, text_color: string) => void;
+    editTagApiCall: (tag_id: number, name: string, background_color: string, text_color: string) => void;
+    deleteTagApiCall: (tag_id: number) => void;
     role?: number;
 }
 
@@ -32,6 +35,8 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
         createTagApiCall,
     tags,
     apiCall,
+        editTagApiCall,
+        deleteTagApiCall,
     setSelectedTags,
     tagList,
         role,
@@ -49,6 +54,7 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
     }
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen1, setModalIsOpen1] = useState(false);
 
     return (
         <div className={classNames(cls.PostsAside, {}, [className])}>
@@ -88,9 +94,14 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
                                 Поиск
                             </Button>
                         </div>
-                        {role == 1 ? <Button onClick={() => setModalIsOpen(true)}> Добавить тему </Button> : null}
+                        {role == 1 ?
+                        <div>
+                            <Button onClick={() => setModalIsOpen(true)}> Добавить тему </Button>
+                            <Button onClick={() => setModalIsOpen1(true)}> Изменить темы </Button>
+                        </div>  : null}
                     </div>
                     <CreateTagModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} apiCall={createTagApiCall}/>
+                    <EditTagsModal isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} apiCall={editTagApiCall} tags={tags} dropApiCall={deleteTagApiCall}/>
             </div>
         </div>
     );

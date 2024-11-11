@@ -1,0 +1,1 @@
+export { EditTagsModal } from "./ui/EditTagsModal";

@@ -35,6 +35,7 @@ const CreateTagModal: FC<IPostModalProps> = memo((props) => {
                     <Button className={cls.btn} onClick={()=> {
                         setSubmittedColor("")
                         setSubmittedName("")
+                        setSubmittedTextColor("")
                     }}> Очистить </Button>
                 </div>
             </Modal>
