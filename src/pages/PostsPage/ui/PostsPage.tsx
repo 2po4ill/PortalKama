@@ -24,7 +24,8 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     const posts = useSelector(postSelectors.getPostsList);
     const tags = useSelector(postSelectors.getTags);
     const isLoading = useSelector(postSelectors.getIsLoading);
-    const userRole = useSelector(userSelectors.getUser).role;
+    // const userRole = useSelector(userSelectors.getUser).role;
+    const userRole = 1;
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(postActions.getTags());
@@ -54,9 +55,21 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         dispatch(postActions.getPostsList())
     }
 
-    const createTagApiCall = (name: string, color: string) => {
-        dispatch(postActions.createTag({name: name, color: color}));
+    const editTagApiCall = (tag_id: number, name: string, background_color: string, text_color: string) => {
+        dispatch(postActions.editTag({tag_id: tag_id, name: name, background_color: background_color, text_color: text_color}));
+        alert("Тема изменена")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+    }
+
+    const createTagApiCall = (name: string, background_color: string, text_color: string) => {
+        dispatch(postActions.createTag({name: name, background_color: background_color, text_color: text_color}));
         alert("Тема добавлена")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+    }
+
+    const deleteTagApiCall = (tag_id: number) => {
+        dispatch(postActions.deleteTag({tag_id: tag_id}));
+        alert("Новость удалена")
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
 
@@ -77,6 +90,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         alert("Новость создана и записана")
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
+
 
     return (
         <AsyncReducerProvider name={'post'} reducer={postReducer} destroy={false} >
@@ -100,6 +114,8 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                                        apiCancel={cancelApi}
                                        setSelectedTags={setSelectedTags}
                                        createTagApiCall={createTagApiCall}
+                                       editTagApiCall={editTagApiCall}
+                                       deleteTagApiCall={deleteTagApiCall}
                                         role={userRole}/>} />
                 {modalIsOpen ?
                     <PostModal isOpen={modalIsOpen}

@@ -183,10 +183,48 @@ const postSlice = createAppSlice({
                     state.error = String(action.payload);
                 }
             }),
-            createTag: createAThunk<{ name: string, color: string}, void>(async (data, thunkAPI) => {
+            createTag: createAThunk<{ name: string, background_color: string, text_color: string}, void>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    return await extra.api.post("/tag", {"name": data.name, "color": data.color});
+                    return await extra.api.post("/tag", {"name": data.name, "background_color": data.background_color, "text_color": data.text_color});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
+            editTag: createAThunk<{tag_id: number, name: string, background_color: string, text_color: string}, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/edit_tag", {"tag_id": data.tag_id,"name": data.name, "background_color": data.background_color, "text_color": data.text_color});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
+            deleteTag: createAThunk<{ tag_id: number}, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/delete_tag", {"tag_id": data.tag_id});
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));

@@ -65,7 +65,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
             </div>
 
             <div className={cls.footer}>
-                {tags?.map(tag => <div style={{background: tag.color}} className={cls.tag}>
+                {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
                     <label> {tag.name} </label>
                 </div>)}
                 <Text text={date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()}/>

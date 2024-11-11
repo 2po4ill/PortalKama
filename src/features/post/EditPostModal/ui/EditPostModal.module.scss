@@ -1,25 +1,36 @@
-.PostModal {
-    max-height: 800px;
-    overflow-y: scroll;
-    overflow-x: initial;
-}
 .ModalProperties {
-    max-width: 900px;
+    //max-width: 900px;
+    min-width: 700px;
 }
-.footer {
-    margin-top: 50px;
-    .inputComment {
-        width: 80%;
-        .btn {
-            position: relative;
-            left: 35px;
+.EditPostModal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .Input {
+        margin-bottom: 7px;
+        width: 500px;
+    }
+    .renderedInput {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .tags{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .tag{
+            display: flex;
+            align-items: center;
+            width: 500px;
+            margin-bottom: 7px;
+            .tagName{
+                margin-left: 5px;
+            }
         }
     }
-    .CommentSection{
-        margin-top: 20px;
+    .btn{
+        width: 200px;
+        margin-bottom: 7px;
     }
-}
-.Spinner {
-    top: 50%;
-    left: 50%;
 }

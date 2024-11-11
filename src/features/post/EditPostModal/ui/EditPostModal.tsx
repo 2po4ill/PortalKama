@@ -42,21 +42,30 @@ const EditPostModal: FC<IPostModalProps> = memo((props) => {
 
     return (
             <Modal isOpen={isOpen} onClose={onClose}>
-                <Text text={"Заголовок"}/>
-                <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle} value={submittedTitle}/>
-                <Text text={"Текст"}/>
-                <Input placeholder={"Введите текст новости"} onChange={setSubmittedText} value={submittedText}/>
-                <Text text={"Изображение"}/>
-                <Input placeholder={"Введите url адрес изображения"} onChange={setSubmittedImg} value={submittedImg}/>
-                <Text title={"Темы к новости"}/>
-                {tags.map(tag =>
-                    <div style={{background: tag.color}} className={cls.tag}>
-                        <input type={"checkbox"} className={cls.Input} name={tag.name} onChange={() => addTag(tag)} checked={!!post.tags.find(confirmedTag => confirmedTag == tag.tag_id)}/>
-                        <label> {tag.name} </label>
-                    </div>)
-                }
-                <Button onClick={() => apiCall(post.post_id, submittedTitle, submittedText, [submittedImg], submittedTags)}> Отправить </Button>
-                <Button> Очистить </Button>
+                <div className={cls.EditPostModal}>
+                    <Text text={"Заголовок"}/>
+                    <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle} value={submittedTitle} className={cls.Input} />
+                    <Text text={"Текст"}/>
+                    <Input placeholder={"Введите текст новости"} onChange={setSubmittedText} value={submittedText} className={cls.Input}/>
+                    <Text text={"Изображение"}/>
+                    <Input placeholder={"Введите url адрес изображения"} onChange={setSubmittedImg} value={submittedImg} className={cls.Input}/>
+                    <Text title={"Темы к новости"}/>
+                    <div className={cls.tags}>
+                        {tags.map(tag =>
+                            <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
+                                <input type={"checkbox"} name={tag.name} onChange={() => addTag(tag)} checked={!!post.tags.find(confirmedTag => confirmedTag == tag.tag_id)}/>
+                                <label className={cls.tagName}> {tag.name} </label>
+                            </div>)
+                        }
+                    </div>
+                    <Button className={cls.btn} onClick={() => apiCall(post.post_id, submittedTitle, submittedText, [submittedImg], submittedTags)}> Отправить </Button>
+                    <Button className={cls.btn} onClick={() => {
+                        setSubmittedImg("")
+                        setSubmittedText("")
+                        setSubmittedTitle("")
+                        setSubmittedTags([])
+                    }}> Очистить </Button>
+                </div>
             </Modal>
     );
 });

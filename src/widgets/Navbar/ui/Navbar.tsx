@@ -56,7 +56,7 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
             }
             return (
                 <Button className={cls.button} onClick={setModalOpen} theme={ButtonTheme.INHERIT}>
-                    <Text text={"Войти"} theme={TextTheme.INVERTED} />
+                    <Text text={"Войти в личный кабинет"} theme={TextTheme.INVERTED} />
                 </Button>
             );
         }
