@@ -40,6 +40,11 @@
   border-color: #555 transparent transparent transparent;
 }
 
+.text_block{
+  display: flex;
+  flex-direction: column;
+}
+
 /* Отображение текста подсказки при наведении курсора мыши на контейнер подсказки */
 .tooltip:hover .tooltiptext {
   visibility: visible;

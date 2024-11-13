@@ -56,7 +56,7 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
                         <a className={cls.title}> Место #{place.name} </a>
                         <a className={cls.description}> Телефон, компьютер </a>
                         {!place.is_available ?
-                            <div>
+                            <div className={cls.text_block}>
                                 <a className={cls.description}> {place.full_name} </a>
                                 <a className={cls.description}> {place.position} </a>
                                 <a className={cls.description}> {place.department} </a>

@@ -24,8 +24,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     const posts = useSelector(postSelectors.getPostsList);
     const tags = useSelector(postSelectors.getTags);
     const isLoading = useSelector(postSelectors.getIsLoading);
-    // const userRole = useSelector(userSelectors.getUser).role;
-    const userRole = 1;
+    const userRole = useSelector(userSelectors.getUser).role;
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(postActions.getTags());
@@ -39,7 +38,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     const [selectedPost, setSelectedPost] = useState<Post|undefined>(undefined);
     const [selectedDateStart, setSelectedDateStart] = useState<Date | undefined>(undefined);
     const [selectedDateEnd, setSelectedDateEnd] = useState<Date | undefined>(undefined);
-    const [tagList, setSelectedTags] = useState<string[] | []>([]);
+    const [tagList, setSelectedTags] = useState<number[] | []>([]);
 
     const postClickHandler = () => {
         setModalIsOpen(true);

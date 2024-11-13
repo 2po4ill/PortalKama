@@ -20,10 +20,10 @@ const postSlice = createAppSlice({
         const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
         return {
-            getPostsList: createAThunk<{tags: string[], start: number, finish: number} | undefined, IPostData>(async (data, thunkAPI) => {
+            getPostsList: createAThunk<{tags: number[], start: number, finish: number} | undefined, IPostData>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
-                        const postList = await extra.api.get<IPostData>("/articles?" + (data?.tags  ? data?.tags.map(tag => "tag=" + tag + "&") : "") +
+                        const postList = await extra.api.get<IPostData>("/articles?" + (data?.tags  ? data?.tags.map(tag => "tag=" + tag.toString() + "&") : "") +
                             (data?.start || data?.finish ? "start=" + data?.start + "&finish=" + data?.finish : ""));
                         return postList.data;
                     } catch (err) {

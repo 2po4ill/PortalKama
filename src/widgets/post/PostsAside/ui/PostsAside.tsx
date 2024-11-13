@@ -16,8 +16,8 @@ interface IPostsAsideProps {
     selectedDateStart?: Date;
     selectedDateEnd?: Date;
     tags: Tag[];
-    tagList: string[] | [];
-    setSelectedTags: (tags: string[] | []) => void;
+    tagList: number[] | [];
+    setSelectedTags: (tags: number[] | []) => void;
     apiCall: () => void;
     apiCancel: () => void;
     createTagApiCall: (name: string, background_color: string, text_color: string) => void;
@@ -44,11 +44,11 @@ const PostsAside: FC<IPostsAsideProps> = memo(props => {
     } = props;
 
     const addTag = (tag: Tag) => {
-        const newList: string[] = []
+        const newList: number[] = []
         let tracker = false
-        tagList.map(tagsObject => tag.name == tagsObject ? tracker = true : newList.push(tagsObject))
+        tagList.map(tagsObject => tag.tag_id == tagsObject ? tracker = true : newList.push(tagsObject))
         if (!tracker) {
-            newList.push(tag.name)
+            newList.push(tag.tag_id)
         }
         setSelectedTags(newList)
     }
