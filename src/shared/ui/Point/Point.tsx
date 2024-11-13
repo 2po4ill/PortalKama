@@ -51,9 +51,11 @@ export const Point: FC<IPoint> = (props) => {
                 <img src={mapPoint()} alt={"point"} onClick={SelectPoint}/>
                 { place.is_available ? null :
                 <div className={cls.tooltiptext}>
-                    <a> {place.full_name} </a>
-                    <a> {place.position} </a>
-                    <a> {phone ? "+" + phone : null} </a>
+                    <div className={cls.text_block}>
+                        <a> {place.full_name} </a>
+                        <a> {place.position} </a>
+                        <a> {phone ?phone : null} </a>
+                    </div>
                 </div>
                 }
             </div>
