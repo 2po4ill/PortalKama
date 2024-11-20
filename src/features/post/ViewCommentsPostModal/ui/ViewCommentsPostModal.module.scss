@@ -1,0 +1,48 @@
+.PostModal {
+    //max-height: 800px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: initial;
+    padding: 0 20px;
+}
+
+.collage {
+    width: 100%;
+    margin-bottom: 20px;
+    img {
+        width: 100%;
+    }
+}
+
+.contentBlock {
+    margin-bottom: 50px;
+    .btnAPI{
+        margin: 10px;
+    }
+}
+
+.ModalProperties {
+    max-width: 900px;
+}
+.footer {
+    margin-bottom: 30px;
+    .inputWrapper {
+        display: flex;
+        gap: 45px;
+    }
+    .inputComment {
+        width: 80%;
+        .btn {
+            position: relative;
+            left: 35px;
+        }
+    }
+    .CommentSection{
+        margin-top: 20px;
+    }
+}
+.Spinner {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}

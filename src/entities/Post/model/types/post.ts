@@ -22,6 +22,7 @@ export interface PostSchema {
     posts: Post[] | [];
     post: PostDesc | undefined;
     tags: Tag[] | [];
+    comments: Comment[] | [];
     isLoading: boolean;
     isPostLoading: boolean;
     error: string | undefined;
@@ -35,6 +36,11 @@ export interface IPostData {
 export interface IPostTags {
     status: boolean;
     tags: Tag[];
+}
+
+export interface IPostComments {
+    status: boolean;
+    comments: Comment[];
 }
 
 export interface IPostInfo {
