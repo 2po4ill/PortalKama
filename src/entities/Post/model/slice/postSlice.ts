@@ -1,5 +1,5 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {IPostData, IPostInfo, IPostTags, Post, PostDesc, PostSchema, Tag} from "../types/post";
+import {IPostComments, IPostData, IPostInfo, IPostTags, Post, PostDesc, PostSchema, Tag} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
 import {Comment} from "entities/Post/model/types/post";
 
@@ -8,6 +8,7 @@ const initialState: PostSchema = {
     posts: [],
     post: undefined,
     tags: [],
+    comments: [],
     isLoading: false,
     isPostLoading: false,
     error: undefined
@@ -145,10 +146,83 @@ const postSlice = createAppSlice({
                     state.error = String(action.payload);
                 }
             }),
+            checkComments: createAThunk<undefined, IPostComments>(async (data, thunkAPI) => {
+                    const { rejectWithValue, extra } = thunkAPI;
+                    try {
+                        const comment_list = await extra.api.get<IPostComments>("/check_comments");
+                        console.log(comment_list.data);
+                        return comment_list.data;
+                    } catch (err) {
+                        console.log("Something went wrong" + err);
+                        return rejectWithValue(String(err));
+                    } },
+                {
+                    pending: state => {
+                        return {
+                            ...state,
+                            isPostLoading: true,
+                            error: undefined
+                        }
+                    },
+                    fulfilled: (state, action) => {
+                        return {
+                            ...state,
+                            isPostLoading: false,
+                            error: undefined,
+                            comments: action.payload.comments
+                        }
+                    },
+                    rejected: (state, action) => {
+                        return {
+                            ...state,
+                            isPostLoading: false,
+                            error: String(action.error)
+                        }
+                    }
+                }
+            ),
             createArticle: createAThunk<{ title: string, text: string, images: string[], tags: number[]}, void>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
                     return await extra.api.post("/create_article", {"title": data.title, "text": data.text, "images": data.images, "tags": data.tags});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
+            approveComment: createAThunk<{comment_id: number}, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/approve_comment", {"comment_id" : data.comment_id});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
+            deleteComment: createAThunk<{comment_id: number}, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/delete_comment", {"comment_id" : data.comment_id});
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));

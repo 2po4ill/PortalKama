@@ -15,6 +15,7 @@ export const userSlice = createAppSlice({
         return {
             logout: create.reducer( (state) => {
                 localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+                localStorage.removeItem(LOCAL_STORAGE_LAST_AUTHORIZATION);
                 return {
                     ...state,
                     uid: -1,

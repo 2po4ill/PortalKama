@@ -8,12 +8,17 @@ import {Button} from "shared/ui/Button/Button";
 import {PostModal} from "features/post/PostModal";
 import {CreatePostModal} from "features/post/CreatePostModal";
 import {Tag} from "entities/Post/model/types/post";
+import {ViewCommentsPostModal} from "features/post/ViewCommentsPostModal";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
+import {postActions} from "entities/Post/model/slice/postSlice";
 
 interface IPostsListProps {
     className?: string;
     posts: Post[];
     postClickHandler: () => void;
     apiCall: (title: string, text: string, images: string[], tags: number[]) => void;
+    deleteApiCall: (comment_id: number) => void;
+    approveCommentApiCall: (comment_id: number) => void;
     setSelectedPost: (post: Post | undefined) => void;
     role?: number;
     tags: Tag[];
@@ -25,16 +30,22 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
         role,
         apiCall,
         postClickHandler,
+        approveCommentApiCall,
         tags,
-        setSelectedPost} = props;
+        setSelectedPost,
+    deleteApiCall} = props;
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen1, setModalIsOpen1] = useState(false);
+    const dispatch = useAppDispatch();
 
     return (
         <div className={classNames(cls.PostsList, {}, [className])}>
             { role == 1 ?
             <div className={cls.contentCreatorBlock}>
                 <Button onClick={() => setModalIsOpen(true)}> Создать запись </Button>
+                <Button onClick={() => { dispatch(postActions.checkComments());
+                    setModalIsOpen1(true)}}> Модерация комментариев </Button>
             </div> : null
             }
             <div className={cls.listContainer}>
@@ -45,6 +56,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
                 }
             </div>
             <CreatePostModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} apiCall={apiCall} tags={tags}/>
+            <ViewCommentsPostModal isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} apiCall={approveCommentApiCall} deleteApiCall={deleteApiCall}/>
         </div>
     );
 })
