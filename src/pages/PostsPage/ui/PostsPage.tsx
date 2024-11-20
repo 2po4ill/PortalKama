@@ -66,6 +66,18 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
 
+    const approveCommentApiCall = (comment_id: number) => {
+        dispatch(postActions.approveComment({comment_id: comment_id}));
+        alert("Комментарий подтвержден")
+        setTimeout(() => dispatch(postActions.checkComments()), 50);
+    }
+
+    const deleteCommentApiCall = (comment_id: number) => {
+        dispatch(postActions.deleteComment({comment_id: comment_id}));
+        alert("Комментарий удален")
+        setTimeout(() => dispatch(postActions.checkComments()), 50);
+    }
+
     const deleteTagApiCall = (tag_id: number) => {
         dispatch(postActions.deleteTag({tag_id: tag_id}));
         alert("Новость удалена")
@@ -101,6 +113,8 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                                         postClickHandler={postClickHandler}
                                         setSelectedPost={setSelectedPost}
                                         apiCall = {createArticleApiCall}
+                                        approveCommentApiCall={approveCommentApiCall}
+                                        deleteApiCall={deleteCommentApiCall}
                                         role={userRole}
                                         tags={tags}/>}
                     aside={<PostsAside setSelectedDateEnd={setSelectedDateEnd}
@@ -122,6 +136,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                                selectedPost={selectedPost}
                                deleteApiCall={deleteArticleApiCall}
                                role={userRole}
+                               deleteCommentApiCall={deleteCommentApiCall}
                                editApiCall={editArticleApiCall}
                                 tags={tags}/>
                     : null}

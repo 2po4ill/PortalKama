@@ -15,7 +15,6 @@ import {CommentNode} from "shared/ui/Comment/Comment";
 import {Comment, Tag} from "entities/Post/model/types/post";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {postActions} from "entities/Post/model/slice/postSlice";
-import {CreatePostModal} from "features/post/CreatePostModal";
 import {EditPostModal} from "features/post/EditPostModal";
 
 
@@ -25,6 +24,7 @@ interface IPostModalProps {
     onClose: () => void;
     selectedPost: Post | undefined;
     deleteApiCall: (post_id: number) => void;
+    deleteCommentApiCall: (comment_id: number) => void
     editApiCall: (post_id: number, title: string, text: string, images: string[], tags: number[]) => void;
     role?: number;
     tags: Tag[];
@@ -37,6 +37,7 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
         deleteApiCall,
         role,
         tags,
+        deleteCommentApiCall,
         editApiCall,
     selectedPost} = props;
     const isPostLoading = useSelector(postSelectors.getIsPostLoading);
@@ -84,7 +85,7 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
     }
 
     function renderComment(comment: Comment) {
-        return <CommentNode comment={comment}/>
+        return <CommentNode comment={comment} role={role} deleteApiCall={deleteCommentApiCall}/>
     }
 
     return (
