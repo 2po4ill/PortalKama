@@ -13,6 +13,7 @@ export interface IReservationItem {
     place_id: number;
     full_name: string;
     user_id: number;
+    phone: string;
     is_available: boolean;
     position: string;
     department: string;
