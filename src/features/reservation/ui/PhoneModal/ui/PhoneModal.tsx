@@ -91,7 +91,7 @@ const PhoneModal: FC<IPostModalProps> = memo((props) => {
                                 <td><Text title={"Почта"}/></td>
                             </tr>
                             </thead>
-                            {newList.map(place => renderPhone(phoneList[place.place_id - 1], place.name, place.full_name, place.position, place.department))}
+                            {newList.map(place => renderPhone(place.phone, place.name, place.full_name, place.position, place.department))}
                         </table>
                     </div>
                 </div>
