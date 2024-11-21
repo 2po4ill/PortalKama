@@ -9,7 +9,6 @@ export interface IPoint {
     className: string;
     place: IReservationItem;
     selectedPoint: number;
-    phone?: string;
     setSelectedPoint: (number: number) => void;
     setSelectedPlace: (place: IReservationItem) => void;
 }
@@ -19,7 +18,6 @@ export const Point: FC<IPoint> = (props) => {
         className,
         place,
         selectedPoint,
-        phone,
         setSelectedPoint,
         setSelectedPlace
     } = props;
@@ -54,7 +52,7 @@ export const Point: FC<IPoint> = (props) => {
                     <div className={cls.text_block}>
                         <a> {place.full_name} </a>
                         <a> {place.position} </a>
-                        <a> {phone ?phone : null} </a>
+                        <a> {place.phone ? place.phone : null} </a>
                     </div>
                 </div>
                 }
