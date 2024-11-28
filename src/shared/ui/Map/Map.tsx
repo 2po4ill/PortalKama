@@ -843,7 +843,7 @@ export const Map: FC<IMap> = (props) => {
                     <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
                 )
             }
-            if (floor === "2_2" && place.place_id > 52 && place.place_id < 105) {
+            if (floor === "2_2" && place.place_id > 52 && place.place_id < 103) {
                 return (
                     <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
                 )
