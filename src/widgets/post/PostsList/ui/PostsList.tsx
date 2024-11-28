@@ -16,7 +16,7 @@ interface IPostsListProps {
     className?: string;
     posts: Post[];
     postClickHandler: () => void;
-    apiCall: (title: string, text: string, images: string[], tags: number[]) => void;
+    apiCall: (title: string, text: string, images: File | undefined, tags: number[]) => void;
     deleteApiCall: (comment_id: number) => void;
     approveCommentApiCall: (comment_id: number) => void;
     setSelectedPost: (post: Post | undefined) => void;

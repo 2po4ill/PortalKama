@@ -94,7 +94,7 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                     <div className={classNames(cls.PostModal, {}, [className])}>
 
                         <div className={cls.collage}>
-                            <img src={imageSrc(post && post.images ? post.images[0] : placeHolder)} onError={({currentTarget}) => {
+                            <img src={post && post.images ? post.images[0] : placeHolder} onError={({currentTarget}) => {
                                 currentTarget.onerror = null; // prevents looping
                                 currentTarget.src = placeHolder;
                             }}/>

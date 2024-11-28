@@ -96,7 +96,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
 
-    const createArticleApiCall = (title: string, text: string, images: string[], tags: number[]) => {
+    const createArticleApiCall = (title: string, text: string, images: File | undefined, tags: number[]) => {
         dispatch(postActions.createArticle({title: title, text: text, images: images, tags: tags}));
         alert("Новость создана и записана")
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
