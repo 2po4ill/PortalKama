@@ -387,7 +387,13 @@
     {"place_id": 139, "name": "Л-133", "is_available": true},
     {"place_id": 140, "name": "Л-134", "is_available": true},
     {"place_id": 141, "name": "Л-135", "is_available": true},
-    {"place_id": 142, "name": "Л-136", "is_available": true}
+    {"place_id": 142, "name": "Л-136", "is_available": true},
+    {"place_id": 143, "name": "Л-137", "is_available": true},
+    {"place_id": 144, "name": "Л-138", "is_available": true},
+    {"place_id": 145, "name": "Л-139", "is_available": true},
+    {"place_id": 146, "name": "Л-140", "is_available": true},
+    {"place_id": 147, "name": "Л-141", "is_available": true},
+    {"place_id": 148, "name": "Л-142", "is_available": true}
   ]
   },
   "locker_reservation_list" : {"locker_reservation_list": [
