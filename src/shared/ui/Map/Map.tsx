@@ -216,6 +216,12 @@ export const Map: FC<IMap> = (props) => {
         {id: 140, name: "Л-134", position: [cls.L134]},
         {id: 141, name: "Л-135", position: [cls.L135]},
         {id: 142, name: "Л-136", position: [cls.L136]},
+        {id: 143, name: "Л-137", position: [cls.L137]},
+        {id: 144, name: "Л-138", position: [cls.L138]},
+        {id: 145, name: "Л-139", position: [cls.L139]},
+        {id: 146, name: "Л-140", position: [cls.L140]},
+        {id: 147, name: "Л-141", position: [cls.L141]},
+        {id: 148, name: "Л-142", position: [cls.L142]},
     ]
 
     const pointsArrayLocker = [
