@@ -7,6 +7,9 @@ import green from "shared/assets/images/icon_Зеленый.png"
 import red from "shared/assets/images/icon_Красный.png"
 import {Button} from "shared/ui/Button/Button";
 import {AppLink} from "shared/ui/AppLink/AppLink";
+import mapPointGray from "shared/assets/images/icon_Серый.png";
+import mapPointGreen from "shared/assets/images/icon_Зеленый.png";
+import mapPointRed from "shared/assets/images/icon_Красный.png";
 
 interface IReservationAsideProps {
     className?: string;
@@ -47,15 +50,30 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
         )
     }
 
+    const mapPoint = (place: IReservationItem) => {
+
+        if (place.place_id === 118 || place.place_id === 130)
+            return mapPointGray
+
+        if (place.is_available)
+            return mapPointGreen
+
+        if (!place.is_available)
+            return mapPointRed
+
+
+        return mapPointGray
+    }
+
 
     const renderItem = (place: IReservationItem) => {
         return (
                 <div className={cls.place}>
-                    <img className={cls.statusImg} src={place.is_available ? green : red} alt={"flag"}/>
+                    <img className={cls.statusImg} src={mapPoint(place)} alt={"flag"}/>
                     <div className={cls.properties}>
                         <a className={cls.title}> Место #{place.name} </a>
                         <a className={cls.description}> Телефон, компьютер </a>
-                        {!place.is_available ?
+                        {!place.is_available || (place.place_id != 118 && place.place_id != 130) ?
                             <div className={cls.text_block}>
                                 <a className={cls.description}> {place.full_name} </a>
                                 <a className={cls.description}> {place.position} </a>
