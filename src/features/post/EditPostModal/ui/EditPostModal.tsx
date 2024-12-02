@@ -12,7 +12,7 @@ interface IPostModalProps {
     tags: Tag[];
     post: {post_id: number, title: string,text: string, images: string[], tags: number[]};
     isOpen: boolean;
-    apiCall: (post_id: number, title: string,text: string, images: string[], tags: number[]) => void;
+    apiCall: (post_id: number, title: string,text: string, images: File | undefined, tags: number[]) => void;
     onClose: () => void;
 }
 
@@ -26,7 +26,7 @@ const EditPostModal: FC<IPostModalProps> = memo((props) => {
 
     const [submittedTitle, setSubmittedTitle] = useState(post.title);
     const [submittedText, setSubmittedText] = useState(post.text);
-    const [submittedImg, setSubmittedImg] = useState(post.images ? post.images[0] : "");
+    const [submittedImg, setSubmittedImg] = useState<File>();
     const [submittedTags, setSubmittedTags] = useState<number[]>(post.tags ? post.tags : [])
 
     const addTag = (tag: Tag) => {
@@ -39,6 +39,14 @@ const EditPostModal: FC<IPostModalProps> = memo((props) => {
         setSubmittedTags(newList)
     }
 
+    const onChange = (event: React.FormEvent) => {
+        const files = (event.target as HTMLInputElement).files
+
+        if (files && files.length > 0) {
+            setSubmittedImg(files[0])
+        }
+    }
+
 
     return (
             <Modal isOpen={isOpen} onClose={onClose}>
@@ -48,7 +56,7 @@ const EditPostModal: FC<IPostModalProps> = memo((props) => {
                     <Text text={"Текст"}/>
                     <Input placeholder={"Введите текст новости"} onChange={setSubmittedText} value={submittedText} className={cls.Input}/>
                     <Text text={"Изображение"}/>
-                    <Input placeholder={"Введите url адрес изображения"} onChange={setSubmittedImg} value={submittedImg} className={cls.Input}/>
+                    <input placeholder={"Выберите файл"} className={cls.Input} type={"file"} onChange={onChange}/>
                     <Text title={"Темы к новости"}/>
                     <div className={cls.tags}>
                         {tags.map(tag =>
@@ -58,9 +66,9 @@ const EditPostModal: FC<IPostModalProps> = memo((props) => {
                             </div>)
                         }
                     </div>
-                    <Button className={cls.btn} onClick={() => apiCall(post.post_id, submittedTitle, submittedText, [submittedImg], submittedTags)}> Отправить </Button>
+                    <Button className={cls.btn} onClick={() => apiCall(post.post_id, submittedTitle, submittedText, submittedImg, submittedTags)}> Отправить </Button>
                     <Button className={cls.btn} onClick={() => {
-                        setSubmittedImg("")
+                        setSubmittedImg(undefined)
                         setSubmittedText("")
                         setSubmittedTitle("")
                         setSubmittedTags([])

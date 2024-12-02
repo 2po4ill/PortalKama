@@ -11,7 +11,7 @@ interface IPostModalProps {
     className?: string;
     tags: Tag[];
     isOpen: boolean;
-    apiCall: (title: string, text: string, images: string[], tags: number[]) => void;
+    apiCall: (title: string, text: string, images: File | undefined, tags: number[]) => void;
     onClose: () => void;
 }
 
@@ -24,14 +24,22 @@ const CreatePostModal: FC<IPostModalProps> = memo((props) => {
 
     const [submittedTitle, setSubmittedTitle] = useState("");
     const [submittedText, setSubmittedText] = useState("");
-    const [submittedImg, setSubmittedImg] = useState("");
+    const [submittedImg, setSubmittedImg] = useState<File>();
     const [submittedTags, setSubmittedTags] = useState<number[]>([])
 
     const [inputStatus, setInputStatus] = useState(false)
 
+    const onChange = (event: React.FormEvent) => {
+        const files = (event.target as HTMLInputElement).files
+
+        if (files && files.length > 0) {
+            setSubmittedImg(files[0])
+        }
+    }
+
     const renderInput = () => {
         return <div className={cls.renderedInput}>
-                <Input placeholder={"Введите url адрес изображения"} onChange={setSubmittedImg} className={cls.Input} value={submittedImg}/>
+                <input placeholder={"Выберите файл"} className={cls.Input} type={"file"} onChange={onChange}/>
                 <Button onClick={() => setInputStatus(false)}> Убрать изображение </Button>
                </div>
     }
@@ -65,10 +73,10 @@ const CreatePostModal: FC<IPostModalProps> = memo((props) => {
                         </div>)
                     }
                     </div>
-                    <Button className={cls.btn} onClick={() => apiCall(submittedTitle, submittedText, [submittedImg], submittedTags)}> Отправить </Button>
+                    <Button className={cls.btn} onClick={() => apiCall(submittedTitle, submittedText, submittedImg, submittedTags)}> Отправить </Button>
                     <Button className={cls.btn} onClick={() => {
                         setSubmittedTags([])
-                        setSubmittedImg("")
+                        setSubmittedImg(undefined)
                         setSubmittedText("")
                         setSubmittedTitle("")
                     }}> Очистить </Button>
