@@ -323,10 +323,20 @@ const postSlice = createAppSlice({
                     state.error = String(action.payload);
                 }
             }),
-            editArticle: createAThunk<{ post_id: number, title: string, text: string, images: string[], tags: number[]}, void>(async (data, thunkAPI) => {
+            editArticle: createAThunk<{ post_id: number, title: string, text: string, images: File | undefined, tags: number[]}, void>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    return await extra.api.post("/edit_article", {"post_id": data.post_id, "title": data.title, "text": data.text, images: data.images, tags: data.tags});
+                    const formData = new FormData();
+                    formData.append('post_data', '{"post_id":' + data.post_id + ', "title":"' + data.title + '", "text":"' + data.text + '", "tags":[' + data.tags.toString() + ']}');
+
+                    console.log(data.tags.toString());
+                    console.log(formData.get('post_data'))
+                    return await extra.api.post("/edit_article", {
+                        'post_data': '{"post_id":' + data.post_id + ', "title":"' + data.title + '", "text":"' + data.text + '", "tags":[' + data.tags.toString() + ']}',
+                        'image': data.images
+                    }, {headers:
+                            {'Content-Type': 'multipart/form-data'}
+                    });
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));

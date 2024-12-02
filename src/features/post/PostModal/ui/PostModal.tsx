@@ -25,7 +25,7 @@ interface IPostModalProps {
     selectedPost: Post | undefined;
     deleteApiCall: (post_id: number) => void;
     deleteCommentApiCall: (comment_id: number) => void
-    editApiCall: (post_id: number, title: string, text: string, images: string[], tags: number[]) => void;
+    editApiCall: (post_id: number, title: string, text: string, images: File | undefined, tags: number[]) => void;
     role?: number;
     tags: Tag[];
 }
