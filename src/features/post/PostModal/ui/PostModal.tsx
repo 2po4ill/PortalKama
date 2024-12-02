@@ -25,7 +25,7 @@ interface IPostModalProps {
     selectedPost: Post | undefined;
     deleteApiCall: (post_id: number) => void;
     deleteCommentApiCall: (comment_id: number) => void
-    editApiCall: (post_id: number, title: string, text: string, images: string[], tags: number[]) => void;
+    editApiCall: (post_id: number, title: string, text: string, images: File | undefined, tags: number[]) => void;
     role?: number;
     tags: Tag[];
 }
@@ -94,7 +94,7 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                     <div className={classNames(cls.PostModal, {}, [className])}>
 
                         <div className={cls.collage}>
-                            <img src={imageSrc(post && post.images ? post.images[0] : placeHolder)} onError={({currentTarget}) => {
+                            <img src={post && post.images ? post.images[0] : placeHolder} onError={({currentTarget}) => {
                                 currentTarget.onerror = null; // prevents looping
                                 currentTarget.src = placeHolder;
                             }}/>

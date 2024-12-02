@@ -70,7 +70,7 @@ const PhoneModal: FC<IPostModalProps> = memo((props) => {
                 <div className={cls.PhoneModal}>
                     <div className={cls.header}>
                         <Input adornment={
-                            <Button onClick={filterList} className={cls.btn}> <img src={Search} alt={"Поиск"} className={cls.btnImage}/> </Button>
+                            <Button onClick={filterList} className={cls.btn}> <a>Поиск</a> <img src={Search} alt={"Поиск"} className={cls.btnImage}/> </Button>
                         } onChange={setPredicament} placeholder={"Введите данные о месте или о сотруднике для поиска"}/>
                         <div className={cls.checkBox}>
                             <input type={"checkbox"} className={cls.checkbox} onChange={changeAllOccupied} checked={allOccupied}/>

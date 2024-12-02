@@ -51,7 +51,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         }}>
 
             <div className={cls.collage}>
-                <img src={images ? imageSrc(images[0]) : placeHolder} onError={({currentTarget}) => {
+                <img src={images ? images[0] : placeHolder} onError={({currentTarget}) => {
                             currentTarget.onerror = null; // prevents looping
                             currentTarget.src = placeHolder;
                         }}/>

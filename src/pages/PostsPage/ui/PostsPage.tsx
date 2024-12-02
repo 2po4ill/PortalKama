@@ -84,7 +84,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
 
-    const editArticleApiCall = (post_id: number, title: string, text: string, images: string[], tags: number[]) => {
+    const editArticleApiCall = (post_id: number, title: string, text: string, images: File | undefined, tags: number[]) => {
         dispatch(postActions.editArticle({post_id: post_id, title: title, text: text, images: images, tags: tags}));
         alert("Новость изменена")
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
@@ -96,7 +96,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
     }
 
-    const createArticleApiCall = (title: string, text: string, images: string[], tags: number[]) => {
+    const createArticleApiCall = (title: string, text: string, images: File | undefined, tags: number[]) => {
         dispatch(postActions.createArticle({title: title, text: text, images: images, tags: tags}));
         alert("Новость создана и записана")
         setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
