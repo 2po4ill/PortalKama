@@ -23,7 +23,7 @@ export interface IInputProps extends HTMLInputProps {
 }
 
 // memo позволяет пропустить повторный рендеринг компонента, если его свойства не изменились
-export const Input: FC<IInputProps> = memo((props) => {
+export const Input: FC<IInputProps> = (props) => {
     const {
         className,
         value,
@@ -68,4 +68,4 @@ export const Input: FC<IInputProps> = memo((props) => {
             )}
         </div>
     )
-})
+}

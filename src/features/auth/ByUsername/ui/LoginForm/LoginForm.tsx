@@ -30,8 +30,14 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
     const dispatch = useAppDispatch();
 
     const loginChangeHandler = useCallback((value: string) => {
-        dispatch(authActions.setUsername(value));
-    }, [dispatch]);
+        /**
+         * #TODO отправлять запрос как есть и пусть сервер принимает логин типа [domain]\[username],
+         * на случай если будет использоваться сторонний AD или изменится текущий
+         */
+        if (value.startsWith('zck\\'))
+            dispatch(authActions.setUsername(value.split('\\')[1]));
+        else dispatch(authActions.setUsername(value));
+    }, []);
 
 
     const passwordChangeHandler = useCallback((value: string) => {
@@ -44,6 +50,7 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
 
     const submitHandler = useCallback(async (e: FormEvent) => {
         e.preventDefault();
+
         const result = await dispatch(loginByUsername({username, password}));
         if (result.meta.requestStatus == "fulfilled") {
             close();
@@ -67,6 +74,7 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
                         autofocus
                         value={username}
                         onChange={loginChangeHandler}
+                        autoComplete={"off"}
                     />
                 </div>
                 <div>
