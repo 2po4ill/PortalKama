@@ -32,7 +32,7 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
     const loginChangeHandler = useCallback((value: string) => {
         /**
          * #TODO отправлять запрос как есть и пусть сервер принимает логин типа [domain]\[username],
-         * #TODO на случай если будет использоваться сторонний AD или изменится текущий
+         * на случай если будет использоваться сторонний AD или изменится текущий
          */
         if (value.startsWith('zck\\'))
             dispatch(authActions.setUsername(value.split('\\')[1]));
