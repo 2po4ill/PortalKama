@@ -20,6 +20,7 @@ export interface IReservationItem {
     finish: number;
     // дополнительные параметры
     name: string;
+    mail: string;
 }
 
 export interface IReservationLockerItem {

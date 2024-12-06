@@ -11,7 +11,8 @@ import {Button} from "shared/ui/Button/Button";
 import green from "shared/assets/images/icon_Зеленый.png"
 import red from "shared/assets/images/icon_Красный.png"
 import gray from "shared/assets/images/icon_Серый.png"
-import {PostModal} from "features/post/PostModal";
+import chair from "shared/assets/images/icon_chair.png"
+
 import {PhoneModal} from "features/reservation/ui/PhoneModal";
 import {useSelector} from "react-redux";
 import {userSelectors} from "entities/User";
@@ -114,6 +115,55 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     }
 
 
+    const placesCounter = () => {
+        let counter  = {"available": 0, "not_available": 0, "not_present": 0}
+        if (selectedFloor === "1_1") {
+            for (let i = 0; i < places.length; i++) {
+                if (places[i].place_id > 106) {
+                    if (places[i].is_available && places[i].place_id != 118 && places[i].place_id != 130) {
+                        counter.available += 1
+                    }
+                    else if (!places[i].is_available && places[i].place_id != 118 && places[i].place_id != 130) {
+                        counter.not_available += 1
+                    }
+                    else {
+                        counter.not_present += 1
+                    }
+                }
+            }
+        }
+        else if (selectedFloor === "2_1") {
+            for (let i = 0; i < places.length; i++) {
+                if (places[i].place_id < 51) {
+                    if (places[i].is_available) {
+                        counter.available += 1
+                    }
+                    else if (!places[i].is_available) {
+                        counter.not_available += 1
+                    }
+                    else {
+                        counter.not_present += 1
+                    }
+                }
+            }
+        }
+        else {
+            for (let i = 0; i < places.length; i++) {
+                if (places[i].place_id > 52 && places[i].place_id < 103) {
+                    if (places[i].is_available) {
+                        counter.available += 1
+                    }
+                    else if (!places[i].is_available) {
+                        counter.not_available += 1
+                    }
+                    else {
+                        counter.not_present += 1
+                    }
+                }
+            }
+        }
+        return counter
+    }
 
 
     return (
@@ -132,11 +182,13 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
             <Map title={selectedFloor ? selectedFloor : "1_1"} places={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedPlace={setSelectedPlace} setSelectedLocker={setSelectedLocker}/>
             <div className={cls.history}>
                 <img src={green} alt={"green"}/>
-                <a> Свободно </a>
+                <a> Свободно ({placesCounter().available}) </a>
                 <img src={red} alt={"red"}/>
-                <a> Занято </a>
+                <a> Занято ({placesCounter().not_available})</a>
                 <img src={gray} alt={"gray"}/>
-                <a> Недоступно </a>
+                <a> Недоступно ({placesCounter().not_present}) </a>
+                <img src={chair} alt={"chair"} className={cls.chair}/>
+                <a> Всего мест - ({placesCounter().not_present + placesCounter().not_available + placesCounter().available}) </a>
             </div>
             <div className={cls.buttonSection}>
                 <Button onClick={selectedPoint ? () => {

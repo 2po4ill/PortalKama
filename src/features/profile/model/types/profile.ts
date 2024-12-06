@@ -1,9 +1,10 @@
 
 // Данные с сервера
 export interface Profile {
-    fullname: string;
+    full_name: string;
     position: string;
     department: string;
+    mail: string;
 }
 
 export interface IProfileData {
