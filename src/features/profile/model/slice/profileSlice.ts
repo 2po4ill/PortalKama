@@ -3,9 +3,10 @@ import {IProfileData, Profile, ProfileSchema} from "../types/profile";
 import {IThunkConfig} from "app/providers/StoreProvider";
 
 const initialProfile: Profile = {
-    fullname: "",
+    full_name: "",
     department: "",
-    position: ""
+    position: "",
+    mail: ""
 }
 export const initialState: ProfileSchema = {
     profile: initialProfile,
