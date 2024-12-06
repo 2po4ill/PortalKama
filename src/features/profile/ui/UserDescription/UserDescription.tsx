@@ -29,9 +29,10 @@ export const UserDescription: FC<ICollapsible> = (props) => {
                     <img src={profilePic} alt={"img"} className={cls.image}/>
                 </div>
                 <div className={cls.info}>
-                    <label className={cls.credentials}>{profileData.fullname}</label>
+                    <label className={cls.credentials}>{profileData.full_name}</label>
                     <label className={cls.position}>{profileData.position}</label>
                     <label className={cls.position}>{profileData.department}</label>
+                    <label className={cls.position}>{profileData.mail}</label>
                     <Button onClick={logout} className={cls.btn}> Выйти из аккаунта </Button>
                 </div>
             </div>
