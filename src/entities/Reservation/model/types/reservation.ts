@@ -21,6 +21,9 @@ export interface IReservationItem {
     // дополнительные параметры
     name: string;
     mail: string;
+
+    mobile: string;
+
 }
 
 export interface IReservationLockerItem {

@@ -73,7 +73,7 @@ const CreatePostModal: FC<IPostModalProps> = memo((props) => {
                         </div>)
                     }
                     </div>
-                    <Button className={cls.btn} onClick={() => apiCall(submittedTitle, submittedText, submittedImg, submittedTags)}> Отправить </Button>
+                    <Button className={cls.btn} onClick={() => apiCall(submittedTitle.replace(/"/g, 'ˮ'), submittedText.replace(/"/g, "ˮ"), submittedImg, submittedTags)}> Отправить </Button>
                     <Button className={cls.btn} onClick={() => {
                         setSubmittedTags([])
                         setSubmittedImg(undefined)
