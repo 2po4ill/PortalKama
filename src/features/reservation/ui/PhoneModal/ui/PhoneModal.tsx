@@ -29,7 +29,7 @@ const PhoneModal: FC<IPostModalProps> = memo((props) => {
 
 
     const phoneList = ['3-87-20', '7-17-07', '7-17-83', '-', '3-87-30', '3-98-57', '7-17-51', '7-17-44', '3-98-92', '3-87-39', '7-17-46', ' 3-87-34', '7-17-45', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-38', '7-17-76', '7-17-70', '7-17-03', '7-17-84', '7-17-49', '3-87-35', '3-87-32', '6-83-37', '7-17-84', '7-17-49', '3-87-35', '3-87-32', '6-83-37', '3-87-33', '7-17-92', '7-17-20', '7-17-89', '7-17-66', '7-17-95', '3-98-58', '7-17-54', '7-17-54', '7-17-54', '6-83-36', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-32', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '7-17-22', '6-83-35', '-', '6-83-32', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53']
-    function renderPhone(phone: string,  place: string , name: string, position: string, department: string, mail: string) {
+    function renderPhone(phone: string,  place: string , name: string, position: string, department: string, mail: string, mobile: string) {
         return <tbody className={cls.column}>
         <tr>
             <td><Text text={place}/></td>
@@ -38,6 +38,7 @@ const PhoneModal: FC<IPostModalProps> = memo((props) => {
             <td><Text text={(position != "" ? position : "-")}/></td>
             <td><Text text={(department != "" ? department : "-")}/></td>
             <td><Text text={(mail != "" ? mail : "-")}/></td>
+            <td><Text text={(mobile != "" ? mobile : "-")}/></td>
         </tr>
         </tbody>
     }
@@ -90,9 +91,10 @@ const PhoneModal: FC<IPostModalProps> = memo((props) => {
                                 <td><Text title={"Должность"}/></td>
                                 <td><Text title={"Служба"}/></td>
                                 <td><Text title={"Почта"}/></td>
+                                <td><Text title={"Корпоративный сотовый телефон"}/></td>
                             </tr>
                             </thead>
-                            {newList.map(place => renderPhone(place.phone, place.name, place.full_name, place.position, place.department, place.mail))}
+                            {newList.map(place => renderPhone(place.phone, place.name, place.full_name, place.position, place.department, place.mail, place.mobile))}
                         </table>
                     </div>
                 </div>

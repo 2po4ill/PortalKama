@@ -42,6 +42,12 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
 
         const date = new Date(creation_date)
 
+
+    const newLineText = (text: string) => {
+            return <div>
+                {text.split('\n').map(line => <Text text={line}/>)}
+            </div>
+    }
     return (
         <article className={classNames(cls.PostListItem, {}, [className])}
                  onClick={() => {
@@ -60,8 +66,8 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
             <div className={cls.contentBlock}>
                 <Text
                     title={title}
-                    text={text}
                 />
+                {newLineText(text)}
             </div>
 
             <div className={cls.footer}>
