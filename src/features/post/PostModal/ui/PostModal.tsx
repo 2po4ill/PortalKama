@@ -84,6 +84,12 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
         post = undefined
     }
 
+    const newLineText = (text: string) => {
+        return <div>
+            {text.split('\n').map(line => <Text text={line}/>)}
+        </div>
+    }
+
     function renderComment(comment: Comment) {
         return <CommentNode comment={comment} role={role} deleteApiCall={deleteCommentApiCall}/>
     }
@@ -103,8 +109,8 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                         <div className={cls.contentBlock}>
                             <Text
                                 title={post?.title}
-                                text={post?.postDesc ? post?.postDesc?.text : post?.text}
                             />
+                            {post?.postDesc ? newLineText(post?.postDesc?.text)  : newLineText(post?.text ? post?.text : "Текст отсутствует")}
                             <a> Темы: {post?.tags?.map(tag => tag.name + " ")}</a>
                             {role == 1 ?
                                 <div>
