@@ -60,6 +60,7 @@ const CreatePostModal: FC<IPostModalProps> = memo((props) => {
                 <div className={cls.CreatePostModal}>
                     <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle} className={cls.Input} value={submittedTitle}/>
                     <Input placeholder={"Введите текст новости"} onChange={setSubmittedText} className={cls.Input} value={submittedText}/>
+                    <textarea placeholder={"Введите текст новости"} value={submittedText}></textarea>
                     <div className={cls.ImageSet}>
                         {inputStatus ? null : <Button onClick={() => setInputStatus(true)}> Добавить изображение </Button>}
                         {inputStatus ? renderInput() : null}

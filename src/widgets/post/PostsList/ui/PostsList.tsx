@@ -7,7 +7,7 @@ import {IShopItem} from "entities/Product/model/types/product";
 import {Button} from "shared/ui/Button/Button";
 import {PostModal} from "features/post/PostModal";
 import {CreatePostModal} from "features/post/CreatePostModal";
-import {Tag} from "entities/Post/model/types/post";
+import {Comment, Tag} from "entities/Post/model/types/post";
 import {ViewCommentsPostModal} from "features/post/ViewCommentsPostModal";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {postActions} from "entities/Post/model/slice/postSlice";
@@ -22,6 +22,7 @@ interface IPostsListProps {
     setSelectedPost: (post: Post | undefined) => void;
     role?: number;
     tags: Tag[];
+    comments?: Comment[];
 }
 
 const PostsList: FC<IPostsListProps> = memo((props) => {
@@ -33,6 +34,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
         approveCommentApiCall,
         tags,
         setSelectedPost,
+        comments,
     deleteApiCall} = props;
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -45,7 +47,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
             <div className={cls.contentCreatorBlock}>
                 <Button onClick={() => setModalIsOpen(true)}> Создать запись </Button>
                 <Button onClick={() => { dispatch(postActions.checkComments());
-                    setModalIsOpen1(true)}}> Модерация комментариев </Button>
+                    setModalIsOpen1(true)}}> Модерация комментариев {comments ? "(+" + comments.length.toString() + ")" : ""}</Button>
             </div> : null
             }
             <div className={cls.listContainer}>

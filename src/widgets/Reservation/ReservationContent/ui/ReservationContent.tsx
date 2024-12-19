@@ -149,7 +149,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
         }
         else {
             for (let i = 0; i < places.length; i++) {
-                if (places[i].place_id > 52 && places[i].place_id < 103) {
+                if (places[i].place_id > 54 && places[i].place_id < 105) {
                     if (places[i].is_available) {
                         counter.available += 1
                     }
