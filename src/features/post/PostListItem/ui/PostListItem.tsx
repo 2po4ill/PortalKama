@@ -45,7 +45,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
 
     const newLineText = (text: string) => {
             return <div>
-                {text.split('\n').map(line => <Text text={line}/>)}
+                {text.split('new_string').map(line => line != "" ? <Text text={line}/> : <br></br>)}
             </div>
     }
     return (
