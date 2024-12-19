@@ -23,6 +23,7 @@ export interface IPostsPageProps {
 const PostsPage = ({ className }: IPostsPageProps ) => {
     const posts = useSelector(postSelectors.getPostsList);
     const tags = useSelector(postSelectors.getTags);
+    const comments = useSelector(postSelectors.checkComments)
     const isLoading = useSelector(postSelectors.getIsLoading);
     const userRole = useSelector(userSelectors.getUser).role;
     const dispatch = useAppDispatch();
@@ -116,7 +117,8 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                                         approveCommentApiCall={approveCommentApiCall}
                                         deleteApiCall={deleteCommentApiCall}
                                         role={userRole}
-                                        tags={tags}/>}
+                                        tags={tags}
+                                        comments={comments}/>}
                     aside={<PostsAside setSelectedDateEnd={setSelectedDateEnd}
                                        setSelectedDateStart={setSelectedDateStart}
                                        selectedDateEnd={selectedDateEnd}
