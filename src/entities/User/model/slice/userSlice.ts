@@ -55,7 +55,8 @@ export const userSlice = createAppSlice({
                                 const user: User = {
                                     uid: data.user.user_id,
                                     username: data.user.username,
-                                    role: data.user.role
+                                    role: data.user.role,
+                                    image_path: data.user.image_path
                                 }
                                 if (__IS_DEV__) setTimeout(() => {
                                     resolve(user);
@@ -107,7 +108,7 @@ export const userSlice = createAppSlice({
                         // console.log(action.payload)
                         return {
                             ...action.payload,
-                            img: action.payload.img || "",
+                            img: action.payload.image_path || "",
                             isLoading: false,
                             isAuthorized: true,
                             error: undefined

@@ -27,7 +27,7 @@ export interface IComment {
     return (
         <div className={cls.Comment}>
             <div className={cls.imgContainer}>
-                <img src={avatar} alt={"avatar"} className={cls.avatar}/>
+                <img src={comment.image_path ? comment.image_path : avatar} alt={"avatar"} className={cls.avatar}/>
             </div>
             <div className={cls.UserData}>
                 <Text title={`${comment.full_name}`}/>

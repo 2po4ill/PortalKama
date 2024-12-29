@@ -8,7 +8,10 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 
   .avatar{
-    width:200px;
+    height:200px;
+    width: 200px;
+    object-fit: cover;
+    object-position: 0 -1px;
   }
   .imgContainer {
   }

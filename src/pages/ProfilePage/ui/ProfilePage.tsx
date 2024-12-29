@@ -7,8 +7,11 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {useSelector} from "react-redux";
 import {PageLoader} from "widgets/PageLoader";
 import {PageError} from "widgets/PageError/ui/PageError";
-import img from "shared/assets/images/profile-pic.png"
+import img from "shared/assets/icons/avatar.png"
+import testimg from "shared/assets/images/image.png"
 import {Text} from "shared/ui/Text/Text";
+import {userActions, userSelectors} from "entities/User";
+import {Button} from "shared/ui/Button/Button";
 
 export interface IProfilePageProps {
     className?: string;
@@ -18,12 +21,14 @@ export interface IProfilePageProps {
 const ProfilePage = ( { className }: IProfilePageProps ) => {
     const dispatch = useAppDispatch();
     const user = useSelector(profileSelectors.getProfile)
+    const userData = useSelector(userSelectors.getUser);
     const isLoading = useSelector(profileSelectors.getIsLoading);
     const error = useSelector(profileSelectors.getError);
 
     useEffect(() => {
         dispatch(profileActions.getProfileData());
     }, [dispatch]);
+
 
     return (
         <AsyncReducerProvider name={"profile"} reducer={profileReducer}>
@@ -37,7 +42,7 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
                                 <div className={cls.FirstSection}>
                                     <div className={classNames(cls.Info,{}, [cls.Box])}>
                                         <div className={cls.PhotoContainer}>
-                                            <img src={img} alt={"user"}/>
+                                            <img src={userData.image_path ? userData.image_path : img} alt={"user"}/>
                                         </div>
                                         <div className={cls.InfoContainer}>
                                             <Text title={user.full_name}/>
@@ -45,20 +50,21 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
                                                 <Text text={user.position}/>
                                                 <Text text={user.department}/>
                                                 <Text text={user.mail}/>
-                                                <Text text={"Непосредственный руководитель"}/>
+                                                <Text text={user.mobile}/>
+                                                <br/>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className={classNames(cls.UtilityButtons, {}, [cls.Box])}>
-                                        <Text title={"Баланс: 99999"}/>
-                                        <Text title={"Уведомления: 3"}/>
-                                        <Text title={"Бронирования: 1"}/>
+                                    <div className={classNames(cls.UtilityButtons, {}, [cls.Box, cls.padding])}>
+                                        <Text title={"Баланс: 0"}/>
+                                        <Text title={"Уведомления: 0"}/>
+                                        <Text title={"Бронирования: 0"}/>
                                         <Text title={"Мероприятия: 0"}/>
                                     </div>
                                 </div>
 
-                                <div className={classNames(cls.QueriesNotifications, {}, [cls.Box])}>
+                                <div className={classNames(cls.QueriesNotifications, {}, [cls.Box, cls.padding])}>
                                     <Text title={"Заявления и уведомления"}/>
                                     <div className={cls.BoxContainer}>
                                         <div className={cls.FirstPart}>
@@ -76,26 +82,27 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
                                 </div>
 
                                 <div className={cls.SecondSection}>
-                                    <div className={classNames(cls.Events, {}, [cls.Box])}>
+                                    <div className={classNames(cls.Events, {}, [cls.Box, cls.padding])}>
                                         <Text title={"События"}/>
                                         <Text text={"Предстоящие события: 0"}/>
                                         <Text text={"Архив событий"}/>
                                     </div>
 
-                                    <div className={classNames(cls.ShopSection, {}, [cls.Box])}>
+                                    <div className={classNames(cls.ShopSection, {}, [cls.Box, cls.padding])}>
                                         <Text title={"Магазин"}/>
                                         <Text text={"История заказов"}/>
                                         <Text text={"Товары в корзине: 0"}/>
                                     </div>
                                 </div>
 
-                                <div className={classNames(cls.Data, {}, [cls.Box])}>
+                                <div className={classNames(cls.Data, {}, [cls.Box, cls.padding])}>
                                     <Text title={"Корпоративные данные"}/>
                                     <div className={cls.DataContainer}>
                                         <Text text={"Тренинги и обучения"}/>
                                         <Text text={"Награды и достижения"}/>
                                     </div>
                                 </div>
+
                             </div>
                         )
             }

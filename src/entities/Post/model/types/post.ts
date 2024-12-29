@@ -59,6 +59,7 @@ export interface Comment {
     user_id: number;
     full_name: string;
     department: string;
+    image_path?: string;
     position: string;
     comment_id: number;
     post_id: number;
