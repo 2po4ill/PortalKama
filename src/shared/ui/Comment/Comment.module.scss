@@ -1,27 +1,47 @@
 .Comment {
-  margin-bottom: 15px;
-  margin-right: 10px;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  height: 230px;
+  overflow: hidden;
 
-  .avatar{
-    height:200px;
-    width: 200px;
-    object-fit: cover;
-    object-position: 0 -1px;
-  }
+
   .imgContainer {
+    position: relative;
+    img{
+      height: 230px;
+      width: 200px;
+      object-fit: cover;
+      object-position: 0, -1px;
+    }
+    margin-right: 20px;
   }
+
 
   .UserData {
     margin-left: 15px;
-  }
+    text-align: justify;
+    .Title{
 
-  .CommentData{
-    align-self: flex-start;
-    margin-left: 280px;
+    }
+    .Department{
+      opacity: 70%;
+      position: relative;
+      top:-10px;
+    }
+    .Text{
+      margin-top: 10px;
+    }
+  }
+  .Data{
+    display: flex;
+    flex-direction: column;
+    height: 230px;
+    justify-content: space-between;
+    .CommentData{
+      margin-left: 40%;
+    }
   }
 }
