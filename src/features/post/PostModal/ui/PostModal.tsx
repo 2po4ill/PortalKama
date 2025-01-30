@@ -66,7 +66,8 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
             tags: selectedPost.tags,
             creation_date: selectedPost.creation_date,
             update_date: selectedPost.update_date,
-            postDesc: selectedDesc
+            postDesc: selectedDesc,
+            views: selectedPost.views
         }
 
         const newList: number[] = []

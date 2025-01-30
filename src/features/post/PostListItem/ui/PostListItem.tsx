@@ -11,6 +11,9 @@ import {postActions} from "entities/Post/model/slice/postSlice";
 import {useSelector} from "react-redux";
 import {postSelectors} from "entities/Post/model/selectors/postSelectors";
 import {Button} from "shared/ui/Button/Button";
+import like from "shared/assets/icons/like.png"
+import comment from "shared/assets/icons/comment.png"
+import user_pic from "shared/assets/icons/userpic.png"
 
 interface IPostListItemProps {
     className?: string;
@@ -37,7 +40,8 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         creation_date,
         update_date,
         tags,
-        likes_amount } = post;
+        likes_amount,
+        views} = post;
 
 
     const date = new Date(creation_date)
@@ -57,6 +61,14 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
                      setSelectedPost(post)
                      postClickHandler()
         }}>
+            <div className={cls.post_info}>
+                <img src={like} alt={"like"}/>
+                <h1> {likes_amount ? likes_amount : 0} </h1>
+                <img src={user_pic}/>
+                <h1> {views ? views: 0} </h1>
+                <img src={comment}/>
+                <h1> {0} </h1>
+            </div>
             {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
                 <label> {tag.name} </label>
             </div>)}

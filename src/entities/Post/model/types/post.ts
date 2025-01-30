@@ -7,6 +7,7 @@ export interface Post {
     text: string; // текст новости
     likes_amount?: number; // кол-во лайков
     tags?: Tag[];
+    views: number;
     creation_date: string;
     update_date?: string;
     postDesc?: PostDesc;
