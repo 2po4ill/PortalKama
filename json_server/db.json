@@ -173,7 +173,7 @@
         "images": [
           "https://avatars.dzeninfra.ru/get-zen_doc/271828/pub_664c8a618c0f381a07648a54_664c8a7a70bfe82cb95485a5/scale_2400"
         ],
-        "tags": null
+        "tags": [{"tag_id":10,"name":"#Новости_КАМА_ДИЗЕЛЬ","background_color":"#003055"},{"tag_id":13,"name":"#Профессиональный_праздник","background_color":"#b9242d"}]
       },
       {
         "post_id": 1,

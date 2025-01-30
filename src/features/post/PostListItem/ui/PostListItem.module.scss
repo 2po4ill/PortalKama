@@ -79,5 +79,12 @@
       color: white
     }
   }
+  .tag{
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    width: max-content;
+    align-self: flex-end;
+  }
 }
 

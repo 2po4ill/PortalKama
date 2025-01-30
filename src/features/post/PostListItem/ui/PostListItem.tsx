@@ -43,7 +43,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
     const date = new Date(creation_date)
 
 
-    const background = `url(${post.images[0]})`
+    const background = `url(${post.images ? post.images[0]: placeHolder})`
 
     const newLineText = (text: string) => {
             return <div>
@@ -57,6 +57,9 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
                      setSelectedPost(post)
                      postClickHandler()
         }}>
+            {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
+                <label> {tag.name} </label>
+            </div>)}
             <div className={cls.gradient}>
                 <div className={cls.contentBlock}>
                     <header className={cls.Title}> {title} </header>
@@ -64,9 +67,6 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
                 </div>
 
                 <div className={cls.footer}>
-                    {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
-                        <label> {tag.name} </label>
-                    </div>)}
                     <div className={cls.footer_content}>
                         <label> {date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()} </label>
                     </div>
