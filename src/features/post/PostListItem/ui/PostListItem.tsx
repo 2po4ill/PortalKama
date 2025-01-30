@@ -1,4 +1,4 @@
-import {Dispatch, FC, memo, SetStateAction} from "react";
+import {CSSProperties, Dispatch, FC, memo, SetStateAction} from "react";
 import {classNames} from "shared/lib/classNames";
 import cls from "./PostListItem.module.scss";
 import {Text} from "shared/ui/Text/Text";
@@ -40,41 +40,37 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         likes_amount } = post;
 
 
-        const date = new Date(creation_date)
+    const date = new Date(creation_date)
 
+
+    const background = `url(${post.images[0]})`
 
     const newLineText = (text: string) => {
             return <div>
-                {text.split('new_string').map(line => line != "" ? <Text text={line}/> : <br></br>)}
+                {text.split('new_string').map(line => line != "" ? <text className={cls.Text}> {line} </text> : <br></br>)}
             </div>
     }
     return (
-        <article className={classNames(cls.PostListItem, {}, [className])}
+        <article className={classNames(cls.PostListItem, {}, [className])} style={{backgroundImage: background, backgroundRepeat: "no-repeat", backgroundSize: "cover"}}
                  onClick={() => {
                      dispatch(postActions.getPost(post_id))
                      setSelectedPost(post)
                      postClickHandler()
         }}>
+            <div className={cls.gradient}>
+                <div className={cls.contentBlock}>
+                    <header className={cls.Title}> {title} </header>
+                    {newLineText(text)}
+                </div>
 
-            <div className={cls.collage}>
-                <img src={images ? images[0] : placeHolder} onError={({currentTarget}) => {
-                            currentTarget.onerror = null; // prevents looping
-                            currentTarget.src = placeHolder;
-                        }}/>
-            </div>
-
-            <div className={cls.contentBlock}>
-                <Text
-                    title={title}
-                />
-                {newLineText(text)}
-            </div>
-
-            <div className={cls.footer}>
-                {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
-                    <label> {tag.name} </label>
-                </div>)}
-                <Text text={date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()}/>
+                <div className={cls.footer}>
+                    {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
+                        <label> {tag.name} </label>
+                    </div>)}
+                    <div className={cls.footer_content}>
+                        <label> {date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()} </label>
+                    </div>
+                </div>
             </div>
 
         </article>

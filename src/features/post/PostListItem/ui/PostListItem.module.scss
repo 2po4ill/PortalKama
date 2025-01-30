@@ -17,7 +17,7 @@
   min-height: var(--postlist-card-min-height);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   overflow: hidden;
 
   cursor: pointer;
@@ -25,6 +25,7 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
 
   /** Hover **/
   //margin: 1px;
@@ -34,10 +35,25 @@
   //  width: calc(var(--postlist-card-width) + 2px);
   //  min-height: calc(var(--postlist-card-min-height) + 2px);
   //}
+  .gradient{
+    max-height: 120px;
+    justify-self: flex-end;
+    background-image: linear-gradient(to right, #002c56 35%, rgba(0, 0, 0, 0))
+  }
 
   .contentBlock {
-    padding: 40px 25px;
+    padding: 5px 25px;
 
+    .Title{
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 2px #002c56;
+    }
+    .Text{
+      color: white;
+    }
   }
 
   .collage {
@@ -49,6 +65,19 @@
   }
   .footer{
     margin: 10px;
+    background-color: #002c56;
+    width: 100px;
+    padding: 4px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    justify-self: flex-end;
+    label{
+      margin-left: auto;
+      margin-right: auto;
+      color: white
+    }
   }
 }
 
