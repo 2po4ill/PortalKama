@@ -1,9 +1,87 @@
-.center-block{
+.ProfilePage{
+  margin-left: 200px;
+  margin-top: 80px;
+  margin-right: 500px;
+}
+.Box{
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  margin: 5px;
+  overflow: hidden;
+}
+.padding{
+  padding: 20px;
+}
+
+.FirstSection{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: stretch;
-  div {
-    width: 50%;
+
+
+  .Info{
+    display: flex;
+    flex-direction: row;
+    width: 800px;
+
+    .PhotoContainer{
+      position: relative;
+      img{
+        height: 250px;
+      }
+      margin-right: 20px;
+    }
+    .InfoContainer{
+      padding: 20px;
+      .AdditionalInfo{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+      }
+    }
+  }
+  .UtilityButtons{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+.QueriesNotifications{
+  .BoxContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .FirstPart{
+
+    }
+    .SecondPart{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+}
+
+.SecondSection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .Events{
+    width: 600px;
+  }
+  .ShopSection{
+    width: 500px;
+  }
+}
+
+.Data{
+  .DataContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

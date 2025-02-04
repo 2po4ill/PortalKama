@@ -5,6 +5,9 @@ export interface Profile {
     position: string;
     department: string;
     mail: string;
+    mobile?: string;
+    chief?: string;
+    image?: string;
 }
 
 export interface IProfileData {

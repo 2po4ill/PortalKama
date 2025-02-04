@@ -1,4 +1,4 @@
-import {Dispatch, FC, memo, SetStateAction} from "react";
+import {CSSProperties, Dispatch, FC, memo, SetStateAction} from "react";
 import {classNames} from "shared/lib/classNames";
 import cls from "./PostListItem.module.scss";
 import {Text} from "shared/ui/Text/Text";
@@ -11,6 +11,9 @@ import {postActions} from "entities/Post/model/slice/postSlice";
 import {useSelector} from "react-redux";
 import {postSelectors} from "entities/Post/model/selectors/postSelectors";
 import {Button} from "shared/ui/Button/Button";
+import like from "shared/assets/icons/like.png"
+import comment from "shared/assets/icons/comment.png"
+import user_pic from "shared/assets/icons/userpic.png"
 
 interface IPostListItemProps {
     className?: string;
@@ -37,44 +40,49 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         creation_date,
         update_date,
         tags,
-        likes_amount } = post;
+        likes_amount,
+        views} = post;
 
 
-        const date = new Date(creation_date)
+    const date = new Date(creation_date)
 
+
+    const background = `url(${post.images ? post.images[0]: placeHolder})`
 
     const newLineText = (text: string) => {
             return <div>
-                {text.split('\n').map(line => <Text text={line}/>)}
+                {text.split('new_string').map(line => line != "" ? <text className={cls.Text}> {line} </text> : <br></br>)}
             </div>
     }
     return (
-        <article className={classNames(cls.PostListItem, {}, [className])}
+        <article className={classNames(cls.PostListItem, {}, [className])} style={{backgroundImage: background, backgroundRepeat: "no-repeat", backgroundSize: "cover"}}
                  onClick={() => {
                      dispatch(postActions.getPost(post_id))
                      setSelectedPost(post)
                      postClickHandler()
         }}>
-
-            <div className={cls.collage}>
-                <img src={images ? images[0] : placeHolder} onError={({currentTarget}) => {
-                            currentTarget.onerror = null; // prevents looping
-                            currentTarget.src = placeHolder;
-                        }}/>
+            <div className={cls.post_info}>
+                <img src={like} alt={"like"}/>
+                <h1> {likes_amount ? likes_amount : 0} </h1>
+                <img src={user_pic}/>
+                <h1> {views ? views: 0} </h1>
+                <img src={comment}/>
+                <h1> {0} </h1>
             </div>
+            <div className={cls.gradient}>
+                <div className={cls.contentBlock}>
+                    <header className={cls.Title}> {title} </header>
+                    {newLineText(text)}
+                    {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
+                        <label> {tag.name} </label>
+                    </div>)}
+                </div>
 
-            <div className={cls.contentBlock}>
-                <Text
-                    title={title}
-                />
-                {newLineText(text)}
-            </div>
-
-            <div className={cls.footer}>
-                {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
-                    <label> {tag.name} </label>
-                </div>)}
-                <Text text={date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()}/>
+                <div className={cls.footer}>
+                    <div className={cls.footer_content}>
+                        <label> {date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()} </label>
+                    </div>
+                </div>
             </div>
 
         </article>

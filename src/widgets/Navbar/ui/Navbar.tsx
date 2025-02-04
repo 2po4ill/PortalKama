@@ -2,17 +2,19 @@ import {classNames} from "shared/lib/classNames";
 import cls from './Navbar.module.scss'
 import {AppLink} from "shared/ui/AppLink/AppLink";
 import ProfileImg from "shared/assets/icons/profile-icon.png";
+import testImg from "shared/assets/images/image.png"
 import CartImg from 'shared/assets/icons/Корзина.png'
 import CartQuantImg from 'shared/assets/icons/CartQuantity.png'
 import {RoutePath} from "shared/const/router";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
 import React, {FC, ReactNode, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {userSelectors} from "entities/User";
+import {userActions, userSelectors} from "entities/User";
 import {Spinner} from "shared/ui/Spinner/Spinner";
 import {Text, TextTheme} from "shared/ui/Text/Text";
 import {useLocation} from "react-router-dom";
 import {productSelectors} from "entities/Product";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 
 export interface INavbarProps {
     className?: string;
@@ -27,6 +29,7 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
     const isAuthorized = useSelector(userSelectors.getIsAuthorized);
     const isLoading = useSelector(productSelectors.getIsLoading);
     const quantity = useSelector(productSelectors.getCartQuantity);
+    const dispatch = useAppDispatch();
     const location = useLocation();
     const [profileContent, setProfileContent] = useState<ReactNode>(null);
 
@@ -34,6 +37,10 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
         [cls.smallQuantity]: quantity < 10,
         [cls.largeQuantity]: quantity > 9
     };
+
+    const logout = () => {
+        dispatch(userActions.logout());
+    }
 
     // useEffect(() => {
     //     console.log("changed")
@@ -46,10 +53,15 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
             if (userLoading) {
                 if (userData?.username != "") return (
                     <AppLink to={"profile"} className={cls.Profile} disabled={true}>
-                        <img src={ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
-                        <Text className={cls.full_name} text={userData.username} theme={TextTheme.INVERTED}  />
+                            <div className={cls.ImgCropper}>
+                                <img src={userData.image_path ? userData.image_path : ProfileImg} alt={RoutePath.profile}
+                                 className={cls.ProfileImg}/>
+                            </div>
+                                <Text className={cls.full_name} text={userData.username} theme={TextTheme.INVERTED}/>
+                                <Button onClick={logout}> Выйти </Button>
+
                     </AppLink>
-                )
+            )
                 return (
                     <Spinner color={"inverted"} size={"m"} className={cls.spinner} />
                 )
@@ -62,8 +74,11 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
         }
         return (
             <AppLink to={"profile"} className={cls.Profile}>
-                <img src={ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
+                <div className={cls.ImgCropper}>
+                    <img src={userData.image_path ? userData.image_path : ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
+                </div>
                 <Text className={cls.full_name} text={userData.username} theme={TextTheme.INVERTED}  />
+                <Button onClick={logout}> Выйти </Button>
             </AppLink>
         );
     };

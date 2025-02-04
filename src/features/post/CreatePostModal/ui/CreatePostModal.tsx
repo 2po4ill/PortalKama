@@ -53,34 +53,40 @@ const CreatePostModal: FC<IPostModalProps> = memo((props) => {
         }
         setSubmittedTags(newList)
     }
+    const formatString = () => {
+        return listener().replace(/"/g, "ˮ").replace(/(\r\n|\n|\r)/gm, "new_string")
+    }
 
-
+    const listener = () => {
+        const textareaElement = document.getElementById('text') as HTMLTextAreaElement;
+        return textareaElement.value;
+    }
     return (
             <Modal isOpen={isOpen} onClose={onClose} className={cls.ModalProperties}>
                 <div className={cls.CreatePostModal}>
-                    <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle} className={cls.Input} value={submittedTitle}/>
-                    <Input placeholder={"Введите текст новости"} onChange={setSubmittedText} className={cls.Input} value={submittedText}/>
-                    <textarea placeholder={"Введите текст новости"} value={submittedText}></textarea>
-                    <div className={cls.ImageSet}>
-                        {inputStatus ? null : <Button onClick={() => setInputStatus(true)}> Добавить изображение </Button>}
-                        {inputStatus ? renderInput() : null}
-                    </div>
-                    <Text title={"Добавить темы к новости"}/>
-                    <div className={cls.tags}>
-                    {tags.map(tag =>
-                        <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
-                            <input type={"checkbox"} name={tag.name} onChange={() => addTag(tag)}/>
-                            <label className={cls.tagName}> {tag.name} </label>
-                        </div>)
-                    }
-                    </div>
-                    <Button className={cls.btn} onClick={() => apiCall(submittedTitle.replace(/"/g, 'ˮ'), submittedText.replace(/"/g, "ˮ"), submittedImg, submittedTags)}> Отправить </Button>
-                    <Button className={cls.btn} onClick={() => {
-                        setSubmittedTags([])
-                        setSubmittedImg(undefined)
-                        setSubmittedText("")
-                        setSubmittedTitle("")
-                    }}> Очистить </Button>
+                        <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle} className={cls.Input} value={submittedTitle}/>
+                        <textarea placeholder={"Введите текст новости"} id={"text"}></textarea>
+                        <div className={cls.ImageSet}>
+                            {inputStatus ? null : <Button onClick={() => setInputStatus(true)}> Добавить изображение </Button>}
+                            {inputStatus ? renderInput() : null}
+                        </div>
+                        <Text title={"Добавить темы к новости"}/>
+                        <div className={cls.tags}>
+                        {tags.map(tag =>
+                            <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
+                                <input type={"checkbox"} name={tag.name} onChange={() => addTag(tag)}/>
+                                <label className={cls.tagName}> {tag.name} </label>
+                            </div>)
+                        }
+                        </div>
+                        <Button className={cls.btn} onClick={() => apiCall(submittedTitle.replace(/"/g, 'ˮ'),  formatString(), submittedImg, submittedTags)}> Отправить </Button>
+                        <Button className={cls.btn} onClick={() => {
+                            setSubmittedTags([])
+                            setSubmittedImg(undefined)
+                            setSubmittedText("")
+                            setSubmittedTitle("")
+                        }}> Очистить </Button>
+
                 </div>
             </Modal>
     );
