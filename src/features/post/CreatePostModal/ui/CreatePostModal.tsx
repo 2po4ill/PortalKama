@@ -86,6 +86,7 @@ const CreatePostModal: FC<IPostModalProps> = memo((props) => {
                             setSubmittedText("")
                             setSubmittedTitle("")
                         }}> Очистить </Button>
+
                 </div>
             </Modal>
     );
