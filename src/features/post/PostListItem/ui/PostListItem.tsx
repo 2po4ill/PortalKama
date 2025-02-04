@@ -69,15 +69,14 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
                 <img src={comment}/>
                 <h1> {0} </h1>
             </div>
+            {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
+                <label> {tag.name} </label>
+            </div>)}
             <div className={cls.gradient}>
                 <div className={cls.contentBlock}>
                     <header className={cls.Title}> {title} </header>
                     {newLineText(text)}
-                    {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
-                        <label> {tag.name} </label>
-                    </div>)}
                 </div>
-
                 <div className={cls.footer}>
                     <div className={cls.footer_content}>
                         <label> {date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()} </label>
