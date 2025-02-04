@@ -27,20 +27,24 @@ export interface IComment {
     return (
         <div className={cls.Comment}>
             <div className={cls.imgContainer}>
-                <img src={avatar} alt={"avatar"} className={cls.avatar}/>
+                <img src={comment.image_path ? comment.image_path : avatar} alt={"avatar"} className={cls.avatar}/>
             </div>
-            <div className={cls.UserData}>
-                <Text title={`${comment.full_name}`}/>
-                <Text title={`${comment.department}`} text={comment.text}/>
-            </div>
-            <div className={cls.CommentData}>
-                <Text text={date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()}/>
-                {role == 1 && apiCall ? <Button onClick={() => {
-                     apiCall(comment.comment_id)
-                }}> Подветрдить </Button> : null}
-                {role == 1 && deleteApiCall ? <Button onClick={() => {
-                    deleteApiCall(comment.comment_id)
-                }}> Удалить </Button> : null}
+            <div className={cls.Data}>
+                <div className={cls.UserData}>
+                    <Text title={`${comment.full_name}`} className={cls.Title}/>
+                    <Text text={`${comment.department}`} className={cls.Department}/>
+                    <Text text={comment.text} className={cls.Text}/>
+                </div>
+                <div className={cls.CommentData}>
+                    <Text text={date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()} className={cls.Date}/>
+                    {role == 1 && apiCall ? <Button onClick={() => {
+                         apiCall(comment.comment_id)
+                    }}> Подветрдить </Button> : null}
+                    {role == 1 && deleteApiCall ? <Button onClick={() => {
+                        deleteApiCall(comment.comment_id)
+                    }}> Удалить </Button> : null}
+                </div>
+
             </div>
         </div>
     );

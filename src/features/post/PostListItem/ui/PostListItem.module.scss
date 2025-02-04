@@ -17,7 +17,7 @@
   min-height: var(--postlist-card-min-height);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   overflow: hidden;
 
   cursor: pointer;
@@ -25,6 +25,7 @@
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  position: relative;
 
   /** Hover **/
   //margin: 1px;
@@ -34,10 +35,25 @@
   //  width: calc(var(--postlist-card-width) + 2px);
   //  min-height: calc(var(--postlist-card-min-height) + 2px);
   //}
+  .gradient{
+    max-height: 120px;
+    justify-self: flex-end;
+    background-image: linear-gradient(to right, #002c56 35%, rgba(0, 0, 0, 0))
+  }
 
   .contentBlock {
-    padding: 40px 25px;
+    padding: 5px 25px;
 
+    .Title{
+      color: white;
+      font-size: 25px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      text-shadow: 1px 1px 2px #002c56;
+    }
+    .Text{
+      color: white;
+    }
   }
 
   .collage {
@@ -48,7 +64,56 @@
     }
   }
   .footer{
+    position: absolute;
+    bottom: 0;
+    right: 0;
     margin: 10px;
+    background-color: #002c56;
+    width: 100px;
+    padding: 4px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    label{
+      margin-left: auto;
+      margin-right: auto;
+      color: white
+    }
+  }
+  .tag{
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    width: max-content;
+    align-self: flex-end;
+    margin: 2px;
+  }
+  .post_info{
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    width: max-content;
+    align-self: flex-end;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #002c56;
+    margin: 5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+
+    img{
+      height: 20px;
+    }
+    h1{
+      margin-left: 5px;
+      margin-right: 5px;
+      color: white;
+      position: relative;
+      top: 3px;
+    }
   }
 }
 

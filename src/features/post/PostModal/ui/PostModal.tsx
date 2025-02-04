@@ -66,7 +66,8 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
             tags: selectedPost.tags,
             creation_date: selectedPost.creation_date,
             update_date: selectedPost.update_date,
-            postDesc: selectedDesc
+            postDesc: selectedDesc,
+            views: selectedPost.views
         }
 
         const newList: number[] = []
@@ -86,7 +87,7 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
 
     const newLineText = (text: string) => {
         return <div>
-            {text.split('\n').map(line => <Text text={line}/>)}
+            {text.split('new_string').map(line => line != "" ? <Text text={line}/> : <br></br>)}
         </div>
     }
 
@@ -145,6 +146,16 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                             </div>
                             <div className={cls.CommentSection}>
                                 {post?.postDesc?.comments ? post?.postDesc?.comments.map(comment => renderComment(comment)): "Здесь пока нет комментариев, оставьте его первым!"}
+                                {renderComment({
+                                    user_id: 1,
+                                    full_name: "Девличаров Егор Тимурович",
+                                    department: "Общество разработки информационных систем ООО Игорь",
+                                    image_path: "https://corp-portal.kama-diesel.ru/api/image?name=user_images/aa540",
+                                    comment_id: 12,
+                                    position: "Начальник отдела разработки",
+                                    post_id: 15,
+                                    text: "Отличная работа, олег!",
+                                    creation_date: new Date().toString()} as Comment)}
                             </div>
                         </div>
                     </div>

@@ -47,26 +47,37 @@ const EditPostModal: FC<IPostModalProps> = memo((props) => {
         }
     }
 
+    const listener = () => {
+        const textareaElement = document.getElementById('text') as HTMLTextAreaElement;
+        return textareaElement.value;
+    }
+
+    const formatString = () => {
+        return listener().replace(/"/g, "ˮ").replace(/(\r\n|\n|\r)/gm, "new_string")
+    }
 
     return (
             <Modal isOpen={isOpen} onClose={onClose}>
                 <div className={cls.EditPostModal}>
                     <Text text={"Заголовок"}/>
-                    <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle} value={submittedTitle} className={cls.Input} />
+                    <Input placeholder={"Введите заголовок новости"} onChange={setSubmittedTitle} value={submittedTitle}
+                           className={cls.Input}/>
                     <Text text={"Текст"}/>
-                    <Input placeholder={"Введите текст новости"} onChange={setSubmittedText} value={submittedText} className={cls.Input}/>
+                    <textarea placeholder={"Введите текст новости"} id={"text"}></textarea>
                     <Text text={"Изображение"}/>
                     <input placeholder={"Выберите файл"} className={cls.Input} type={"file"} onChange={onChange}/>
                     <Text title={"Темы к новости"}/>
                     <div className={cls.tags}>
                         {tags.map(tag =>
                             <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
-                                <input type={"checkbox"} name={tag.name} onChange={() => addTag(tag)} checked={!!post.tags.find(confirmedTag => confirmedTag == tag.tag_id)}/>
+                                <input type={"checkbox"} name={tag.name} onChange={() => addTag(tag)}
+                                       checked={!!post.tags.find(confirmedTag => confirmedTag == tag.tag_id)}/>
                                 <label className={cls.tagName}> {tag.name} </label>
                             </div>)
                         }
                     </div>
-                    <Button className={cls.btn} onClick={() => apiCall(post.post_id, submittedTitle.replace(/"/g, "ˮ"), submittedText.replace(/"/g, "ˮ"), submittedImg, submittedTags)}> Отправить </Button>
+                    <Button className={cls.btn}
+                            onClick={() => apiCall(post.post_id, submittedTitle.replace(/"/g, "ˮ"), formatString(), submittedImg, submittedTags)}> Отправить </Button>
                     <Button className={cls.btn} onClick={() => {
                         setSubmittedImg(undefined)
                         setSubmittedText("")
