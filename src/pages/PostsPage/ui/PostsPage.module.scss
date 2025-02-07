@@ -1,2 +1,22 @@
-.PostsPage {
+.IPostsPageProps {
+  .total_views{
+    position: fixed;
+    bottom: 50px;
+    left: 150px;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    background-color: #002c56;
+    width: max-content;
+    align-self: flex-end;
+    margin: 2px;
+    .img{
+      max-height: 20px;
+    }
+    label{
+      color: white;
+      position: relative;
+      top: 2px;
+    }
+  }
 }
