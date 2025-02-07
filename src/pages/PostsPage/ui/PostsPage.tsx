@@ -15,6 +15,7 @@ import {PageLoader} from "widgets/PageLoader";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {Post} from "entities/Post";
 import {userSelectors} from "entities/User";
+import user_pic from "shared/assets/icons/userpic.png"
 
 export interface IPostsPageProps {
     className?: string;
@@ -142,6 +143,10 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                                editApiCall={editArticleApiCall}
                                 tags={tags}/>
                     : null}
+                <div className={cls.total_views}>
+                    <img src={user_pic} alt={"user_pic"} className={cls.img}/>
+                    <label> 138 </label>
+                </div>
             </div>
                 : <PageLoader/>}
         </AsyncReducerProvider>
