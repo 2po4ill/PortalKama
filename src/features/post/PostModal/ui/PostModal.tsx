@@ -62,6 +62,8 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
             images: selectedPost.images,
             title: selectedPost.title,
             text: selectedPost.text,
+            is_liked: selectedPost.is_liked,
+            comments_amount: selectedPost.comments_amount,
             likes_amount: selectedPost.likes_amount,
             tags: selectedPost.tags,
             creation_date: selectedPost.creation_date,
@@ -146,16 +148,6 @@ const PostModal: FC<IPostModalProps> = memo((props) => {
                             </div>
                             <div className={cls.CommentSection}>
                                 {post?.postDesc?.comments ? post?.postDesc?.comments.map(comment => renderComment(comment)): "Здесь пока нет комментариев, оставьте его первым!"}
-                                {renderComment({
-                                    user_id: 1,
-                                    full_name: "Девличаров Егор Тимурович",
-                                    department: "Общество разработки информационных систем ООО Игорь",
-                                    image_path: "https://corp-portal.kama-diesel.ru/api/image?name=user_images/aa540",
-                                    comment_id: 12,
-                                    position: "Начальник отдела разработки",
-                                    post_id: 15,
-                                    text: "Отличная работа, олег!",
-                                    creation_date: new Date().toString()} as Comment)}
                             </div>
                         </div>
                     </div>

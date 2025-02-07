@@ -8,6 +8,8 @@ export interface Post {
     likes_amount?: number; // кол-во лайков
     tags?: Tag[];
     views: number;
+    comments_amount: number;
+    is_liked: boolean;
     creation_date: string;
     update_date?: string;
     postDesc?: PostDesc;
@@ -32,6 +34,7 @@ export interface PostSchema {
 export interface IPostData {
     status: boolean;
     articles: Post[];
+    total_views: number;
 }
 
 export interface IPostTags {

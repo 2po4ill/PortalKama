@@ -12,6 +12,7 @@ import {useSelector} from "react-redux";
 import {postSelectors} from "entities/Post/model/selectors/postSelectors";
 import {Button} from "shared/ui/Button/Button";
 import like from "shared/assets/icons/like.png"
+import unliked from "shared/assets/icons/unliked.png"
 import comment from "shared/assets/icons/comment.png"
 import user_pic from "shared/assets/icons/userpic.png"
 
@@ -62,22 +63,21 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
                      postClickHandler()
         }}>
             <div className={cls.post_info}>
-                <img src={like} alt={"like"}/>
+                <img src={post.is_liked ? like : unliked} alt={"like"}/>
                 <h1> {likes_amount ? likes_amount : 0} </h1>
                 <img src={user_pic}/>
                 <h1> {views ? views: 0} </h1>
                 <img src={comment}/>
-                <h1> {0} </h1>
+                <h1> {post.comments_amount ? post.comments_amount : 0} </h1>
             </div>
+            {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
+                <label> {tag.name} </label>
+            </div>)}
             <div className={cls.gradient}>
                 <div className={cls.contentBlock}>
                     <header className={cls.Title}> {title} </header>
                     {newLineText(text)}
-                    {tags?.map(tag => <div style={{background: tag.background_color, color: tag.text_color}} className={cls.tag}>
-                        <label> {tag.name} </label>
-                    </div>)}
                 </div>
-
                 <div className={cls.footer}>
                     <div className={cls.footer_content}>
                         <label> {date.getDate().toString() + "." + (date.getMonth() + 1).toString() + "." + date.getFullYear().toString()} </label>
