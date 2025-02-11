@@ -26,6 +26,7 @@ export interface PostSchema {
     post: PostDesc | undefined;
     tags: Tag[] | [];
     comments: Comment[] | [];
+    total_views: number;
     isLoading: boolean;
     isPostLoading: boolean;
     error: string | undefined;

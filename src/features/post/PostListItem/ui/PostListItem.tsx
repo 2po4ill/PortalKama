@@ -21,6 +21,7 @@ interface IPostListItemProps {
     post: Post,
     role?: number,
     postClickHandler: () => void;
+    addLikeApiCall: (post_id: number) => void;
     setSelectedPost: (post: Post | undefined) => void;
 }
 
@@ -28,6 +29,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
     const { className,
         post ,
         role,
+        addLikeApiCall,
         postClickHandler,
         setSelectedPost
     } = props;
@@ -40,6 +42,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
         images,
         creation_date,
         update_date,
+        is_liked,
         tags,
         likes_amount,
         views} = post;
@@ -63,7 +66,7 @@ const PostListItem: FC<IPostListItemProps> = memo((props) => {
                      postClickHandler()
         }}>
             <div className={cls.post_info}>
-                <img src={post.is_liked ? like : unliked} alt={"like"}/>
+                <img src={post.is_liked ? like : unliked} alt={"like"} onClick={() => post.is_liked ? null : addLikeApiCall(post_id)}/>
                 <h1> {likes_amount ? likes_amount : 0} </h1>
                 <img src={user_pic}/>
                 <h1> {views ? views: 0} </h1>

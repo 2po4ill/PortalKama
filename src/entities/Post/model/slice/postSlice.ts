@@ -8,6 +8,7 @@ const initialState: PostSchema = {
     post: undefined,
     tags: [],
     comments: [],
+    total_views: 0,
     isLoading: false,
     isPostLoading: false,
     error: undefined
@@ -20,11 +21,11 @@ const postSlice = createAppSlice({
         const createAThunk = create.asyncThunk.withTypes<IThunkConfig<string>>();
 
         return {
-            getPostsList: createAThunk<{tags: number[], start: number, finish: number} | undefined, IPostData>(async (data, thunkAPI) => {
+            getPostsList: createAThunk<{tags: number[], start: number, finish: number, user_id: number} | undefined, IPostData>(async (data, thunkAPI) => {
                     const { rejectWithValue, extra } = thunkAPI;
                     try {
                         const postList = await extra.api.get<IPostData>("/articles?" + (data?.tags  ? data?.tags.map(tag => "tag=" + tag.toString() + "&") : "") +
-                            (data?.start || data?.finish ? "start=" + data?.start + "&finish=" + data?.finish : ""));
+                            (data?.start || data?.finish ? "start=" + data?.start + "&finish=" + data?.finish + "&" : "") + (data?.user_id ? "user_id=" + data?.user_id : "user_id=0"));
                         return postList.data;
                     } catch (err) {
                         console.log("Something went wrong" + err);
@@ -40,11 +41,13 @@ const postSlice = createAppSlice({
                     },
                     fulfilled: (state, action) => {
                         const posts = action.payload.articles
+                        const views = action.payload.total_views
                         return {
                             ...state,
                             isLoading: false,
                             error: undefined,
-                            posts: posts
+                            posts: posts,
+                            total_views: views
                         }
                     },
                     rejected: (state, action) => {
@@ -126,6 +129,25 @@ const postSlice = createAppSlice({
                     }
                 }
             ),
+            addLike: createAThunk<{ post_id: number }, void>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/like", {"post_id": data.post_id});
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    state.error = undefined;
+                },
+                fulfilled: (state, action) => {
+                    state.error = undefined;
+                },
+                rejected: (state, action) => {
+                    state.error = String(action.payload);
+                }
+            }),
             addComment: createAThunk<{ post_id: number | undefined, text: string }, void>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
