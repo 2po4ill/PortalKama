@@ -19,6 +19,7 @@ interface IPostsListProps {
     apiCall: (title: string, text: string, images: File | undefined, tags: number[]) => void;
     deleteApiCall: (comment_id: number) => void;
     approveCommentApiCall: (comment_id: number) => void;
+    addLikeApiCall: (post_id: number) => void;
     setSelectedPost: (post: Post | undefined) => void;
     role?: number;
     tags: Tag[];
@@ -34,6 +35,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
         approveCommentApiCall,
         tags,
         setSelectedPost,
+        addLikeApiCall,
         comments,
     deleteApiCall} = props;
 
@@ -53,7 +55,7 @@ const PostsList: FC<IPostsListProps> = memo((props) => {
             <div className={cls.listContainer}>
                 {
                     posts ? posts.map(e => (
-                        <PostListItem post={e} key={e.post_id} postClickHandler={postClickHandler} setSelectedPost={setSelectedPost}/>
+                        <PostListItem post={e} key={e.post_id} postClickHandler={postClickHandler} setSelectedPost={setSelectedPost} addLikeApiCall={addLikeApiCall}/>
                     )) : "Новостей не найдено"
                 }
             </div>
