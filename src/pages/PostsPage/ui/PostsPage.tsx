@@ -23,18 +23,13 @@ export interface IPostsPageProps {
 
 const PostsPage = ({ className }: IPostsPageProps ) => {
     const posts = useSelector(postSelectors.getPostsList);
+    const uid = useSelector(userSelectors.getUser).uid;
     const tags = useSelector(postSelectors.getTags);
+    const total_views = useSelector(postSelectors.getTotalViews);
     const comments = useSelector(postSelectors.checkComments)
     const isLoading = useSelector(postSelectors.getIsLoading);
     const userRole = useSelector(userSelectors.getUser).role;
     const dispatch = useAppDispatch();
-    useEffect(() => {
-        dispatch(postActions.getTags());
-    }, [dispatch]);
-    useEffect(() => {
-        dispatch(postActions.getPostsList());
-    }, [dispatch]);
-
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [selectedPost, setSelectedPost] = useState<Post|undefined>(undefined);
@@ -42,30 +37,43 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     const [selectedDateEnd, setSelectedDateEnd] = useState<Date | undefined>(undefined);
     const [tagList, setSelectedTags] = useState<number[] | []>([]);
 
+    useEffect(() => {
+        dispatch(postActions.getTags());
+    }, [dispatch]);
+    useEffect(() => {
+        dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid}));
+    }, [dispatch]);
+
+
     const postClickHandler = () => {
         setModalIsOpen(true);
     }
 
     const apiSearchCall = () => {
-        dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+        dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid}));
         setSelectedTags([])
     }
 
     const cancelApi = () => {
         setSelectedTags([])
-        dispatch(postActions.getPostsList())
+        dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid}))
+    }
+    const addLikeApiCall = (post_id: number) => {
+        dispatch(postActions.addLike({post_id: post_id}));
+        alert("Тема добавлена")
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid})), 50);
     }
 
     const editTagApiCall = (tag_id: number, name: string, background_color: string, text_color: string) => {
         dispatch(postActions.editTag({tag_id: tag_id, name: name, background_color: background_color, text_color: text_color}));
         alert("Тема изменена")
-        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid})), 50);
     }
 
     const createTagApiCall = (name: string, background_color: string, text_color: string) => {
         dispatch(postActions.createTag({name: name, background_color: background_color, text_color: text_color}));
         alert("Тема добавлена")
-        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid})), 50);
     }
 
     const approveCommentApiCall = (comment_id: number) => {
@@ -83,25 +91,25 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
     const deleteTagApiCall = (tag_id: number) => {
         dispatch(postActions.deleteTag({tag_id: tag_id}));
         alert("Новость удалена")
-        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid})), 50);
     }
 
     const editArticleApiCall = (post_id: number, title: string, text: string, images: File | undefined, tags: number[]) => {
         dispatch(postActions.editArticle({post_id: post_id, title: title, text: text, images: images, tags: tags}));
         alert("Новость изменена")
-        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid})), 50);
     }
 
     const deleteArticleApiCall = (post_id: number) => {
         dispatch(postActions.deleteArticle({post_id: post_id}));
         alert("Новость удалена")
-        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid})), 50);
     }
 
     const createArticleApiCall = (title: string, text: string, images: File | undefined, tags: number[]) => {
         dispatch(postActions.createArticle({title: title, text: text, images: images, tags: tags}));
         alert("Новость создана и записана")
-        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd)})), 50);
+        setTimeout(() => dispatch(postActions.getPostsList({tags: tagList, start: Number(selectedDateStart), finish: Number(selectedDateEnd), user_id: uid})), 50);
     }
 
 
@@ -117,6 +125,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                                         apiCall = {createArticleApiCall}
                                         approveCommentApiCall={approveCommentApiCall}
                                         deleteApiCall={deleteCommentApiCall}
+                                        addLikeApiCall={addLikeApiCall}
                                         role={userRole}
                                         tags={tags}
                                         comments={comments}/>}
@@ -145,7 +154,7 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
                     : null}
                 <div className={cls.total_views}>
                     <img src={user_pic} alt={"user_pic"} className={cls.img}/>
-                    <label> 138 </label>
+                    <label> {total_views ? total_views : 0} </label>
                 </div>
             </div>
                 : <PageLoader/>}

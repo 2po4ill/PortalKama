@@ -8,6 +8,7 @@ const defaultPostData: PostSchema = {
     post: undefined,
     comments: [],
     tags: [],
+    total_views: 0,
     error: undefined,
     isLoading: false,
     isPostLoading: false,
@@ -20,6 +21,7 @@ interface IPostSelectors {
     getPostsList: Selector<StateSchema, Post[]>;
     getPost: Selector<StateSchema, PostDesc | undefined>;
     getTags: Selector<StateSchema, Tag[] | []>;
+    getTotalViews: Selector<StateSchema, number>
     checkComments: Selector<StateSchema, Comment[] | []>
     getIsPostLoading: Selector<StateSchema, boolean>;
     getIsLoading: Selector<StateSchema, boolean>;
@@ -34,6 +36,10 @@ export const postSelectors: IPostSelectors = {
     getPost: createSelector(
         getPostsData,
         (data) => data.post
+    ),
+    getTotalViews: createSelector(
+        getPostsData,
+        (data) => data.total_views
     ),
     getTags: createSelector(
         getPostsData,
