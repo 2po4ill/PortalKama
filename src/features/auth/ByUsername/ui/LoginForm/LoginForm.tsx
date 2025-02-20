@@ -13,6 +13,8 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {Text, TextTheme} from "shared/ui/Text/Text";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {ToggleVisibilityIcon} from "features/auth/ByUsername/ui/ToggleVisibilityIcon/ToggleVisibilityIcon";
+import {userActions} from "entities/User";
+import {postActions} from "entities/Post/model/slice/postSlice";
 
 
 export interface ILoginForm extends FormHTMLAttributes<HTMLFormElement>, ClassAttributes<HTMLElement>{
@@ -55,6 +57,7 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
         if (result.meta.requestStatus == "fulfilled") {
             close();
         }
+        setTimeout(() => window.location.reload(), 50);
     }, [dispatch, username, password]);
 
     return (
