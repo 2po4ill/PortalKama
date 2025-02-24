@@ -25,6 +25,7 @@ export interface INavbarProps {
 export const Navbar: FC<INavbarProps> = ( props ) => {
     const { className, setModalOpen, path} = props;
     const userData = useSelector(userSelectors.getUser);
+    const userImage = useSelector(userSelectors.getImage)
     const userLoading = useSelector(userSelectors.getIsLoading);
     const isAuthorized = useSelector(userSelectors.getIsAuthorized);
     const isLoading = useSelector(productSelectors.getIsLoading);
@@ -54,7 +55,7 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
                 if (userData?.username != "") return (
                     <AppLink to={"profile"} className={cls.Profile} disabled={true}>
                             <div className={cls.ImgCropper}>
-                                <img src={userData.image_path ? userData.image_path : ProfileImg} alt={RoutePath.profile}
+                                <img src={userImage ? userImage : ProfileImg} alt={RoutePath.profile}
                                  className={cls.ProfileImg}/>
                             </div>
                                 <Text className={cls.full_name} text={userData.username} theme={TextTheme.INVERTED}/>
@@ -75,7 +76,7 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
         return (
             <AppLink to={"profile"} className={cls.Profile}>
                 <div className={cls.ImgCropper}>
-                    <img src={userData.image_path ? userData.image_path : ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
+                    <img src={userImage ? userImage : ProfileImg} alt={RoutePath.profile} className={cls.ProfileImg}/>
                 </div>
                 <Text className={cls.full_name} text={userData.username} theme={TextTheme.INVERTED}  />
                 <Button onClick={logout}> Выйти </Button>

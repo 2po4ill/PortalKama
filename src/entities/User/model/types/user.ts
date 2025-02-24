@@ -11,14 +11,14 @@ export interface IUserData {
     user_id: number;
     username: string;
     role: number;
-    image_path?: string;
+    image_path: string;
 }
 
 export interface User {
     uid: number;
     username: string;
     role?: number;
-    image_path?: string;
+    image_path: string;
 }
 
 export enum UserRoles {
