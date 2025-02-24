@@ -18,7 +18,6 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, IThunkConfig<s
             if (!response.data) {
                 throw new Error("Response data is empty");
             }
-
             const userData: User = {
                 username: loginData.username,
                 image_path: response.data.image_path,
@@ -29,7 +28,6 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, IThunkConfig<s
             dispatch(userActions.setAuthData(userData));
 
             localStorage.setItem(LOCAL_STORAGE_LAST_AUTHORIZATION, JSON.stringify(Date.now()));
-
             return response.data;
         } catch (err) {
             if (axios.isAxiosError(err)) {

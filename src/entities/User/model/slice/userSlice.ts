@@ -105,10 +105,10 @@ export const userSlice = createAppSlice({
                         }
                     },
                     fulfilled: (state, action) => {
-                        // console.log(action.payload)
+                        console.log(action.payload)
                         return {
                             ...action.payload,
-                            img: action.payload.image_path || "",
+                            image_path: action.payload.image_path,
                             isLoading: false,
                             isAuthorized: true,
                             error: undefined

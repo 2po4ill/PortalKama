@@ -7,12 +7,17 @@ const getUser = (state: StateSchema) => state.user || initialUser;
 
 interface IUserSelectors {
     getUser: Selector<StateSchema, UserSchema>;
+    getImage: Selector<StateSchema, string>
     getIsAuthorized: Selector<StateSchema, boolean>;
     getIsLoading: Selector<StateSchema, boolean>;
 }
 
 export const userSelectors: IUserSelectors = {
     getUser,
+    getImage: createSelector(
+        getUser,
+        (user) => user.image_path
+    ),
     getIsAuthorized: createSelector(
         getUser,
         (user) => user.isAuthorized
