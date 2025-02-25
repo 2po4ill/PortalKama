@@ -117,7 +117,6 @@ const PostsPage = ({ className }: IPostsPageProps ) => {
         <AsyncReducerProvider name={'post'} reducer={postReducer} destroy={false} >
             {!isLoading ?
             <div className={classNames(cls.IPostsPageProps, {}, [className])}>
-                <h1>Новости</h1>
                 <PostsPageLayout
                     header={<PostsHeader />}
                     content={<PostsList posts={posts}
