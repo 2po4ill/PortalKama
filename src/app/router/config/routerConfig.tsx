@@ -28,16 +28,16 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     //     element: <ReservationLockerPage />,
     //     authRequire: true
     // },
-    // [AppRoutes.SHOP]: {
-    //     path: RoutePath.shop,
-    //     element: <Shop />,
-    //     authRequire: true
-    // },
-    // [AppRoutes.CART]: {
-    //     path: RoutePath.cart,
-    //     element: <CartPage />,
-    //     authRequire: true
-    // },
+     [AppRoutes.SHOP]: {
+         path: RoutePath.shop,
+         element: <Shop />,
+         authRequire: true
+     },
+     [AppRoutes.CART]: {
+         path: RoutePath.cart,
+         element: <CartPage />,
+         authRequire: true
+    },
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,
         element: <ProfilePage />,

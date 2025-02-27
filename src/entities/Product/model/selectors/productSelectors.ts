@@ -1,10 +1,11 @@
 import {createSelector, Selector} from "@reduxjs/toolkit";
 import {StateSchema} from "app/providers/StoreProvider";
-import {ICartItem, IShopItem, ProductSchema} from "../types/product";
+import {ICartItem, IOrderItem, IShopItem, ProductSchema} from "../types/product";
 
 const defaultProductData: ProductSchema = {
     products: [],
     cartitems: [],
+    orders: [],
     error: undefined,
     isLoading: false
 }
@@ -16,6 +17,7 @@ interface IProductSelectors {
     getProductList: Selector<StateSchema, IShopItem[]>;
     getIsLoading: Selector<StateSchema, boolean>
     getCartData: Selector<StateSchema, ICartItem[]>;
+    getUserOrders: Selector<StateSchema, IOrderItem[]>
     getCartQuantity: Selector<StateSchema, number>
     getCartPrice: Selector<StateSchema, number>
 }
@@ -38,6 +40,10 @@ function sumPrice(cartItems: ICartItem[], products: IShopItem[]) {
 
 export const productSelectors: IProductSelectors = {
     getProductData,
+    getUserOrders: createSelector(
+        getProductData,
+        (data) => data.orders
+    ),
     getProductList: createSelector(
         getProductData,
         (data) => data.products
