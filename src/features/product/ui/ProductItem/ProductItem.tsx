@@ -58,7 +58,7 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
             </main>
             <footer className={cls.footer}>
                 <Text
-                    title={`${price}`}
+                    title={`${price} баллов`}
                 />
                 {location.pathname != '/cart' ?
                 <Button>Добавить</Button>

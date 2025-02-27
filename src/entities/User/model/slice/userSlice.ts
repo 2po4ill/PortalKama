@@ -56,7 +56,8 @@ export const userSlice = createAppSlice({
                                     uid: data.user.user_id,
                                     username: data.user.username,
                                     role: data.user.role,
-                                    image_path: data.user.image_path
+                                    image_path: data.user.image_path,
+                                    balance: data.user.balance
                                 }
                                 if (__IS_DEV__) setTimeout(() => {
                                     resolve(user);

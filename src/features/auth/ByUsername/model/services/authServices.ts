@@ -21,6 +21,7 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, IThunkConfig<s
             const userData: User = {
                 username: loginData.username,
                 image_path: response.data.image_path,
+                balance: response.data.balance,
                 uid: response.data.uid
             };
 

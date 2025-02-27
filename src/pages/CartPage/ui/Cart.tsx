@@ -64,6 +64,7 @@ const Cart = ({ className }: ICartProps ) => {
                         : <PageLoader/>}
                 </div>
             </div>
+
         </AsyncReducerProvider>
     );
 };
