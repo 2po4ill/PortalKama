@@ -1,0 +1,1 @@
+export { DictionaryModal } from "./ui/DictionaryModal";

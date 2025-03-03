@@ -1,0 +1,43 @@
+.PhoneModal {
+    max-height: 800px;
+    overflow-y: scroll;
+    overflow-x: initial;
+    .header {
+        margin-top: 10px;
+
+        .checkbox {
+            margin-top: 5px;
+        }
+    }
+    .placeList{
+        .table{
+            border-collapse: separate;
+            border-spacing: 2em 2em;
+            padding: 5px;
+            margin-left:auto;
+            margin-right:auto;
+            border: 1px solid black;
+            thead{
+                border: 1px solid black;
+                width: 600px;
+                text-align:center;
+            }
+            tr{
+                border: 1px solid black;
+                width: 600px;
+            }
+        }
+    }
+}
+.ModalProperties {
+    max-width: 900px;
+}
+
+.btn {
+    position: relative;
+    right: 50px;
+    max-height: 5px;
+    .btnImage {
+        max-height: 15px;
+    }
+}

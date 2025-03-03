@@ -6,6 +6,7 @@ const initialState: ReservationSchema = {
     reservations: [],
     userReservationList: [],
     lockerReservations: [],
+    employees: [],
     isLoading: false,
     error: undefined
 }
@@ -108,6 +109,40 @@ const reservationSlice = createAppSlice({
                     return {
                         ...state,
                         userReservationList: userReservationList,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            getPhoneBook: createAThunk<undefined, IReservationData>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const userData = await extra.api.get<IReservationData>("/phone_book");
+                    return userData.data;
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    const employees = action.payload.employees;
+                    return {
+                        ...state,
+                        employees: employees,
                         error: undefined,
                         isLoading: false
                     }

@@ -20,6 +20,7 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
     const places = useSelector(reservationSelectors.getReservationList);
     const lockers = useSelector(reservationSelectors.getReservationLockerList);
     const isLoading = useSelector(reservationSelectors.getIsLoading);
+    const dictionary = useSelector(reservationSelectors.getPhoneBook)
     const error = useSelector(reservationSelectors.getError)
     const [selectedDateStart, setSelectedDateStart] = useState(new Date());
 
@@ -33,6 +34,9 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
     }, [dispatch]);
     useEffect(() => {
         dispatch(reservationActions.getReservationLockerList({start: Number(selectedDateStart), finish: Number(selectedDateEnd)}));
+    }, [dispatch]);
+    useEffect(() => {
+        dispatch(reservationActions.getPhoneBook());
     }, [dispatch]);
 
 
@@ -78,6 +82,7 @@ const ReservationPage = ( { className }: IReservationPageProps ) => {
                                                  setSelectedLocker={setSelectedLocker}
                                                  selectedDate={selectedDateStart}
                                                  selectedPoint={selectedPoint}
+                                                 dictionary={dictionary}
                                                  apiCall={reservationApiCall}/>}
                     aside={<ReservationAside place={selectedPlace}/>}/>
             </div>
