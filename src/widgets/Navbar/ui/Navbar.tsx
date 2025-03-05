@@ -89,7 +89,7 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
         if (isLoading) return (
             <Spinner color={"inverted"} size={"m"} className={cls.spinner} />
         );
-        if (location.pathname === '/shop' || location.pathname === '/cart') return (
+        if (location.pathname === '/shop' || location.pathname === '/cart' || location.pathname === '/cart/user_orders') return (
             <AppLink to={"cart"} className={cls.Profile}>
                 <li>
                     <img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>

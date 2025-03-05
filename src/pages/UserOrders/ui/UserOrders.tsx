@@ -8,12 +8,13 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {PageLoader} from "widgets/PageLoader";
 import {OrderItem} from "features/product/ui/OrderItem/OrderItem";
+import {Text} from "shared/ui/Text/Text";
 
-export interface ICartProps {
+export interface IOrderProps {
     className?: string;
 }
 
-const UserOrders = ({ className }: ICartProps ) => {
+const UserOrders = ({ className }: IOrderProps ) => {
     const products = useSelector(productSelectors.getProductList);
     const orders = useSelector(productSelectors.getUserOrders)
     const isLoading = useSelector(productSelectors.getIsLoading);
@@ -35,10 +36,12 @@ const UserOrders = ({ className }: ICartProps ) => {
     return (
         <AsyncReducerProvider name={'product'} reducer={productReducer} destroy={false} >
             <div className={classNames(cls.UserOrders, {}, [className])}>
+                <Text title={"Ваши заказы"} className={cls.title}/>
                 <div>
                     { !isLoading ?
                         <div className={cls.OrderList}>
                             {orders.map(order => renderOrder(order, products))}
+                            {renderOrder({cart_id: 1, items: [{in_cart_item_id: 1,item_id:3,quantity:4},{in_cart_item_id: 1,item_id:1,quantity:4}]} as IOrderItem, products)}
                         </div>
                         : <PageLoader/>}
                 </div>

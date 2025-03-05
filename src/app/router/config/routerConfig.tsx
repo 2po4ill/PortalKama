@@ -8,6 +8,7 @@ import PostsPage from "pages/PostsPage";
 import CartPage from "pages/CartPage";
 import MyReservationsPage from "pages/MyReservationsPage/ui/MyReservationsPage";
 import ReservationLockerPage from "pages/ReservationLockerPage/ui/ReservationLockerPage";
+import UserOrders from "pages/UserOrders";
 
 export type AppRouteProps = RouteProps & {
     authRequire?: boolean;
@@ -37,6 +38,11 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
          path: RoutePath.cart,
          element: <CartPage />,
          authRequire: true
+    },
+    [AppRoutes.USERORDERS]: {
+        path: RoutePath.user_orders,
+        element: <UserOrders />,
+        authRequire: true
     },
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,

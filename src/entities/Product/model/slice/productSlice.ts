@@ -178,7 +178,7 @@ const productSlice = createAppSlice({
             getUserOrders: createAThunk<undefined, UserOrders>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    const userOrder = await extra.api.get<UserOrders>("/user_orders");
+                    const userOrder = await extra.api.get<UserOrders>("/orders_list");
                     return userOrder.data;
                 } catch (err) {
                     console.log("Something went wrong" + err);

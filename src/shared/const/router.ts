@@ -6,6 +6,7 @@ export enum AppRoutes {
     // RESERVATIONLOCKER = 'reservationlocker',
     MYRESERVATIONS = 'myreservations',
     PROFILE = 'profile',
+    USERORDERS = 'user_orders',
     // всегда последний
     NOT_FOUND = 'not_found',
 }
@@ -17,6 +18,7 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MYRESERVATIONS]: '/reservation/my',
      [AppRoutes.SHOP]: '/shop',
      [AppRoutes.CART]: '/cart',
+    [AppRoutes.USERORDERS]: 'cart/user_orders',
     [AppRoutes.PROFILE]: '/profile',
     [AppRoutes.NOT_FOUND]: '*'
 }
