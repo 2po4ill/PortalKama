@@ -56,7 +56,7 @@ const Cart = ({ className }: ICartProps ) => {
                                     <article> На сумму:</article>
                                     <article className={cls.blue}> {price.toString()} </article>
                                     <Button onClick={() => {
-                                        dispatch(productActions.dropCart())
+                                        dispatch(productActions.order())
                                         alert("Заказ оформлен. Ожидайте")
                                     }} className={cls.btn}> Оформить </Button>
                                     <AppLink to={"user_orders"}> Ваши заказы </AppLink>

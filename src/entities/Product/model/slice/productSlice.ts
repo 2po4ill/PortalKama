@@ -275,6 +275,38 @@ const productSlice = createAppSlice({
                     }
                 }
             }),
+            order: createAThunk<undefined, undefined>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    return await extra.api.post("/order");
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    return {
+                        ...state,
+                        cartitems: [],
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
         }
     }
 })
