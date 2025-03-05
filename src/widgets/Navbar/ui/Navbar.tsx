@@ -89,14 +89,16 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
         if (isLoading) return (
             <Spinner color={"inverted"} size={"m"} className={cls.spinner} />
         );
-        if (location.pathname === '/shop' || location.pathname === '/cart' || location.pathname === '/cart/user_orders') return (
+        if (location.pathname === '/shop' || location.pathname === '/cart' || location.pathname === '/cart/user_orders' || location.pathname === '/user_balance') return (
             <AppLink to={"cart"} className={cls.Profile}>
                 <li>
                     <img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>
                     <img src={CartQuantImg} alt={RoutePath.cart} className={cls.CartQuantityImg}/>
                     <text className={classNames(cls.Quantity, mods, [className])}> {quantity} </text>
                 </li>
-                <Text text={userData.balance ? userData.balance.toString() : "0" + " баллов"} theme={TextTheme.INVERTED}/>
+                <AppLink to={"user_balance"}>
+                    <Text text={userData.balance ? userData.balance.toString() : "0" + " баллов"} theme={TextTheme.INVERTED}/>
+                </AppLink>
             </AppLink>
         );
         return null;

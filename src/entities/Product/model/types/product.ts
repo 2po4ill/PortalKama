@@ -36,10 +36,22 @@ export interface CartData {
     cart_data: ICartItem[];
 }
 
+export interface EventData {
+    status: string;
+    events: Event[];
+}
+
+export interface Event {
+    name: string;
+    amount: number;
+    date: string;
+}
+
 export interface ProductSchema {
     products: IShopItem[];
     cartitems: ICartItem[];
     orders: IOrderItem[];
+    events: Event[]
     isLoading: boolean;
     error: string | undefined;
 }

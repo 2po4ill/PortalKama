@@ -9,6 +9,7 @@ import CartPage from "pages/CartPage";
 import MyReservationsPage from "pages/MyReservationsPage/ui/MyReservationsPage";
 import ReservationLockerPage from "pages/ReservationLockerPage/ui/ReservationLockerPage";
 import UserOrders from "pages/UserOrders";
+import UserBalancePage from "pages/UserBalancePage";
 
 export type AppRouteProps = RouteProps & {
     authRequire?: boolean;
@@ -42,6 +43,11 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     [AppRoutes.USERORDERS]: {
         path: RoutePath.user_orders,
         element: <UserOrders />,
+        authRequire: true
+    },
+    [AppRoutes.USERBALANCE]: {
+        path: RoutePath.user_balance,
+        element: <UserBalancePage />,
         authRequire: true
     },
     [AppRoutes.PROFILE]: {
