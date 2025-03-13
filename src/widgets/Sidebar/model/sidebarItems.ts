@@ -36,4 +36,10 @@ export const sidebarItemsList: ISidebarItem[] = [
         Icon: ShopIcon,
          text: "Магазин"
     },
+    {
+        name: AppRoutes.TOPWORKERS,
+        path: RoutePath.top_workers,
+        Icon: ShopIcon,
+        text: "Лучшие работники"
+    }
 ]

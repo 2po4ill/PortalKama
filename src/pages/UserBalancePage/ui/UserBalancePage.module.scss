@@ -1,3 +1,24 @@
-.Event{
-    display: flex;
+.UserBalance{
+    margin-left: 200px;
+    margin-top: 300px;
+    .EventList{
+        display: flex;
+        flex-direction: column;
+        .Event{
+            padding: 40px;
+            display:flex;
+            .label{
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            .Amount{
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+            .Btn{
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+    }
 }

@@ -37,24 +37,24 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
 
     const renderEvent = (event: Event) => {
         return  <div className={cls.Event}>
-                    {event.name}
-                    {event.amount}
-                    <Button onClick={() => takeEvent(event.name, event.amount)}> Начислить</Button>
+                    <label className={cls.label}> {event.name} </label>
+                    <label className={cls.Amouunt}> {event.amount} </label>
+                    <Button onClick={() => takeEvent(event.name, event.amount)} className={cls.Btn}> Начислить</Button>
                 </div>
     }
 
     return (
         <AsyncReducerProvider name={'product'} reducer={productReducer} destroy={false} >
-            <div className={classNames(cls.UserOrders, {}, [className])}>
+            <div className={classNames(cls.UserBalance, {}, [className])}>
                 <Text title={"Ваши события за баллы"} className={cls.title}/>
                 <div>
                     { !isLoading ?
-                        <div className={cls.OrderList}>
+                        <div className={cls.EventList}>
                             {events ? events.map(event => renderEvent(event)) : "Вы забрали все события, зайдите позже"}
                             <div className={cls.Event}>
-                                <label> Начисление администратора </label>
-                                <Input placeholder={"Введите количество баллов"} onChange={setAmount}/>
-                                <Button onClick={() => takeEvent("Начисление администратора", Number(amount))}> Начислить </Button>
+                                <label className={cls.label}> Начисление администратора </label>
+                                <Input placeholder={"Введите количество баллов"} onChange={setAmount} className={cls.Amount}/>
+                                <Button onClick={() => takeEvent("Начисление администратора", Number(amount))} className={cls.Btn}> Начислить </Button>
                             </div>
                         </div>
                         : <PageLoader/>}

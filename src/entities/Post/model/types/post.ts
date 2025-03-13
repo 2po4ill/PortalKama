@@ -27,6 +27,7 @@ export interface PostSchema {
     tags: Tag[] | [];
     comments: Comment[] | [];
     total_views: number;
+    workers_info: Worker[];
     isLoading: boolean;
     isPostLoading: boolean;
     error: string | undefined;
@@ -71,5 +72,17 @@ export interface Comment {
     text: string;
     creation_date: string;
     updated_at?: string;
+}
+
+export interface IWorkerData {
+    status: boolean;
+    workers_info: Worker[];
+}
+
+export interface Worker {
+    full_name: string;
+    image_path: string;
+    position: string;
+    link: string;
 }
 

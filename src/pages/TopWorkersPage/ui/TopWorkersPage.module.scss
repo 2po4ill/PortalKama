@@ -1,0 +1,44 @@
+.TopWorkersPage {
+  margin-top: 50px;
+  margin-left: 100px;
+
+  .WorkerList{
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 20px;
+  }
+  .Worker{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 450px;
+    .img{
+      max-height: 300px;
+      max-width: 300px;
+      border-radius: 10px;
+      transition: transform .3s ease;
+      filter: drop-shadow(0px 1px 3px rgba(0,0,0,0.2));
+      object-fit: contain;
+      &:hover {
+        transform: translate(0,5px);
+      }
+    }
+    .content{
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      .qr{
+        height: 100px;
+        position: relative;
+        top: 10px;
+      }
+      .textInfo{
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}
