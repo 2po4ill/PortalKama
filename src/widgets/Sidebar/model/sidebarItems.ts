@@ -31,16 +31,16 @@ export const sidebarItemsList: ISidebarItem[] = [
     //     Icon: ReservationIcon,
     //     text: "Бронь шкафчика"
     // },
-    {
-        name: AppRoutes.SHOP,
-        path: RoutePath.shop,
-        Icon: ShopIcon,
-         text: "Магазин"
-    },
+    //{
+    //    name: AppRoutes.SHOP,
+    //    path: RoutePath.shop,
+    //    Icon: ShopIcon,
+    //     text: "Магазин"
+    //},
     {
         name: AppRoutes.TOPWORKERS,
         path: RoutePath.top_workers,
         Icon: Cup,
-        text: "Доска почета и славы"
+       text: "Доска почета и славы"
     }
 ]

@@ -180,6 +180,7 @@ const productSlice = createAppSlice({
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
                     const userOrder = await extra.api.get<UserOrders>("/orders_list");
+
                     return userOrder.data;
                 } catch (err) {
                     console.log("Something went wrong" + err);

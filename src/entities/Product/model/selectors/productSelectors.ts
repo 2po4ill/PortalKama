@@ -2,6 +2,7 @@ import {createSelector, Selector} from "@reduxjs/toolkit";
 import {StateSchema} from "app/providers/StoreProvider";
 import {Event, ICartItem, IOrderItem, IShopItem, ProductSchema} from "../types/product";
 
+
 const defaultProductData: ProductSchema = {
     products: [],
     cartitems: [],
