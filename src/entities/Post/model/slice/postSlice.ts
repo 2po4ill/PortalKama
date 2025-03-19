@@ -1,5 +1,15 @@
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
-import {IPostComments, IPostData, IPostInfo, IPostTags, Post, PostDesc, PostSchema, Tag} from "../types/post";
+import {
+    IPostComments,
+    IPostData,
+    IPostInfo,
+    IPostTags,
+    IWorkerData,
+    Post,
+    PostDesc,
+    PostSchema,
+    Tag
+} from "../types/post";
 import {IThunkConfig} from "app/providers/StoreProvider";
 import {Comment} from "entities/Post/model/types/post";
 
@@ -8,6 +18,7 @@ const initialState: PostSchema = {
     post: undefined,
     tags: [],
     comments: [],
+    workers_info: [],
     total_views: 0,
     isLoading: false,
     isPostLoading: false,
@@ -118,6 +129,41 @@ const postSlice = createAppSlice({
                             isLoading: false,
                             error: undefined,
                             tags: action.payload.tags
+                        }
+                    },
+                    rejected: (state, action) => {
+                        return {
+                            ...state,
+                            isLoading: false,
+                            error: String(action.error)
+                        }
+                    }
+                }
+            ),
+            getTopWorkers: createAThunk<undefined, IWorkerData>(async (data, thunkAPI) => {
+                    const { rejectWithValue, extra } = thunkAPI;
+                    try {
+                        const worker_list = await extra.api.get<IWorkerData>("/top_workers");
+                        console.log(worker_list.data);
+                        return worker_list.data;
+                    } catch (err) {
+                        console.log("Something went wrong" + err);
+                        return rejectWithValue(String(err));
+                    } },
+                {
+                    pending: state => {
+                        return {
+                            ...state,
+                            isLoading: true,
+                            error: undefined
+                        }
+                    },
+                    fulfilled: (state, action) => {
+                        return {
+                            ...state,
+                            workers_info: action.payload.workers_info,
+                            isLoading: false,
+                            error: undefined,
                         }
                     },
                     rejected: (state, action) => {

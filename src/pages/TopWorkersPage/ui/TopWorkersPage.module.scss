@@ -1,0 +1,88 @@
+.TopWorkersPage {
+  .header{
+    height: 65px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+  }
+  .title_container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .title{
+      color: #003055;
+      font-weight: 1000;
+      font-size: 60px;
+    }
+  }
+
+  .WorkerList{
+
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-bottom: 50px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 60px 20px;
+  }
+
+  .logo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 415px;
+    .logo_img{
+      height: 300px;
+    }
+  }
+  .Worker{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 415px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+    overflow: hidden;
+    .img_container{
+      .img{
+        height: 350px;
+        width: 250px;
+        object-fit: cover;
+      }
+    }
+
+    .content{
+      display: flex;
+      justify-content: flex-start;
+      .qr{
+        height: 50px;
+        width: 50px;
+        margin: 5px;
+        justify-self: flex-start;
+      }
+      .textInfo{
+        object-fit: contain;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        margin: 5px 5px 5px auto;
+
+        .title{
+          font-size: 12px;
+          margin-bottom: 2px;
+          font-weight: bold;
+        }
+        .text{
+          font-size: 9px;
+        }
+      }
+    }
+  }
+}

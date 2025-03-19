@@ -21,14 +21,37 @@ export interface ICartItem {
     quantity: number;
 }
 
+export interface IOrderItem {
+    cart_id: number;
+    items: ICartItem[];
+}
+
+export interface UserOrders {
+    status: string;
+    carts: IOrderItem[];
+}
+
 export interface CartData {
     status: string;
     cart_data: ICartItem[];
 }
 
+export interface EventData {
+    status: string;
+    events: Event[];
+}
+
+export interface Event {
+    name: string;
+    amount: number;
+    date: string;
+}
+
 export interface ProductSchema {
     products: IShopItem[];
     cartitems: ICartItem[];
+    orders: IOrderItem[];
+    events: Event[]
     isLoading: boolean;
     error: string | undefined;
 }

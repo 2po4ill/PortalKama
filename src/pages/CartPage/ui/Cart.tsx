@@ -12,6 +12,7 @@ import {PageLoader} from "widgets/PageLoader";
 import {CartList} from "features/cart";
 import {Button} from "shared/ui/Button/Button";
 import {Text} from "shared/ui/Text/Text";
+import {AppLink} from "shared/ui/AppLink/AppLink";
 
 export interface ICartProps {
     className?: string;
@@ -55,15 +56,17 @@ const Cart = ({ className }: ICartProps ) => {
                                     <article> На сумму:</article>
                                     <article className={cls.blue}> {price.toString()} </article>
                                     <Button onClick={() => {
-                                        dispatch(productActions.dropCart())
+                                        dispatch(productActions.order())
                                         alert("Заказ оформлен. Ожидайте")
                                     }} className={cls.btn}> Оформить </Button>
+                                    <AppLink to={"user_orders"}> Ваши заказы </AppLink>
                                 </div>
                             </div>
                         </div>
                         : <PageLoader/>}
                 </div>
             </div>
+
         </AsyncReducerProvider>
     );
 };
