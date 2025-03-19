@@ -14,6 +14,7 @@ import {PageLoader} from "widgets/PageLoader";
 import QRCode from "react-qr-code"
 import UserBalancePage from "pages/UserBalancePage/ui/UserBalancePage";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
+import logo from "shared/assets/icons/logo_top_workers.png"
 
 export interface ITopWorkersPageProps {
     className?: string;
@@ -27,32 +28,53 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
     const workers = useSelector(postSelectors.getTopWorkers);
     const isLoading = useSelector(postSelectors.getIsLoading);
     const dispatch = useAppDispatch();
+    let increment = 0;
 
     useEffect(() => {
         dispatch(postActions.getTopWorkers());
     }, [dispatch]);
 
     const renderWorker = (worker: Worker) => {
-        return <div className={cls.Worker}>
-            <img className={cls.img} src={worker.image_path} alt={worker.full_name}/>
-            <div className={cls.content}>
-                <QRCode value={worker.link} className={cls.qr}/>
-                <div className={cls.textInfo}>
-                    <Text title={worker.full_name} text={worker.position}/>
+        if (increment != 2) {
+            increment += 1
+            return <div className={cls.Worker}>
+                <div className={cls.img_container}>
+                    <img className={cls.img} src={worker.image_path} alt={worker.full_name}/>
+                </div>
+                <div className={cls.content}>
+                    <QRCode value={worker.link} className={cls.qr}/>
+                    <div className={cls.textInfo}>
+                        <label className={cls.title}> {worker.full_name} </label>
+                        <label className={cls.text}> {worker.position} </label>
+                    </div>
                 </div>
             </div>
-        </div>
+        } else {
+            increment += 1
+            return <div className={cls.logo}>
+                <img src={logo} alt={'logo'} className={cls.logo_img}/>
+            </div>
+        }
     }
 
     return (
-        <AsyncReducerProvider name={'post'} reducer={postReducer} destroy={false} >
+        <AsyncReducerProvider name={'post'} reducer={postReducer} destroy={false}>
             <div className={classNames(cls.TopWorkersPage, {}, [className])}>
-                <Text title={"Лучшие сотрудники месяца"} className={cls.title}/>
-
+                <div className={cls.header}>
+                </div>
+                <div className={cls.title_container}>
+                    <label className={cls.title}> СТЕНА ПОЧЕТА И СЛАВЫ </label>
+                </div>
                 <div>
                     { !isLoading ?
                         <div className={cls.WorkerList}>
                             {workers ? workers.map(worker => renderWorker(worker)) : "Произошла ошибка, зайдите позже"}
+                            {renderWorker({
+                                "full_name": "Газизов Ильдар Мубаракьянович",
+                                "position": "Слесарь по ремонту автомобилей (занятый ремонтом двигателей) участка внешних ремонтов и аудита качества двигателей",
+                                "link": "https://www.kama-diesel.ru/rus/karera/korporativnaya-zhizn/sotrudniki/bh202425/",
+                                "image_path": "https://corp-portal.kama-diesel.ru/api/image?name=wof_images/8"
+                            })}
                         </div>
                         : <PageLoader/>}
                 </div>
