@@ -8,6 +8,9 @@ import PostsPage from "pages/PostsPage";
 import CartPage from "pages/CartPage";
 import MyReservationsPage from "pages/MyReservationsPage/ui/MyReservationsPage";
 import ReservationLockerPage from "pages/ReservationLockerPage/ui/ReservationLockerPage";
+import UserOrders from "pages/UserOrders";
+import UserBalancePage from "pages/UserBalancePage";
+import TopWorkersPage from "pages/TopWorkersPage";
 
 export type AppRouteProps = RouteProps & {
     authRequire?: boolean;
@@ -27,16 +30,35 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     //     element: <ReservationLockerPage />,
     //     authRequire: true
     // },
-     [AppRoutes.SHOP]: {
-         path: RoutePath.shop,
-         element: <Shop />,
-         authRequire: true
-     },
-     [AppRoutes.CART]: {
-         path: RoutePath.cart,
-         element: <CartPage />,
-         authRequire: true
+    // [AppRoutes.SHOP]: {
+    //     path: RoutePath.shop,
+    //     element: <Shop />,
+    //     authRequire: true
+    // },
+
+    [AppRoutes.TOPWORKERS]: {
+        path: RoutePath.top_workers,
+        element: <TopWorkersPage />,
     },
+
+    // [AppRoutes.CART]: {
+    //     path: RoutePath.cart,
+    //     element: <CartPage />,
+    //     authRequire: true
+   // },
+
+  //
+  //  [AppRoutes.USERORDERS]: {
+  //      path: RoutePath.user_orders,
+  //      element: <UserOrders />,
+  //      authRequire: true
+  //  },
+  //  [AppRoutes.USERBALANCE]: {
+  //      path: RoutePath.user_balance,
+  //      element: <UserBalancePage />,
+  //      authRequire: true
+  //  },
+
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,
         element: <ProfilePage />,
