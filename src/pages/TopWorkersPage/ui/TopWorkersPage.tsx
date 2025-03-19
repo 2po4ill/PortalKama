@@ -42,7 +42,9 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
                     <img className={cls.img} src={worker.image_path} alt={worker.full_name}/>
                 </div>
                 <div className={cls.content}>
-                    <QRCode value={worker.link} className={cls.qr}/>
+                    <div>
+                        <QRCode value={worker.link} size={15} className={cls.qr}/>
+                    </div>
                     <div className={cls.textInfo}>
                         <label className={cls.title}> {worker.full_name} </label>
                         <label className={cls.text}> {worker.position} </label>
@@ -69,12 +71,6 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
                     { !isLoading ?
                         <div className={cls.WorkerList}>
                             {workers ? workers.map(worker => renderWorker(worker)) : "Произошла ошибка, зайдите позже"}
-                            {renderWorker({
-                                "full_name": "Газизов Ильдар Мубаракьянович",
-                                "position": "Слесарь по ремонту автомобилей (занятый ремонтом двигателей) участка внешних ремонтов и аудита качества двигателей",
-                                "link": "https://www.kama-diesel.ru/rus/karera/korporativnaya-zhizn/sotrudniki/bh202425/",
-                                "image_path": "https://corp-portal.kama-diesel.ru/api/image?name=wof_images/8"
-                            })}
                         </div>
                         : <PageLoader/>}
                 </div>
