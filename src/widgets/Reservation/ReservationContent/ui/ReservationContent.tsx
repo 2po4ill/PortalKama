@@ -5,7 +5,7 @@ import cls from "./ReservationContent.module.scss";
 
 
 import {Map} from "shared/ui/Map/Map";
-import {IReservationItem, IReservationLockerItem} from "entities/Reservation/model/types/reservation";
+import {IDictionaryItem, IReservationItem, IReservationLockerItem} from "entities/Reservation/model/types/reservation";
 import {Button} from "shared/ui/Button/Button";
 
 import green from "shared/assets/images/icon_Зеленый.png"
@@ -16,10 +16,12 @@ import chair from "shared/assets/images/icon_chair.png"
 import {PhoneModal} from "features/reservation/ui/PhoneModal";
 import {useSelector} from "react-redux";
 import {userSelectors} from "entities/User";
+import {DictionaryModal} from "features/reservation/ui/DictionaryModal";
 
 interface IReservationContentProps {
     className?: string;
     places: IReservationItem[];
+    dictionary: IDictionaryItem[];
     selectedPoint: number;
     selectedDate: Date;
     setSelectedPoint: (number: number) => void;
@@ -36,6 +38,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     setSelectedPlace,
         setSelectedLocker,
         selectedDate,
+        dictionary,
     apiCall} = props;
 
     const userData = useSelector(userSelectors.getUser);
@@ -43,6 +46,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
 
     const [selectedFloor, setSelectedFloor] = useState(localStorage.getItem('floor'));
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen1, setModalIsOpen1] = useState(false);
 
     const userFloor = () => {
     if (userPlace) {
@@ -112,6 +116,10 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
 
     const phoneClickHandler = () => {
         setModalIsOpen(true);
+    }
+
+    const dictionaryClickHandler = () => {
+        setModalIsOpen1(true);
     }
 
 
@@ -200,8 +208,12 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                 <Button onClick={phoneClickHandler} className={cls.reservation}>
                     Телефонный справочник
                 </Button>
+                <Button onClick={dictionaryClickHandler} className={cls.reservation}>
+                    Телефонный справочник сотрудников
+                </Button>
             </div>
             <PhoneModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} places={places} selectedDate={selectedDate}/>
+            <DictionaryModal isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} dictionary={dictionary}/>
         </div>
     );
 })
