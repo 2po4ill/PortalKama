@@ -3,6 +3,7 @@ export interface ReservationSchema {
     reservations: IReservationItem[];
     lockerReservations: IReservationLockerItem[];
     userReservationList: IReservationMade[];
+    employees: IDictionaryItem[];
     isLoading: boolean;
     error: string | undefined;
 }
@@ -26,6 +27,14 @@ export interface IReservationItem {
 
 }
 
+export interface IDictionaryItem {
+    full_name: string;
+    position: string;
+    department: string;
+    mail: string;
+    mobile: string;
+}
+
 export interface IReservationLockerItem {
     // id места
     locker_id: number;
@@ -42,6 +51,7 @@ export interface IReservationData {
     reservation_list: IReservationItem[];
     locker_reservation_list: IReservationLockerItem[];
     user_reservations: IReservationMade[];
+    employees: IDictionaryItem[];
 }
 
 export interface IReservationMade{

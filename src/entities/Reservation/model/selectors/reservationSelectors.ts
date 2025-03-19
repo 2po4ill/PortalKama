@@ -1,6 +1,7 @@
 import {createSelector, Selector} from "@reduxjs/toolkit";
 import {StateSchema} from "app/providers/StoreProvider";
 import {
+    IDictionaryItem,
     IReservationItem,
     IReservationLockerItem,
     IReservationMade,
@@ -11,6 +12,7 @@ const defaultReservationData: ReservationSchema = {
     reservations: [],
     lockerReservations: [],
     userReservationList: [],
+    employees: [],
     error: undefined,
     isLoading: false
 }
@@ -21,6 +23,7 @@ interface IProductSelectors {
     getReservationData: Selector<StateSchema, ReservationSchema>;
     getReservationList: Selector<StateSchema, IReservationItem[]>;
     getReservationLockerList: Selector<StateSchema, IReservationLockerItem[]>
+    getPhoneBook: Selector<StateSchema, IDictionaryItem[]>
     getUserReservations: Selector<StateSchema, IReservationMade[]>;
     getError: Selector<StateSchema, string | undefined>
     getIsLoading: Selector<StateSchema, boolean>
@@ -35,6 +38,10 @@ export const reservationSelectors: IProductSelectors = {
     getReservationLockerList: createSelector(
         getReservationData,
         (data) => data.lockerReservations
+    ),
+    getPhoneBook: createSelector(
+        getReservationData,
+        (data) => data.employees
     ),
     getUserReservations: createSelector(
         getReservationData,

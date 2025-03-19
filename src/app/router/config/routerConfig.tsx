@@ -20,8 +20,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     },
     [AppRoutes.RESERVATION]: {
         path: RoutePath.reservation,
-        element: <ReservationPage />,
-        authRequire: true
+        element: <ReservationPage />
     },
     // [AppRoutes.RESERVATIONLOCKER]: {
     //     path: RoutePath.reservationlocker,
