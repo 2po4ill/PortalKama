@@ -57,7 +57,7 @@ const LoginForm: FC<ILoginForm> = ( props ) => {
         if (result.meta.requestStatus == "fulfilled") {
             close();
         }
-        //setTimeout(() => window.location.reload(), 50);
+        setTimeout(() => window.location.reload(), 50);
     }, [dispatch, username, password]);
 
     return (

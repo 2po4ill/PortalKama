@@ -92,8 +92,6 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
         if (location.pathname === '/shop' || location.pathname === '/cart' || location.pathname === '/cart/user_orders' || location.pathname === '/user_balance') return (
             <AppLink to={"cart"} className={cls.Profile}>
                 <li>
-                    <img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>
-                    <img src={CartQuantImg} alt={RoutePath.cart} className={cls.CartQuantityImg}/>
                     <text className={classNames(cls.Quantity, mods, [className])}> {quantity} </text>
                 </li>
                 <AppLink to={"user_balance"}>

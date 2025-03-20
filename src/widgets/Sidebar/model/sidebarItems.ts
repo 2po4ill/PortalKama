@@ -41,6 +41,6 @@ export const sidebarItemsList: ISidebarItem[] = [
         name: AppRoutes.TOPWORKERS,
         path: RoutePath.top_workers,
         Icon: Cup,
-       text: "Доска почета и славы"
+       text: "Стена почета и славы"
     }
 ]
