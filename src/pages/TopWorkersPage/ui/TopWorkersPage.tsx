@@ -29,13 +29,13 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
     const isLoading = useSelector(postSelectors.getIsLoading);
     const dispatch = useAppDispatch();
     let increment = 0;
+    let flag = true;
 
     useEffect(() => {
         dispatch(postActions.getTopWorkers());
     }, [dispatch]);
 
     const renderWorker = (worker: Worker) => {
-        if (increment != 2) {
             increment += 1
             return <div className={cls.Worker}>
                 <div className={cls.img_container}>
@@ -51,13 +51,14 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
                     </div>
                 </div>
             </div>
-        } else {
-            increment += 1
-            return <div className={cls.logo}>
-                <img src={logo} alt={'logo'} className={cls.logo_img}/>
-            </div>
-        }
     }
+    const renderLogo = () => {
+        return <div className={cls.logo}>
+            <img src={logo} alt={'logo'} className={cls.logo_img}/>
+        </div>
+    }
+
+
 
     return (
         <AsyncReducerProvider name={'post'} reducer={postReducer} destroy={false}>
@@ -70,7 +71,7 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
                 <div>
                     { !isLoading ?
                         <div className={cls.WorkerList}>
-                            {workers ? workers.map(worker => renderWorker(worker)) : "Произошла ошибка, зайдите позже"}
+                            {workers ? workers.map(worker => [renderWorker(worker), increment == 2 ? renderLogo() : null]) : "Произошла ошибка, зайдите позже"}
                         </div>
                         : <PageLoader/>}
                 </div>
