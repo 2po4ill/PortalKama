@@ -16,11 +16,17 @@
       font-weight: 1000;
       font-size: 60px;
     }
+    .hint {
+      margin-top: 5px;
+      color: #003055;
+      font-weight: bold;
+      font-style: italic;
+    }
   }
 
   .WorkerList{
 
-    margin-top: 100px;
+    margin-top: 70px;
     margin-left: 100px;
     margin-bottom: 50px;
     display: grid;
@@ -46,6 +52,7 @@
     align-items: center;
     width: 250px;
     height: 415px;
+    cursor: pointer;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 5px 5px rgba(0,0,0,0.2);

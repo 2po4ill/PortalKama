@@ -1,0 +1,44 @@
+.ModalProperties{
+  height: 700px;
+  width: 400px;
+}
+.photo{
+  width: 400px;
+  object-position: 0 70px;
+  position: relative;
+  top: -40px;
+
+}
+.content_block{
+  display: flex;
+  justify-content: flex-start;
+  position: relative;
+  top: -35px;
+  .qr_container {
+    padding: 5px;
+    .qr {
+    }
+  }
+  .info_block{
+    object-fit: contain;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 5px 5px 5px auto;
+
+    .name{
+      font-size: 20px;
+      margin-bottom: 2px;
+      font-weight: bold;
+    }
+    .position{
+      font-size: 13px;
+    }
+  }
+}
+.Worker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
