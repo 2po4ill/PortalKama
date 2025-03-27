@@ -80,7 +80,7 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
                 </div>
                 <div className={cls.title_container}>
                     <label className={cls.title}> СТЕНА ПОЧЕТА И СЛАВЫ </label>
-                    <label className={cls.hint}> При наведении камеры смартфона на QR код вы перейдете в раздел с описанием достижений сотрудника </label>
+                    <label className={cls.hint}> При наведении камеры смартфона на QR код Вы перейдете в раздел с описанием достижений сотрудника </label>
                 </div>
                 <div>
                     { !isLoading ?
