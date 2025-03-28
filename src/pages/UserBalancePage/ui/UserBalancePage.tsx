@@ -32,7 +32,7 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
     const takeEvent = (description: string, amount: number) => {
         dispatch(productActions.takeEvent({description: description, amount: amount}));
         alert(`Бонус получен: +${amount} баллов`)
-        setTimeout(() => dispatch(productActions.getUnclaimedEvents()), 50);
+        setTimeout(() => window.location.reload(), 50);
     }
 
     const renderEvent = (event: Event) => {

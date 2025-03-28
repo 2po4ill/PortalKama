@@ -1,6 +1,9 @@
 import {CartData, Event, EventData, ICartItem, IShopData, ProductSchema, UserOrders} from "../types/product";
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IThunkConfig} from "app/providers/StoreProvider";
+import {IUserDataResponse, userActions} from "entities/User";
+import {useDispatch} from "react-redux";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 
 const initialState: ProductSchema = {
     products: [],
@@ -54,11 +57,13 @@ const productSlice = createAppSlice({
                     }
                 }
             }),
-            addCartItem: createAThunk<ICartItem, void>(async (data, thunkAPI) => {
+            addCartItem: createAThunk<ICartItem, ICartItem[]>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 const {item_id , quantity} = data;
                 try {
-                    return await extra.api.post("/add_cart_item", {"item_id": item_id, "quantity": quantity});
+                    const status = await extra.api.post("/add_cart_item", {"item_id": item_id, "quantity": quantity});
+                    const cartData = await extra.api.get<CartData>("/cart_data");
+                    return cartData.data.cart_data
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));
@@ -68,17 +73,23 @@ const productSlice = createAppSlice({
                     state.error = undefined;
                 },
                 fulfilled: (state, action) => {
-                    state.error = undefined;
+                    const newList = action.payload;
+                    return {
+                        ...state,
+                        cartitems: newList,
+                        error: undefined
+                    }
                 },
                 rejected: (state, action) => {
                     state.error = String(action.payload);
                 }
             }),
-            dropCartItem: createAThunk<number, void>(async (data, thunkAPI) => {
+            dropCartItem: createAThunk<number, ICartItem[]>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    await extra.api.post("/drop_cart_item", {"in_cart_item_id": data});
-                    return
+                    const status = await extra.api.post("/drop_cart_item", {"in_cart_item_id": data});
+                    const cartData = await extra.api.get<CartData>("/cart_data");
+                    return cartData.data.cart_data
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));
@@ -92,10 +103,10 @@ const productSlice = createAppSlice({
                     }
                 },
                 fulfilled: (state, action) => {
+                    const newList = action.payload
                     return {
                         ...state,
-                        products: state.products,
-                        cartitems: state.cartitems,
+                        cartitems: newList,
                         error: undefined,
                         isLoading: false
                     }
@@ -248,7 +259,10 @@ const productSlice = createAppSlice({
             takeEvent: createAThunk<{description: string, amount: number}, undefined>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    return await extra.api.post("/get_event_thx", {description: data.description, amount: data.amount});
+                    const status = await extra.api.post("/get_event_thx", {description: data.description, amount: data.amount});
+                    const dispatch = useAppDispatch()
+                    dispatch(userActions.addBalance(data.amount))
+                    return
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));

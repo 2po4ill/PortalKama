@@ -10,7 +10,7 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {productActions} from "entities/Product";
 import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
 import {useLocation} from "react-router-dom";
-import {Counter} from "entities/Counter";
+import {Counter, counterActions} from "entities/Counter";
 import {useSelector} from "react-redux";
 import {getCounterValue} from "entities/Counter/model/selectors/getCounterValue";
 
@@ -23,6 +23,9 @@ export const ProductModal: FC<IProductModalProps> = memo((props) => {
     const dispatch = useAppDispatch();
     const location = useLocation()
     const counterValue = useSelector(getCounterValue)
+    const nullify = () => {
+        dispatch(counterActions.nullify());
+    }
 
     return (
         <Modal
@@ -49,7 +52,7 @@ export const ProductModal: FC<IProductModalProps> = memo((props) => {
                                 <Button onClick={
                                     () => {
                                         dispatch(productActions.addCartItem({item_id: Number(product.item_id), quantity: counterValue} as ICartItem))
-                                        dispatch(productActions.getCartData)
+                                        nullify()
                                     }}>
                                     Добавить в корзину
                                 </Button>

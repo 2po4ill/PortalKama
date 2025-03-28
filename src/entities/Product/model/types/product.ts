@@ -24,6 +24,7 @@ export interface ICartItem {
 export interface IOrderItem {
     cart_id: number;
     items: ICartItem[];
+    date: string;
 }
 
 export interface UserOrders {
