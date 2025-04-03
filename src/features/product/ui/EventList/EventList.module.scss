@@ -1,0 +1,59 @@
+.EventList{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .Event{
+    padding: 40px;
+    display:flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-end;
+    .info_container {
+      display: flex;
+      gap: 20px;
+      .img_container {
+        .img_event {
+          height: 100px;
+          position: relative;
+          top: 10px;
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .label {
+          font-size: 25px;
+          font-weight: 700;
+        }
+        .label_gray {
+          color: #2B3437;
+        }
+      }
+    }
+    .Buttons{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .Amount{
+        font-size: 25px;
+        font-weight: 700;
+      }
+      .coin_img{
+        height: 30px;
+      }
+      .Btn{
+        height: 40px;
+        width: 150px;
+        margin-right: 20px;
+        font-size: 20px;
+      }
+    }
+    }
+
+
+
+}
+

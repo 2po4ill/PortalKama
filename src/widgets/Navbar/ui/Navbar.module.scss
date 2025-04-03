@@ -86,3 +86,17 @@ li{
     height: 38px;
     object-position: 0 -1px;
   }
+
+  .balance{
+    display: flex;
+    flex-direction: row;
+    .number-balance{
+      position: relative;
+      top: 2px;
+    }
+    .coin_img{
+      width: 38px;
+      height: 38px;
+      margin-left: 3px;
+    }
+  }

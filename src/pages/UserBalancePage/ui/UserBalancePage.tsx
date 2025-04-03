@@ -1,17 +1,16 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './UserBalancePage.module.scss';
 import {productActions, productReducer, productSelectors} from "entities/Product";
-import {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useSelector} from "react-redux";
-import {Event, IOrderItem, IShopItem} from "entities/Product/model/types/product";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {PageLoader} from "widgets/PageLoader";
-import {OrderItem} from "features/product/ui/OrderItem/OrderItem";
 import {Text} from "shared/ui/Text/Text";
-import {Button} from "shared/ui/Button/Button";
-import {postActions} from "entities/Post/model/slice/postSlice";
-import {Input} from "shared/ui/Input/Input";
+import {EventList} from "features/product/ui/EventList/EventList";
+import {fullDate} from "shared/lib/FormatDate/FormatDate";
+import {userSelectors} from "entities/User";
+import coin_icon from "shared/assets/icons/coin_icon.png";
 
 export interface IBalanceProps {
     className?: string;
@@ -20,14 +19,13 @@ export interface IBalanceProps {
 const UserBalancePage = ({ className }: IBalanceProps ) => {
     const events = useSelector(productSelectors.getUnclaimedEvents);
     const isLoading = useSelector(productSelectors.getIsLoading);
+    const userData = useSelector(userSelectors.getUser);
     const dispatch = useAppDispatch();
-
-    const [amount, setAmount] = useState("0");
-
 
     useEffect(() => {
         dispatch(productActions.getUnclaimedEvents());
     }, [dispatch]);
+
 
     const takeEvent = (description: string, amount: number) => {
         dispatch(productActions.takeEvent({description: description, amount: amount}));
@@ -35,27 +33,34 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
         setTimeout(() => window.location.reload(), 50);
     }
 
-    const renderEvent = (event: Event) => {
-        return  <div className={cls.Event}>
-                    <label className={cls.label}> {event.name} </label>
-                    <label className={cls.Amouunt}> {event.amount} </label>
-                    <Button onClick={() => takeEvent(event.name, event.amount)} className={cls.Btn}> Начислить</Button>
-                </div>
-    }
 
     return (
         <AsyncReducerProvider name={'product'} reducer={productReducer} destroy={false} >
             <div className={classNames(cls.UserBalance, {}, [className])}>
-                <Text title={"Ваши события за баллы"} className={cls.title}/>
+                <div className={cls.Header}>
+
+                </div>
+                <label className={cls.title}> Баланс </label>
                 <div>
                     { !isLoading ?
-                        <div className={cls.EventList}>
-                            {events ? events.map(event => renderEvent(event)) : "Вы забрали все события, зайдите позже"}
-                            <div className={cls.Event}>
-                                <label className={cls.label}> Начисление администратора </label>
-                                <Input placeholder={"Введите количество баллов"} onChange={setAmount} className={cls.Amount}/>
-                                <Button onClick={() => takeEvent("Начисление администратора", Number(amount))} className={cls.Btn}> Начислить </Button>
+                        <div className={cls.EventWindow}>
+                            <div className={cls.Data}>
+                                <div className={cls.Cluster_string}>
+                                    <label className={cls.title_string}> Дата: </label>
+                                    <label className={cls.number}> {fullDate(new Date())} </label>
+                                </div>
+                                <div className={cls.Cluster_string}>
+                                    <label className={cls.title_string}> Сумма начислений: </label>
+                                    <label className={cls.number}> {userData.balance} </label>
+                                    <img src={coin_icon} alt={"Рахматик"} className={cls.coin_img}/>
+                                </div>
+                                <div className={cls.Cluster_string}>
+                                    <label className={cls.title_string}> Доступно для передачи коллегам: </label>
+                                    <label className={cls.number}> {0} </label>
+                                    <img src={coin_icon} alt={"Рахматик"} className={cls.coin_img}/>
+                                </div>
                             </div>
+                            <EventList events={events} takeEventAPI={takeEvent}/>
                         </div>
                         : <PageLoader/>}
                 </div>

@@ -33,3 +33,14 @@
     align-items: center;
   }
 }
+
+.pricevalue{
+  display: flex;
+  .price_img{
+    width: 30px;
+    height: 30px;
+    margin-left: 15px;
+    position: relative;
+    top: 5px;
+  }
+}

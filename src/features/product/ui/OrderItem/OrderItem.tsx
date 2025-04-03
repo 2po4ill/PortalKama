@@ -1,12 +1,9 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './OrderItem.module.scss';
-import {FC, memo, useCallback, useState} from "react";
+import {FC, memo} from "react";
 import {Text} from "shared/ui/Text/Text";
-import {Button} from "shared/ui/Button/Button";
-import img from 'shared/assets/placeholder-image.webp'
 import {ICartItem, IOrderItem, IShopItem} from "entities/Product/model/types/product";
-import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
-import {useLocation} from "react-router-dom";
+import {fullDate} from "shared/lib/FormatDate/FormatDate";
 
 export interface IProductItemProps {
     className?: string;
@@ -17,37 +14,6 @@ export interface IProductItemProps {
 export const OrderItem: FC<IProductItemProps> = memo((props) => {
     const { products, order,className } = props;
     let sum = 0
-
-    const dayOfTheWeek = (date: Date) => {
-        switch(date.getDay())
-        {
-            case 0:
-                return "Воскресенье"
-            case 1:
-                return "Понедельник"
-            case 2:
-                return "Вторник"
-            case 3:
-                return "Среда"
-            case 4:
-                return "Четверг"
-            case 5:
-                return "Пятница"
-            case 6:
-                return "Суббота"
-        }
-    }
-
-    const fullDate = (date: Date) => {
-        return date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear()
-    }
-
-    const dateFormat = (date:Date) => {
-        return (
-            dayOfTheWeek(date) + ", " + fullDate(date)
-        )
-    }
-
 
     const renderProduct = (item: ICartItem, products: IShopItem[]) => {
         const product = products.find(product => product.item_id === item.item_id)
@@ -83,7 +49,7 @@ export const OrderItem: FC<IProductItemProps> = memo((props) => {
         <div
             className={classNames(cls.ProductItem, {}, [className])}
         >
-            <label> Заказ оформлен {dateFormat(new Date(order.date))} </label>
+            <label> Заказ оформлен {fullDate(new Date(order.date))} </label>
             {order.items.map(item => renderProduct(item, products))}
             <label className={cls.Sum}> Cумма: {sum}</label>
         </div>

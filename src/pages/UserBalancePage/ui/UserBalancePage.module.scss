@@ -1,24 +1,44 @@
 .UserBalance{
-    margin-left: 200px;
-    margin-top: 300px;
-    .EventList{
-        display: flex;
-        flex-direction: column;
-        .Event{
+    .Header{
+        height: 65px;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+        margin-bottom: 20px;
+    }
+    .title{
+        margin-left: 200px;
+        font-size: 40px;
+        color: #003055;
+    }
+
+    .EventWindow{
+        margin-left: 170px;
+        margin-top: 100px;
+        width: 1500px;
+        background-color: white;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+        margin-bottom: 20px;
+        border-radius: 10px;
+        .Data{
             padding: 40px;
-            display:flex;
-            .label{
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-            .Amount{
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-            .Btn{
-                margin-left: 10px;
-                margin-right: 10px;
+
+            .Cluster_string{
+                display: flex;
+                padding: 10px;
+                gap: 10px;
+                .title_string{
+                    font-size: 25px;
+                }
+                .number{
+                    font-size: 25px;
+                    font-weight: 700;
+                }
+                .coin_img{
+                    height: 30px;
+                }
             }
         }
+
     }
 }
