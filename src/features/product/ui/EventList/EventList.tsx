@@ -2,7 +2,6 @@ import {FC, memo, useState} from "react";
 import cls from './EventList.module.scss'
 import {Event} from "entities/Product/model/types/product";
 import {Button} from "shared/ui/Button/Button";
-import {Input} from "shared/ui/Input/Input";
 import test_icon_balance from "shared/assets/icons/test_icon_balance.png"
 import coin_img from "shared/assets/icons/coin_icon.png"
 import {fullDate} from "shared/lib/FormatDate/FormatDate";
@@ -37,7 +36,6 @@ export const EventList: FC<IProductListProps> = memo((props) => {
                 </div>
     }
 
-    const [amount, setAmount] = useState("0");
 
 
 

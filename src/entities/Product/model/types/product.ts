@@ -1,3 +1,4 @@
+
 export interface Product {
     // id товара
     id: string;
@@ -48,13 +49,38 @@ export interface Event {
     date: string;
 }
 
+export interface TransactionData {
+    status: string;
+    transactions: Transaction[];
+}
+
+export interface Transaction {
+    transaction_id: number;
+    user_id: number;
+    description: string;
+    date: string;
+    amount: string;
+}
+
 export interface ProductSchema {
     products: IShopItem[];
     cartitems: ICartItem[];
     orders: IOrderItem[];
-    events: Event[]
+    events: Event[];
+    transactions: Transaction[];
+    users: Shop_Users[];
     isLoading: boolean;
     error: string | undefined;
+}
+
+export interface Shop_Users {
+    full_name: string;
+    user_id: number;
+}
+
+export interface IShopUserData {
+    status: string;
+    users: Shop_Users[];
 }
 
 /** Данные с сервера **/

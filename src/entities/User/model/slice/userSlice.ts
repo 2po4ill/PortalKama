@@ -6,7 +6,6 @@ import {IThunkConfig} from "app/providers/StoreProvider";
 import {initialUser} from "../const/initialUser";
 import axios from "axios";
 import {useSelector} from "react-redux";
-import {reservationSelectors} from "entities/Reservation/model/selectors/reservationSelectors";
 import {userSelectors} from "entities/User";
 
 export const userSlice = createAppSlice({

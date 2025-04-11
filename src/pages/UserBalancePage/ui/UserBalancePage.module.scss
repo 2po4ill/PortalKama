@@ -11,34 +11,40 @@
         font-size: 40px;
         color: #003055;
     }
-
-    .EventWindow{
-        margin-left: 170px;
-        margin-top: 100px;
-        width: 1500px;
-        background-color: white;
-        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
-        margin-bottom: 20px;
-        border-radius: 10px;
-        .Data{
-            padding: 40px;
-
-            .Cluster_string{
-                display: flex;
-                padding: 10px;
-                gap: 10px;
-                .title_string{
-                    font-size: 25px;
-                }
-                .number{
-                    font-size: 25px;
-                    font-weight: 700;
-                }
-                .coin_img{
-                    height: 30px;
-                }
-            }
+    .MenuSelector{
+        display: flex;
+        justify-content: center;
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-weight: 300;
+            font-size: 25px;
+            width: 200px;
+            height: 80px;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.2);
         }
-
     }
+}
+
+.selected{
+    border-bottom: solid 4px;
+    border-color: #003055;
+    background-color: white;
+}
+
+.unselected{
+    font-weight: 50;
+    color: #B0AABD;
+    background-color: #F4F2F7;
+    border-bottom: #B0AABD solid 4px;
+    border-bottom: none;
+}
+
+.pointer{
+    cursor: pointer;
+}
+.non_pointer{
+    cursor: default;
 }

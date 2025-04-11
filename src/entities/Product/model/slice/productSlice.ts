@@ -1,4 +1,13 @@
-import {CartData, Event, EventData, ICartItem, IShopData, ProductSchema, UserOrders} from "../types/product";
+import {
+    CartData,
+    Event,
+    EventData,
+    ICartItem,
+    IShopData, IShopUserData,
+    ProductSchema,
+    TransactionData,
+    UserOrders
+} from "../types/product";
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IThunkConfig} from "app/providers/StoreProvider";
 import {IUserDataResponse, userActions} from "entities/User";
@@ -8,8 +17,10 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 const initialState: ProductSchema = {
     products: [],
     cartitems: [],
+    transactions: [],
     orders: [],
     events: [],
+    users: [],
     isLoading: false,
     error: undefined
 }
@@ -256,10 +267,113 @@ const productSlice = createAppSlice({
                     }
                 }
             }),
+            getUserIds: createAThunk<undefined, IShopUserData>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const user_ids = await extra.api.get<IShopUserData>("/user_ids");
+
+                    return user_ids.data;
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    const users = action.payload.users;
+                    return {
+                        ...state,
+                        users: users,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            thx_history: createAThunk<undefined, TransactionData>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const events = await extra.api.get<TransactionData>("/thx_history");
+                    return events.data;
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    const transactions = action.payload.transactions;
+                    return {
+                        ...state,
+                        transactions: transactions,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
             takeEvent: createAThunk<{description: string, amount: number}, undefined>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
                     const status = await extra.api.post("/get_event_thx", {description: data.description, amount: data.amount});
+                    const dispatch = useAppDispatch()
+                    dispatch(userActions.addBalance(data.amount))
+                    return
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    return {
+                        ...state,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            transfer_thx: createAThunk<{user_id: number, amount: number}, undefined>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const status = await extra.api.post("/transfer_thx", {beneficiary_user_id: data.user_id, amount: data.amount});
                     const dispatch = useAppDispatch()
                     dispatch(userActions.addBalance(data.amount))
                     return
@@ -310,6 +424,38 @@ const productSlice = createAppSlice({
                     return {
                         ...state,
                         cartitems: [],
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            make_thx: createAThunk<{user_id: number, description: string, amount: number}, undefined>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const status = await extra.api.post("/make_thx", {user_id: data.user_id, description: data.description, amount: data.amount});
+                    return
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    return {
+                        ...state,
                         error: undefined,
                         isLoading: false
                     }
