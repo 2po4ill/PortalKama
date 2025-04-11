@@ -206,14 +206,14 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                     Забронировать
                 </Button>
                 <Button onClick={phoneClickHandler} className={cls.reservation}>
-                    Телефонный справочник
-                </Button>
-                <Button onClick={dictionaryClickHandler} className={cls.reservation}>
                     Телефонный справочник сотрудников
                 </Button>
+                {/*<Button onClick={dictionaryClickHandler} className={cls.reservation}>
+                    Телефонный справочник сотрудников
+                </Button>*/}
             </div>
-            <PhoneModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} places={places} selectedDate={selectedDate}/>
-            <DictionaryModal isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} dictionary={dictionary}/>
+            <PhoneModal className={cls.Modal} isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} places={places} selectedDate={selectedDate}/>
+            {/*<DictionaryModal isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} dictionary={dictionary}/>*/}
         </div>
     );
 })
