@@ -18,8 +18,10 @@ export const UserPolicy: FC<IUserPolicyModalProps> = memo((props) => {
         >
             <div>
                 <label> Я даю согласие на использование персональных данных:</label>
-                <Button onClick={() => {stateChanger(true); modalStateChanger(false)}}> Да </Button>
-                <Button onClick={() => {stateChanger(false); modalStateChanger(false)}}> Нет </Button>
+                <div className={cls.btns_container}>
+                    <Button onClick={() => {stateChanger(true); modalStateChanger(false)}}> Да </Button>
+                    <Button onClick={() => {stateChanger(false); modalStateChanger(false)}}> Нет </Button>
+                </div>
             </div>
         </Modal>
     );
