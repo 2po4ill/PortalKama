@@ -44,10 +44,12 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
 
     const EmailApi = (mail: string) => {
         dispatch(reservationActions.personal_mail(mail))
+        setTimeout(() => window.location.reload(), 50);
     }
 
     const NumberApi = (number: string) => {
         dispatch(reservationActions.personal_mobile(number))
+        setTimeout(() => window.location.reload(), 50);
     }
 
     const ChangeEmail = () => {
@@ -102,12 +104,20 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
                                                 <div className={cls.personalData}>
                                                     <div className={cls.inputs}>
                                                         <label> Личный номер телефона: </label>
-                                                        <Input placeholder={"Введите номер телефона"} onChange={setSubmittedNumber} disabled={!numberState}/>
+                                                        {
+                                                            user.personal_mobile == "" || numberState ?
+                                                            <Input placeholder={"Введите номер телефона"} onChange={setSubmittedNumber} disabled={!numberState} value={submittedNumber}/> :
+                                                                <Text text={user.personal_mobile}/>
+                                                        }
                                                         <Button onClick={ChangeNumber}> {numberState ? "Сохранить" : "Изменить"} </Button>
                                                     </div>
                                                     <div className={cls.inputs}>
                                                         <label> Личный почтовый адрес: </label>
-                                                        <Input placeholder={"Введите почтовый адрес"} onChange={setSubmittedEmail} disabled={!emailState}/>
+                                                        {
+                                                            user.personal_mail == "" || emailState ?
+                                                            <Input placeholder={"Введите почтовый адрес"} onChange={setSubmittedEmail} disabled={!emailState} value={submittedEmail}/> :
+                                                                <Text text={user.personal_mail}/>
+                                                        }
                                                         <Button onClick={ChangeEmail}> {emailState ? "Сохранить" : "Изменить"} </Button>
                                                     </div>
                                                 </div>

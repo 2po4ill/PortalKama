@@ -1,7 +1,7 @@
 import {FC, memo} from "react";
 import {IModalProps, Modal} from "shared/ui/Modal/Modal";
 import {classNames} from "shared/lib/classNames";
-import cls from './UserPolicy.scss';
+import cls from './UserPolicy.module.scss';
 import {Button} from "shared/ui/Button/Button";
 
 export interface IUserPolicyModalProps extends IModalProps {
@@ -17,7 +17,7 @@ export const UserPolicy: FC<IUserPolicyModalProps> = memo((props) => {
             {...other}
         >
             <div>
-                <label> Я согласен с изменением и обработкой моих персональных данных:</label>
+                <label> Я даю согласие на использование персональных данных:</label>
                 <Button onClick={() => {stateChanger(true); modalStateChanger(false)}}> Да </Button>
                 <Button onClick={() => {stateChanger(false); modalStateChanger(false)}}> Нет </Button>
             </div>

@@ -6,7 +6,9 @@ const initialProfile: Profile = {
     full_name: "",
     department: "",
     position: "",
-    mail: ""
+    mail: "",
+    personal_mail: "",
+    personal_mobile: ""
 }
 export const initialState: ProfileSchema = {
     profile: initialProfile,
