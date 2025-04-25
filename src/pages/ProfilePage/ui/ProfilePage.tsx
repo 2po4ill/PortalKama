@@ -44,12 +44,14 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
 
     const EmailApi = (mail: string) => {
         dispatch(reservationActions.personal_mail(mail))
-        setTimeout(() => window.location.reload(), 50);
+        alert("Успешно добавлено")
+        setTimeout(() => dispatch(profileActions.getProfileData()), 50);
     }
 
     const NumberApi = (number: string) => {
         dispatch(reservationActions.personal_mobile(number))
-        setTimeout(() => window.location.reload(), 50);
+        alert("Успешно добавлено")
+        setTimeout(() => dispatch(profileActions.getProfileData()), 50);
     }
 
     const ChangeEmail = () => {
@@ -105,7 +107,7 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
                                                     <div className={cls.inputs}>
                                                         <label> Личный номер телефона: </label>
                                                         {
-                                                            user.personal_mobile == "" || numberState ?
+                                                            user.personal_mail == "" || numberState ?
                                                             <Input placeholder={"Введите номер телефона"} onChange={setSubmittedNumber} disabled={!numberState} value={submittedNumber}/> :
                                                                 <Text text={user.personal_mobile}/>
                                                         }

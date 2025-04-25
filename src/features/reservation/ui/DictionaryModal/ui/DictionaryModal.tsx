@@ -1,7 +1,7 @@
 import {FC, memo, useState} from "react";
 import {Modal} from "shared/ui/Modal/Modal";
 import cls from "./DictionaryModal.module.scss";
-import {IDictionaryItem} from "entities/Reservation/model/types/reservation";
+import {IDictionaryItem, IReservationItem} from "entities/Reservation/model/types/reservation";
 import {Text} from "shared/ui/Text/Text";
 import {Input} from "shared/ui/Input/Input";
 import {Button} from "shared/ui/Button/Button";
@@ -19,22 +19,25 @@ const DictionaryModal: FC<IPostModalProps> = memo((props) => {
     const { className,
         isOpen,
         onClose,
-        dictionary} = props;
+        dictionary,} = props;
+
 
     const [newList, setNewList] = useState(dictionary);
     const [predicament, setPredicament] = useState("");
 
 
-    function renderPhone(full_name: string, position: string, department: string, mail: string, mobile: string) {
-
+    function renderPhone(person: IDictionaryItem) {
+        console.log(newList)
+        console.log(person)
         return <tbody className={cls.column}>
         <tr>
-            <td><Text text={(full_name != "" ? full_name : "-")}/></td>
-            <td><Text text={(position != "" ? position : "-")}/></td>
-            <td><Text text={(department != "" ? department : "-")}/></td>
-            <td><Text text={(mail != "" ? mail : "-")}/></td>
-            <td><Text text={(mobile != "" ? mobile : "-")}/></td>
-
+            <td><Text text={(person.full_name != "" ? person.full_name : "-")}/></td>
+            <td><Text text={(person.position != "" ? person.position : "-")}/></td>
+            <td><Text text={(person.mail != "" ? person.mail : "-")}/></td>
+            <td><Text text={(person.mobile != "" ? person.mobile : "-")}/></td>
+            <td><Text text={(person.place_number ? person.place_number : "-")}/></td>
+            <td><Text text={(person.place ? person.place : "-")}/></td>
+            <td><Text text={(person.department != "" ? person.department : "-")}/></td>
         </tr>
         </tbody>
     }
@@ -47,7 +50,9 @@ const DictionaryModal: FC<IPostModalProps> = memo((props) => {
                     person.department.includes(predicament) ||
                     person.position.includes(predicament) ||
                     person.mail.includes(predicament) ||
-                    person.mobile.includes(predicament)) ||
+                    person.mobile.includes(predicament) ||
+                    person.place ||
+                    person.place_number) ||
                 predicament == ""
                     ? newList.push(person) : null
             })
@@ -72,12 +77,14 @@ const DictionaryModal: FC<IPostModalProps> = memo((props) => {
                             <tr>
                                 <td><Text title={"Сотрудник"}/></td>
                                 <td><Text title={"Должность"}/></td>
-                                <td><Text title={"Служба"}/></td>
                                 <td><Text title={"Почта"}/></td>
                                 <td><Text title={"Корпоративный сотовый телефон"}/></td>
+                                <td><Text title={"Стационарный телефон"}/></td>
+                                <td><Text title={"Рабочее место"}/></td>
+                                <td><Text title={"Служба"}/></td>
                             </tr>
                             </thead>
-                            {newList.map(person => renderPhone(person.full_name, person.position, person.department, person.mail, person.mobile))}
+                            {newList.map(person => renderPhone(person))}
                         </table>
                     </div>
                 </div>

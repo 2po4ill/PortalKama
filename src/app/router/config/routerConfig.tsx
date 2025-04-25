@@ -28,7 +28,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     // [AppRoutes.RESERVATIONLOCKER]: {
     //     path: RoutePath.reservationlocker,
     //     element: <ReservationLockerPage />,
-    //     authRequire: true
+    //      authRequire: true
     // },
 //     [AppRoutes.SHOP]: {
 //        path: RoutePath.shop,
@@ -46,8 +46,7 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 //         element: <CartPage />,
 //         authRequire: true
 //    },
-
-  //
+//
 //    [AppRoutes.USERORDERS]: {
 //        path: RoutePath.user_orders,
 //        element: <UserOrders />,
