@@ -7,7 +7,7 @@ import {postSelectors} from "entities/Post/model/selectors/postSelectors";
 import {postActions, postReducer} from "entities/Post/model/slice/postSlice";
 import {Event} from "entities/Product/model/types/product";
 import {Button} from "shared/ui/Button/Button";
-import {Worker} from "entities/Post/model/types/post";
+import {Post, Worker} from "entities/Post/model/types/post";
 import {Text} from "shared/ui/Text/Text";
 import {Input} from "shared/ui/Input/Input";
 import {PageLoader} from "widgets/PageLoader";
@@ -15,6 +15,7 @@ import QRCode from "react-qr-code"
 import UserBalancePage from "pages/UserBalancePage/ui/UserBalancePage";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import logo from "shared/assets/icons/logo_top_workers.png"
+import {WofModal} from "features/walloffame/WofModal";
 
 export interface ITopWorkersPageProps {
     className?: string;
@@ -28,8 +29,20 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
     const workers = useSelector(postSelectors.getTopWorkers);
     const isLoading = useSelector(postSelectors.getIsLoading);
     const dispatch = useAppDispatch();
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [selectedWorker, setSelectedWorker] = useState<Worker|undefined>(undefined);
     let increment = 0;
-    let flag = true;
+
+
+    const workerClickHandler = (worker: Worker) => {
+        modalClickHandler()
+        setSelectedWorker(worker)
+    }
+
+
+    const modalClickHandler = () => {
+        setModalIsOpen(true);
+    }
 
     useEffect(() => {
         dispatch(postActions.getTopWorkers());
@@ -37,7 +50,7 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
 
     const renderWorker = (worker: Worker) => {
             increment += 1
-            return <div className={cls.Worker}>
+            return <div className={cls.Worker} onClick={() => workerClickHandler(worker)}>
                 <div className={cls.img_container}>
                     <img className={cls.img} src={worker.image_path} alt={worker.full_name}/>
                 </div>
@@ -67,14 +80,17 @@ const TopWorkersPage = (props: ITopWorkersPageProps ) => {
                 </div>
                 <div className={cls.title_container}>
                     <label className={cls.title}> СТЕНА ПОЧЕТА И СЛАВЫ </label>
+                    <label className={cls.hint}> При наведении камеры смартфона на QR код Вы перейдете в раздел с описанием достижений сотрудника </label>
                 </div>
                 <div>
                     { !isLoading ?
                         <div className={cls.WorkerList}>
-                            {workers ? workers.map(worker => [renderWorker(worker), increment == 2 ? renderLogo() : null]) : "Произошла ошибка, зайдите позже"}
+                            {workers ? workers.map(worker =>
+                                [renderWorker(worker), increment == 2 ? renderLogo() : null]) : "Произошла ошибка, зайдите позже"}
                         </div>
                         : <PageLoader/>}
                 </div>
+                {modalIsOpen ? <WofModal isOpen={modalIsOpen} onClose={modalClickHandler} selectedWorker={selectedWorker}/> : null}
             </div>
         </AsyncReducerProvider>
     );

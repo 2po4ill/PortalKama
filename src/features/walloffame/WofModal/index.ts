@@ -1,0 +1,1 @@
+export { WofModal } from "features/walloffame/WofModal/ui/WofModal";
