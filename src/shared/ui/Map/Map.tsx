@@ -7,7 +7,7 @@ import mapImage306 from "shared/assets/images/306-2.png";
 import mapImage307 from "shared/assets/images/307.png";
 import {Point} from "shared/ui/Point/Point";
 import {classNames} from "shared/lib/classNames"
-import {IReservationItem, IReservationLockerItem} from "entities/Reservation/model/types/reservation";
+import {IDictionaryItem, IReservationItem, IReservationLockerItem} from "entities/Reservation/model/types/reservation";
 import {Text} from "shared/ui/Text/Text";
 import {LockerPoint} from "shared/ui/LockerPoint/LockerPoint";
 export interface IMap {
@@ -15,6 +15,7 @@ export interface IMap {
     title: string;
     places?: IReservationItem[];
     lockers?: IReservationLockerItem[];
+    dictionary: IDictionaryItem[];
     selectedPoint: number;
     setSelectedPoint: (number: number) => void;
     setSelectedPlace: (place: IReservationItem) => void;
@@ -30,7 +31,8 @@ export const Map: FC<IMap> = (props) => {
         selectedPoint,
         setSelectedPoint,
         setSelectedPlace,
-        setSelectedLocker
+        setSelectedLocker,
+        dictionary
     } = props;
 
     const phoneList = ['3-87-20', '7-17-07', '7-17-83', '-', '3-87-30', '3-98-57', '7-17-51', '7-17-44', '3-98-92', '3-87-39', '7-17-46', ' 3-87-34', '7-17-45', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-38', '7-17-76', '7-17-70', '7-17-03', '7-17-84', '7-17-49', '3-87-35', '3-87-32', '6-83-37', '7-17-84', '7-17-49', '3-87-35', '3-87-32', '6-83-37', '3-87-33', '7-17-92', '7-17-20', '7-17-89', '7-17-66', '7-17-95', '3-98-58', '7-17-54', '7-17-54', '7-17-54', '6-83-36', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-32', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '7-17-22', '6-83-35', '-', '6-83-32', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53', '6-83-53']
@@ -840,17 +842,17 @@ export const Map: FC<IMap> = (props) => {
         if (place) {
             if (floor === "2_1" && place.place_id < 51) {
                 return (
-                    <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
+                    <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace} dictionary={dictionary}/>
                 )
             }
             if (floor === "2_2" && place.place_id > 54 && place.place_id < 105) {
                 return (
-                    <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
+                    <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace} dictionary={dictionary}/>
                 )
             }
             if (floor === "1_1" && place.place_id > 106) {
                 return (
-                    <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace}/>
+                    <Point place={place} className={classNames(cls.Point, {}, position)} selectedPoint={selectedPoint} setSelectedPoint={setSelectedPoint} setSelectedPlace={setSelectedPlace} dictionary={dictionary}/>
                 )
             }
         }

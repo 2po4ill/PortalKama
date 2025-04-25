@@ -200,7 +200,12 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                     <div onClick={ChangeTo22} className={classNames(cls.button, mods2_2, [])}> Правое крыло</div>
                 </div>
             </div>
-            <Map title={selectedFloor ? selectedFloor : "1_1"} places={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedPlace={setSelectedPlace} setSelectedLocker={setSelectedLocker}/>
+            <Map title={selectedFloor ? selectedFloor : "1_1"}
+                 places={places} setSelectedPoint={setSelectedPoint}
+                 selectedPoint={selectedPoint}
+                 setSelectedPlace={setSelectedPlace}
+                 setSelectedLocker={setSelectedLocker}
+                 dictionary={dictionary}/>
             <div className={cls.history}>
                 <img src={green} alt={"green"}/>
                 <a> Свободно ({placesCounter().available}) </a>
@@ -219,7 +224,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                     Забронировать
                 </Button>
                 {<Button onClick={dictionaryClickHandler} className={cls.reservation}>
-                    Телефонный справочник сотрудников
+                    Телефонный справочник
                 </Button>}
             </div>
             <DictionaryModal className={cls.Modal} isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} dictionary={checkPlaces(dictionary, places)}/>

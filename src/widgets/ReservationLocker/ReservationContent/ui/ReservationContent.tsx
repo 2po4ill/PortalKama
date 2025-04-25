@@ -5,7 +5,7 @@ import cls from "./ReservationContent.module.scss";
 
 
 import {Map} from "shared/ui/Map/Map";
-import {IReservationItem, IReservationLockerItem} from "entities/Reservation/model/types/reservation";
+import {IDictionaryItem, IReservationItem, IReservationLockerItem} from "entities/Reservation/model/types/reservation";
 import {Button} from "shared/ui/Button/Button";
 
 import green from "shared/assets/images/icon_Зеленый.png"
@@ -21,6 +21,7 @@ interface IReservationContentProps {
     setSelectedPoint: (number: number) => void;
     setSelectedPlace: (place: IReservationItem) => void;
     setSelectedLocker: (place: IReservationLockerItem) => void;
+    dictionary: IDictionaryItem[];
     apiCall: () => void;
 }
 
@@ -31,6 +32,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     selectedPoint,
     setSelectedPlace,
         setSelectedLocker,
+        dictionary,
     apiCall} = props;
 
     const [selectedFloor, setSelectedFloor] = useState("306-2");
@@ -65,7 +67,7 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                     <div onClick={ChangeTo307} className={classNames(cls.button, mods307, [])}> АБК 307</div>
                 </div>
             </div>
-            <Map title={selectedFloor} lockers={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedLocker={setSelectedLocker} setSelectedPlace={setSelectedPlace}/>
+            <Map title={selectedFloor} lockers={places} setSelectedPoint={setSelectedPoint} selectedPoint={selectedPoint} setSelectedLocker={setSelectedLocker} setSelectedPlace={setSelectedPlace} dictionary={dictionary}/>
             <div className={cls.history}>
                 <img src={green} alt={"green"}/>
                 <a> Свободно </a>
