@@ -78,7 +78,8 @@ const ReservationLockerPage = ({ className }: IReservationLockerPageProps ) => {
                                                  setSelectedPlace={setSelectedPlace}
                                                  setSelectedLocker={setSelectedLocker}
                                                  selectedPoint={selectedPoint}
-                                                 apiCall={reservationApiCall}/>}
+                                                 apiCall={reservationApiCall}
+                                                dictionary={[]}/>}
                     aside={<ReservationAside place={selectedPlace}/>}/>
             </div>
                 : <PageLoader/>}
