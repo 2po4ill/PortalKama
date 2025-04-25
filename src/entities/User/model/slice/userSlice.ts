@@ -5,6 +5,8 @@ import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IThunkConfig} from "app/providers/StoreProvider";
 import {initialUser} from "../const/initialUser";
 import axios from "axios";
+import {useSelector} from "react-redux";
+import {userSelectors} from "entities/User";
 
 export const userSlice = createAppSlice({
     name: 'user',
@@ -23,6 +25,15 @@ export const userSlice = createAppSlice({
                     username: "",
                     isAuthorized: false,
                 };
+            } ),
+            addBalance: create.reducer((state, action: PayloadAction<number>) => {
+                const last_balance = useSelector(userSelectors.getUser).balance;
+                const balance = action.payload + last_balance;
+            return {
+                    ...state,
+                    balance: balance,
+                    isAuthorized: true
+            }
             } ),
             setAuthData: create.reducer( (state, action: PayloadAction<User>) => {
                 return {

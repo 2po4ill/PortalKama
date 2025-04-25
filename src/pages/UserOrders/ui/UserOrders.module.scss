@@ -8,5 +8,35 @@
     .title{
         margin-left: 100px;
         margin-top: 50px;
+        color: #003055;
     }
+}
+
+.BtnHandler {
+    display: flex;
+    justify-content: center;
+    .button {
+        margin-bottom: 5px;
+        border-radius: 4px;
+        padding: 10px;
+        font-weight: 600;
+    }
+}
+
+.selected{
+    border-bottom: solid 4px;
+}
+
+.unselected{
+    font-weight: 50;
+    color: #B0AABD;
+    background-color: #F4F2F7;
+    border-bottom: #B0AABD solid 4px;
+}
+
+.pointer{
+    cursor: pointer;
+}
+.non_pointer{
+    cursor: default;
 }

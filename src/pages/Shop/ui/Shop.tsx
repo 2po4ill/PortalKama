@@ -10,6 +10,7 @@ import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {PageLoader} from "widgets/PageLoader";
 
+
 export interface IShopProps {
     className?: string;
 }

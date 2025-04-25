@@ -7,6 +7,7 @@ import img from 'shared/assets/placeholder-image.webp'
 import {IShopItem} from "entities/Product/model/types/product";
 import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
 import {useLocation} from "react-router-dom";
+import coin_icon from 'shared/assets/icons/coin_icon.png'
 
 export interface IProductItemProps {
     className?: string;
@@ -57,9 +58,12 @@ export const ProductItem: FC<IProductItemProps> = memo((props) => {
                 </div>
             </main>
             <footer className={cls.footer}>
-                <Text
-                    title={`${price} баллов`}
-                />
+                <div className={cls.pricevalue}>
+                    <Text className={cls.price_text}
+                        title={`${price}`}
+                    />
+                    <img src={coin_icon} alt={"Рахматиков"} className={cls.price_img}/>
+                </div>
                 {location.pathname != '/cart' ?
                 <Button>Добавить</Button>
                     : null

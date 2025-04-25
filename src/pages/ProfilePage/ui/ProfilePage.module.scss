@@ -85,3 +85,13 @@
     justify-content: space-between;
   }
 }
+
+.personalData{
+  margin-top: 20px;
+  .inputs{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+}

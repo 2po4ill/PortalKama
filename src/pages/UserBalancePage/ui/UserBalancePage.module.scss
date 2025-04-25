@@ -1,24 +1,50 @@
 .UserBalance{
-    margin-left: 200px;
-    margin-top: 300px;
-    .EventList{
+    .Header{
+        height: 65px;
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 5px 5px rgba(0,0,0,0.2);
+        margin-bottom: 20px;
+    }
+    .title{
+        margin-left: 200px;
+        font-size: 40px;
+        color: #003055;
+    }
+    .MenuSelector{
         display: flex;
-        flex-direction: column;
-        .Event{
-            padding: 40px;
-            display:flex;
-            .label{
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-            .Amount{
-                margin-left: 10px;
-                margin-right: 10px;
-            }
-            .Btn{
-                margin-left: 10px;
-                margin-right: 10px;
-            }
+        justify-content: center;
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+            font-weight: 300;
+            font-size: 25px;
+            width: 200px;
+            height: 80px;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.2);
         }
     }
+}
+
+.selected{
+    border-bottom: solid 4px;
+    border-color: #003055;
+    background-color: white;
+}
+
+.unselected{
+    font-weight: 50;
+    color: #B0AABD;
+    background-color: #F4F2F7;
+    border-bottom: #B0AABD solid 4px;
+    border-bottom: none;
+}
+
+.pointer{
+    cursor: pointer;
+}
+.non_pointer{
+    cursor: default;
 }

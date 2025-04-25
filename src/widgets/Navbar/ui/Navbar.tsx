@@ -4,6 +4,7 @@ import {AppLink} from "shared/ui/AppLink/AppLink";
 import ProfileImg from "shared/assets/icons/profile-icon.png";
 import testImg from "shared/assets/images/image.png"
 import CartImg from 'shared/assets/icons/Корзина.png'
+import coin_icon from 'shared/assets/icons/coin_icon.png'
 import CartQuantImg from 'shared/assets/icons/CartQuantity.png'
 import {RoutePath} from "shared/const/router";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
@@ -93,9 +94,14 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
             <AppLink to={"cart"} className={cls.Profile}>
                 <li>
                     <text className={classNames(cls.Quantity, mods, [className])}> {quantity} </text>
+                    {//<img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>
+                    //<img src={CartQuantImg} alt={RoutePath.cart} className={cls.CartQuantityImg}/>
+                        }
                 </li>
-                <AppLink to={"user_balance"}>
-                    <Text text={userData.balance ? userData.balance.toString() : "0" + " баллов"} theme={TextTheme.INVERTED}/>
+                <AppLink to={"user_balance"} className={cls.balance}>
+                    <Text text={userData.balance ? userData.balance.toString() : "0"}
+                          theme={TextTheme.INVERTED} className={cls.number_balance}/>
+                    <img src={coin_icon} alt={"Рахматик"} className={cls.coin_img}/>
                 </AppLink>
             </AppLink>
         );

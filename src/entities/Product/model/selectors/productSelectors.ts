@@ -1,12 +1,14 @@
 import {createSelector, Selector} from "@reduxjs/toolkit";
 import {StateSchema} from "app/providers/StoreProvider";
-import {Event, ICartItem, IOrderItem, IShopItem, ProductSchema} from "../types/product";
+import {Event, ICartItem, IOrderItem, IShopItem, ProductSchema, Shop_Users, Transaction} from "../types/product";
 
 
 const defaultProductData: ProductSchema = {
     products: [],
     cartitems: [],
+    transactions: [],
     orders: [],
+    users: [],
     events: [],
     error: undefined,
     isLoading: false
@@ -20,7 +22,9 @@ interface IProductSelectors {
     getIsLoading: Selector<StateSchema, boolean>
     getUnclaimedEvents: Selector<StateSchema, Event[]>
     getCartData: Selector<StateSchema, ICartItem[]>;
+    getTransactionData: Selector<StateSchema, Transaction[]>;
     getUserOrders: Selector<StateSchema, IOrderItem[]>
+    getUserIds: Selector<StateSchema, Shop_Users[]>
     getCartQuantity: Selector<StateSchema, number>
     getCartPrice: Selector<StateSchema, number>
 }
@@ -70,5 +74,13 @@ export const productSelectors: IProductSelectors = {
     getCartPrice: createSelector(
         getProductData,
         (data) => sumPrice(data.cartitems, data.products)
+    ),
+    getTransactionData: createSelector(
+        getProductData,
+        (data) => data.transactions
+    ),
+    getUserIds: createSelector(
+        getProductData,
+        (data) => data.users
     ),
 }

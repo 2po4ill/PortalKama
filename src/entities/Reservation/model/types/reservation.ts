@@ -22,7 +22,6 @@ export interface IReservationItem {
     // дополнительные параметры
     name: string;
     mail: string;
-
     mobile: string;
 
 }
@@ -33,6 +32,8 @@ export interface IDictionaryItem {
     department: string;
     mail: string;
     mobile: string;
+    place?: string;
+    place_number?: string;
 }
 
 export interface IReservationLockerItem {

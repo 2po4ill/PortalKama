@@ -8,6 +8,8 @@ export interface Profile {
     mobile?: string;
     chief?: string;
     image?: string;
+    personal_mobile?: string;
+    personal_mail?: string;
 }
 
 export interface IProfileData {
