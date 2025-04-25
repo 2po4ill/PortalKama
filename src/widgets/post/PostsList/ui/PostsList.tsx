@@ -3,14 +3,14 @@ import {classNames} from "shared/lib/classNames";
 import cls from "./PostsList.module.scss";
 import {PostListItem} from "features/post/PostListItem";
 import {Post} from "entities/Post";
-import {IShopItem} from "entities/Product/model/types/product";
+
 import {Button} from "shared/ui/Button/Button";
-import {PostModal} from "features/post/PostModal";
 import {CreatePostModal} from "features/post/CreatePostModal";
 import {Comment, Tag} from "entities/Post/model/types/post";
 import {ViewCommentsPostModal} from "features/post/ViewCommentsPostModal";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {postActions} from "entities/Post/model/slice/postSlice";
+import {GiveAwayModal} from "features/product/ui/GiveAwayModal/GiveAwayModal";
 
 interface IPostsListProps {
     className?: string;

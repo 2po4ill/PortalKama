@@ -28,36 +28,35 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     // [AppRoutes.RESERVATIONLOCKER]: {
     //     path: RoutePath.reservationlocker,
     //     element: <ReservationLockerPage />,
-    //     authRequire: true
+    //      authRequire: true
     // },
-    // [AppRoutes.SHOP]: {
-    //     path: RoutePath.shop,
-    //     element: <Shop />,
-    //     authRequire: true
-    // },
+//     [AppRoutes.SHOP]: {
+//        path: RoutePath.shop,
+//        element: <Shop />,
+//         authRequire: true
+//     },
 
     [AppRoutes.TOPWORKERS]: {
         path: RoutePath.top_workers,
         element: <TopWorkersPage />,
     },
 
-    // [AppRoutes.CART]: {
-    //     path: RoutePath.cart,
-    //     element: <CartPage />,
-    //     authRequire: true
-   // },
-
-  //
-  //  [AppRoutes.USERORDERS]: {
-  //      path: RoutePath.user_orders,
-  //      element: <UserOrders />,
-  //      authRequire: true
-  //  },
-  //  [AppRoutes.USERBALANCE]: {
-  //      path: RoutePath.user_balance,
-  //      element: <UserBalancePage />,
-  //      authRequire: true
-  //  },
+//     [AppRoutes.CART]: {
+//         path: RoutePath.cart,
+//         element: <CartPage />,
+//         authRequire: true
+//    },
+//
+//    [AppRoutes.USERORDERS]: {
+//        path: RoutePath.user_orders,
+//        element: <UserOrders />,
+//        authRequire: true
+//    },
+//    [AppRoutes.USERBALANCE]: {
+//        path: RoutePath.user_balance,
+//        element: <UserBalancePage />,
+//        authRequire: true
+//    },
 
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,

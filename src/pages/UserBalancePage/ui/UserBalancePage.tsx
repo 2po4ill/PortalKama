@@ -1,65 +1,114 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './UserBalancePage.module.scss';
 import {productActions, productReducer, productSelectors} from "entities/Product";
-import {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {Event, IOrderItem, IShopItem} from "entities/Product/model/types/product";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {PageLoader} from "widgets/PageLoader";
-import {OrderItem} from "features/product/ui/OrderItem/OrderItem";
-import {Text} from "shared/ui/Text/Text";
-import {Button} from "shared/ui/Button/Button";
-import {postActions} from "entities/Post/model/slice/postSlice";
-import {Input} from "shared/ui/Input/Input";
+import {EventList} from "features/product/ui/EventList/EventList";
+import {fullDate} from "shared/lib/FormatDate/FormatDate";
+import {userSelectors} from "entities/User";
+import coin_icon from "shared/assets/icons/coin_icon.png";
+import {EventWindow} from "features/product/ui/EventWindow/EventWindow";
+import {ProductModal} from "features/product/ui/ProductModal/ProductModal";
+import {GiveAwayModal} from "features/product/ui/GiveAwayModal/GiveAwayModal";
 
 export interface IBalanceProps {
     className?: string;
 }
 
 const UserBalancePage = ({ className }: IBalanceProps ) => {
+    const users = useSelector(productSelectors.getUserIds);
     const events = useSelector(productSelectors.getUnclaimedEvents);
+    const transactions = useSelector(productSelectors.getTransactionData);
     const isLoading = useSelector(productSelectors.getIsLoading);
+    const userData = useSelector(userSelectors.getUser);
     const dispatch = useAppDispatch();
 
-    const [amount, setAmount] = useState("0");
+    const [selectedState, setSelectedState] = useState("events");
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const ChangeToEvents = () => {
+        setSelectedState("events")
+    }
 
+    const ChangeToHistory = () => {
+        setSelectedState("history")
+    }
 
     useEffect(() => {
         dispatch(productActions.getUnclaimedEvents());
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(productActions.thx_history());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(productActions.getUserIds());
+    }, [dispatch]);
+
+    const modalCloseHandler = useCallback(() => {
+        setModalIsOpen(false);
+    }, [setModalIsOpen]);
+
+
     const takeEvent = (description: string, amount: number) => {
         dispatch(productActions.takeEvent({description: description, amount: amount}));
         alert(`Бонус получен: +${amount} баллов`)
-        setTimeout(() => dispatch(productActions.getUnclaimedEvents()), 50);
+        setTimeout(() => window.location.reload(), 50);
     }
 
-    const renderEvent = (event: Event) => {
-        return  <div className={cls.Event}>
-                    <label className={cls.label}> {event.name} </label>
-                    <label className={cls.Amouunt}> {event.amount} </label>
-                    <Button onClick={() => takeEvent(event.name, event.amount)} className={cls.Btn}> Начислить</Button>
-                </div>
+    const presentApi = (user_id: number, amount: number) => {
+        dispatch(productActions.transfer_thx({user_id: user_id, amount: amount}));
+        alert(`Вы подарили ${amount} баллов`)
+        setTimeout(() => window.location.reload(), 50);
     }
+
+    const makeApi = (user_id: number, description: string, amount: number) => {
+        dispatch(productActions.make_thx({user_id: user_id, description: description, amount: amount}));
+        alert(`Вы начислили ${amount} баллов`)
+        setTimeout(() => window.location.reload(), 50);
+    }
+
+    const modsEvent: Record<string, boolean> = {
+        [cls.selected]: selectedState === "events",
+        [cls.non_pointer]: selectedState === "events",
+        [cls.unselected]: selectedState === "history",
+        [cls.pointer]: selectedState === "history"
+    };
+
+    const modsHistory: Record<string, boolean> = {
+        [cls.selected]: selectedState === "history",
+        [cls.non_pointer]: selectedState === "history",
+        [cls.unselected]: selectedState === "events",
+        [cls.pointer]: selectedState === "events"
+    };
+
+
+
 
     return (
         <AsyncReducerProvider name={'product'} reducer={productReducer} destroy={false} >
             <div className={classNames(cls.UserBalance, {}, [className])}>
-                <Text title={"Ваши события за баллы"} className={cls.title}/>
+                <div className={cls.Header}>
+                </div>
+                <label className={cls.title}> Баланс </label>
+                <div className={cls.MenuSelector}>
+                    <div onClick={ChangeToEvents} className={classNames(cls.button, modsEvent, [])}> Начисления </div>
+                    <div onClick={ChangeToHistory} className={classNames(cls.button, modsHistory, [])}> Копилка </div>
+                </div>
                 <div>
-                    { !isLoading ?
-                        <div className={cls.EventList}>
-                            {events ? events.map(event => renderEvent(event)) : "Вы забрали все события, зайдите позже"}
-                            <div className={cls.Event}>
-                                <label className={cls.label}> Начисление администратора </label>
-                                <Input placeholder={"Введите количество баллов"} onChange={setAmount} className={cls.Amount}/>
-                                <Button onClick={() => takeEvent("Начисление администратора", Number(amount))} className={cls.Btn}> Начислить </Button>
-                            </div>
-                        </div>
+                    {!isLoading ?
+                        <EventWindow events={events}
+                                     takeEvent={takeEvent}
+                                     userData={userData}
+                                     selectedState={selectedState}
+                                     transactions={transactions} setModalIsOpen={setModalIsOpen}/>
                         : <PageLoader/>}
                 </div>
             </div>
+            <GiveAwayModal users={users} isOpen={modalIsOpen} onClose={modalCloseHandler} presentApi={presentApi} role={userData.role} makeApi={makeApi}/>
 
         </AsyncReducerProvider>
     );

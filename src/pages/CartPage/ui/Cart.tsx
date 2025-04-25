@@ -58,6 +58,7 @@ const Cart = ({ className }: ICartProps ) => {
                                     <Button onClick={() => {
                                         dispatch(productActions.order())
                                         alert("Заказ оформлен. Ожидайте")
+                                        setTimeout(() => window.location.reload(), 50);
                                     }} className={cls.btn}> Оформить </Button>
                                     <AppLink to={"user_orders"}> Ваши заказы </AppLink>
                                 </div>

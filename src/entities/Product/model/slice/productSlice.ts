@@ -1,12 +1,26 @@
-import {CartData, Event, EventData, ICartItem, IShopData, ProductSchema, UserOrders} from "../types/product";
+import {
+    CartData,
+    Event,
+    EventData,
+    ICartItem,
+    IShopData, IShopUserData,
+    ProductSchema,
+    TransactionData,
+    UserOrders
+} from "../types/product";
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IThunkConfig} from "app/providers/StoreProvider";
+import {IUserDataResponse, userActions} from "entities/User";
+import {useDispatch} from "react-redux";
+import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 
 const initialState: ProductSchema = {
     products: [],
     cartitems: [],
+    transactions: [],
     orders: [],
     events: [],
+    users: [],
     isLoading: false,
     error: undefined
 }
@@ -54,11 +68,13 @@ const productSlice = createAppSlice({
                     }
                 }
             }),
-            addCartItem: createAThunk<ICartItem, void>(async (data, thunkAPI) => {
+            addCartItem: createAThunk<ICartItem, ICartItem[]>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 const {item_id , quantity} = data;
                 try {
-                    return await extra.api.post("/add_cart_item", {"item_id": item_id, "quantity": quantity});
+                    const status = await extra.api.post("/add_cart_item", {"item_id": item_id, "quantity": quantity});
+                    const cartData = await extra.api.get<CartData>("/cart_data");
+                    return cartData.data.cart_data
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));
@@ -68,17 +84,23 @@ const productSlice = createAppSlice({
                     state.error = undefined;
                 },
                 fulfilled: (state, action) => {
-                    state.error = undefined;
+                    const newList = action.payload;
+                    return {
+                        ...state,
+                        cartitems: newList,
+                        error: undefined
+                    }
                 },
                 rejected: (state, action) => {
                     state.error = String(action.payload);
                 }
             }),
-            dropCartItem: createAThunk<number, void>(async (data, thunkAPI) => {
+            dropCartItem: createAThunk<number, ICartItem[]>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    await extra.api.post("/drop_cart_item", {"in_cart_item_id": data});
-                    return
+                    const status = await extra.api.post("/drop_cart_item", {"in_cart_item_id": data});
+                    const cartData = await extra.api.get<CartData>("/cart_data");
+                    return cartData.data.cart_data
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));
@@ -92,10 +114,10 @@ const productSlice = createAppSlice({
                     }
                 },
                 fulfilled: (state, action) => {
+                    const newList = action.payload
                     return {
                         ...state,
-                        products: state.products,
-                        cartitems: state.cartitems,
+                        cartitems: newList,
                         error: undefined,
                         isLoading: false
                     }
@@ -245,10 +267,116 @@ const productSlice = createAppSlice({
                     }
                 }
             }),
+            getUserIds: createAThunk<undefined, IShopUserData>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const user_ids = await extra.api.get<IShopUserData>("/user_ids");
+
+                    return user_ids.data;
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    const users = action.payload.users;
+                    return {
+                        ...state,
+                        users: users,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            thx_history: createAThunk<undefined, TransactionData>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const events = await extra.api.get<TransactionData>("/thx_history");
+                    return events.data;
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    const transactions = action.payload.transactions;
+                    return {
+                        ...state,
+                        transactions: transactions,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
             takeEvent: createAThunk<{description: string, amount: number}, undefined>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    return await extra.api.post("/get_event_thx", {description: data.description, amount: data.amount});
+                    const status = await extra.api.post("/get_event_thx", {description: data.description, amount: data.amount});
+                    const dispatch = useAppDispatch()
+                    dispatch(userActions.addBalance(data.amount))
+                    return
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    return {
+                        ...state,
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            transfer_thx: createAThunk<{user_id: number, amount: number}, undefined>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const status = await extra.api.post("/transfer_thx", {beneficiary_user_id: data.user_id, amount: data.amount});
+                    const dispatch = useAppDispatch()
+                    dispatch(userActions.addBalance(data.amount))
+                    return
                 } catch (err) {
                     console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));
@@ -296,6 +424,38 @@ const productSlice = createAppSlice({
                     return {
                         ...state,
                         cartitems: [],
+                        error: undefined,
+                        isLoading: false
+                    }
+                },
+                rejected: (state, action) => {
+                    return {
+                        ...state,
+                        error: String(action.payload),
+                        isLoading: false
+                    }
+                }
+            }),
+            make_thx: createAThunk<{user_id: number, description: string, amount: number}, undefined>(async (data, thunkAPI) => {
+                const {rejectWithValue, extra} = thunkAPI;
+                try {
+                    const status = await extra.api.post("/make_thx", {user_id: data.user_id, description: data.description, amount: data.amount});
+                    return
+                } catch (err) {
+                    console.log("Something went wrong" + err);
+                    return rejectWithValue(String(err));
+                }
+            },{
+                pending: state => {
+                    return {
+                        ...state,
+                        isLoading: true,
+                        error: undefined
+                    }
+                },
+                fulfilled: (state, action) => {
+                    return {
+                        ...state,
                         error: undefined,
                         isLoading: false
                     }

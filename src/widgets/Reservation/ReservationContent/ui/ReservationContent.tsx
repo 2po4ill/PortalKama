@@ -48,6 +48,19 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
 
+    const checkPlaces = (dictionaryItems: IDictionaryItem[], placeItems: IReservationItem[]): IDictionaryItem[] => {
+        const newList : IDictionaryItem[] = [];
+        dictionaryItems.forEach(item => resultList(newList, item.full_name, item.position, item.department, item.mail, item.mobile, findPlace(item, placeItems)?.name, findPlace(item, placeItems)?.phone))
+        return newList
+    }
+    const findPlace = (dictionaryItem: IDictionaryItem, placeItems: IReservationItem[]) : IReservationItem | undefined => {
+        return placeItems.find(place => place.full_name == dictionaryItem.full_name)
+    }
+    const resultList = (newList: IDictionaryItem[], full_name: string, position: string, department: string, mail: string, mobile: string, place?: string, phone?: string) => {
+        const person = {full_name, position, department, mail, mobile, place: place, place_number: phone} as IDictionaryItem;
+        newList.push(person)
+    }
+
     const userFloor = () => {
     if (userPlace) {
        if (userPlace.place_id < 53) {
@@ -205,15 +218,11 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                 } : () => {}} className={ classNames(cls.reservation, {}, [selectedPoint ? cls.selectedPoint : cls.non_selectedPoint])}>
                     Забронировать
                 </Button>
-                <Button onClick={phoneClickHandler} className={cls.reservation}>
-                    Телефонный справочник
-                </Button>
-                <Button onClick={dictionaryClickHandler} className={cls.reservation}>
+                {<Button onClick={dictionaryClickHandler} className={cls.reservation}>
                     Телефонный справочник сотрудников
-                </Button>
+                </Button>}
             </div>
-            <PhoneModal isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} places={places} selectedDate={selectedDate}/>
-            <DictionaryModal isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} dictionary={dictionary}/>
+            <DictionaryModal className={cls.Modal} isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} dictionary={checkPlaces(dictionary, places)}/>
         </div>
     );
 })

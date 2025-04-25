@@ -1,6 +1,6 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './ProfilePage.module.scss'
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
 import {profileActions, profileReducer, profileSelectors} from "features/profile";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
@@ -12,6 +12,11 @@ import testimg from "shared/assets/images/image.png"
 import {Text} from "shared/ui/Text/Text";
 import {userActions, userSelectors} from "entities/User";
 import {Button} from "shared/ui/Button/Button";
+import {Input} from "shared/ui/Input/Input";
+import {CreatePostModal} from "features/post/CreatePostModal";
+import {postActions} from "entities/Post/model/slice/postSlice";
+import {reservationActions} from "entities/Reservation/model/slice/reservationSlice";
+import {UserPolicy} from "features/profile/ui/UserPolicy/UserPolicy";
 
 export interface IProfilePageProps {
     className?: string;
@@ -25,9 +30,55 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
     const isLoading = useSelector(profileSelectors.getIsLoading);
     const error = useSelector(profileSelectors.getError);
 
+    const [submittedNumber, setSubmittedNumber] = useState(user.personal_mobile ? user.personal_mobile : "");
+    const [submittedEmail, setSubmittedEmail] = useState(user.personal_mail ? user.personal_mail : "");
+
+    const [userPolicyState, setUserPolicyState] = useState(false);
+
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [numberState, setNumberState] = useState(false);
+    const [emailState, setEmailState] = useState(false);
     useEffect(() => {
         dispatch(profileActions.getProfileData());
     }, [dispatch]);
+
+    const EmailApi = (mail: string) => {
+        dispatch(reservationActions.personal_mail(mail))
+        alert("Успешно добавлено")
+        setTimeout(() => dispatch(profileActions.getProfileData()), 50);
+    }
+
+    const NumberApi = (number: string) => {
+        dispatch(reservationActions.personal_mobile(number))
+        alert("Успешно добавлено")
+        setTimeout(() => dispatch(profileActions.getProfileData()), 50);
+    }
+
+    const ChangeEmail = () => {
+        if(emailState) {
+            EmailApi(submittedEmail)
+            setEmailState(!emailState)
+        }
+        else if(userPolicyState){
+            setEmailState(!emailState)
+        }
+        else{
+            setModalIsOpen(true)
+        }
+    }
+
+    const ChangeNumber = () => {
+        if(numberState) {
+            NumberApi(submittedNumber)
+            setNumberState(!numberState)
+        }
+        else if(userPolicyState){
+            setNumberState(!numberState)
+        }
+        else{
+            setModalIsOpen(true)
+        }
+    }
 
 
     return (
@@ -51,6 +102,27 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
                                                 <Text text={user.department}/>
                                                 <Text text={user.mail}/>
                                                 <Text text={user.mobile}/>
+
+                                                <div className={cls.personalData}>
+                                                    <div className={cls.inputs}>
+                                                        <label> Личный номер телефона: </label>
+                                                        {
+                                                            user.personal_mail == "" || numberState ?
+                                                            <Input placeholder={"Введите номер телефона"} onChange={setSubmittedNumber} disabled={!numberState} value={submittedNumber}/> :
+                                                                <Text text={user.personal_mobile}/>
+                                                        }
+                                                        <Button onClick={ChangeNumber}> {numberState ? "Сохранить" : "Изменить"} </Button>
+                                                    </div>
+                                                    <div className={cls.inputs}>
+                                                        <label> Личный почтовый адрес: </label>
+                                                        {
+                                                            user.personal_mail == "" || emailState ?
+                                                            <Input placeholder={"Введите почтовый адрес"} onChange={setSubmittedEmail} disabled={!emailState} value={submittedEmail}/> :
+                                                                <Text text={user.personal_mail}/>
+                                                        }
+                                                        <Button onClick={ChangeEmail}> {emailState ? "Сохранить" : "Изменить"} </Button>
+                                                    </div>
+                                                </div>
                                                 <br/>
                                             </div>
                                         </div>
@@ -106,6 +178,7 @@ const ProfilePage = ( { className }: IProfilePageProps ) => {
                             </div>
                         )
             }
+            {modalIsOpen ? <UserPolicy isOpen={modalIsOpen} onClose={() => {setModalIsOpen(false);}} stateChanger={setUserPolicyState} modalStateChanger = {setModalIsOpen}/> : null}
         </AsyncReducerProvider>
     );
 };

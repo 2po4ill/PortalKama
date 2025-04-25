@@ -1,12 +1,9 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './OrderItem.module.scss';
-import {FC, memo, useCallback, useState} from "react";
+import {FC, memo} from "react";
 import {Text} from "shared/ui/Text/Text";
-import {Button} from "shared/ui/Button/Button";
-import img from 'shared/assets/placeholder-image.webp'
 import {ICartItem, IOrderItem, IShopItem} from "entities/Product/model/types/product";
-import {imageSrc} from "shared/lib/ImageSrc/imageSrc";
-import {useLocation} from "react-router-dom";
+import {fullDate} from "shared/lib/FormatDate/FormatDate";
 
 export interface IProductItemProps {
     className?: string;
@@ -17,7 +14,6 @@ export interface IProductItemProps {
 export const OrderItem: FC<IProductItemProps> = memo((props) => {
     const { products, order,className } = props;
     let sum = 0
-
 
     const renderProduct = (item: ICartItem, products: IShopItem[]) => {
         const product = products.find(product => product.item_id === item.item_id)
@@ -53,9 +49,9 @@ export const OrderItem: FC<IProductItemProps> = memo((props) => {
         <div
             className={classNames(cls.ProductItem, {}, [className])}
         >
-            <label> Заказ от xx.xx.xxxx </label>
+            <label> Заказ оформлен {fullDate(new Date(order.date))} </label>
             {order.items.map(item => renderProduct(item, products))}
-            <label> Общая сумма заказа: {sum}</label>
+            <label className={cls.Sum}> Cумма: {sum}</label>
         </div>
     );
 });

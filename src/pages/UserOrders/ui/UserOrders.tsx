@@ -1,7 +1,7 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './UserOrders.module.scss';
 import {productActions, productReducer, productSelectors} from "entities/Product";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {IOrderItem, IShopItem} from "entities/Product/model/types/product";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
@@ -19,6 +19,28 @@ const UserOrders = ({ className }: IOrderProps ) => {
     const orders = useSelector(productSelectors.getUserOrders)
     const isLoading = useSelector(productSelectors.getIsLoading);
     const dispatch = useAppDispatch();
+    const [selectedState, setSelectedState] = useState("actual");
+    const ChangeToActual = () => {
+        setSelectedState("actual")
+    }
+
+    const ChangeToEnded = () => {
+        setSelectedState("ended")
+    }
+
+    const modsActual: Record<string, boolean> = {
+        [cls.selected]: selectedState === "actual",
+        [cls.non_pointer]: selectedState === "actual",
+        [cls.unselected]: selectedState === "ended",
+        [cls.pointer]: selectedState === "ended"
+    };
+
+    const modsEnded: Record<string, boolean> = {
+        [cls.selected]: selectedState === "ended",
+        [cls.non_pointer]: selectedState === "ended",
+        [cls.unselected]: selectedState === "actual",
+        [cls.pointer]: selectedState === "actual"
+    };
 
 
     useEffect(() => {
@@ -37,11 +59,14 @@ const UserOrders = ({ className }: IOrderProps ) => {
         <AsyncReducerProvider name={'product'} reducer={productReducer} destroy={false} >
             <div className={classNames(cls.UserOrders, {}, [className])}>
                 <Text title={"Ваши заказы"} className={cls.title}/>
+                <div className={cls.BtnHandler}>
+                    <div onClick={ChangeToActual} className={classNames(cls.button, modsActual, [])}> Актуальные </div>
+                    <div onClick={ChangeToEnded} className={classNames(cls.button, modsEnded, [])}> Завершенные </div>
+                </div>
                 <div>
-                    { !isLoading ?
+                    {!isLoading ?
                         <div className={cls.OrderList}>
                             {orders.map(order => renderOrder(order, products))}
-                            {renderOrder({cart_id: 1, items: [{in_cart_item_id: 1,item_id:3,quantity:4},{in_cart_item_id: 1,item_id:1,quantity:4}]} as IOrderItem, products)}
                         </div>
                         : <PageLoader/>}
                 </div>
