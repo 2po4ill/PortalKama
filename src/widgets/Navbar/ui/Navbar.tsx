@@ -94,9 +94,9 @@ export const Navbar: FC<INavbarProps> = ( props ) => {
             <AppLink to={"cart"} className={cls.Profile}>
                 <li>
                     <text className={classNames(cls.Quantity, mods, [className])}> {quantity} </text>
-                    {//<img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>
-                    //<img src={CartQuantImg} alt={RoutePath.cart} className={cls.CartQuantityImg}/>
-                        }
+                    <img src={CartImg} alt={RoutePath.cart} className={cls.CartImg}/>
+                    <img src={CartQuantImg} alt={RoutePath.cart} className={cls.CartQuantityImg}/>
+
                 </li>
                 <AppLink to={"user_balance"} className={cls.balance}>
                     <Text text={userData.balance ? userData.balance.toString() : "0"}

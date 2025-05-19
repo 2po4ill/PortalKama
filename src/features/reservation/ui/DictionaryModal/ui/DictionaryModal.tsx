@@ -33,26 +33,25 @@ const DictionaryModal: FC<IPostModalProps> = memo((props) => {
         <tr>
             <td><Text text={(person.full_name != "" ? person.full_name : "-")}/></td>
             <td><Text text={(person.position != "" ? person.position : "-")}/></td>
-            <td><Text text={(person.mail != "" ? person.mail : "-")}/></td>
-            <td><Text text={(person.mobile != "" ? person.mobile : "-")}/></td>
-            <td><Text text={(person.place_number ? person.place_number : "-")}/></td>
-            <td><Text text={(person.place ? person.place : "-")}/></td>
             <td><Text text={(person.department != "" ? person.department : "-")}/></td>
+            <td><Text text={(person.department != "" ? person.department : "-")}/></td>
+            <td><Text text={(person.place_number ? person.place_number : "-")}/></td>
+            <td><Text text={(person.mobile != "" ? person.mobile : "-")}/></td>
+            <td><Text text={(person.place ? person.place : "-")}/></td>
+            <td><Text text={(person.mail != "" ? person.mail : "-")}/></td>
         </tr>
         </tbody>
     }
 
     function filterList() {
-        const newList :IDictionaryItem[] = []
+        const newList:IDictionaryItem[] = []
             dictionary.map(person => {
                 (
                     person.full_name.includes(predicament) ||
                     person.department.includes(predicament) ||
                     person.position.includes(predicament) ||
                     person.mail.includes(predicament) ||
-                    person.mobile.includes(predicament) ||
-                    person.place ||
-                    person.place_number) ||
+                    person.mobile.includes(predicament)) ||
                 predicament == ""
                     ? newList.push(person) : null
             })
@@ -75,13 +74,14 @@ const DictionaryModal: FC<IPostModalProps> = memo((props) => {
                         <table className={cls.table}>
                             <thead className={cls.columnHeader}>
                             <tr>
-                                <td><Text title={"Сотрудник"}/></td>
+                                <td><Text title={"ФИО"}/></td>
                                 <td><Text title={"Должность"}/></td>
-                                <td><Text title={"Почта"}/></td>
-                                <td><Text title={"Корпоративный сотовый телефон"}/></td>
-                                <td><Text title={"Стационарный телефон"}/></td>
-                                <td><Text title={"Рабочее место"}/></td>
+                                <td><Text title={"Отдел"}/></td>
                                 <td><Text title={"Служба"}/></td>
+                                <td><Text title={"Рабочее место"}/></td>
+                                <td><Text title={"Стационарный телефон"}/></td>
+                                <td><Text title={"Корпоративный сотовый телефон"}/></td>
+                                <td><Text title={"Почта"}/></td>
                             </tr>
                             </thead>
                             {newList.map(person => renderPhone(person))}

@@ -20,25 +20,13 @@ export interface IBalanceProps {
 
 const UserBalancePage = ({ className }: IBalanceProps ) => {
     const users = useSelector(productSelectors.getUserIds);
-    const events = useSelector(productSelectors.getUnclaimedEvents);
     const transactions = useSelector(productSelectors.getTransactionData);
     const isLoading = useSelector(productSelectors.getIsLoading);
     const userData = useSelector(userSelectors.getUser);
     const dispatch = useAppDispatch();
 
-    const [selectedState, setSelectedState] = useState("events");
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const ChangeToEvents = () => {
-        setSelectedState("events")
-    }
 
-    const ChangeToHistory = () => {
-        setSelectedState("history")
-    }
-
-    useEffect(() => {
-        dispatch(productActions.getUnclaimedEvents());
-    }, [dispatch]);
 
     useEffect(() => {
         dispatch(productActions.thx_history());
@@ -53,37 +41,16 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
     }, [setModalIsOpen]);
 
 
-    const takeEvent = (description: string, amount: number) => {
-        dispatch(productActions.takeEvent({description: description, amount: amount}));
-        alert(`Бонус получен: +${amount} баллов`)
-        setTimeout(() => window.location.reload(), 50);
-    }
-
     const presentApi = (user_id: number, amount: number) => {
+        console.log(user_id)
         dispatch(productActions.transfer_thx({user_id: user_id, amount: amount}));
         alert(`Вы подарили ${amount} баллов`)
-        setTimeout(() => window.location.reload(), 50);
     }
 
-    const makeApi = (user_id: number, description: string, amount: number) => {
-        dispatch(productActions.make_thx({user_id: user_id, description: description, amount: amount}));
-        alert(`Вы начислили ${amount} баллов`)
-        setTimeout(() => window.location.reload(), 50);
+    const makeApi = (user_id: number, event_id: number) => {
+        dispatch(productActions.make_thx({user_id: user_id, event_id: event_id}));
+        alert(`Вы начислили n баллов`)
     }
-
-    const modsEvent: Record<string, boolean> = {
-        [cls.selected]: selectedState === "events",
-        [cls.non_pointer]: selectedState === "events",
-        [cls.unselected]: selectedState === "history",
-        [cls.pointer]: selectedState === "history"
-    };
-
-    const modsHistory: Record<string, boolean> = {
-        [cls.selected]: selectedState === "history",
-        [cls.non_pointer]: selectedState === "history",
-        [cls.unselected]: selectedState === "events",
-        [cls.pointer]: selectedState === "events"
-    };
 
 
 
@@ -94,16 +61,9 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
                 <div className={cls.Header}>
                 </div>
                 <label className={cls.title}> Баланс </label>
-                <div className={cls.MenuSelector}>
-                    <div onClick={ChangeToEvents} className={classNames(cls.button, modsEvent, [])}> Начисления </div>
-                    <div onClick={ChangeToHistory} className={classNames(cls.button, modsHistory, [])}> Копилка </div>
-                </div>
                 <div>
                     {!isLoading ?
-                        <EventWindow events={events}
-                                     takeEvent={takeEvent}
-                                     userData={userData}
-                                     selectedState={selectedState}
+                        <EventWindow userData={userData}
                                      transactions={transactions} setModalIsOpen={setModalIsOpen}/>
                         : <PageLoader/>}
                 </div>

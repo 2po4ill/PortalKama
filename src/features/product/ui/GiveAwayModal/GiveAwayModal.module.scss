@@ -1,19 +1,19 @@
-.ProductModal {
-  padding: 20px;
-  min-width: 600px;
-  gap: 10px;
-
-  .imageWrapper {
-    width: 320px;
-
-    img {
-      width: 320px;
+.GiveAwayMenu {
+  width: 900px;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  .DropdownContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    margin-right: 100px;
+    .Title {
+      color: #141515;
+      text-shadow: 0 0 1px #141515;
     }
   }
-
-  .info {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-  }
 }
+
