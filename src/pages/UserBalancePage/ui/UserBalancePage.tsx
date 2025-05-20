@@ -50,12 +50,12 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
 
     const presentApi = (user_id: number, amount: number) => {
         dispatch(productActions.transfer_thx({user_id: user_id, amount: amount}));
-        alertHandler(<CustomAlert title={"Вы подарили столько-то баллов"} message={"Успешно"}/>)
+        alertHandler(<CustomAlert title={""} message={"Рахматики успешно подарены!"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
     }
 
     const makeApi = (user_id: number, event_id: number) => {
         dispatch(productActions.make_thx({user_id: user_id, event_id: event_id}));
-        alertHandler(<CustomAlert title={"Вы начислили столько-то баллов"} message={"Успешно"}/>)
+        alertHandler(<CustomAlert title={"Рахматики успешно начислены!"} message={"Успешно"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
     }
 
 
@@ -74,7 +74,7 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
                         : <PageLoader/>}
                 </div>
             </div>
-            <GiveAwayModal users={users} isOpen={modalIsOpen} onClose={modalCloseHandler} presentApi={presentApi} role={userData.role} makeApi={makeApi}/>
+            {modalIsOpen ? <GiveAwayModal users={users} isOpen={modalIsOpen} onClose={modalCloseHandler} presentApi={presentApi} role={userData.role} makeApi={makeApi}/> : null}
             {alert}
         </AsyncReducerProvider>
     );

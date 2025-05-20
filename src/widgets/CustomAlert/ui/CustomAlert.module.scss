@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  background-color: white;
+  background-color: var(--bg-color);
   border-radius: 8px;
   max-width: 400px;
 }
@@ -33,7 +33,7 @@
 
 .alertButtons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 .cancelButton {
@@ -50,11 +50,21 @@
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color: #003055;
   color: white;
   cursor: pointer;
 }
 
 .cancelButton:hover {
   background-color: #f5f5f5;
+}
+
+.confirmButton:hover {
+  background-color: #f5f5f5;
+}
+
+.ModalClassName {
+  background-color: white;
+  height: 250px;
+
 }
