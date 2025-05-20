@@ -1,7 +1,7 @@
 import {classNames} from "shared/lib/classNames";
 import cls from './UserBalancePage.module.scss';
 import {productActions, productReducer, productSelectors} from "entities/Product";
-import React, {useCallback, useEffect, useState} from "react";
+import React, {ReactNode, useCallback, useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 import {AsyncReducerProvider} from "shared/lib/AsyncReducerProvider/AsyncReducerProvider";
@@ -13,6 +13,7 @@ import coin_icon from "shared/assets/icons/coin_icon.png";
 import {EventWindow} from "features/product/ui/EventWindow/EventWindow";
 import {ProductModal} from "features/product/ui/ProductModal/ProductModal";
 import {GiveAwayModal} from "features/product/ui/GiveAwayModal/GiveAwayModal";
+import {CustomAlert} from "widgets/CustomAlert";
 
 export interface IBalanceProps {
     className?: string;
@@ -20,25 +21,15 @@ export interface IBalanceProps {
 
 const UserBalancePage = ({ className }: IBalanceProps ) => {
     const users = useSelector(productSelectors.getUserIds);
-    const events = useSelector(productSelectors.getUnclaimedEvents);
     const transactions = useSelector(productSelectors.getTransactionData);
     const isLoading = useSelector(productSelectors.getIsLoading);
     const userData = useSelector(userSelectors.getUser);
     const dispatch = useAppDispatch();
 
-    const [selectedState, setSelectedState] = useState("events");
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const ChangeToEvents = () => {
-        setSelectedState("events")
-    }
 
-    const ChangeToHistory = () => {
-        setSelectedState("history")
-    }
+    const [alert, setNewAlert] = useState<ReactNode>(null);
 
-    useEffect(() => {
-        dispatch(productActions.getUnclaimedEvents());
-    }, [dispatch]);
 
     useEffect(() => {
         dispatch(productActions.thx_history());
@@ -52,38 +43,20 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
         setModalIsOpen(false);
     }, [setModalIsOpen]);
 
-
-    const takeEvent = (description: string, amount: number) => {
-        dispatch(productActions.takeEvent({description: description, amount: amount}));
-        alert(`Бонус получен: +${amount} баллов`)
-        setTimeout(() => window.location.reload(), 50);
+    const alertHandler = (alert: ReactNode) => {
+        setNewAlert(alert)
     }
+
 
     const presentApi = (user_id: number, amount: number) => {
         dispatch(productActions.transfer_thx({user_id: user_id, amount: amount}));
-        alert(`Вы подарили ${amount} баллов`)
-        setTimeout(() => window.location.reload(), 50);
+        alertHandler(<CustomAlert title={""} message={"Рахматики успешно подарены!"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
     }
 
-    const makeApi = (user_id: number, description: string, amount: number) => {
-        dispatch(productActions.make_thx({user_id: user_id, description: description, amount: amount}));
-        alert(`Вы начислили ${amount} баллов`)
-        setTimeout(() => window.location.reload(), 50);
+    const makeApi = (user_id: number, event_id: number) => {
+        dispatch(productActions.make_thx({user_id: user_id, event_id: event_id}));
+        alertHandler(<CustomAlert title={"Рахматики успешно начислены!"} message={"Успешно"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
     }
-
-    const modsEvent: Record<string, boolean> = {
-        [cls.selected]: selectedState === "events",
-        [cls.non_pointer]: selectedState === "events",
-        [cls.unselected]: selectedState === "history",
-        [cls.pointer]: selectedState === "history"
-    };
-
-    const modsHistory: Record<string, boolean> = {
-        [cls.selected]: selectedState === "history",
-        [cls.non_pointer]: selectedState === "history",
-        [cls.unselected]: selectedState === "events",
-        [cls.pointer]: selectedState === "events"
-    };
 
 
 
@@ -94,22 +67,15 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
                 <div className={cls.Header}>
                 </div>
                 <label className={cls.title}> Баланс </label>
-                <div className={cls.MenuSelector}>
-                    <div onClick={ChangeToEvents} className={classNames(cls.button, modsEvent, [])}> Начисления </div>
-                    <div onClick={ChangeToHistory} className={classNames(cls.button, modsHistory, [])}> Копилка </div>
-                </div>
                 <div>
                     {!isLoading ?
-                        <EventWindow events={events}
-                                     takeEvent={takeEvent}
-                                     userData={userData}
-                                     selectedState={selectedState}
+                        <EventWindow userData={userData}
                                      transactions={transactions} setModalIsOpen={setModalIsOpen}/>
                         : <PageLoader/>}
                 </div>
             </div>
-            <GiveAwayModal users={users} isOpen={modalIsOpen} onClose={modalCloseHandler} presentApi={presentApi} role={userData.role} makeApi={makeApi}/>
-
+            {modalIsOpen ? <GiveAwayModal users={users} isOpen={modalIsOpen} onClose={modalCloseHandler} presentApi={presentApi} role={userData.role} makeApi={makeApi}/> : null}
+            {alert}
         </AsyncReducerProvider>
     );
 };

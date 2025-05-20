@@ -373,7 +373,7 @@ const productSlice = createAppSlice({
             transfer_thx: createAThunk<{user_id: number, amount: number}, undefined>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    const status = await extra.api.post("/transfer_thx", {beneficiary_user_id: data.user_id, amount: data.amount});
+                    const status = await extra.api.post("/transfer_thx", {user_id: data.user_id, amount: data.amount});
                     const dispatch = useAppDispatch()
                     dispatch(userActions.addBalance(data.amount))
                     return
@@ -436,10 +436,10 @@ const productSlice = createAppSlice({
                     }
                 }
             }),
-            make_thx: createAThunk<{user_id: number, description: string, amount: number}, undefined>(async (data, thunkAPI) => {
+            make_thx: createAThunk<{user_id: number, event_id: number}, undefined>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    const status = await extra.api.post("/make_thx", {user_id: data.user_id, description: data.description, amount: data.amount});
+                    const status = await extra.api.post("/make_thx", {user_id: data.user_id, event_id: data.event_id});
                     return
                 } catch (err) {
                     console.log("Something went wrong" + err);

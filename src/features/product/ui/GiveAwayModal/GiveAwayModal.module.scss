@@ -1,19 +1,41 @@
-.ProductModal {
-  padding: 20px;
-  min-width: 600px;
-  gap: 10px;
+.GiveAwayMenu {
+  width: 900px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+  .DropdownContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    margin-right: 100px;
+    .Title {
+      color: #141515;
+      text-shadow: 0 0 1px #141515;
+    }
 
-  .imageWrapper {
-    width: 320px;
-
-    img {
-      width: 320px;
+    .Adornment{
+      display: flex;
+      flex-direction: row;
+      margin-left: 2px;
+      .coin_img{
+        opacity: 100%;
+        position: relative;
+        top: -1.5px;
+        height: 20px;
+      }
     }
   }
-
-  .info {
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-  }
 }
+
+.img1{
+
+}
+.img2{
+  left: -7px;
+}
+.img3{
+  left: -14px;
+}
+

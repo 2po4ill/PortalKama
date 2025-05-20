@@ -10,16 +10,13 @@ import {TransactionHistory} from "features/product/ui/TransactionHistory/Transac
 
 export interface IEventWindowProps {
     className?: string;
-    events: Event[];
     transactions: Transaction[];
-    takeEvent: (name: string, amount: number) => void;
     userData: UserSchema;
-    selectedState: string;
     setModalIsOpen: (state: boolean) => void;
 }
 
 export const EventWindow: FC<IEventWindowProps> = memo((props) => {
-    const { events, takeEvent, userData, selectedState , transactions , setModalIsOpen ,className } = props;
+    const {  userData, transactions , setModalIsOpen ,className } = props;
 
     return (
         <div className={cls.EventWindow}>
@@ -45,7 +42,7 @@ export const EventWindow: FC<IEventWindowProps> = memo((props) => {
                     </div>
                 </div>
             </div>
-            {selectedState == "events" ? <EventList events={events} takeEventAPI={takeEvent}/> : <TransactionHistory transactions={transactions}/>}
+            <TransactionHistory transactions={transactions}/>
         </div>
     );
 });
