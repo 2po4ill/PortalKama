@@ -3,9 +3,9 @@ import {IModalProps, Modal} from "shared/ui/Modal/Modal";
 import {classNames} from "shared/lib/classNames";
 import cls from './GiveAwayModal.module.scss';
 import {Shop_Users} from "entities/Product/model/types/product";
-import {Input} from "shared/ui/Input/Input";
 import {Button} from "shared/ui/Button/Button";
 import DropdownInput from "shared/ui/DropDownInput/DropDownInput";
+import Coin from "shared/assets/icons/coin_icon.png"
 
 export interface IProductModalProps extends IModalProps {
     presentApi: (user_id: number, amount: number) => void;
@@ -52,13 +52,31 @@ export const GiveAwayModal: FC<IProductModalProps> = memo((props) => {
         ]
     }
 
+    const adornmentCreate = (amount: number) => {
+        return (
+            <div className={cls.Adornment}>
+                { amount >= 1 ?
+                    <img src={Coin} alt={"Рахматик"} className={classNames(cls.coin_img, {}, [cls.img1])}/> : null
+                }
+                { amount <= 3 && amount > 1 ?
+                    <img src={Coin} alt={"Рахматик"} className={classNames(cls.coin_img, {}, [cls.img2])}/> : null
+                }
+                { amount == 3 ?
+                    <img src={Coin} alt={"Рахматик"} className={classNames(cls.coin_img, {}, [cls.img3])}/> : null
+                }
+            </div>
+        )
+    }
+
     const thankList = {
         "thanks":[
-            {"amount": 1,   "name":"Рахмат"},
-            {"amount": 2,   "name":"Зур рахмат"},
-            {"amount": 3,   "name":"Бик зур рахмат"}
+            {"amount": 1,   "name":"Рахмат - 1", "adornment": adornmentCreate(1)},
+            {"amount": 2,   "name":"Зур рахмат - 2", "adornment": adornmentCreate(2)},
+            {"amount": 3,   "name":"Бик зур рахмат - 3", "adornment": adornmentCreate(3)}
         ]
     }
+
+
 
     const currentUser = users.find(user => user.full_name == selectedUser)
     const currentUserAdmin = users.find(user => user.full_name == selectedUserAdmin)
@@ -81,7 +99,7 @@ export const GiveAwayModal: FC<IProductModalProps> = memo((props) => {
 
     const optionsThanks = () => {
         const thanksList = [];
-        thankList.thanks ? thankList.thanks.map(thanks => thanksList.push({value: thanks.name, label: thanks.name})) : thanksList.push({value: "error", label: "Произошла ошибка обратитесь к специалисту"})
+        thankList.thanks ? thankList.thanks.map(thanks => thanksList.push({value: thanks.name, label: thanks.name, adornment: thanks.adornment})) : thanksList.push({value: "error", label: "Произошла ошибка обратитесь к специалисту"})
         return thanksList
     }
 

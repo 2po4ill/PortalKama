@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, {ReactNode, useState} from 'react';
 import cls from './DropDownInput.module.scss';
+import Arrow from "shared/assets/icons/Arrow.png"
+import {classNames} from "shared/lib/classNames";
 import {Input} from "shared/ui/Input/Input";
 
 interface Option {
     value: string;
     label: string;
+    adornment?: ReactNode;
 }
 
 interface Props {
@@ -33,6 +36,11 @@ const DropdownInput: React.FC<Props> = ({ options, placeholder = 'Выберит
         onChange?.(value);
     };
 
+    const modsRotation: Record<string, boolean> = {
+        [cls.closed]: !isOpen,
+        [cls.opened]: isOpen
+    };
+
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
     };
@@ -44,12 +52,17 @@ const DropdownInput: React.FC<Props> = ({ options, placeholder = 'Выберит
     return (
         <div className={cls.dropdownWrapper}>
             <div className={cls.dropdown} onClick={handleClick}>
-                <Input type="text"
+                <div className={cls.container}>
+                    <input type="text"
                        value={inputValue}
                        placeholder={placeholder}
                        className={cls.dropdownInput}
                        onChange={() => handleInputChange}/>
-                <span className={cls.dropdownArrow}>{isOpen ? '-' : '+'}</span>
+                    <div className={cls.AdornmentInput}> {options.find(option => option.label == selectedValue)?.adornment} </div>
+                </div>
+                <span className={cls.dropdownArrow}>{
+                    <img src={Arrow} alt={"-"} className={classNames(cls.ArrowImg, modsRotation, [])}/>
+                    }</span>
             </div>
             {isOpen && (
                 <div className={cls.dropdownMenu}>
@@ -61,6 +74,7 @@ const DropdownInput: React.FC<Props> = ({ options, placeholder = 'Выберит
                                 onClick={() => handleOptionClick(option.value)}
                             >
                                 {option.label}
+                                {option.adornment ? option.adornment: null}
                             </div>
                         ))
                     ) : (
