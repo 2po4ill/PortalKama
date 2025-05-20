@@ -13,12 +13,13 @@ interface Props {
     options: Option[];
     placeholder?: string;
     onChange?: (value: string) => void;
+    defaultValue?: string;
 }
 
-const DropdownInput: React.FC<Props> = ({ options, placeholder = 'Выберите опцию', onChange }) => {
+const DropdownInput: React.FC<Props> = ({ defaultValue, options, placeholder = 'Выберите опцию', onChange }) => {
     const [isOpen, setIsOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState('');
-    const [inputValue, setInputValue] = useState('');
+    const [selectedValue, setSelectedValue] = useState(defaultValue ? defaultValue : '');
+    const [inputValue, setInputValue] = useState(defaultValue ? defaultValue : '');
 
     const handleClick = () => {
         if (!isOpen) {
@@ -56,7 +57,7 @@ const DropdownInput: React.FC<Props> = ({ options, placeholder = 'Выберит
                        value={inputValue}
                        placeholder={placeholder}
                        className={cls.dropdownInput}
-                       onChange={() => handleInputChange}/>
+                       onChange={handleInputChange}/>
                     <div className={cls.AdornmentInput}> {options.find(option => option.label == selectedValue)?.adornment} </div>
                 </div>
                 <span className={cls.dropdownArrow}>{

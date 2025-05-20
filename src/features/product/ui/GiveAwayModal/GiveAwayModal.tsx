@@ -117,7 +117,7 @@ export const GiveAwayModal: FC<IProductModalProps> = memo((props) => {
                 <div className={cls.DropdownContainer}>
                     <label className={cls.Title}> Выберите количество рахматиков: </label>
                     <DropdownInput options={optionsThanks()} placeholder={"Выберите количество рахматиков"}
-                                   onChange={e => setSelectedAmount(e)}/>
+                                   onChange={e => setSelectedAmount(e)} defaultValue={"Бик зур рахмат - 3"}/>
                 </div>
                 <Button
                     onClick={() => currentUser && currentThanks ? presentApi(currentUser.user_id, currentThanks.amount) : console.log(selectedUser)}> Подарить рахматики </Button>
