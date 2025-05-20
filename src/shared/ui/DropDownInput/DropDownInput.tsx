@@ -2,7 +2,6 @@ import React, {ReactNode, useState} from 'react';
 import cls from './DropDownInput.module.scss';
 import Arrow from "shared/assets/icons/Arrow.png"
 import {classNames} from "shared/lib/classNames";
-import {Input} from "shared/ui/Input/Input";
 
 interface Option {
     value: string;
