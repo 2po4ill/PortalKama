@@ -31,7 +31,7 @@ export interface IProductListProps {
     transactions: Transaction[];
 }
 
-export const TransactionHistory: FC<IProductListProps> = memo((props) => {
+export const    TransactionHistory: FC<IProductListProps> = memo((props) => {
     const { transactions } = props;
 
     const eventList = {

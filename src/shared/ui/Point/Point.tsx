@@ -36,9 +36,6 @@ export const Point: FC<IPoint> = (props) => {
     };
 
     const mapPoint = () => {
-        if (place.place_id === 118 || place.place_id === 130)
-            return mapPointGray
-
         if (place.is_available)
             return mapPointGreen
 
@@ -55,7 +52,7 @@ export const Point: FC<IPoint> = (props) => {
         <div className={classNames(className, mods, [])}>
             <div className={cls.tooltip}>
                 <img src={mapPoint()} alt={"point"} onClick={SelectPoint}/>
-                { place.is_available || place.place_id === 118 || place.place_id === 130 ? null :
+                { place.is_available ? null :
                 <div className={cls.tooltiptext}>
                     <div className={cls.text_block}>
                         <label> {place.full_name} </label>

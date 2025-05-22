@@ -52,9 +52,6 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
 
     const mapPoint = (place: IReservationItem) => {
 
-        if (place.place_id === 118 || place.place_id === 130)
-            return mapPointGray
-
         if (place.is_available)
             return mapPointGreen
 
@@ -73,7 +70,7 @@ const ReservationAside: FC<IReservationAsideProps> = memo(props => {
                     <div className={cls.properties}>
                         <a className={cls.title}> Место #{place.name} </a>
                         <a className={cls.description}> Телефон, компьютер </a>
-                        {!place.is_available || (place.place_id != 118 && place.place_id != 130) ?
+                        {!place.is_available ?
                             <div className={cls.text_block}>
                                 <a className={cls.description}> {place.full_name} </a>
                                 <a className={cls.description}> {place.position} </a>
