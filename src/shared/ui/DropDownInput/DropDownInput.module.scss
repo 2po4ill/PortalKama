@@ -23,6 +23,8 @@
   color: white;
   background: transparent;
   cursor: pointer;
+  font-size: 15px;
+  font-weight: bolder;
 }
 .dropdownInput::placeholder {
   font-weight: bold;
@@ -95,6 +97,6 @@
 
   .AdornmentInput {
     position: absolute;
-    left: 67%;
+    left: 70%;
   }
 }

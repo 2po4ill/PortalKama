@@ -22,6 +22,7 @@ export const loginByUsername = createAsyncThunk<User, ILoginData, IThunkConfig<s
                 username: loginData.username,
                 image_path: response.data.image_path,
                 balance: response.data.balance,
+                gift_balance: response.data.gift_balance,
                 uid: response.data.uid
             };
 

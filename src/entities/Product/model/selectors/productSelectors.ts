@@ -27,6 +27,7 @@ interface IProductSelectors {
     getUserIds: Selector<StateSchema, Shop_Users[]>
     getCartQuantity: Selector<StateSchema, number>
     getCartPrice: Selector<StateSchema, number>
+    getError: Selector<StateSchema, string | undefined>
 }
 
 function sumQuantity(cartItems: ICartItem[]){
@@ -83,4 +84,8 @@ export const productSelectors: IProductSelectors = {
         getProductData,
         (data) => data.users
     ),
+    getError: createSelector(
+        getProductData,
+        (data) => data.error
+    )
 }

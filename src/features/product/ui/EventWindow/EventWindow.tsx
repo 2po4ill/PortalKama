@@ -33,7 +33,7 @@ export const EventWindow: FC<IEventWindowProps> = memo((props) => {
                 <div className={cls.Cluster_action}>
                     <div className={cls.Cluster_string}>
                         <label className={cls.title_string}> Доступно для передачи коллегам: </label>
-                        <label className={cls.number}> {0} </label>
+                        <label className={cls.number}> {userData.gift_balance} </label>
                         <img src={coin_icon} alt={"Рахматик"} className={cls.coin_img}/>
                     </div>
                     <div className={cls.Cluster_buttons}>

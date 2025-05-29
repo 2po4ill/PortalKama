@@ -23,12 +23,16 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
     const users = useSelector(productSelectors.getUserIds);
     const transactions = useSelector(productSelectors.getTransactionData);
     const isLoading = useSelector(productSelectors.getIsLoading);
+    const error = useSelector(productSelectors.getError);
     const userData = useSelector(userSelectors.getUser);
     const dispatch = useAppDispatch();
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const [alert, setNewAlert] = useState<ReactNode>(null);
+
+    const [newError, setNewError] = useState<string | undefined>(undefined);
+
 
 
     useEffect(() => {
@@ -47,14 +51,24 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
         setNewAlert(alert)
     }
 
+    const alertRenderer = (error: string|undefined) => {
+        setNewError(error)
+        newError ?
+            alertHandler(<CustomAlert title={"Ошибка"} message={newError} setNewAlert={setNewAlert} confirmText={"ОК"}/>) :
+            alertHandler(<CustomAlert title={""} message={"Рахматики успешно подарены!"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
+    }
 
     const presentApi = (user_id: number, amount: number) => {
         dispatch(productActions.transfer_thx({user_id: user_id, amount: amount}));
-        alertHandler(<CustomAlert title={""} message={"Рахматики успешно подарены!"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
-    }
+        setTimeout(() => {
+            alertRenderer(error)
+        }, 5000);}
 
     const makeApi = (user_id: number, event_id: number) => {
         dispatch(productActions.make_thx({user_id: user_id, event_id: event_id}));
+        setNewError(error)
+        newError ?
+            alertHandler(<CustomAlert title={"Ошибка"} message={newError} setNewAlert={setNewAlert} confirmText={"ОК"}/>) :
         alertHandler(<CustomAlert title={"Рахматики успешно начислены!"} message={"Успешно"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
     }
 

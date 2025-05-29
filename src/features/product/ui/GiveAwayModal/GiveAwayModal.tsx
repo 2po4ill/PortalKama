@@ -18,7 +18,7 @@ export const GiveAwayModal: FC<IProductModalProps> = memo((props) => {
     const { presentApi, users, role, makeApi,...other } = props;
 
     const [selectedUser, setSelectedUser] = useState<string | undefined>( undefined);
-    const [selectedAmount, setSelectedAmount] = useState<string>( "0");
+    const [selectedAmount, setSelectedAmount] = useState<string>("Бик зур рахмат - 3");
 
     const [selectedUserAdmin, setSelectedUserAdmin] = useState<string | undefined>( undefined);
     const [selectedDescAdmin, setSelectedDescAdmin] = useState<string>( "0");
@@ -119,7 +119,7 @@ export const GiveAwayModal: FC<IProductModalProps> = memo((props) => {
                     <DropdownInput options={optionsThanks()} placeholder={"Выберите количество рахматиков"}
                                    onChange={e => setSelectedAmount(e)} defaultValue={"Бик зур рахмат - 3"}/>
                 </div>
-                <Button
+                <Button className={cls.Button}
                     onClick={() => currentUser && currentThanks ? presentApi(currentUser.user_id, currentThanks.amount) : console.log(selectedUser)}> Подарить рахматики </Button>
 
                         <div className={cls.DropdownContainer}>
@@ -132,9 +132,9 @@ export const GiveAwayModal: FC<IProductModalProps> = memo((props) => {
                             <DropdownInput options={optionsEvents()} placeholder={"Укажите причину начисления"}
                                            onChange={e => setSelectedDescAdmin(e)}/>
                         </div>
-                        <Button
+                        <Button className={cls.Button}
                             onClick={() => currentUserAdmin && currentReason ? makeApi(currentUserAdmin.user_id, currentReason.id) : console.log(selectedUser)}> Отправить
-                            баллы </Button>
+                            рахматики </Button>
             </div>
         </Modal>
     );

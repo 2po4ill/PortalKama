@@ -60,6 +60,8 @@ export interface Transaction {
     description: string;
     date: string;
     amount: string;
+    creator_name?: string;
+    recipient_name?: string;
 }
 
 export interface ProductSchema {

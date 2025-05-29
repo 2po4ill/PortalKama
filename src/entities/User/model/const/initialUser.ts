@@ -5,6 +5,7 @@ export const initialUser: UserSchema = {
     username: "",
     image_path: "",
     balance: 0,
+    gift_balance: 0,
     isLoading: true,
     isAuthorized: false
 }

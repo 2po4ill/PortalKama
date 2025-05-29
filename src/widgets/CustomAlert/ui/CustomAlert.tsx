@@ -51,9 +51,6 @@ export const CustomAlert = (props: IAlertProps) => {
 
     return (
         <>
-            {/* Кнопка для открытия алерта (можно использовать программно) */}
-            <button onClick={showAlert}>Показать алерт</button>
-
             {/* Сам алерт */}
             <Modal className={cls.ModalClassname} {...modalProps}>
                 <div className={cls.alertContainer}>

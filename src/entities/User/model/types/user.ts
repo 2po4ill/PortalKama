@@ -13,6 +13,7 @@ export interface IUserData {
     role: number;
     image_path: string;
     balance: number;
+    gift_balance: number;
 }
 
 export interface User {
@@ -21,6 +22,7 @@ export interface User {
     role?: number;
     image_path: string;
     balance: number;
+    gift_balance: number;
 }
 
 export enum UserRoles {

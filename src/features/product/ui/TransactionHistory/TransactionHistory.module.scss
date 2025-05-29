@@ -11,11 +11,11 @@
     .info_container {
       display: flex;
       gap: 20px;
+      justify-content: center;
       .img_container {
         .img_event {
-          height: 100px;
-          width: 100px;
-          position: relative;
+          height: 50px;
+          width: 50px;
           top: 10px;
         }
       }

@@ -59,8 +59,40 @@ export const TransactionHistory: FC<IProductListProps> = memo((props) => {
             {"id": 21,  "name":"Участие в корпоративных спортивных мероприятиях", "image": SportBonus},
             {"id": 22,  "name":"Участие в инициативах по экологии", "image": EcologyBonus},
             {"id": 23,  "name":"Обмен опытом", "image": ExpirienceChangeBonus},
-            {"id": 24,  "name":"Прохождение вакцинации", "image": VactinationBonus}
+            {"id": 24,  "name":"Прохождение вакцинации", "image": VactinationBonus},
+            {"id": 25, "name":"Передача рахматиков в дар коллеге", "image": Gift},
+            {"id": 26, "name":"Покупка в магазине", "image": CartPurchase}
         ]
+    }
+
+    const thankList = {
+        "thanks":[
+            {"amount": 1,   "name":"Рахмат"},
+            {"amount": 2,   "name":"Зур рахмат"},
+            {"amount": 3,   "name":"Бик зур рахмат"}
+        ]
+    }
+
+
+
+    const generateInfoThx = (eventID: number, transaction: Transaction) => {
+        if (eventID == 25) {
+            if (Number(transaction.amount) > 0) {
+                        return [<label className={cls.label_gray}> ФИО отправителя: {transaction.creator_name} </label>,
+                            <label className={cls.label_gray}>
+                                Величина благодарности: {thankList.thanks.find(thanks => thanks.amount == Math.abs(Number(transaction.amount)))?.name}
+                            </label>]}
+            else {
+                return [<label className={cls.label_gray}> ФИО адресата: {transaction.recipient_name} </label>,
+                    <label className={cls.label_gray}>
+                    Величина благодарности: {thankList.thanks.find(thanks => thanks.amount == Math.abs(Number(transaction.amount)))?.name}
+                </label>]
+            }
+        }
+        else {
+            return null
+        }
+
     }
 
     const findTransaction = (transaction: Transaction) => {
@@ -76,6 +108,7 @@ export const TransactionHistory: FC<IProductListProps> = memo((props) => {
                             </div>
                         <div className={cls.info}>
                             <label className={cls.label}> {transaction.description} </label>
+                            {currentTransaction ? generateInfoThx(currentTransaction.id, transaction) : null}
                             <label className={cls.label_gray}> Дата: {fullDate(new Date(transaction.date))} </label>
                         </div>
                     </div>
