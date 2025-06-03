@@ -2,17 +2,19 @@ import cls from './CustomAlert.module.scss';
 import {ReactNode, useState} from 'react';
 import {IModalProps, Modal} from "shared/ui/Modal/Modal";
 import {Button} from "shared/ui/Button/Button";
+import {PageLoader} from "widgets/PageLoader";
 
 // Интерфейс для кастомного алерта
 interface IAlertProps {
     title: string;
     message: string;
-    setNewAlert: (node: ReactNode) => void;
     onConfirm?: () => void;
     onCancel?: () => void;
+    setShowAlert?: (showAlert: boolean) => void;
     confirmText?: string;
     cancelText?: string;
     showCancel?: boolean;
+    isLoading?: boolean;
 }
 
 // Кастомный алерт компонент
@@ -22,10 +24,11 @@ export const CustomAlert = (props: IAlertProps) => {
         message,
         onConfirm,
         onCancel,
-        setNewAlert,
         confirmText = 'OK',
         cancelText = 'Отмена',
         showCancel = true,
+        setShowAlert,
+        isLoading = false
     } = props;
 
     const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +41,9 @@ export const CustomAlert = (props: IAlertProps) => {
     // Функция для закрытия алерта
     const closeAlert = () => {
         setIsOpen(false);
-        setNewAlert(null)
+        if (setShowAlert){
+            setShowAlert(false)
+        }
     };
 
     // Создаем пропсы для Modal
@@ -53,6 +58,8 @@ export const CustomAlert = (props: IAlertProps) => {
         <>
             {/* Сам алерт */}
             <Modal className={cls.ModalClassname} {...modalProps}>
+                {
+                    !isLoading ?
                 <div className={cls.alertContainer}>
                     <div className={cls.alertHeader}>{title}</div>
                     <div className={cls.alertMessage}>{message}</div>
@@ -64,7 +71,8 @@ export const CustomAlert = (props: IAlertProps) => {
                                 {confirmText}
                             </Button>
                     </div>
-                </div>
+                </div> : <PageLoader className={cls.AlertLoader}/>
+                }
             </Modal>
         </>
     );

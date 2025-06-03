@@ -38,6 +38,11 @@ export interface CartData {
     cart_data: ICartItem[];
 }
 
+export interface ErrorCatcher {
+    status: string;
+    error: string;
+}
+
 export interface EventData {
     status: string;
     events: Event[];

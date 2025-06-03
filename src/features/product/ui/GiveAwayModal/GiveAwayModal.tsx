@@ -121,7 +121,7 @@ export const GiveAwayModal: FC<IProductModalProps> = memo((props) => {
                 </div>
                 <Button className={cls.Button}
                     onClick={() => currentUser && currentThanks ? presentApi(currentUser.user_id, currentThanks.amount) : console.log(selectedUser)}> Подарить рахматики </Button>
-
+                { role == 1 ? <>
                         <div className={cls.DropdownContainer}>
                             <label className={cls.Title}> Выберите пользователя: </label>
                             <DropdownInput options={optionsUsers()} placeholder={"Поиск по ФИО ..."}
@@ -133,8 +133,10 @@ export const GiveAwayModal: FC<IProductModalProps> = memo((props) => {
                                            onChange={e => setSelectedDescAdmin(e)}/>
                         </div>
                         <Button className={cls.Button}
-                            onClick={() => currentUserAdmin && currentReason ? makeApi(currentUserAdmin.user_id, currentReason.id) : console.log(selectedUser)}> Отправить
+                            onClick={() =>currentUserAdmin && currentReason ? makeApi(currentUserAdmin.user_id, currentReason.id) : console.log(selectedUser)}> Отправить
                             рахматики </Button>
+                </> : null
+            }
             </div>
         </Modal>
     );

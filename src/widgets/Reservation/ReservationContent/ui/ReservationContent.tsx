@@ -51,13 +51,13 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     const checkPlaces = (dictionaryItems: IDictionaryItem[], placeItems: IReservationItem[]): IDictionaryItem[] => {
         const newList : IDictionaryItem[] = [];
         dictionaryItems.forEach(item => resultList(newList, item.full_name, item.position, item.department, item.mail, item.mobile, findPlace(item, placeItems)?.name, findPlace(item, placeItems)?.phone))
-        return newList
+        return newList.sort((a, b) => a.full_name.localeCompare(b.full_name))
     }
     const findPlace = (dictionaryItem: IDictionaryItem, placeItems: IReservationItem[]) : IReservationItem | undefined => {
         return placeItems.find(place => place.full_name == dictionaryItem.full_name)
     }
     const resultList = (newList: IDictionaryItem[], full_name: string, position: string, department: string, mail: string, mobile: string, place?: string, phone?: string) => {
-        const person = {full_name, position, department, mail, mobile, place: place, place_number: phone} as IDictionaryItem;
+        const person = {full_name, position, department, mail, mobile, place: place ? place : "-", place_number: phone ? phone : "-"} as IDictionaryItem;
         newList.push(person)
     }
 

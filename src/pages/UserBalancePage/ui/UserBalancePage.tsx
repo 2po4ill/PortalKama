@@ -14,6 +14,7 @@ import {EventWindow} from "features/product/ui/EventWindow/EventWindow";
 import {ProductModal} from "features/product/ui/ProductModal/ProductModal";
 import {GiveAwayModal} from "features/product/ui/GiveAwayModal/GiveAwayModal";
 import {CustomAlert} from "widgets/CustomAlert";
+import {errorFormat} from "shared/lib/FormatResponse/FormatResponce";
 
 export interface IBalanceProps {
     className?: string;
@@ -29,9 +30,7 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
 
     const [modalIsOpen, setModalIsOpen] = useState(false);
 
-    const [alert, setNewAlert] = useState<ReactNode>(null);
-
-    const [newError, setNewError] = useState<string | undefined>(undefined);
+    const [showAlert, setShowAlert] = useState(false);
 
 
 
@@ -47,29 +46,43 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
         setModalIsOpen(false);
     }, [setModalIsOpen]);
 
-    const alertHandler = (alert: ReactNode) => {
-        setNewAlert(alert)
-    }
 
     const alertRenderer = (error: string|undefined) => {
-        setNewError(error)
-        newError ?
-            alertHandler(<CustomAlert title={"Ошибка"} message={newError} setNewAlert={setNewAlert} confirmText={"ОК"}/>) :
-            alertHandler(<CustomAlert title={""} message={"Рахматики успешно подарены!"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
+        if (error) {
+            console.log(error)
+            return <CustomAlert title={"Ошибка"} message={errorFormat(error)} confirmText={"ОК"} setShowAlert={setShowAlert}/>
+        }
+        else {
+            return <CustomAlert title={""} message={"Рахматики успешно подарены!"} confirmText={"ОК"} setShowAlert={setShowAlert}/>
+        }
     }
 
     const presentApi = (user_id: number, amount: number) => {
         dispatch(productActions.transfer_thx({user_id: user_id, amount: amount}));
-        setTimeout(() => {
-            alertRenderer(error)
-        }, 5000);}
+        setShowAlert(true)
+    }
 
     const makeApi = (user_id: number, event_id: number) => {
         dispatch(productActions.make_thx({user_id: user_id, event_id: event_id}));
-        setNewError(error)
-        newError ?
-            alertHandler(<CustomAlert title={"Ошибка"} message={newError} setNewAlert={setNewAlert} confirmText={"ОК"}/>) :
-        alertHandler(<CustomAlert title={"Рахматики успешно начислены!"} message={"Успешно"} setNewAlert={setNewAlert} confirmText={"ОК"}/>)
+        setShowAlert(true)
+    }
+
+    const loadAlert = () => {
+        return <CustomAlert title={"Подождите"} message={"идет загрузка"} isLoading={isLoading} setShowAlert={setShowAlert}/>
+    }
+
+    const alertModal = () => {
+        if (showAlert) {
+            if (!isLoading) {
+                return alertRenderer(error)
+            }
+            else {
+                return loadAlert()
+            }
+        }
+        else {
+            return null
+        }
     }
 
 
@@ -89,7 +102,7 @@ const UserBalancePage = ({ className }: IBalanceProps ) => {
                 </div>
             </div>
             {modalIsOpen ? <GiveAwayModal users={users} isOpen={modalIsOpen} onClose={modalCloseHandler} presentApi={presentApi} role={userData.role} makeApi={makeApi}/> : null}
-            {alert}
+            {alertModal()}
         </AsyncReducerProvider>
     );
 };

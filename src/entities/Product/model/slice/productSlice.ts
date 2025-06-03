@@ -1,5 +1,5 @@
 import {
-    CartData,
+    CartData, ErrorCatcher,
     Event,
     EventData,
     ICartItem,
@@ -10,9 +10,6 @@ import {
 } from "../types/product";
 import {createAppSlice} from "shared/lib/createAppSlice/createAppSlice";
 import {IThunkConfig} from "app/providers/StoreProvider";
-import {IUserDataResponse, userActions} from "entities/User";
-import {useDispatch} from "react-redux";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch";
 
 const initialState: ProductSchema = {
     products: [],
@@ -340,8 +337,6 @@ const productSlice = createAppSlice({
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
                     const status = await extra.api.post("/get_event_thx", {description: data.description, amount: data.amount});
-                    const dispatch = useAppDispatch()
-                    dispatch(userActions.addBalance(data.amount))
                     return
                 } catch (err) {
                     console.log("Something went wrong" + err);
@@ -365,7 +360,7 @@ const productSlice = createAppSlice({
                 rejected: (state, action) => {
                     return {
                         ...state,
-                        error: String(action.payload),
+                        error: String(action.error),
                         isLoading: false
                     }
                 }
@@ -373,12 +368,11 @@ const productSlice = createAppSlice({
             transfer_thx: createAThunk<{user_id: number, amount: number}, undefined>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    const status = await extra.api.post("/transfer_thx", {user_id: data.user_id, amount: data.amount});
-                    const dispatch = useAppDispatch()
-                    dispatch(userActions.addBalance(data.amount))
-                    return
+                    const response = await extra.api.post("/transfer_thx", {user_id: data.user_id, amount: data.amount});
+                    if (response.status != 200) {
+                        return rejectWithValue(response.data);
+                    }
                 } catch (err) {
-                    console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));
                 }
             },{
@@ -439,10 +433,11 @@ const productSlice = createAppSlice({
             make_thx: createAThunk<{user_id: number, event_id: number}, undefined>(async (data, thunkAPI) => {
                 const {rejectWithValue, extra} = thunkAPI;
                 try {
-                    const status = await extra.api.post("/make_thx", {user_id: data.user_id, event_id: data.event_id});
-                    return
+                    const response = await extra.api.post("/make_thx", {user_id: data.user_id, event_id: data.event_id});
+                    if (response.status != 200) {
+                        return rejectWithValue(response.data);
+                    }
                 } catch (err) {
-                    console.log("Something went wrong" + err);
                     return rejectWithValue(String(err));
                 }
             },{

@@ -32,8 +32,8 @@ export interface IDictionaryItem {
     department: string;
     mail: string;
     mobile: string;
-    place?: string;
-    place_number?: string;
+    place: string;
+    place_number: string;
 }
 
 export interface IReservationLockerItem {
