@@ -1,0 +1,143 @@
+.PhonePage {
+  background: #f4f5f7;
+  min-height: 100vh;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ContentWrapper {
+  background: #fff;
+  border-radius: 16px;
+  margin: 32px 24px 24px 80px;
+  padding: 32px 24px 24px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  margin-bottom: 8px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #15395b;
+  margin-bottom: 0.25em;
+}
+
+.date {
+  font-size: 1rem;
+  color: #6b7a90;
+  margin-bottom: 1.5em;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.searchInput {
+  min-width: 260px;
+  max-width: 320px;
+}
+
+.btn {
+  margin-left: 0;
+  background: #15395b;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0 12px;
+  height: 36px;
+  font-weight: 500;
+  border: none;
+}
+
+.checkBox {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  font-size: 1rem;
+  color: #15395b;
+}
+
+.checkbox {
+  margin-right: 6px;
+}
+
+.placeList {
+  margin-top: 24px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+}
+
+.columnHeader tr {
+  background: #15395b;
+}
+
+.columnHeader td {
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 10px;
+  font-size: 1rem;
+  border-bottom: 2px solid #e0e4ea;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.sortArrow {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 6px;
+  margin-right: 0;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.rotated {
+  transform: rotate(180deg);
+}
+
+.column td {
+  padding: 10px 10px;
+  font-size: 1rem;
+  color: #15395b;
+  border-bottom: 1px solid #e0e4ea;
+}
+
+.column td:last-child {
+  word-break: break-all;
+}
+
+.columnHead {
+  cursor: pointer;
+}
+
+.exampleLink {
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .ContentWrapper {
+    margin: 16px 4px 4px 4px;
+    padding: 16px 4px 4px 4px;
+  }
+  .table {
+    font-size: 0.9rem;
+  }
+} 

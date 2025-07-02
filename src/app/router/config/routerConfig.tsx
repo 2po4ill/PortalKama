@@ -11,6 +11,7 @@ import ReservationLockerPage from "pages/ReservationLockerPage/ui/ReservationLoc
 import UserOrders from "pages/UserOrders";
 import UserBalancePage from "pages/UserBalancePage";
 import TopWorkersPage from "pages/TopWorkersPage";
+import { PhonePage } from "pages/PhonePage/ui/PhonePage";
 
 export type AppRouteProps = RouteProps & {
     authRequire?: boolean;
@@ -67,6 +68,12 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
         path: RoutePath.myreservations,
         element: <MyReservationsPage />,
         authRequire: true
+    },
+
+    [AppRoutes.PHONEDIRECTORY]: {
+        path: RoutePath.phone_directory,
+        element: <PhonePage />,
+        authRequire: true,
     },
 
     /**

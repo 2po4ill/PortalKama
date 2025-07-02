@@ -1,4 +1,5 @@
 import {FC, memo, useState} from "react";
+import { useNavigate } from "react-router-dom";
 
 import {classNames} from "shared/lib/classNames";
 import cls from "./ReservationContent.module.scss";
@@ -17,6 +18,7 @@ import {PhoneModal} from "features/reservation/ui/PhoneModal";
 import {useSelector} from "react-redux";
 import {userSelectors} from "entities/User";
 import {DictionaryModal} from "features/reservation/ui/DictionaryModal";
+import { RoutePath } from "shared/const/router";
 
 interface IReservationContentProps {
     className?: string;
@@ -47,6 +49,8 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
     const [selectedFloor, setSelectedFloor] = useState(localStorage.getItem('floor'));
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
+
+    const navigate = useNavigate();
 
     const checkPlaces = (dictionaryItems: IDictionaryItem[], placeItems: IReservationItem[]): IDictionaryItem[] => {
         const newList : IDictionaryItem[] = [];
@@ -223,9 +227,9 @@ const ReservationContent: FC<IReservationContentProps> = memo((props) => {
                 } : () => {}} className={ classNames(cls.reservation, {}, [selectedPoint ? cls.selectedPoint : cls.non_selectedPoint])}>
                     Забронировать
                 </Button>
-                {<Button onClick={dictionaryClickHandler} className={cls.reservation}>
+                <Button onClick={() => navigate(RoutePath.phone_directory)} className={cls.reservation}>
                     Телефонный справочник
-                </Button>}
+                </Button>
             </div>
             <DictionaryModal className={cls.Modal} isOpen={modalIsOpen1} onClose={() => {setModalIsOpen1(false);}} dictionary={checkPlaces(dictionary, places)}/>
         </div>

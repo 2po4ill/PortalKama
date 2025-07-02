@@ -9,6 +9,7 @@ export enum AppRoutes {
     MYRESERVATIONS = 'myreservations',
     PROFILE = 'profile',
     USERORDERS = 'user_orders',
+    PHONEDIRECTORY = 'phone_directory',
     // всегда последний
     NOT_FOUND = 'not_found',
 }
@@ -24,5 +25,6 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.CART]: '/cart',
     [AppRoutes.USERORDERS]: 'cart/user_orders',
     [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.PHONEDIRECTORY]: '/phone-directory',
     [AppRoutes.NOT_FOUND]: '*'
 }

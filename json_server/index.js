@@ -192,6 +192,18 @@ server.get('/article', (req, res) => {
     }
 })
 
+server.get('/phone_book', (req, res) => {
+    try {
+        const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+        const { phone_book = { employees: [] } } = db;
+        
+        return res.status(200).json(phone_book);
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json({message: e.message})
+    }
+})
+
 server.use(router);
 
 // запуск сервера
